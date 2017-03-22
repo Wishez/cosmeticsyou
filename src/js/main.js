@@ -9,7 +9,7 @@
 //= ../../bower_components/jquery-color/jquery.color.js
 //= ../../bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
 // You need slicker?
-// ../../bower_components/slick-carousel/slick/slick.min.js
+//= ../../bower_components/slick-carousel/slick/slick.min.js
 // ../../bower_components/nivo-slider/jquery.nivo.slider.pack.js
 /**********
 

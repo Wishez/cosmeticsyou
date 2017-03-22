@@ -1,0 +1,9 @@
+.instructions__image {
+  @include span(6);
+  & figure {
+    background: url('../img/instructions__image.jpg') no-repeat center;
+    background-size: cover;
+    max-width: 633px;
+    padding-bottom: (633% / 873) * 200;
+  } 
+}
