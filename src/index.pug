@@ -26,13 +26,19 @@ body
   include blocks/footer/footer.pug
   
   script(
-      async, 
       src="https://code.jquery.com/jquery-3.1.1.min.js",
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=",
       crossorigin="anonymous"
   )
+  script(
+    async,
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nivoslider/3.2/jquery.nivo.slider.pack.min.js"
+  )
   script(async, src="js/main.js")
-    
+link(
+rel="stylesheet",
+href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nivoslider/3.2/nivo-slider.min.css"
+)
 link(
   rel="stylesheet",
   href="css/main.css"
