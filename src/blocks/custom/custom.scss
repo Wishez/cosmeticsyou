@@ -7,6 +7,7 @@ $susy: (
 @include border-box-sizing;
 /* Fonts */
 $stackComfortaa: 'Comfortaa', cursive;
+$stackMuseo: 'Museo, monospace';
 /* Colors */
 $cyan: #76bdff;
 $beige: #dfa76e;
@@ -37,7 +38,7 @@ body {
   }
   position: relative;
   font: {
-    family: $stackComfortaa;
+    family: $stackMuseo;
     size: 16px;
   }
   line-height: 145%;
