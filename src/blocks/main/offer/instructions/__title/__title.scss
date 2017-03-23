@@ -1,4 +1,5 @@
-.incstructions__title {
-  @include last;
-  width: span(6);
+.instructions__title {
+  @include breakpoint(max-width 991px) {
+    margin-top: 30px;
+  }
 }
