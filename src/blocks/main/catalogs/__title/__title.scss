@@ -1,0 +1,14 @@
+.catalogs__title {
+  background-color: $nightBlack;
+  width: span(2);
+  text-align: center;
+  padding: 5px;
+  color: $gray;
+  @include breakpoint($sm) {
+    width: span(3);
+  }
+  @include breakpoint(max-width 767px) {
+     width: span(3);
+     min-width: 165px;
+  }
+}

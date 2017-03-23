@@ -1,6 +1,29 @@
-.catalogStock {
-  & .slick-next:before, & .slick-prev:before {
-    backround-color: $gray;
+.catalogsStock {
+  margin-top: 20px;
+  & .slick-arrow  {
+    opacity: 1;
+    top: -55px;
+  }
+  & .slick-next {
+    right: 31px;
+  }
+  & .slick-prev {
+    left: auto;
+    right: 90px;
+  }
+  & .slick-next::before, & .slick-prev::before {
+    background-color: $gray;
+    font-size: 35px;
+    padding: 0 18px 10px;
+    text-align: center;
+     
   } 
+  & .slick-next::before {
+    content: "\0203A";
+  }
+  & .slick-prev::before {
+    content: "\02039";
+  }
 }
+
 @import '__item/__item.scss';
