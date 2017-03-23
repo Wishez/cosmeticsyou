@@ -46,3 +46,13 @@
 .navItem__refer {
   transition: color 1s, background 1s;
 }
+
+.navigation__btnTop {
+  position: fixed;
+  bottom: 2vw;
+  right: 5vw;
+  z-index: 999;
+  & i {
+    color: $nightBlack;
+  }
+}

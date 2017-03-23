@@ -1,0 +1,6 @@
+.catalogStock {
+  & .slick-next:before, & .slick-prev:before {
+    backround-color: $gray;
+  } 
+}
+@import '__item/__item.scss';
