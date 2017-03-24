@@ -18,7 +18,7 @@ $toggleButton.on('click', (e) => {
 });
 
 
-$(document).on('click', '#btnTop' , (e) =>  {
+$(document).on('click', '#btnTop' ,function()  {
   let $this = $(this);
   $('html, body').stop().animate({
     scrollTop: $($this.attr('href')).offset().top

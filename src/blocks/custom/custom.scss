@@ -55,8 +55,12 @@ body {
   color: #000;
 }
 
+h1, h2, h3, h4 {
+  color: $nightBlack;
+}
+
 a {
-  @include link-colors(#fff, #fff, #fff, #fff, #fff);
+  @include link-colors($nightBlack, $nightBlack, $nightBlack, $nightBlack, $nightBlack);
   &:hover {
     text-decoration: none;  
   }
