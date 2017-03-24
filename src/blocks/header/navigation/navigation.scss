@@ -56,3 +56,16 @@
     color: $nightBlack;
   }
 }
+.dropdown-menu {
+  min-width: 133px;
+  @include breakpoint($lg) {
+    min-width: 137px;
+  }
+  @include breakpoint(max-width 787px) {
+    text-align: center;
+  }
+} 
+
+.navList__navItem:hover .dropdown-menu .navItem__refer {
+  color: #fff !important;
+}

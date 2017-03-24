@@ -1,26 +1,37 @@
 // jshint esversion: 6
-$("#navbarToggle").click(function (event) {
-    $(event.target).focus();
-});
+let $toggleButton = $("#toggleButton");
 
-$('#toggleButton').on('blur', function() {
+$toggleButton.click((e) => {
+    $(e.target).focus();
+}); // end click
+
+$toggleButton.on('blur', (e) => {
   let screenWidth = window.innerWidth;
   if (screenWidth < 768) 
     $('#collapsable').collapse('hide');
 }); // end blur
 
-$(document).on('click', '#btnTop' , function() {
+$toggleButton.on('click', (e) => {
+  let screenWidth = window.innerWidth;
+  if (screenWidth < 768) 
+    $('#navOpportunities').addClass('open');
+});
+
+
+$(document).on('click', '#btnTop' , (e) =>  {
   let $this = $(this);
   $('html, body').stop().animate({
     scrollTop: $($this.attr('href')).offset().top
-  }, 500,);
+  }, 500);
   
   return false;
 });// end click
 let $btnTop = $('#btnTop');
-  
+
+
+// Кнопка, ведущая наверх
 $btnTop.hide();
-$(window).scroll(function(){
+$(window).scroll((e) => {
   if ($(this).scrollTop() < 100) {
     $btnTop.fadeOut(1000);
   } else {

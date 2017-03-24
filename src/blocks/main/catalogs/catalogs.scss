@@ -1,5 +1,8 @@
 .catalogs {
   padding: 5% 0;
+  @include breakpoint($xxs) {
+    padding: 15% 0;
+  }
 }
 @import '__title/__title.scss';
 @import 'catalogsStock/catalogsStock.scss';

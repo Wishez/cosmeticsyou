@@ -7,6 +7,7 @@
 // Controller
 $(function() {
   // Onload
+  //= ../../blocks/custom/custom-controller.js
   //= ../../blocks/header/navigation/navigation.js
   //= ../../blocks/main/main-controller.js
 });//end ready

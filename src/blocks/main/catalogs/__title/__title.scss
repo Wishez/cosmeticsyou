@@ -4,6 +4,7 @@
   text-align: center;
   padding: 5px;
   color: $gray;
+  min-width: 180px;
   @include breakpoint($sm) {
     width: span(3);
   }
