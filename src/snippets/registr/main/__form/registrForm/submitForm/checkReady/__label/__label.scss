@@ -1,0 +1,8 @@
+.checkReady__label {
+  width: span(11);
+  display: inline;
+  @include breakpoint(max-width 768px) {
+    display: inline-block;
+    
+  }
+}

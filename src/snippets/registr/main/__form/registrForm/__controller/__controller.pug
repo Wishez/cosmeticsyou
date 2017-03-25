@@ -1,0 +1,145 @@
+.registrForm__controller.controller
+  label.controller__label(
+    for="lastName"
+  ) Фамилия:
+  input#lastName.controller__item(
+    type="text",
+    name="lastName",
+    maxlength="24",
+    minlength="1",
+    pattern="/^(\w+|\w+\-?\w+)$/",
+    required,
+    autofocus,
+    placeholder="Фамилия"
+  )
+.registrForm__controller.controller
+  label.controller__label(
+    for="firstName"
+  ) Имя:
+  input#firstName.controller__item(
+    type="text",
+    name="firstName",
+    maxlength="24",
+    minlength="1",
+    pattern="/^(\w+|\w+\-?\w+)$/",
+    required,
+    placeholder="Имя"
+  )
+.registrForm__controller.controller
+  label.controller__label(
+    for="middleName"
+  ) Отчество:
+  input#middleName.controller__item(
+    type="text",
+    name="middleName",
+    maxlength="24",
+    minlength="1",
+    pattern="/^(\w+|\w+\-?\w+)$/",
+    required,
+    placeholder="Отчество"
+  )
+  .registrForm__controller.controller
+    label.controller__label(
+      for="birthday"
+    ) День рождения:
+    input#birthday.controller__item(
+      type="date",
+      name="birthday",
+      maxlength="24",
+      minlength="1",
+      required,
+      placeholder="День рождения"
+    )
+  .registrForm__controller.controller
+    label.controller__label(
+      for="pasportData"
+    ) Серия и номер паспорта:
+    input#pasportData.controller__item(
+      type="text",
+      name="pasportData",
+      maxlength="24",
+      minlength="1",
+      required,
+      placeholder="Серия и номер паспорта"
+    )
+  .registrForm__controller.controller
+    label.controller__label(
+      for="telephone"
+    ) Телефон:
+    input#telephone.controller__item(
+      type="tel",
+      name="telephone",
+      maxlength="11",
+      minlength="1",
+      required,
+      placeholder="Телефон"
+    )
+  .registrForm__controller.controller
+    label.controller__label(
+      for="city"
+    ) Город:
+    input#city.controller__item(
+      type="text",
+      name="city",
+      maxlength="36",
+      minlength="1",
+      pattern="",
+      required,
+      
+      placeholder="Город"
+    )
+  .registrForm__controller.controller
+    label.controller__label(
+      for="region"
+    ) Область:
+    input#region.controller__item(
+      type="text",
+      name="region",
+      maxlength="36",
+      minlength="1",
+      pattern="",
+      placeholder="Область"
+    )
+  .registrForm__controller.controller
+    label.controller__label(
+      for="street"
+    ) Улица, дом, квартира:
+    input#streen.controller__item(
+      type="text",
+      name="street",
+      maxlength="24",
+      minlength="1",
+      pattern="",
+      placeholder="Улица"
+    )
+    input#homeNumber.controller__item(
+      type="number",
+      name="homeNumber",
+      max="100",
+      min="1",
+      now="1",
+      pattern="",
+      placeholder="Дом"
+    )
+    input#appartmentNumber.controller__item(
+      type="number",
+      name="appartmentNumber",
+      max="400",
+      min="1",
+      now="1",
+      pattern="",
+      placeholder="Квартира"
+    )
+  .registrForm__controller.controller
+    label.controller__label(
+      for="email"
+    ) E-mail:
+    input#email.controller__item(
+      type="email",
+      name="email",
+      maxlength="24",
+      minlength="1",
+      pattern="",
+      placeholder="E-mail"
+    )
+  

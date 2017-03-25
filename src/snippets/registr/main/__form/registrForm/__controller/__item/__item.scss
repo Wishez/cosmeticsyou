@@ -1,0 +1,11 @@
+.controller__item {
+  border: 1px solid $gray;
+  min-width: 210px;
+  margin: 12px auto 0;
+  padding: 3px 0 3px 5px;
+  color: $nightBlack;
+}
+
+.controller > input[type="number"] {
+  min-width: 105px;
+}

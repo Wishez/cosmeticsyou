@@ -1,0 +1,1 @@
+//= registrForm/registrForm-controller.js

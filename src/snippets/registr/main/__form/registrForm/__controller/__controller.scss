@@ -1,0 +1,12 @@
+.registrForm__controller {
+  width: span(12);
+  margin-top: 24px;
+}
+@import "__label/__label.scss";
+@import "__item/__item.scss";
+
+// Общие стили
+
+.controller__label, .controller__item {
+  display: block;
+}

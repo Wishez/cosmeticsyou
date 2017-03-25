@@ -1,0 +1,16 @@
+// Общие стили
+
+.registr__form, .registr__info {
+    padding: 5% 15%;
+    color: lighten($nightBlack, 20%);
+    @include breakpoint($xs) {
+      padding: 5% 10%;
+    }
+    @include breakpoint($xxs) {
+      padding: 5% 5%;
+    }
+}  
+
+@import "__heading/__heading.scss";
+@import "__info/__info.scss";
+@import "__form/__form.scss";

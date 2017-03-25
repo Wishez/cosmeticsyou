@@ -1,0 +1,14 @@
+.info {
+  @include span(4);
+  margin-right: gutter(1);
+  
+  @include breakpoint($xs) {
+     @include span(6);
+     margin-right: gutter(1);
+  }
+   @include breakpoint($xxs) {
+     @include span(12);
+     margin-right: 0;
+     padding: 0 13%;
+  }
+}
