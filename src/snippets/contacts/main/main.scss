@@ -1,5 +1,2 @@
-.contactsContent {
-  & .contacts {
-    margin-top: 55px;
-  } 
-}
+@import "map/map.scss";
+@import "contacts/contacts.scss";

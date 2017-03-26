@@ -1,0 +1,33 @@
+.visitCard.contacts(
+    itemscope,
+    itemtype="https://schema.org/Organization"
+  )
+    header.visitCard__header
+    h2.contacts__title.titke Контакты
+    address.contacts__item(
+      itemprop="address",
+      itemscope,
+      itemtype="https://schema.org/PostalAddress"
+    ) 
+      span.address__label Адрес: 
+      a.address__item(
+        href="https://www.google.ru/maps/place/Ivanteevskaya+ul.,+13%D0%BA1,+Moskva,+107150/@55.818067,37.7239063,17z/data=!3m1!4b1!4m5!3m4!1s0x46b53450cf0645b9:0x869f26e9d7ad24d3!8m2!3d55.818067!4d37.726095?sa=X&ved=0ahUKEwi_jtfNru3SAhWkE5oKHSiQDNYQ8gEIHjAA", 
+        itemprop="streetAddress"
+      ) Ивантеевская д. 13 кор.1
+    .contacts__item.tel(
+      itemscope,
+      itemtype="https://schema.org/ContactPoint"
+    )
+      span.tel__label Телефон: 
+      a.tel__item(
+        href="tel:8-965-158-14-81",
+        itemprop="telephone") +7 965 158-14-81 (Наталья)
+    .contacts__item.email(
+      itemscope,
+      itemtype="https://schema.org/ContactPoint"
+    )
+      span.email__label E-mail: 
+      a.email__item(
+        href="mailto:nat_kar_1971@mail.ru",
+        itemprop="email"
+      ) Support@cosmeticsyou.ru

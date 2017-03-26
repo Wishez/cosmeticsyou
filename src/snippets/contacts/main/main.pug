@@ -1,36 +1,4 @@
 .container
   section.contactsContent
-    .map
-      <iframe class="center-block" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2241.62927236199!2d37.72623447311733!3d55.81703622987528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b53450cf0645b9%3A0x869f26e9d7ad24d3!2sIvanteevskaya+ul.%2C+13%D0%BA1%2C+Moskva%2C+107150!5e0!3m2!1sen!2sru!4v1490534290229" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
-    .contacts(
-      itemscope,
-      itemtype="https://schema.org/Organization"
-    )
-      h3.contacts__title.titke Контакты
-      address.contacts__item(
-        itemprop="address",
-        itemscope,
-        itemtype="https://schema.org/PostalAddress"
-      ) 
-        span.address__label Адрес: 
-        a.address__item(
-          href="https://www.google.ru/maps/place/Ivanteevskaya+ul.,+13%D0%BA1,+Moskva,+107150/@55.818067,37.7239063,17z/data=!3m1!4b1!4m5!3m4!1s0x46b53450cf0645b9:0x869f26e9d7ad24d3!8m2!3d55.818067!4d37.726095?sa=X&ved=0ahUKEwi_jtfNru3SAhWkE5oKHSiQDNYQ8gEIHjAA", 
-          itemprop="streetAddress"
-        ) Ивантеевская д. 13 кор.1
-      .contacts__item.tel(
-        itemscope,
-        itemtype="https://schema.org/ContactPoint"
-      )
-        span.tel__label Телефон: 
-        a.tel__item(
-          href="tel:8-965-158-14-81",
-          itemprop="telephone") +7 965 158-14-81 Наталья
-      .contacts__item.email(
-        itemscope,
-        itemtype="https://schema.org/ContactPoint"
-      )
-        span.email__label E-mail: 
-        a.email__item(
-          href="mailto:nat_kar_1971@mail.ru",
-          itemprop="email"
-        ) Support@cosmeticsyou.ru
+    include map/map.pug
+    include contacts/contacts.pug
