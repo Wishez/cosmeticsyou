@@ -1,0 +1,10 @@
+.oriflameOpportunities {
+  margin-top: 80px;
+  @include breakpoint($xxs) {
+    margin-top: 50px;
+  }
+}
+
+@import "__list.scss";
+@import "__heading.scss";
+@import "listOpportunities/__item.scss";
