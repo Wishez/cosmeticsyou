@@ -1,0 +1,10 @@
+.instructions__text {
+  padding: 3% 2%;
+  @include breakpoint($xs) {
+    padding: 3% 10%;
+  }
+  @include breakpoint($xxs) {
+    padding: 3% 6%;
+  }
+}
+@import "paragraph/paragraph.scss";

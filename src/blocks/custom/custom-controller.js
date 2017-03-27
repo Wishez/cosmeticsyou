@@ -7,7 +7,7 @@ $(document).on('click', '.officialSite__refer, .address__item, .submitForm__agre
   e.preventDefault();
 }); // end click
 
-$cmt.showLoading('#mainContent');
+//$cmt.showLoading('#mainContent');
 
 $(document).on('click', '.navItem', function() {
   $cmt.switchMenu(this);

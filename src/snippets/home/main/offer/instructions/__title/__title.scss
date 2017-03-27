@@ -1,0 +1,5 @@
+.instructions__title {
+  @include breakpoint(max-width 991px) {
+    margin-top: 30px;
+  }
+}

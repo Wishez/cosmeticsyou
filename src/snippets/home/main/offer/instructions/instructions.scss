@@ -1,0 +1,13 @@
+.instructions {
+  
+}
+.instructions__title, .instructions__text  {
+  @include last;
+  width: span(6);
+  @include breakpoint(max-width 991px) {
+    width: span(12);
+  }
+}
+@import "__image/__image.scss";
+@import "__title/__title.scss";
+@import "__text/__text.scss";

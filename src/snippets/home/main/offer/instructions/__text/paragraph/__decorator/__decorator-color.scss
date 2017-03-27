@@ -1,0 +1,11 @@
+.paragraph__decorator {
+  font-weight: bold;
+  &-color {
+    &_red {
+      color: $red;
+    }
+    &_viole {
+      color: $viole;
+    } 
+  }
+}

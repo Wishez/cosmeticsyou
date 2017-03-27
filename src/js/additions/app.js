@@ -1,6 +1,7 @@
 // Add your moduls if you need.
 (function(global) {
   //= ../../blocks/custom/custom.js
+  //= ../../snippets/home/main/main.js
   //= ../../snippets/registr/main/main.js
   //= ../../snippets/videos/main/main.js
   //= ../../snippets/shares/main/main.js
@@ -14,7 +15,7 @@ $(function() {
   // Onload
   //= ../../blocks/custom/custom-controller.js
   //= ../../blocks/header/navigation/navigation.js
-  //= ../../blocks/main/main-controller.js
+  //= ../../snippets/home/main/main-controller.js
   //= ../../snippets/registr/main/main-controller.js
   //= ../../snippets/videos/main/main-controller.js
   //= ../../snippets/shares/main/main-controller.js
