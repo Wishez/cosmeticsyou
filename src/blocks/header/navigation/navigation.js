@@ -5,7 +5,7 @@ $toggleButton.click((e) => {
     $(e.target).focus();
 }); // end click
 
-$toggleButton.on('blur', (e) => {
+$('.navItem').not('#navOpportunities').on('click', (e) => {
   let screenWidth = window.innerWidth;
   if (screenWidth < 768) 
     $('#collapsable').collapse('hide');
@@ -46,22 +46,30 @@ $("#navOpportunities").on('click', e => {
 });
 
 // Навигация по страницам
-$(document).on('click', '#navRegistr', e => {
-  $cmt.showRegistrPage();
-});// end click
+let main = '#mainContent';
 
-$(document).on('click', '#navHome', e => {
+$(document).on('click', '#navHome, #logo', e => {
+  $cmt.showLoading(main);
   $cmt.showHomePage();
 });// end click
 
+$(document).on('click', '#navRegistr, #regButton', e => {
+  $cmt.showLoading(main);
+  $cmt.showRegistrPage();
+});// end click
+
+
 $(document).on('click', '#navVideos', e => {
+  $cmt.showLoading(main);
   $cmt.showVideosPage();
 });// end click
 
 $(document).on('click', '#navContacts', e => {
+  $cmt.showLoading(main);
   $cmt.showContactsPage();
 });// end click
 
 $(document).on('click', '#navBusiness', e => {
+  $cmt.showLoading(main);
   $cmt.showBusinessPage();
 });// end click

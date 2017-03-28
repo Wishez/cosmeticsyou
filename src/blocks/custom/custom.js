@@ -20,8 +20,7 @@ cmt.switchMenu = elem => {
 // Запросы страничек.
 
 requests = () => {
-  let that = this,
-      home = '../snippets/home/home.html',
+  let home = '../snippets/home/home.html',
       shares = '../snippets/shares/shares.html',
       business = '../snippets/opportunities/business.html',
       registr = '../snippets/registr/registr.html',
