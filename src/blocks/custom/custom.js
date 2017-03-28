@@ -23,7 +23,7 @@ requests = () => {
   let that = this,
       home = '../snippets/home/home.html',
       shares = '../snippets/shares/shares.html',
-      business = '../snippets/opportrunities/business.html',
+      business = '../snippets/opportunities/business.html',
       registr = '../snippets/registr/registr.html',
       videos = '../snippets/videos/videos.html',
       contacts = '../snippets/contacts/contacts.html';

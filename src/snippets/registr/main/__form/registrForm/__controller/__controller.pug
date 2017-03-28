@@ -62,6 +62,11 @@
       required,
       placeholder="Серия и номер паспорта"
     )
+    label.controller__label.controller__label-checkAddition(for="checkInternational") Не гражданин РФ.
+      input#checkInternational.controller__item.controller__item-checkAddition(
+        type="checkbox",
+        name="checkInternational",
+      )
   .registrForm__controller.controller
     label.controller__label(
       for="telephone"

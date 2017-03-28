@@ -1,12 +1,5 @@
 .map {
-  box-shadow: 0 0 15px $shadow;
-  border: 2px solid $nightBlack;
-  border-radius: 5px;
   width: span(12);
-  @include breakpoint(max-width 767px) {
-    max-height: 200px;
-  }
-  min-height: 300px;
 }
 
 @import "__item/__item.scss";

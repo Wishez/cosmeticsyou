@@ -1,5 +1,5 @@
 // jshint esversion: 6
-$(document).on('click', '.officialSite__refer, .address__item, .submitForm__agreement, .submitForm__conditions', (e) =>  {
+$(document).on('click', '.officialSite__refer, .address__item, .submitForm__agreement, .submitForm__conditions, #navStore', (e) =>  {
   let url = $(this).prop('href');
   
   window.open(url);

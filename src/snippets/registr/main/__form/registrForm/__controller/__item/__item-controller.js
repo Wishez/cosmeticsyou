@@ -1,7 +1,4 @@
 // jshint esversion: 6
-$('#telephone').mask('+7 (000) 000 00 00');
-$('#pasportData').mask('0000 - 000000');
-
 
 // Можно добавить и область #region
 $(document).on('input changepropery', '#lastName, #firstName, #middleName, #city', (e) => {
@@ -39,6 +36,16 @@ $(document).on('input changepropery', '#lastName, #firstName, #middleName, #city
 //  updateField($region, regionVal);
 }); // end input changeproperty
 
+$(document).on('click', '#checkInternational', () => {
+  let $checkInternational = $('#checkInternational'),
+      $pasportData = $('#pasportData'),
+      mask = '0000 - 000000';
+  
+  if ($checkInternational.prop('checked'))
+    $pasportData.unmask(mask);
+  else 
+    $pasportData.mask(mask);
+});// end click
 
 
 // Скрываем одно из полей, которое не нужно.

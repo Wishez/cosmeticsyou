@@ -38,3 +38,30 @@ $(window).scroll((e) => {
     $btnTop.fadeIn(1000);
   }  
 });// end scroll
+
+// Чтобы не меню не сворачивалось,
+// когда нажимаешь на выпадающее меню
+$("#navOpportunities").on('click', e => {
+  $toggleButton.focus();
+});
+
+// Навигация по страницам
+$(document).on('click', '#navRegistr', e => {
+  $cmt.showRegistrPage();
+});// end click
+
+$(document).on('click', '#navHome', e => {
+  $cmt.showHomePage();
+});// end click
+
+$(document).on('click', '#navVideos', e => {
+  $cmt.showVideosPage();
+});// end click
+
+$(document).on('click', '#navContacts', e => {
+  $cmt.showContactsPage();
+});// end click
+
+$(document).on('click', '#navBusiness', e => {
+  $cmt.showBusinessPage();
+});// end click

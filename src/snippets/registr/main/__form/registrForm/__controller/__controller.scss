@@ -2,8 +2,10 @@
   width: span(12);
   margin-top: 24px;
 }
-@import "__label/__label.scss";
 @import "__item/__item.scss";
+@import "__item/__item-checkAddition.scss";
+@import "__label/__label.scss";
+@import "__label/__label-checkAddition.scss";
 
 // Общие стили
 

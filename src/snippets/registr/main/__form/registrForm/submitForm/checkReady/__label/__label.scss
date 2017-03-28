@@ -1,8 +1,8 @@
 .checkReady__label {
   width: span(11);
   display: inline;
+  padding: 3px 10px;
   @include breakpoint(max-width 768px) {
     display: inline-block;
-    
   }
 }

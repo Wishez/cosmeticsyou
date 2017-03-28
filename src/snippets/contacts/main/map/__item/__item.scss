@@ -1,4 +1,10 @@
 .map__item {
   width: span(12);
-  height: span(12);
+  height: 500px;
+  box-shadow: 0 0 15px $shadow;
+  border: 2px solid $nightBlack;
+  border-radius: 5px;
+  @include breakpoint(max-width 767px) {
+    height: 290px;
+  }
 }
