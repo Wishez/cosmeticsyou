@@ -6,7 +6,7 @@ let cmt = {},
     requests;
 
 cmt.showLoading = elem => {
-  let img = '<img src="../img/loader/ajax-loader.svg" alt="" style="margin: 50px auto; display: block;" />';
+  let img = '<img src="img/loader/ajax-loader.svg" alt="" style="margin: 50px auto; display: block;" />';
   
   $(elem).html(img);
 };
@@ -20,12 +20,12 @@ cmt.switchMenu = elem => {
 // Запросы страничек.
 
 requests = () => {
-  let home = '../snippets/home/home.html',
-      shares = '../snippets/shares/shares.html',
-      business = '../snippets/opportunities/business.html',
-      registr = '../snippets/registr/registr.html',
-      videos = '../snippets/videos/videos.html',
-      contacts = '../snippets/contacts/contacts.html';
+  let home = 'snippets/home/home.html',
+      shares = 'snippets/shares/shares.html',
+      business = 'snippets/opportunities/business.html',
+      registr = 'snippets/registr/registr.html',
+      videos = 'snippets/videos/videos.html',
+      contacts = 'snippets/contacts/contacts.html';
   
   return {
     getHomePage: () => $.get(home),
