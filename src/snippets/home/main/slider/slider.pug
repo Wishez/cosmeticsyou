@@ -1,22 +1,19 @@
 section.slider
   .fadeSlider
-    figure.img-responsive.fadeSlider__slide.fadeSlider__slide-1(
-      src="img/slides/slide1.jpg",
-      alt=""
+    | {% for slide in slider %}
+    figure.img-responsive.fadeSlider__slide(
+      style="background-image: url(/media/{{ slide.slide_1 }})"
     )
-    figure.img-responsive.fadeSlider__slide.fadeSlider__slide-2(
-      src="img/slides/slide2.jpg",
-      alt=""
-    ) 
-    figure.img-responsive.fadeSlider__slide.fadeSlider__slide-3(
-      src="img/slides/slide3.jpg",
-      alt=""
+    figure.img-responsive.fadeSlider__slide(
+      style="background-image: url(/media/{{ slide.slide_2 }})"
     )
-    figure.img-responsive.fadeSlider__slide.fadeSlider__slide-4(
-      src="img/slides/slide4.jpg",
-      alt=""
+    figure.img-responsive.fadeSlider__slide(
+      style="background-image: url(/media/{{ slide.slide_3 }})"
     )
-    figure.img-responsive.fadeSlider__slide.fadeSlider__slide-5(
-      src="img/slides/slide5.jpg",
-      alt=""
+    figure.img-responsive.fadeSlider__slide(
+      style="background-image: url(/media/{{ slide.slide_4 }})"
     )
+    figure.img-responsive.fadeSlider__slide(
+      style="background-image: url(/media/{{ slide.slide_5 }})"
+    )
+    | {% endfor %}

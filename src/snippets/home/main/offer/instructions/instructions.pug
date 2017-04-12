@@ -1,4 +1,6 @@
 .instructions
+  | {% for field in program %}
   include __image/__image.pug
   include __title/__title.pug
   include __text/__text.pug
+  | {% endfor %}

@@ -1,6 +1,21 @@
 .registrForm__controller {
   width: span(12);
   margin-top: 24px;
+  & label, & input {
+    display: block;
+  }
+  & label {
+    text-align: center;
+    max-width: 190px;
+    margin: 0 auto;
+  }
+  & input {
+    border: 1px solid $gray;
+    min-width: 210px;
+    margin: 12px auto 0;
+    padding: 3px 0 3px 5px;
+    color: $nightBlack;
+  }
 }
 @import "__item/__item.scss";
 @import "__item/__item-checkAddition.scss";

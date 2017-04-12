@@ -1,7 +1,8 @@
+$('#subButton').prop('disabled', true);
 $(document).on('click', '#checkReady', () => {
   let $checkReady = $('#checkReady');
   let $subButton = $('#subButton');
-  console.log($checkReady.prop('checked'));
+
   if ($checkReady.prop('checked'))
     $subButton.prop('disabled', false);
   else 

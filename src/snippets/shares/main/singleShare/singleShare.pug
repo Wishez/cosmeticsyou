@@ -1,0 +1,738 @@
+| {% autoescape on %}
+section.singleShare
+  | {% if share.published_date %}
+  .singleShare__date.
+    {{ share.published_date }}
+  | {% endif %}
+  
+  h1.singleShare__title.
+    {{ share.title }}
+    
+  | {% if share.img %}
+  .singleShare__img
+    img.img-responsive(src="/media/{{ share.img }}", alt="")
+  | {% endif %}
+  
+  | {% if share.text %} 
+  p.singleShare__text.
+    {{ share.text|linebreaksbr }}
+  | {% endif %}
+  
+  | {% if share.text_2 %}
+  p.singleShare__text.
+    {{ share.text_2|linebreaksbr }}
+  | {% endif %}
+  
+  | {% if share.text_3 %}
+  p.singleShare__text.
+    {{ share.text_3|linebreaksbr }}
+  | {% endif %}
+  
+  //- Первые условия
+  | {% if share.conditions_h2_1 %}
+  h2.singleShare__conditions.
+    {{ share.conditions_h2_1|linebreaksbr }}
+  
+  ul.listConditions
+    | {% if share.item_1_1 %}
+    li.listConditions__item.condition
+      h3.condition__title.
+        {{ share.item_1_1}}
+      
+      | {% if share.p_1_1_1 %}
+      p.condition__text.
+        {{ share.p_1_1_1 }}
+      | {% endif %}
+      
+      | {% if share.img_1_1_1 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_1_1 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_1_2 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_1_2 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_1_3 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_1_3 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_1_4 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_1_4 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.p_1_1_2 %}
+      p.condition__text.
+        {{ share.p_1_1_2 }}
+      | {% endif %}    
+    | {% endif %}
+  
+    | {% if share.item_1_2 %}
+    li.listConditions__item.condition
+      h3.condition__title.
+        {{ share.item_1_2}}
+      
+      | {% if share.p_1_2_1 %}
+      p.condition__text.
+        {{ share.p_1_2_1 }}
+      | {% endif %}
+      
+      | {% if share.img_1_2_1 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_2_1 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_2_2 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_2_2 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_2_3 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_2_3 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_2_4 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_2_4 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.p_1_2_2 %}
+      p.condition__text.
+        {{ share.p_1_2_2 }}
+      | {% endif %}    
+    | {% endif %}
+  
+    | {% if share.item_1_3 %}
+    li.listConditions__item.condition
+      h3.condition__title.
+        {{ share.item_1_3}}
+      
+      | {% if share.p_1_3_1 %}
+      p.condition__text.
+        {{ share.p_1_3_1 }}
+      | {% endif %}
+      
+      | {% if share.img_1_3_1 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_3_1 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_3_2 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_3_2 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_3_3 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_3_3 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_3_4 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_3_4 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.p_1_3_2 %}
+      p.condition__text.
+        {{ share.p_1_3_2 }}
+      | {% endif %}    
+    | {% endif %}
+  
+    | {% if share.item_1_4 %}
+    li.listConditions__item.condition
+      h3.condition__title.
+        {{ share.item_1_4}}
+      
+      | {% if share.p_1_4_1 %}
+      p.condition__text.
+        {{ share.p_1_4_1 }}
+      | {% endif %}
+      
+      | {% if share.img_1_4_1 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_4_1 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_4_2 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_4_2 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_4_3 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_4_3 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_4_4 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_4_4 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.p_1_4_2 %}
+      p.condition__text.
+        {{ share.p_1_4_2 }}
+      | {% endif %}    
+    | {% endif %}
+  
+    | {% if share.item_1_5 %}
+    li.listConditions__item.condition
+      h3.condition__title.
+        {{ share.item_1_5}}
+      
+      | {% if share.p_1_4_1 %}
+      p.condition__text.
+        {{ share.p_1_5_1 }}
+      | {% endif %}
+      
+      | {% if share.img_1_5_1 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_5_1 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_5_2 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_5_2 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_5_3 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_5_3 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_5_4 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_1_5_4 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.p_1_5_2 %}
+      p.condition__text.
+        {{ share.p_1_5_2 }}
+      | {% endif %}    
+    | {% endif %}
+  | {% endif %}
+  
+  //- Вторые условия
+  | {% if share.conditions_h2_2 %}
+  h2.singleShare__conditions.
+    {{ share.conditions_h2_2|linebreaksbr }}
+  
+  ul.listConditions
+    | {% if share.item_2_1 %}
+    li.listConditions__item.condition
+      h3.condition__title.
+        {{ share.item_2_1}}
+      
+      | {% if share.p_2_1_1 %}
+      p.condition__text.
+        {{ share.p_2_1_1 }}
+      | {% endif %}
+      
+      | {% if share.img_2_1_1 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_1_1 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_1_2 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_1_2 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_1_3 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_1_3 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_1_4 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_1_4 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.p_2_1_2 %}
+      p.condition__text.
+        {{ share.p_2_1_2 }}
+      | {% endif %}    
+    | {% endif %}
+  
+    | {% if share.item_2_2 %}
+    li.listConditions__item.condition
+      h3.condition__title.
+        {{ share.item_2_2}}
+      
+      | {% if share.p_2_2_1 %}
+      p.condition__text.
+        {{ share.p_2_2_1 }}
+      | {% endif %}
+      
+      | {% if share.img_2_2_1 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_2_1 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_2_2 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_2_2 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_2_3 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_2_3 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_2_4 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_2_4 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.p_2_2_2 %}
+      p.condition__text.
+        {{ share.p_2_2_2 }}
+      | {% endif %}    
+    | {% endif %}
+  
+    | {% if share.item_2_3 %}
+    li.listConditions__item.condition
+      h3.condition__title.
+        {{ share.item_2_3}}
+      
+      | {% if share.p_2_3_1 %}
+      p.condition__text.
+        {{ share.p_2_3_1 }}
+      | {% endif %}
+      
+      | {% if share.img_2_3_1 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_3_1 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_3_2 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_3_2 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_3_3 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_3_3 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_1_3_4 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_3_4 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.p_2_3_2 %}
+      p.condition__text.
+        {{ share.p_2_3_2 }}
+      | {% endif %}    
+    | {% endif %}
+  
+    | {% if share.item_2_4 %}
+    li.listConditions__item.condition
+      h3.condition__title.
+        {{ share.item_2_4}}
+      
+      | {% if share.p_2_4_1 %}
+      p.condition__text.
+        {{ share.p_2_4_1 }}
+      | {% endif %}
+      
+      | {% if share.img_2_4_1 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_4_1 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_4_2 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_4_2 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_4_3 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_4_3 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_4_4 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_4_4 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.p_2_4_2 %}
+      p.condition__text.
+        {{ share.p_2_4_2 }}
+      | {% endif %}    
+    | {% endif %}
+  
+    | {% if share.item_2_5 %}
+    li.listConditions__item.condition
+      h3.condition__title.
+        {{ share.item_2_5}}
+      
+      | {% if share.p_2_4_1 %}
+      p.condition__text.
+        {{ share.p_2_5_1 }}
+      | {% endif %}
+      
+      | {% if share.img_2_5_1 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_5_1 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_5_2 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_5_2 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_5_3 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_5_3 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.img_2_5_4 %}
+      .condition__img
+        img.img-responsive(
+          src="/media/{{ share.img_2_5_4 }}",
+          alt=""
+        )
+      | {% endif %}  
+      
+      | {% if share.p_2_5_2 %}
+      p.condition__text.
+        {{ share.p_2_5_2 }}
+      | {% endif %}    
+    | {% endif %}
+  | {% endif %}
+  
+  //- Наборы
+  | {% if share.set_h3_1 %}
+  h3.share__set.
+    {{ share.set_h3_1 }}
+    
+  ul.setList
+    | {% if share.item_s1_1 %}
+    li.setList__item.
+      {{ share.item_s1_1 }}
+    | {% endif %}  
+    
+    | {% if share.item_s1_2 %}
+    li.setList__item.
+      {{ share.item_s1_2 }}
+    | {% endif %}  
+    
+    | {% if share.item_s1_3 %}
+    li.setList__item.
+      {{ share.item_s1_3 }}
+    | {% endif %}  
+    
+    | {% if share.item_s1_4 %}
+    li.setList__item.
+      {{ share.item_s1_4 }}
+    | {% endif %}
+    
+    | {% if share.img_s1_1 %}
+    .setList__img
+      img.img-responsive(
+        src="/media/{{ share.img_s1_1 }}",
+        alt=""
+      )
+    | {% endif %}  
+    
+    | {% if share.img_s1_2 %}
+    .setList__img
+      img.img-responsive(
+        src="/media/{{ share.img_s1_2 }}",
+        alt=""
+      )
+    | {% endif %}  
+  | {% endif %}
+  
+  //- Второй набор
+  | {% if share.set_h3_2 %}
+  h3.share__set.
+    {{ share.set_h3_2 }}
+    
+  ul.setList
+    | {% if share.item_s2_1 %}
+    li.setList__item.
+      {{ share.item_s2_1 }}
+    | {% endif %}  
+    
+    | {% if share.item_s2_2 %}
+    li.setList__item.
+      {{ share.item_s2_2 }}
+    | {% endif %}  
+    
+    | {% if share.item_s2_3 %}
+    li.setList__item.
+      {{ share.item_s2_3 }}
+    | {% endif %}  
+    
+    | {% if share.item_s2_4 %}
+    li.setList__item.
+      {{ share.item_s2_4 }}
+    | {% endif %}
+    
+    | {% if share.img_s2_1 %}
+    .setList__img
+      img.img-responsive(
+        src="/media/{{ share.img_s2_1 }}",
+        alt=""
+      )
+    | {% endif %}  
+    
+    | {% if share.img_s2_2 %}
+    .setList__img
+      img.img-responsive(
+        src="/media/{{ share.img_s2_2 }}",
+        alt=""
+      )
+    | {% endif %}  
+  | {% endif %}
+  
+  | {% if share.set_h3_3 %}
+  h3.share__set.
+    {{ share.set_h3_3 }}
+    
+  ul.setList
+    | {% if share.item_s3_1 %}
+    li.setList__item.
+      {{ share.item_s3_1 }}
+    | {% endif %}  
+    
+    | {% if share.item_s3_2 %}
+    li.setList__item.
+      {{ share.item_s3_2 }}
+    | {% endif %}  
+    
+    | {% if share.item_s3_3 %}
+    li.setList__item.
+      {{ share.item_s3_3 }}
+    | {% endif %}  
+    
+    | {% if share.item_s3_4 %}
+    li.setList__item.
+      {{ share.item_s3_4 }}
+    | {% endif %}
+    
+    | {% if share.img_s3_1 %}
+    .setList__img
+      img.img-responsive(
+        src="/media/{{ share.img_s3_1 }}",
+        alt=""
+      )
+    | {% endif %}  
+    
+    | {% if share.img_s3_2 %}
+    .setList__img
+      img.img-responsive(
+        src="/media/{{ share.img_s3_2 }}",
+        alt=""
+      )
+    | {% endif %}  
+  | {% endif %}
+  
+  | {% if share.set_h3_4 %}
+  h3.share__set.
+    {{ share.set_h3_4 }}
+    
+  ul.setList
+    | {% if share.item_s4_1 %}
+    li.setList__item.
+      {{ share.item_s4_1 }}
+    | {% endif %}  
+    
+    | {% if share.item_s4_2 %}
+    li.setList__item.
+      {{ share.item_s4_2 }}
+    | {% endif %}  
+    
+    | {% if share.item_s4_3 %}
+    li.setList__item.
+      {{ share.item_s4_3 }}
+    | {% endif %}  
+    
+    | {% if share.item_s4_4 %}
+    li.setList__item.
+      {{ share.item_s4_4 }}
+    | {% endif %}
+    
+    | {% if share.img_s4_1 %}
+    .setList__img
+      img.img-responsive(
+        src="/media/{{ share.img_s4_1 }}",
+        alt=""
+      )
+    | {% endif %}  
+    
+    | {% if share.img_s4_2 %}
+    .setList__img
+      img.img-responsive(
+        src="/media/{{ share.img_s4_2 }}",
+        alt=""
+      )
+    | {% endif %}  
+  | {% endif %}
+  
+  | {% if share.set_h3_5 %}
+  h3.share__set.
+    {{ share.set_h3_5 }}
+    
+  ul.setList
+    | {% if share.item_s5_1 %}
+    li.setList__item.
+      {{ share.item_s5_1 }}
+    | {% endif %}  
+    
+    | {% if share.item_s5_2 %}
+    li.setList__item.
+      {{ share.item_s5_2 }}
+    | {% endif %}  
+    
+    | {% if share.item_s5_3 %}
+    li.setList__item.
+      {{ share.item_s5_3 }}
+    | {% endif %}  
+    
+    | {% if share.item_s5_4 %}
+    li.setList__item.
+      {{ share.item_s5_4 }}
+    | {% endif %}
+    
+    | {% if share.img_s5_1 %}
+    .setList__img
+      img.img-responsive(
+        src="/media/{{ share.img_s5_1 }}",
+        alt=""
+      )
+    | {% endif %}  
+    
+    | {% if share.img_s5_2 %}
+    .setList__img
+      img.img-responsive(
+        src="/media/{{ share.img_s5_2 }}",
+        alt=""
+      )
+    | {% endif %}  
+  | {% endif %}
+  
+  a.share__backButton(href="{% url 'share_list' %}") Назад
+| {% endautoescape %}

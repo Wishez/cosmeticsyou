@@ -2,7 +2,6 @@ cmt.showHomePage = () => {
   r.getHomePage().done(homePage => {
     // Отображение страницы
     select.$main.html(homePage);
-    
     // Иницилизация слайдеров
     
     // Главная карусель

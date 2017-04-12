@@ -1,5 +1,16 @@
-form#registrForm.registrForm()
+form#registrForm.registrForm(
+  method="post"
+)
+  | {% csrf_token %}
   // Поля формы
-  include __controller/__controller.pug
+  | {% autoescape on %}
+  | {% for field in form %}
+  .registrForm__controller.controller
+    | {{ field.label_tag }}
+    | {{ field }}
+    | {{ field.errors }}
+  | {% endfor %}
+  | {% endautoescape %}
   // Подтверждение формы
   include submitForm/submitForm.pug
+  // include __controller/__controller.pug

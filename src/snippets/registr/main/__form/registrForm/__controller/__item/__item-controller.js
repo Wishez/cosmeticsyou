@@ -1,88 +1,60 @@
 // jshint esversion: 6
 
-// Можно добавить и область #region
-$(document).on('input changepropery', '#lastName, #firstName, #middleName, #city', (e) => {
-  let $firstName = $('#firstName'),
-      $lastName = $('#lastName'),
-      $middleName = $('#middleName'),
-      $city = $('#city'),
-      $region = $('#region'),
+// Форматирование первой буквы слова, с возможностью добавлять ещё одно слово через дефис, но не через пробел.
+$(document).on('input changepropery', '#id_last_name, #id_first_name, #id_middle_name', (e) => {
+  let $firstName = $('#id_first_name'),
+      $lastName = $('#id_last_name'),
+      $middleName = $('#id_middle_name'),
       fNameVal = $firstName.val(),
       lNameVal = $lastName.val(),
-      mNameVal= $middleName.val(),
-      cityVal = $city.val(),
-      regionVal = $region.val();
-
-  let fixText = val => {
-    let arr = val.split(' ');
-    
-    arr[0] = arr[0][0].toUpperCase() +
-             arr[0].slice(1);
-    
-    return arr[0];
-  };
+      mNameVal= $middleName.val();
   
-  // Обновляем поля.
-  var updateField = ($field, val) => {
-    if (val.length !== 0)
-      $field.val(fixText(val))
-  };
-  
-  updateField($firstName, fNameVal);
-  updateField($lastName, lNameVal);
-  updateField($middleName, mNameVal);
-  updateField($city, cityVal);
-// Расскоментируй, если  хочешь ограничить ввод поля одим словом.
-//  updateField($region, regionVal);
+  $cmt.updateField($firstName, fNameVal);
+  $cmt.updateField($lastName, lNameVal);
+  $cmt.updateField($middleName, mNameVal);
 }); // end input changeproperty
 
-$(document).on('click', '#checkInternational', () => {
-  let $checkInternational = $('#checkInternational'),
-      $pasportData = $('#pasportData'),
-      mask = '0000 - 000000';
+// Простое форматирование в верхний регистр первых букв
+$(document).on('input changepropery', ' #id_street, #id_region, #id_city', (e) => {
+let $street = $('#id_street'),
+    $city = $('#id_city'),
+    $region = $('#id_region'),
+    streetVal = $street.val(),
+    cityVal = $city.val(),
+    regionVal = $region.val();
   
-  if ($checkInternational.prop('checked'))
-    $pasportData.unmask(mask);
-  else 
-    $pasportData.mask(mask);
+  $cmt.titleCase($region, regionVal);
+  $cmt.titleCase($city, cityVal);
+  $cmt.titleCase($street, streetVal);
+});
+
+$(document).on('click', '#id_citizenship', () => {
+  let $checkInternational = $('#id_citizenship'),
+      $passportData = $('#id_passport_data'),
+      $phoneNumber = $('#id_phone_number'),
+      passportMask = '0000 - 000000',
+      ruTelMask = '+7 (000) 000 00 00',
+      anotherTelMask = '+000000000000000';
+  
+  if ($checkInternational.prop('checked')) {
+    $passportData.unmask(passportMask);
+    
+    $phoneNumber.mask(anotherTelMask);
+  } else {
+    $passportData.mask(passportMask);
+    $phoneNumber.unmask(anotherTelMask);
+    $phoneNumber.mask(ruTelMask);
+  } 
 });// end click
 
-
-// Скрываем одно из полей, которое не нужно.
-//$(document).on('input changepropery', '#city', (e) => {
-//  let $region = $('#region'),
-//      $city = $('#city'),
-//      $controller = $region.parent();
-//  
-//  if (e.target.val !== '') {
-//    $city.attr('required', true);
-//    $region.attr('required', false);
-//    $controller.hide('fast');
-//  }
-//  if ($city.val() === '')
-//    $controller.show('fast');
-//  
-//  let input = document.getElementById('city'),
-//  options = {
-//  types: ['(cities)'],
-//  componentRestrictions: {country: 'ru'}
-//},
-//
-//autocomplete = new google.maps.places.Autocomplete(input, options);
-//});
-//
-//$(document).on('input changepropery', '#region', (e) => {
-//  let $city = $('#city'),
-//      $region = $('#region'),
-//      $controller = $city.parent();
-//  
-//  if (e.target.val !== '') {
-//    $('#region').attr('required', true);
-//    $city.attr('required', false);
-//    $controller.hide('fast');
-//  }
-//
-//  if ($region.val() === '')
-//    $controller.show('fast');   
-//});         
-//               
+$(document).on('click', '#id_empty_middle_name', (e) => {
+  let $checkboxEmptyField = $('#id_empty_middle_name'),
+      $middleName = $('#id_middle_name'),
+      $controller = $middleName.parent();
+  
+  if ($checkboxEmptyField.prop('checked')) {
+    $controller.hide('fast');
+  } else {
+    $controller.show('fast');   
+  }
+}); // end click      

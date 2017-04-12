@@ -1,1 +1,0 @@
-//= catalogsStock/catalogsStock.js

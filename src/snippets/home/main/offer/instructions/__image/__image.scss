@@ -3,12 +3,4 @@
   @include breakpoint(max-width 991px) {
     width: span(12);
   }
-  & figure {
-    background: url('../img/instructions__image.jpg') no-repeat center;
-    background-size: cover;
-    max-width: 725px;
-    padding-bottom: (633% / 873) * 200;
-    margin: 0 auto;
-  } 
-  
 }

@@ -1,0 +1,30 @@
+nav.navContent__navigation.navigation.collapse.navbar-collapse#collapsable(role="navigation")
+  ul#nav.navigation__navList.navList.nav.navbar-nav.navbar-right
+    li#navHome.navList__navItem.navItem(role="presentation")
+      a.navItem__refer(href="{% url 'index' %}") Главная
+    li#navShares.navList__navItem.navItem
+      a.navItem__refer(href="{% url 'share_list' %}") Акции
+    li#navStore.navList__navItem.navItem(role="presentation")
+      a.navItem__refer(href="http://beautystore.oriflame.ru/502181") Интернет магазин
+    li#navOpportunities.dropdown.navList__navItem.navItem(role="presentation")
+      a.dropdown-toggle.navItem__refer(
+        href="{% url 'index' %}",
+        data-toggle="dropdown",
+        role="button",
+        aria-haspopup="true",
+        aria-expanded="false"
+      ) Возможности 
+         span.caret
+         ul.dropdown-menu
+           li#navBusiness.navItem
+             a(href="{% url 'index' %}") Бизнес
+          
+    li#navRegistr.navList__navItem.navItem.active(role="presentation")
+      a.navItem__refer(href="{% url 'registr' %}") Регистрация
+    li#navVideos.navList__navItem.navItem( role="presentation")
+      a.navItem__refer(href="{% url 'index' %}") Видео
+    li#navContacts.navList__navItem.navItem( role="presentation")
+      a.navItem__refer(href="{% url 'index' %}") Контакты
+      
+a#btnTop.navigation__btnTop(href="#header") 
+  i.fa.fa-chevron-circle-up.fa-3x(aria-hidden="true")

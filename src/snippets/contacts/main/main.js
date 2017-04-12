@@ -5,7 +5,6 @@ cmt.showContactsPage = () => {
   r.getContactsPage().done(contactsPage => {
     select.$main.html(contactsPage);
     
-    
     $('.map').html(map);
   });
 };

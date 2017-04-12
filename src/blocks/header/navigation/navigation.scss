@@ -14,10 +14,10 @@
     margin-right: auto!important;
     padding: 0;
   }
-}
+} 
 
 .navigation__navList{
-  font-size: (16em / 16);
+  font-size: (14em / 16);
   & .active .navItem__refer {
     color: #fff !important;
     background-color: #000 !important;
@@ -57,9 +57,9 @@
   }
 }
 .dropdown-menu {
-  min-width: 133px;
+  min-width: 124px;
   @include breakpoint($lg) {
-    min-width: 137px;
+    min-width: 129px;
   }
   @include breakpoint(max-width 787px) {
     text-align: center;

@@ -1,1 +1,10 @@
-include main/main.pug
+| {% extends 'base.html' %}
+
+| {% block title  %}
+title Регистрация
+| {% endblock %}
+| {% block content %}
+include header/header.pug
+.container
+  include main/main.pug
+| {% endblock %}

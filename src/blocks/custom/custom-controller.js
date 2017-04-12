@@ -1,5 +1,5 @@
 // jshint esversion: 6
-$(document).on('click', '.officialSite__refer, .address__item, .submitForm__agreement, .submitForm__conditions, #navStore .navItem__refer', function(e) {
+$(document).on('click', '.anchor, .address__item, .submitForm__agreement, .submitForm__conditions, #navStore .navItem__refer', function(e) {
   let url = $(this).attr('href');
   
   window.open(url);
@@ -7,11 +7,9 @@ $(document).on('click', '.officialSite__refer, .address__item, .submitForm__agre
   e.preventDefault();
 }); // end click
 
-$(document).on('click', '.navItem', function() {
-  $cmt.switchMenu(this);
-  
-  return false;
-}); // end click
+//$(document).on('click', '.navItem', () => {
+//  $cmt.switchMenu(this);
+//});
 
 // Тесты
 if (!Modernizr.placeholder) {

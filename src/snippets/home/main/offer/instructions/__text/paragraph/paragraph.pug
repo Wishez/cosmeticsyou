@@ -1,12 +1,50 @@
+| {% if field.p %}
+p.paragraph.
+  {{ field.p}} 
+| {% endif %}
 p.paragraph
-  strong.paragraph__title Пройдя Шаг 1 стартовой программы, 
-  | вам вернётся стоимость регистрации 
-  span.paragraph__decorator.paragraph__decorator-color_red в размере 149 
-  | рублей на ваш номер!
+  | {% if field.offer_1 %}
+  h3.paragraph__title.text-center.
+    {{ field.offer_1 }}
+  //- span.paragraph__decorator.paragraph__decorator-color_red
+  ul.paragraph__offersList.steps
+    | {% if field.action_1_1 %}
+    li.steps__item.
+      {{ field.action_1_1 }}
+    //- span.paragraph__decorator.paragraph__decorator-color_viole
+    | {% endif %}
+    | {% if field.action_1_2 %}
+    li.steps__item.
+      {{ field.action_1_2 }}
+    | {% endif %}
+    | {% if field.action_1_3 %}
+    li.steps__item.
+      {{ field.action_1_3 }}
+    | {% endif %}
+    | {% if field.action_1_4 %}
+    li.steps__item.
+      {{ field.action_1_4 }}
+    | {% endif %}
+  | {% endif %}  
 p.paragraph
-  h4.paragraph__title.text-center Учавствуйте в стартовой программе для новых консультантов и получай наборы протуктов-бестселлеров 
-    span.paragraph__decorator.paragraph__decorator-color_red всего за 199 рублей!
-  include steps/steps.pug
-p.paragraph
-   h4.paragraph__title.text-center Сделай заказ на 150ББ и будь в Премьер Клубе!
-   include benifits/benifits.pug
+  | {% if field.offer_2 %}
+  h4.paragraph__title.text-center.
+    {{ field.offer_2 }}
+  ul.paragraph__offersList.benifits
+    | {% if field.action_2_1 %}
+    li.benifits__item.
+      {{ field.action_2_1 }}
+    | {% endif %}
+    | {% if field.action_2_2 %}
+    li.benifits__item.
+      {{ field.action_2_2 }}
+    | {% endif %}
+    | {% if field.action_2_3 %}
+    li.benifits__item.
+      {{ field.action_2_3 }}
+    | {% endif %}
+    | {% if field.action_2_4 %}
+    li.benifits__item.
+      {{ field.action_2_4 }}
+    | {% endif %}
+  | {% endif %}

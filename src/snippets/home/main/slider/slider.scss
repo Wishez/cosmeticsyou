@@ -6,14 +6,16 @@
 }
 .fadeSlider__slide {
   padding-bottom: 9%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-@for $i from 1 through 5{
-  .fadeSlider__slide-#{$i} {
-    background: url('../img/slides/slide#{$i}.jpg') no-repeat center;
-    background-size: cover;
-  } 
-}
+//@for $i from 1 through 5{
+//  .fadeSlider__slide-#{$i} {
+//    background: url('../img/slides/slide#{$i}.jpg') no-repeat center;
+//  } 
+//}
 
 .slick-arrow {
   z-index: 999;

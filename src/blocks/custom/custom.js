@@ -6,13 +6,14 @@ let cmt = {},
     requests;
 
 cmt.showLoading = elem => {
-  let img = '<img src="img/loader/ajax-loader.svg" alt="" style="margin: 50px auto; display: block;" />';
+  let img = '<img src="/media/my/img/loader/ajax-loader.svg" alt="" style="margin: 50px auto; display: block;" />';
   
   $(elem).html(img);
 };
 
 cmt.switchMenu = elem => {
   $('.navItem').removeClass('active');
+  $('#navHome').removeClass('active');
   
   $(elem).addClass('active');
 };
@@ -20,12 +21,12 @@ cmt.switchMenu = elem => {
 // Запросы страничек.
 
 requests = () => {
-  let home = 'snippets/home/home.html',
-      shares = 'snippets/shares/shares.html',
-      business = 'snippets/opportunities/business.html',
-      registr = 'snippets/registr/registr.html',
-      videos = 'snippets/videos/videos.html',
-      contacts = 'snippets/contacts/contacts.html';
+  let home = '/media//my/snippets/home/home.html',
+      shares = '/media//my/snippets/shares/shares.html',
+      business = '/media//my/snippets/opportunities/business.html',
+      registr = '/media//my/snippets/registr/registr.html',
+      videos = '/media//my/snippets/videos/videos.html',
+      contacts = '/media//my/snippets/contacts/contacts.html';
   
   return {
     getHomePage: () => $.get(home),
