@@ -5,9 +5,10 @@
   src: url('../fonts/museo/Museo700-Regular-webfont.eot');
   src: local('Museo'), url('../fonts/museo/Museo700-Regular-webfont.woff') format('woff'), url('../fonts/museo/Museo700-Regular-webfont.ttf') format('truetype'), url('../fonts/museo/Museo700-Regular-webfont.svg') format('svg');
 }
+
 @font-face {
   font-family: 'Museo';
-  font-weight: lighter;
+  font-weight: 300;
   font-style: normal;
     
   src: url('../fonts/museo/Museo300-Regular-webfont.eot');
@@ -19,7 +20,7 @@
   font-style: normal;
     
   src: url('../fonts/museo/Museo500-Regular-webfont.eot');
-  src: local('Comfortaa'), url('../fonts/museo/Museo500-Regular-webfont.woff') format('woff'), url('../fonts/museo/Museo500-Regular-webfont.ttf') format('truetype'), url('../fonts/museo/Museo500-Regular-webfont.svg') format('svg');
+  src: local('Museo'), url('../fonts/museo/Museo500-Regular-webfont.woff') format('woff'), url('../fonts/museo/Museo500-Regular-webfont.ttf') format('truetype'), url('../fonts/museo/Museo500-Regular-webfont.svg') format('svg');
 }
 /* Icons */
 @font-face {

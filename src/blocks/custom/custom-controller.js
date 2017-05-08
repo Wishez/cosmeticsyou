@@ -1,4 +1,8 @@
 // jshint esversion: 6
+
+$('.preloader').fadeOut(1000);
+$('.curtains').fadeOut(1200);
+
 $(document).on('click', '.anchor, .address__item, .submitForm__agreement, .submitForm__conditions, #navStore .navItem__refer', function(e) {
   let url = $(this).attr('href');
   
@@ -7,12 +11,10 @@ $(document).on('click', '.anchor, .address__item, .submitForm__agreement, .submi
   e.preventDefault();
 }); // end click
 
-//$(document).on('click', '.navItem', () => {
-//  $cmt.switchMenu(this);
-//});
-
 // Тесты
 if (!Modernizr.placeholder) {
    $.html5support();
-   $.placeholder();
+   $.placeholder(); 
 }
+
+//= ../header/callback/callback.js

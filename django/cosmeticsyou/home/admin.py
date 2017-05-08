@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from .models import Program, Slider
+from .models import *
 # Register your models here.
 
 
 admin.site.register(Program)
 admin.site.register(Slider)
+admin.site.register(Callback)

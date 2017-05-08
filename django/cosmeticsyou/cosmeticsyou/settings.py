@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['cosmeticsyou.ru',
                  'www.cosmeticsyou.ru',
-                 '127.0.0.1']
+                 '127.0.0.1',
+                 'localhost']
 
 
 # Application definition
@@ -82,9 +83,13 @@ WSGI_APPLICATION = 'cosmeticsyou.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'cosmeticsyou_db',
+            'USER': 'cosmeticsyou_u',
+            'PASSWORD': 'root',
+            'HOST': 'localhost',
+            'PORT': '5432'
+        }
 }
 
 
@@ -110,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'UTC'
 
@@ -126,7 +131,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'C:/Users/RoryMercury/django-projects/cosmeticsyou/static'
+STATIC_ROOT = 'C:/Users/Shining/django-projects/cosmeticsyou/static'
 MEDIA_URL = '/media/'
-ADMIN_MEDIA_PREFIX = 'C:/Users/RoryMercury/django-projects/cosmeticsyou/media'
-MEDIA_ROOT = 'C:/Users/RoryMercury/django-projects/cosmeticsyou/media'
+ADMIN_MEDIA_PREFIX = 'C:/Users/Shining/django-projects/cosmeticsyou/media'
+MEDIA_ROOT = 'C:/Users/Shining/django-projects/cosmeticsyou/media'

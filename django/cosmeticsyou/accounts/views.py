@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
-#from django.views.generic import TemplateView
 from django.utils import timezone
 from .forms import RegistrForm
+from home.forms import CallbackForm
 
 # Create your views here.
 
@@ -18,7 +18,11 @@ def register(request):
             return redirect('success')
     else:
         form = RegistrForm()
-    return render(request, 'registr.html', {'form': form})
+    callback = CallbackForm()
+    return render(request, 'registr.html', {
+        'form': form,
+        'callback': callback
+    })
 
 def success(request):
     return render(request, 'success.html', {})

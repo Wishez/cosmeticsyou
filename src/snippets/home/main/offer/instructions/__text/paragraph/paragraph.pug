@@ -1,9 +1,9 @@
 | {% if field.p %}
 p.paragraph.
-  {{ field.p}} 
+  {{ field.p }} 
 | {% endif %}
+| {% if field.offer_1 %}
 p.paragraph
-  | {% if field.offer_1 %}
   h3.paragraph__title.text-center.
     {{ field.offer_1 }}
   //- span.paragraph__decorator.paragraph__decorator-color_red
@@ -25,9 +25,9 @@ p.paragraph
     li.steps__item.
       {{ field.action_1_4 }}
     | {% endif %}
-  | {% endif %}  
+| {% endif %}  
+| {% if field.offer_2 %}
 p.paragraph
-  | {% if field.offer_2 %}
   h4.paragraph__title.text-center.
     {{ field.offer_2 }}
   ul.paragraph__offersList.benifits
@@ -47,4 +47,36 @@ p.paragraph
     li.benifits__item.
       {{ field.action_2_4 }}
     | {% endif %}
-  | {% endif %}
+    | {% if field.action_2_5 %}
+    li.benifits__item.
+      {{ field.action_2_5 }}
+    | {% endif %}
+    | {% if field.action_2_6 %}
+    li.benifits__item.
+      {{ field.action_2_6 }}
+    | {% endif %}
+    | {% if field.action_2_7 %}
+    li.benifits__item.
+      {{ field.action_2_7 }}
+    | {% endif %}
+    | {% if field.action_2_8 %}
+    li.benifits__item.
+      {{ field.action_2_8 }}
+    | {% endif %}
+    | {% if field.action_2_9 %}
+    li.benifits__item.
+      {{ field.action_2_9 }}
+    | {% endif %}
+    | {% if field.action_2_10 %}
+    li.benifits__item.
+      {{ field.action_2_10 }}
+    | {% endif %}
+    | {% if field.action_2_11 %}
+    li.benifits__item.
+      {{ field.action_2_11 }}
+    | {% endif %}
+    | {% if field.action_2_12 %}
+    li.benifits__item.
+      {{ field.action_2_12 }}
+    | {% endif %}
+| {% endif %}
