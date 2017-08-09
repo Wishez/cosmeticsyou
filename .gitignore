@@ -2,3 +2,5 @@ node_modules
 bower_components
 site's-material
 .sass-cache
+admin
+.idea
