@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 from django.db import models
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
-@python_2_unicode_compatible
+
 class User(models.Model):
 
     last_name = models.CharField(verbose_name='Фамилия', max_length=36)
@@ -29,9 +29,9 @@ class User(models.Model):
     consultant_num = models.CharField(verbose_name='Номер консультанта', max_length=40, blank=True, null=True)
 
     register_statuses = (
-        ('Новый', 'Новый'),
-        ('Зарегистрированный', 'Зарегистрированный'),
-        ('Пустой', 'Пустой'),
+        (_('Новый'), 'Новый'),
+        (_('Зарегистрированный'), 'Зарегистрированный'),
+        (_('Пустой'), 'Пустой'),
     )
 
     status = models.CharField(
@@ -44,8 +44,8 @@ class User(models.Model):
     registered_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        verbose_name = 'Консультант'
-        verbose_name_plural = 'Консультанты'
+        verbose_name = _('Консультант')
+        verbose_name_plural = _('Консультанты')
         ordering = ['-registered_date']
 
     def registr(self):

@@ -25,9 +25,7 @@ SECRET_KEY = 'h7rq*zwjnjhf7#f3i7n6r9&dt=jeoaej6!$q02%1ep$*@5s4b0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cosmeticsyou.ru',
-                 'www.cosmeticsyou.ru',
-                 '127.0.0.1',
+ALLOWED_HOSTS = ['127.0.0.1',
                  'localhost']
 
 
@@ -61,7 +59,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, '/home/templates'),
+            os.path.join(BASE_DIR, 'home', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -85,8 +83,8 @@ DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'cosmeticsyou_db',
-            'USER': 'cosmeticsyou_u',
-            'PASSWORD': 'root',
+            'USER': 'gm',
+            'PASSWORD': 'demonstration',
             'HOST': 'localhost',
             'PORT': '5432'
         }
@@ -131,7 +129,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'C:/Users/Shining/django-projects/cosmeticsyou/static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 MEDIA_URL = '/media/'
-ADMIN_MEDIA_PREFIX = 'C:/Users/Shining/django-projects/cosmeticsyou/media'
-MEDIA_ROOT = 'C:/Users/Shining/django-projects/cosmeticsyou/media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

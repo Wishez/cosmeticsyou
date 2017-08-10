@@ -1,10 +1,12 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
+# import sys
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
 from django.db import models
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
+from django.utils.translition import gettext_lazy as _
 # Create your models here.
 
-@python_2_unicode_compatible
 class Share(models.Model):
     title = models.CharField(max_length=250, verbose_name="Название акции")
     img = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True, null=True, verbose_name="Изображение")
@@ -142,12 +144,19 @@ class Share(models.Model):
     img_s5_2 = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True, null=True, verbose_name="Изображение набора")
 
 
-    created_date = models.DateTimeField(default=timezone.now)
-    published_date = models.DateTimeField(blank=True, null=True)
+    created_date = models.DateTimeField(
+        _('Дата создания'),
+        default=timezone.now
+    )
+    published_date = models.DateTimeField(
+        _('Дата публикации'),
+        blank=True,
+        null=True
+    )
 
     class Meta:
-        verbose_name = 'Акция'
-        verbose_name_plural = 'Акции'
+        verbose_name = _('Акция')
+        verbose_name_plural = _('Акции')
         ordering = ['-published_date']
 
     def publish(self):

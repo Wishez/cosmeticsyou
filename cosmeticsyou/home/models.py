@@ -1,22 +1,20 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from django.utils.translation import gettext_lazy as _
 
-
-@python_2_unicode_compatible
 class Callback(models.Model):
     callback_name = models.CharField(max_length=30, verbose_name='Имя')
     callback_phone = models.CharField(max_length=30, verbose_name='Телефон')
     callback_message = models.TextField(max_length=250, verbose_name='Комментарий')
 
     def __str__(self):
-        return self.callback_name + '|' + self.callback_phone
+        return self.callback_name + _('|') + self.callback_phone
 
     class Meta:
-        verbose_name = 'Обратный вызов'
-        verbose_name_plural = 'Обратные вызовы'
+        verbose_name = _('Обратный вызов')
+        verbose_name_plural = _('Обратные вызовы')
 
-@python_2_unicode_compatible
+
 class Program(models.Model):
     img = models.FileField(upload_to='uploads/program/', verbose_name='Изображение программы', blank=True, null=True)
     title = models.CharField(max_length=350, verbose_name='Заголовок',  blank=True, null=True)
@@ -81,10 +79,10 @@ class Program(models.Model):
         self.save()
 
     class Meta:
-        verbose_name = 'Стартовая программа'
-        verbose_name_plural = 'Стартовые программы'
+        verbose_name = _('Стартовая программа')
+        verbose_name_plural = _('Стартовые программы')
 
-@python_2_unicode_compatible
+
 class Slider(models.Model):
     slide_1 = models.FileField(upload_to='uploads/slider/', verbose_name='Слайд', blank=True, null=True)
     slide_2 = models.FileField(upload_to='uploads/slider/', verbose_name='Слайд', blank=True, null=True)
@@ -93,11 +91,11 @@ class Slider(models.Model):
     slide_5 = models.FileField(upload_to='uploads/slider/', verbose_name='Слайд', blank=True, null=True)
 
     def __str__(self):
-        return 'Главный слайдер'
+        return _('Главный слайдер')
 
     def show(self):
         self.save()
 
     class Meta:
-        verbose_name = 'Слайдер'
-        verbose_name_plural = 'Слайды'
+        verbose_name = _('Слайдер')
+        verbose_name_plural = ('Слайды')

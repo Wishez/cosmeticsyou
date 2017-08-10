@@ -22,10 +22,9 @@ urlpatterns = [
 	url(r'', include('home.urls')),
     url(r'^registration/', include('accounts.urls')),
     url(r'^shares/', include('shares.urls')),
-     # url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
-     #              {'document_root': settings.MEDIA_ROOT}),
-
     url(r'^admin/', admin.site.urls),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from .forms import RegistrForm

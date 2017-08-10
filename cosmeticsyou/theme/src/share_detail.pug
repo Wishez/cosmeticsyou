@@ -1,0 +1,12 @@
+| {% extends 'base.html' %}
+// Header
+
+| {% block title  %}
+title {{ share.title }}
+| {% endblock %}
+| {% block content %}
+include snippets/shares/header/header.pug
+// Main content
+.container
+  include snippets/shares/main/single_share.pug
+| {% endblock %}
