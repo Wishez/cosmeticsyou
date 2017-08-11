@@ -6,7 +6,7 @@ let cmt = {},
     requests;
 
 cmt.showLoading = elem => {
-  let img = '<img src="/media/my/img/loader/ajax-loader.svg" alt="" style="margin: 50px auto; display: block;" />';
+  let img = '<img src="/static/cosmeticsyou/img/loader/ajax-loader.svg" alt="" style="margin: 50px auto; display: block;" />';
   
   $(elem).html(img);
 };
@@ -21,12 +21,12 @@ cmt.switchMenu = elem => {
 // Запросы страничек.
 
 requests = () => {
-  let home = '/media//my/snippets/home/home.html',
-      shares = '/media//my/snippets/shares/shares.html',
-      business = '/media//my/snippets/opportunities/business.html',
-      registr = '/media//my/snippets/registr/registr.html',
-      videos = '/media//my/snippets/videos/videos.html',
-      contacts = '/media//my/snippets/contacts/contacts.html';
+  let home = '/static/cosmeticsyou/snippets/home/home.html',
+      shares = '/static/cosmeticsyou/snippets/shares/shares.html',
+      business = '/static/cosmeticsyou/snippets/opportunities/business.html',
+      registr = '/static/cosmeticsyou/snippets/registr/registr.html',
+      videos = '/static/cosmeticsyou/snippets/videos/videos.html',
+      contacts = '/static/cosmeticsyou/snippets/contacts/contacts.html';
   
   return {
     getHomePage: () => $.get(home),
