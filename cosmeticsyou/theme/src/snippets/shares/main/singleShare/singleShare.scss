@@ -2,22 +2,22 @@
 
 
 .singleShare__title, .singleShare__conditions, .listConditions__item, .singleShare__date, .share__set  {
-  margin-top: 3%;
-  text-align: center;
+  margin-top: 1em;
+}
+.singleShare__title, .singleShare__conditions, .listConditions__item, .singleShare__date, .share__set, .condition__text, .singleShare__text, .setList__item {
+  max-width: 800px;
 }
 
 .singleShare__img img, .setList__img img, .condition__img img, .share__set {
-  margin: 7% auto 0;
+  margin: 5% auto;
 }
 
-.setList, .listConditions {
+.listConditions {
   list-style-type: none;
 }
 .condition__text, .singleShare__text, .setList__item {
   font-size: (18em / 16);
-  margin-top: 4%;
-  padding: 0 15%;
-  text-align: left;
+  margin-top: 1em;
 }
 
 @import '__date.scss';
@@ -35,3 +35,4 @@
 @import 'setList/__img.scss';
 @import 'setList/__item.scss';
 @import 'setList/setList.scss';
+@import 'additionalText.scss';

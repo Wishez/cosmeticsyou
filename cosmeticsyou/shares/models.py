@@ -143,7 +143,9 @@ class Share(models.Model):
     img_s5_1 = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True, null=True, verbose_name="Изображение набора")
     img_s5_2 = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True, null=True, verbose_name="Изображение набора")
 
-
+    additional_text = models.TextField(
+        _('Дополнительный текст'),
+        max_length=16384, blank=True, null=True)
     created_date = models.DateTimeField(
         _('Дата создания'),
         default=timezone.now

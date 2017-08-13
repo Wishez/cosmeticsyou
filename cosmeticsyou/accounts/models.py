@@ -53,5 +53,4 @@ class User(models.Model):
         self.save()
 
     def __str__(self):
-        return self.last_name + "\t" + self.first_name + "\t" + self.middle_name +\
-               '\t|\t\tСтатус:\t' + self.status
+        return '%s %s %s | Статус: %s' % (self.last_name, self.first_name, self.middle_name, self.status)

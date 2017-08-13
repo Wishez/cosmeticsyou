@@ -14,9 +14,12 @@ $stackMuseo: 'Museo', monospace;
 $beige: #dfa76e;
 
 // Используемые цыета
+$darkGray: #202020;
+$white: #f4f4f4;
 $gray: #eee;
 $nightBlack: #3f3c39;
 $maroon: #952d2c;
+$hover-link: #bd0d0d;
 $cyan: #76c1e2;
 $viole: #a86fb9;
 $shadow: rgba(0, 0, 0, .9);
@@ -52,15 +55,19 @@ body {
   -webkit-hyphenate-before: 2;
   -webkit-hyphenate-after: 3;
   hyphenate-lines: 3;
-  color: #000;
+  background-color: $white;
+  color: $darkGray;
 }
 
 h1, h2, h3, h4 {
   color: $nightBlack;
 }
+p, li {
+  margin-top: 1em;
+}
 
 a {
-  @include link-colors($nightBlack, $nightBlack, $nightBlack, $nightBlack, $nightBlack);
+  @include link-colors($nightBlack, $hover-link, $nightBlack, $nightBlack, $nightBlack);
   &:hover {
     text-decoration: none;  
   }
@@ -74,9 +81,4 @@ a {
 
 .placeholder {
   color: #888;
-}
-
-// For flexbox.
-.flexbox {
-  
 }

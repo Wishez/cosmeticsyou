@@ -1,4 +1,4 @@
-| {% autoescape on %}
+| {% autoescape off %}
 section.singleShare
   | {% if share.published_date %}
   .singleShare__date.
@@ -478,7 +478,7 @@ section.singleShare
       h3.condition__title.
         {{ share.item_2_5}}
       
-      | {% if share.p_2_4_1 %}
+      | {% if share.p_2_5_1 %}
       p.condition__text.
         {{ share.p_2_5_1 }}
       | {% endif %}
@@ -526,6 +526,7 @@ section.singleShare
   | {% if share.set_h3_1 %}
   h3.share__set.
     {{ share.set_h3_1 }}
+  | {% endif %}
     
   ul.setList
     | {% if share.item_s1_1 %}
@@ -563,13 +564,12 @@ section.singleShare
         alt=""
       )
     | {% endif %}  
-  | {% endif %}
   
   //- Второй набор
   | {% if share.set_h3_2 %}
   h3.share__set.
     {{ share.set_h3_2 }}
-    
+  | {% endif %}    
   ul.setList
     | {% if share.item_s2_1 %}
     li.setList__item.
@@ -606,12 +606,11 @@ section.singleShare
         alt=""
       )
     | {% endif %}  
-  | {% endif %}
   
   | {% if share.set_h3_3 %}
   h3.share__set.
     {{ share.set_h3_3 }}
-    
+  | {% endif %}  
   ul.setList
     | {% if share.item_s3_1 %}
     li.setList__item.
@@ -648,12 +647,11 @@ section.singleShare
         alt=""
       )
     | {% endif %}  
-  | {% endif %}
   
   | {% if share.set_h3_4 %}
   h3.share__set.
     {{ share.set_h3_4 }}
-    
+  | {% endif %}    
   ul.setList
     | {% if share.item_s4_1 %}
     li.setList__item.
@@ -690,12 +688,11 @@ section.singleShare
         alt=""
       )
     | {% endif %}  
-  | {% endif %}
   
   | {% if share.set_h3_5 %}
   h3.share__set.
     {{ share.set_h3_5 }}
-    
+  | {% endif %}    
   ul.setList
     | {% if share.item_s5_1 %}
     li.setList__item.
@@ -732,7 +729,8 @@ section.singleShare
         alt=""
       )
     | {% endif %}  
+  | {% if share.additional_text %}
+  .additionalText {{share.additional_text}}
   | {% endif %}
-  
   a.share__backButton(href="{% url 'share_list' %}") Назад
 | {% endautoescape %}
