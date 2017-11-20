@@ -1,0 +1,3 @@
+{% extends "base.html" %}
+{% block title %}<title>{{ user.first_name }} {{ user.last_name }}</title>{% endblock %}
+{% block content %}<main class="personalRoom"><div class="container"><p class="personalRoomDataContainer"><h2 class="personalRoom__title">Добро пожаловать, {{ consultant.forst_name }} {{ consultant.last_name }}!</h2><input class="personalRoom__refferalUrl" type="url" disabled="disabled" value="{{ consultant.refferal_url }}"/></p></div></main>{% endblock %}

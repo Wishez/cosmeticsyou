@@ -5,6 +5,9 @@ from .models import Consultant
 # Create your models here.
 
 class RegistrForm(forms.ModelForm):
+    user_led = forms.CharField(widget=forms.HiddenInput, label='')
+    user_led_1 = forms.CharField(widget=forms.HiddenInput, label='')
+    user_led_2 = forms.CharField(widget=forms.HiddenInput, label='')
 
     class Meta:
         model = Consultant
@@ -12,7 +15,7 @@ class RegistrForm(forms.ModelForm):
                   'empty_middle_name', 'birthday',
                   'citizenship', 'passport_data', 'phone_number',
                   'city', 'region', 'street', 'num_home',
-                  'num_apartment', 'email',)
+                  'num_apartment', 'email', 'user_led', 'user_led_1', 'user_led_2',)
         widgets = {
             'last_name': forms.TextInput(attrs={
                     'placeholder': 'Фамилия',
@@ -60,5 +63,5 @@ class RegistrForm(forms.ModelForm):
                 'value': 1,
                 'step': 1
             }),
-            'email': forms.EmailInput(attrs={'placeholder': 'E-mail'}),
+            'email': forms.EmailInput(attrs={'placeholder': 'E-mail'})
         }
