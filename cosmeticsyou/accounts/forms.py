@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 from django import forms
 
-from .models import User
+from .models import Consultant
 # Create your models here.
 
 class RegistrForm(forms.ModelForm):
 
     class Meta:
-        model = User
+        model = Consultant
         fields = ('last_name', 'first_name', 'middle_name',
                   'empty_middle_name', 'birthday',
                   'citizenship', 'passport_data', 'phone_number',

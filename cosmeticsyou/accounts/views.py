@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from django.shortcuts import render, redirect
-from django.utils import timezone
 from .forms import RegistrForm
 from home.forms import CallbackForm
 
@@ -13,7 +12,6 @@ def register(request):
         form = RegistrForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.registered_date = timezone.now()
             user.save()
             return redirect('success')
     else:
