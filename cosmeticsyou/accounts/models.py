@@ -9,26 +9,15 @@ from django.utils.translation import gettext_lazy as _
 class ConsultantBase(models.Model):
     last_name = models.CharField(_('Фамилия'), max_length=36)
     first_name = models.CharField(_('Имя'), max_length=32)
+    middle_name = models.CharField(_('Отчество'), max_length=32, blank=True, null=True)
     consultant_num = models.CharField(_('Номер консультанта'), max_length=40, blank=True, null=True)
-
     url_to_personal_room = models.URLField(
         _('Ссылка в личный кабинет'),
         max_length=150,
         blank=True,
         null=True
     )
-    register_statuses = (
-        (_('Новый'), 'Новый'),
-        (_('Зарегистрированный'), 'Зарегистрированный'),
-        (_('Пустой'), 'Пустой'),
-    )
 
-    status = models.CharField(
-        _('Статус регистрации'),
-        max_length=18,
-        choices=register_statuses,
-        default='Новый'
-    )
     refferal_url =  models.URLField(
         _('Реферальная ссылка'),
         max_length=150,
@@ -75,7 +64,19 @@ class FullConsultant(ConsultantBase):
     num_apartment = models.DecimalField(_('Квартира'), max_digits=999, decimal_places=1)
 
     email = models.EmailField(_('E-mail'), unique=True)
+    register_statuses = (
+        (_('Новый'), 'Новый'),
+        (_('Зарегистрированный А'), 'Зарегистрированный А'),
+        (_('Зарегистрированный Б'), 'Зарегистрированный Б'),
+        (_('Пустой'), 'Пустой'),
+    )
 
+    status = models.CharField(
+        _('Статус регистрации'),
+        max_length=20,
+        choices=register_statuses,
+        default='Новый'
+    )
     class Meta:
         abstract = True
 
