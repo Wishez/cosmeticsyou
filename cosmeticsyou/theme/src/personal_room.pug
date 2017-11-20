@@ -1,0 +1,14 @@
+| {% extends "base.html" %}
+
+| {% block title %}
+title {{ user.first_name }} {{ user.last_name }}
+| {% endblock %}
+
+
+| {% block content %}
+main.personalRoom
+	.container
+		p.personalRoomDataContainer
+			h2.personalRoom__title Добро пожаловать, {{ consultant.forst_name }} {{ consultant.last_name }}!
+			input.personalRoom__refferalUrl(type='url', disabled, value='{{ consultant.refferal_url }}') 
+| {% endblock %}

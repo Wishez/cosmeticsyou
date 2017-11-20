@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     compass = require('gulp-compass'),
     watch = require('gulp-watch'),
-    prefixer = require('gulp-autoprefixer'),
+    autoprefixer = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
@@ -20,31 +20,31 @@ var gulp = require('gulp'),
     reload = browserSync.reload;
 
 const dir = '../static/cosmeticsyou';
-var path = {
-build: {
-    html: '../home/templates',
-    snippets: dir + '/snippets/',
-    js: dir + '/js/',
-    css: dir + '/css/',
-    img: dir + '/img/',
-    fonts: dir + '/fonts/'
-},
-src: { 
-    html: 'src/*.pug', 
-    js: 'src/js/*.js',
-    style: 'src/scss/*.scss',
-    snippets: 'src/snippets/*/*.pug',
-    img: 'src/img/**/*',
-    fonts: 'src/fonts/**/*.*'
-},
-watch: {
-    html: 'src/**/*.pug',
-    js: 'src/**/*.js',
-    style: 'src/**/*.scss',
-    image: 'src/img/**/*',
-    fonts: 'src/fonts/**/*.*'
-},
-clean: './cosmeticsyou'
+const path = {
+    build: {
+        html: '../home/templates',
+        snippets: dir + '/snippets/',
+        js: dir + '/js/',
+        css: dir + '/css/',
+        img: dir + '/img/',
+        fonts: dir + '/fonts/'
+    },
+    src: { 
+        html: 'src/*.pug', 
+        js: 'src/js/*.js',
+        style: 'src/scss/*.scss',
+        snippets: 'src/snippets/*/*.pug',
+        img: 'src/img/**/*',
+        fonts: 'src/fonts/**/*.*'
+    },
+    watch: {
+        html: './src/**/*.pug',
+        js: './src/**/*.js',
+        style: './src/**/*.scss',
+        image: './src/img/**/*',
+        fonts: './src/fonts/**/*.*'
+    },
+    clean: './../static/cosmeticsyou'
 };
 gulp.task('lint', () => {
     gulp.src(path.watch.js)
@@ -54,6 +54,19 @@ gulp.task('lint', () => {
 gulp.task('clean', (cb) => {
     rimraf(path.clean, cb);
 });
+const scssPathes = [
+  'node_modules/susy/sass', 
+  'node_modules/breakpoint-sass/stylesheets',
+  'node_modules/bootstrap-sass/assets/stylesheets',
+  'node_modules/font-awesome-sass/assets/stylesheets/',
+  'node_modules/semantic-ui-sass/',
+  'node_modules/slick-carousel/slick',
+  'node_modules/compass-mixins/lib'
+];
+const settings = {
+  src: './src',
+  build: './../static/cosmeticsyou'
+};
 
 gulp.task('html', () => {
     gulp.src(path.src.html) //Выберем файлы по нужному пути
@@ -66,7 +79,7 @@ gulp.task('html', () => {
         .pipe(reload({stream: true})); //И перезагрузим наш сервер для обновлений
 });
 
-gulp.task('fastjs', ['lint'], () => {
+gulp.task('fastjs', () => {
     process.NODE_ENV = 'development';
 
     gulp.src(path.src.js)
@@ -93,34 +106,31 @@ gulp.task('source', () => {
 });
 
 gulp.task('faststyles', () => {
-    gulp.src(path.src.style)
+    return gulp.src(path.src.style)
         .pipe(sourcemaps.init())
-        .pipe(compass({
-            config_file: './config.rb',
-            css: 'build/css',
-            sass: 'src/scss',
-            img: 'src/img'
+        .pipe(sass({
+          includePaths: scssPathes
+        }).on('error', sass.logError))
+        .pipe(autoprefixer({
+          browsers: ['last 2 versions'],
+          cascade: false
         }))
-        .pipe(prefixer())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.css));
 });
 
+
 gulp.task('styles', () => {
-    gulp.src(path.src.style)
-        .pipe(sourcemaps.init())
-        .pipe(compass({
-      		config_file: './config.rb',
-      		css: 'build/css',
-      		sass: 'src/scss',
-      		img: 'src/img'
-    	}))
-        .pipe(prefixer())
-        //Compress
-        .pipe(cleanCSS())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(path.build.css));
+  return gulp.src(path.src.style)
+    .pipe(sass({
+      outputStyle: 'compressed',
+      includePaths: scssPathes
+    }).on('error', sass.logError))
+    .pipe(autoprefixer())
+    .pipe(cleanCSS())
+    .pipe(gulp.dest(path.build.css));
 });
+
 
 gulp.task('fastimages', () => {
     gulp.src(path.src.img)
@@ -156,11 +166,10 @@ gulp.task('development', [
 ]);
 
 gulp.task('watch', function() {
-    watch([path.watch.html], ['html']);
-    watch([path.watch.style], ['faststyles']);
-    watch([path.watch.js], ['fastjs']);
-    watch([path.watch.image], ['fastimages']);
-    watch([path.watch.fonts], ['fonts']);
+    gulp.watch(settings.src + '/**/*.scss', ['faststyles']);
+    gulp.watch(settings.src + '/img/**/*.*', ['fastimages']);
+    gulp.watch(settings.src + '/**/*.js', ['fastjs']);
+    gulp.watch(settings.src + '/*.pug', ['html']);
 });
 
 gulp.task('default', ['development', 'watch']);
