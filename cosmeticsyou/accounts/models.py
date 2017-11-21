@@ -6,6 +6,13 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 
+class ConsultantManager(models.Manager):
+    use_for_related_fields = True
+
+    def is_consultant(self, consultant_num, **kwargs):
+        return self.filter(consultant_num=consultant_num, **kwargs)
+
+
 class ConsultantBase(models.Model):
     last_name = models.CharField(_('Фамилия'), max_length=36)
     first_name = models.CharField(_('Имя'), max_length=32)
@@ -39,6 +46,8 @@ class ConsultantBase(models.Model):
 
     registered_date = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+
+    objects = ConsultantManager()
     class Meta:
         abstract = True
         ordering = ['-registered_date']
