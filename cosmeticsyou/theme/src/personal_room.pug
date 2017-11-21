@@ -4,11 +4,18 @@
 title {{ user.first_name }} {{ user.last_name }}
 | {% endblock %}
 
-
 | {% block content %}
+include blocks/header/header.pug
 main.personalRoom
 	.container
-		p.personalRoomDataContainer
-			h2.personalRoom__title Добро пожаловать, {{ consultant.forst_name }} {{ consultant.last_name }}!
-			input.personalRoom__refferalUrl(type='url', disabled, value='{{ consultant.refferal_url }}') 
+		.personalRoomDataContainer()
+			h2.personalRoom__title Добро пожаловать в личный кабинет, {{ consultant.first_name }}!
+			span  Ваша реферальная ссылка:
+			input.personalRoom__refferalUrl#refferalUrl(
+				onclick="this.select()", 
+				type='url', 
+				oninput='this.value = this.dataset.value', 
+				data-value='{{ consultant.refferal_url }}' 
+				value='{{ consultant.refferal_url }}'
+			) 
 | {% endblock %}

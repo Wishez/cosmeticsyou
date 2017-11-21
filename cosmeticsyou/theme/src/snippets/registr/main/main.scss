@@ -14,3 +14,16 @@
 @import "__heading/__heading.scss";
 @import "__info/__info.scss";
 @import "__form/__form.scss";
+
+.personalRoomDataContainer {
+
+    text-align: center;
+}
+
+.personalRoom__refferalUrl {
+	width: 40%;
+    max-width: 330px;
+    text-align: left;
+    text-indent: 20px;
+    margin: 1em 0;
+}

@@ -11,6 +11,8 @@ form#registrForm.registrForm(
     | {{ field.errors }}
   | {% endfor %}
   | {% endautoescape %}
+  script.
+    document.getElementById('id_user_led').value = "{{ consultant_num }}";
   // Подтверждение формы
   include submitForm/submitForm.pug
   // include __controller/__controller.pug
