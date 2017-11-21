@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
 # from .abstract import UserBase
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+
 # Create your models here.
 
 
@@ -18,16 +18,16 @@ class ConsultantBase(models.Model):
     first_name = models.CharField(_('Имя'), max_length=32)
     middle_name = models.CharField(_('Отчество'), max_length=32, blank=True, null=True)
     consultant_num = models.CharField(_('Номер консультанта'), max_length=40, blank=True, null=True)
-    url_to_personal_room = models.URLField(
+    url_to_personal_room = models.CharField(
         _('Ссылка в личный кабинет'),
-        max_length=150,
+        max_length=200,
         blank=True,
         null=True
     )
 
-    refferal_url =  models.URLField(
+    refferal_url =  models.CharField(
         _('Реферальная ссылка'),
-        max_length=150,
+        max_length=200,
         blank=True,
         null=True
     )
@@ -188,3 +188,25 @@ class RefferalConsultant(FullConsultant):
     class Meta:
         verbose_name = _('Реферальный консультант')
         verbose_name_plural = _('Реферальные консультанты')
+
+
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from django.contrib.sites.models import Site
+
+def set_refferal_data(instance, **kwargs):
+    consultant_num = instance.consultant_num
+    if consultant_num:
+        current_site = Site.objects.get_current().domain
+        instance.url_to_personal_room = '%s/personal_room/room_%s' % (current_site, consultant_num)
+        instance.refferal_url = '%s/registration/%s' % (current_site, consultant_num)
+@receiver(pre_save, sender=Consultant)
+def set_refferal_data_to_consultant(sender, instance, **kwargs):
+    print('Will Save')
+    set_refferal_data(instance, **kwargs)
+@receiver(pre_save, sender=RefferalConsultant)
+def set_refferal_data_to_refferal_consultant(sender, instance, **kwargs):
+    set_refferal_data(instance, **kwargs)
+@receiver(pre_save, sender=RelatedConsultant)
+def set_refferal_data_to_related_consultant(sender, instance, **kwargs):
+    set_refferal_data(instance, **kwargs)

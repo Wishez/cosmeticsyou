@@ -4,24 +4,10 @@ from .forms import RegistrationConsultantForm, RegistrationRefferalConsultantFor
 from home.forms import CallbackForm
 from .models import Consultant, RefferalConsultant, RelatedConsultant
 from django.views.generic import TemplateView
+from django.http import Http404
 # Create your views here.
 
 
-
-def register(request):
-    if request.method == "POST":
-        form = RegistrForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.save()
-            return redirect('success')
-    else:
-        form = RegistrForm()
-    callback = CallbackForm()
-    return render(request, 'registr.html', {
-        'form': form,
-        'callback': callback
-    })
 class BaseRegistrationView(TemplateView):
     template_name = 'registr.html'
 
@@ -31,14 +17,13 @@ class BaseRegistrationView(TemplateView):
 
     def post(self, request):
         data = request.POST
-        is_refferal_consultant = False
-        print(data["user_led"])
+        print(data)
+        print('User led', data["user_led"])
         consultant_num = data["user_led"]
 
         # Check of a refferal user.
-        if len(consultant_num):
-            data["user_led"] = ''
-            is_refferal_consultant = True
+        if self.is_refferal_form and (consultant_num):
+            del data["user_led"]
 
             data = set_led_consultant(
                 data,
@@ -48,16 +33,18 @@ class BaseRegistrationView(TemplateView):
             )
 
         print(data)
-        if is_refferal_consultant:
+        if self.is_refferal_form:
             form = RegistrationRefferalConsultantForm(data)
         else:
             form = RegistrationConsultantForm(data)
 
+        print(form.is_valid())
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
 
             return redirect('success')
+        return redirect('success')
     def get_context_data(self, **kwargs):
         context = super(BaseRegistrationView, self).get_context_data(**kwargs)
 
@@ -93,12 +80,6 @@ class RefferalRegistrationView(BaseRegistrationView):
     def __init__(self):
         super(RefferalRegistrationView, self).__init__()
         self.is_refferal_form = True
-    def post(self, request):
-        form = RegistrationConsultantForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.save()
-            return redirect('success')
 
     def get(self, request, consultant_num):
         self.consultant_num = consultant_num
@@ -112,3 +93,33 @@ def success(request):
     return render(request, 'success.html', {
         "callback": callback
     })
+
+def get_consultant(models, consultant_num):
+    is_found = False
+    for Model in models:
+        consultant = Model.objects.filter(consultant_num=consultant_num)
+        if consultant.exists():
+            return consultant[0]
+
+    return is_found
+
+def personal_room(request, consultant_num):
+    if request.method == 'GET':
+        callback = CallbackForm()
+        consultant = get_consultant(
+            [Consultant, RefferalConsultant, RelatedConsultant],
+            consultant_num
+        )
+
+        if consultant:
+            return render(
+                request,
+                'personal_room.html',
+                {
+                    "consultant": consultant,
+                    "callback": callback
+
+                }
+            )
+        else:
+            raise Http404('')

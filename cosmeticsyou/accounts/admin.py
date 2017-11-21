@@ -5,7 +5,7 @@ from .models import *
 
 class ConsultantAdmin(admin.ModelAdmin):
     list_per_page = 10
-    list_display = ('last_name', 'first_name', 'consultant_num', 'phone_number', 'email', 'status', 'refferal_url', )
+    list_display = ('last_name', 'first_name', 'consultant_num', 'phone_number', 'email', 'status', 'refferal_url', 'url_to_personal_room',)
     # date_hierarchy = 'last_name'
     filter_fields = ('status', 'last_name', 'first_name', 'middle_name', 'citizenship', 'city', 'region',)
     filter_horizontal = ('user_lead', 'user_lead_1', 'user_lead_2',)
@@ -50,7 +50,7 @@ class ConsultantAdmin(admin.ModelAdmin):
         },),
         ('Рферальные данные', {
             'fields': (
-                ('refferal_url',),
+                ('refferal_url','url_to_personal_room',),
                 ('user_led', 'user_led_1', 'user_led_2',),
             ),
         },),
@@ -63,7 +63,7 @@ class ConsultantAdmin(admin.ModelAdmin):
 
 class RelatedConsultantAdmin(admin.ModelAdmin):
     list_per_page = 10
-    list_display = ('last_name', 'first_name',  'middle_name', 'consultant_num', 'refferal_url',)
+    list_display = ('last_name', 'first_name',  'middle_name', 'consultant_num', 'refferal_url', 'url_to_personal_room',)
     filter_fields = ('last_name', 'first_name', 'middle_name', 'consultant_num',)
     filter_horizontal = ('user_lead', 'user_lead_1', 'user_lead_2',)
     search_fields = (
@@ -87,7 +87,7 @@ class RelatedConsultantAdmin(admin.ModelAdmin):
         },),
         ('Рферальные данные', {
             'fields': (
-                ('refferal_url',),
+                ('refferal_url', 'url_to_personal_room',),
                 ('user_led', 'user_led_1', 'user_led_2',),
             ),
         },),
