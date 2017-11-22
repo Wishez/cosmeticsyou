@@ -1,13 +1,27 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.utils.encoding import python_2_unicode_compatible
+from django.utils import timezone
 
-@python_2_unicode_compatible
 class Callback(models.Model):
-    callback_name = models.CharField(max_length=30, verbose_name='Имя')
-    callback_phone = models.CharField(max_length=30, verbose_name='Телефон')
-    callback_message = models.TextField(max_length=250, verbose_name='Комментарий')
+    callback_name = models.CharField(_('Имя'), max_length=30)
+    callback_phone = models.CharField(_('Телефон'), max_length=30)
+    callback_message = models.TextField(_('Комментарий'), max_length=250)
+
+    choices = (
+        (_('Новый'), 'Новый'),
+        (_('Проконсультированный'), 'Проконсультированный'),
+    )
+    status = models.CharField(
+        _('Статус обратного вызова'),
+        choices=choices,
+        max_length=20,
+        default=_('Новый')
+    )
+    called_at = models.DateTimeField(
+        _('Дата заказа обратного вызова'),
+        default=timezone.now
+    )
 
     def __str__(self):
         return self.callback_name + '|' + self.callback_phone
@@ -16,7 +30,7 @@ class Callback(models.Model):
         verbose_name = _('Обратный вызов')
         verbose_name_plural = _('Обратные вызовы')
 
-@python_2_unicode_compatible
+
 class Program(models.Model):
     img = models.FileField(upload_to='uploads/program/', verbose_name='Изображение программы', blank=True, null=True)
     title = models.CharField(max_length=350, verbose_name='Заголовок',  blank=True, null=True)
@@ -84,7 +98,7 @@ class Program(models.Model):
         verbose_name = _('Стартовая программа')
         verbose_name_plural = _('Стартовые программы')
 
-@python_2_unicode_compatible
+
 class Slider(models.Model):
     slide_1 = models.FileField(_('Слайд'), upload_to='uploads/slider/', blank=True, null=True)
     slide_2 = models.FileField(_('Слайд'), upload_to='uploads/slider/',  blank=True, null=True)

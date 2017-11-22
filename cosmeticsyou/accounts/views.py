@@ -20,7 +20,7 @@ class BaseRegistrationView(TemplateView):
         consultant_num = data["user_led"]
         del data["checkReady"]
         del data["user_led"]
-        print('Consultant num', consultant_num)
+
         if "empty_middle_name" in data  and data["empty_middle_name"] == 'on':
             data["empty_middle_name"] = True
         else:
@@ -28,7 +28,7 @@ class BaseRegistrationView(TemplateView):
 
         # Check of a refferal user.
         if self.is_refferal_form or consultant_num:
-            print('create refferal user')
+
             form = RegistrationRefferalConsultantForm(
                 data or None,
                 request.FILES or None
@@ -52,7 +52,6 @@ class BaseRegistrationView(TemplateView):
                 )
 
                 if led_consultant_data["instance"]:
-                    print('set up led consultant:', led_consultant_data, user)
                     setattr(user, led_consultant_data["type"], led_consultant_data["instance"])
 
             user.save()
