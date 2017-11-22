@@ -14,7 +14,17 @@ form#registrForm.registrForm(
     input#id_user_led.controller__input(name='user_led', type='hidden')
   | {% endautoescape %}
   script.
-    document.getElementById('id_user_led').value = "{{ consultant_num }}";
+    var cacheConsultantNumber  = localStorage.getItem('led_consultant_num');
+
+    var consultant_num = "{{ consultant_num }}";
+    if (!cacheConsultantNumber) {
+      localStorage.setItem('led_consultant_num', consultant_num);
+    } else {
+      consultant_num = localStorage.getItem('led_consultant_num');
+    }
+    
+    document.getElementById('id_user_led').value = consultant_num;
+
   // Подтверждение формы
   include submitForm/submitForm.pug
   // include __controller/__controller.pug
