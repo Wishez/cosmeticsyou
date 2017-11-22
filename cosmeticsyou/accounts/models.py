@@ -40,7 +40,6 @@ class ConsultantBase(models.Model):
     user_lead = models.ManyToManyField(
         "self",
         verbose_name=_("Приглашённые консультантом"),
-
         blank=True
     )
 
@@ -51,6 +50,8 @@ class ConsultantBase(models.Model):
     class Meta:
         abstract = True
         ordering = ['-registered_date']
+    def __str__(self):
+        return '%s %s | Статус: %s' % (self.last_name, self.first_name, self.status)
 
 
 class FullConsultant(ConsultantBase):
@@ -128,9 +129,6 @@ class Consultant(FullConsultant):
         verbose_name = _('Консультант')
         verbose_name_plural = _('Консультанты')
 
-    def __str__(self):
-        return '%s %s | Статус: %s' % (self.last_name, self.first_name, self.status)
-
 class RelatedConsultant(RelatedConsultantTableRelations):
     user_led_1 = models.ForeignKey(
         "Consultant",
@@ -159,7 +157,8 @@ class RelatedConsultant(RelatedConsultantTableRelations):
     class Meta:
         verbose_name = _('Сторонний консультант')
         verbose_name_plural = _('Сторонний консультанты')
-
+    def __str__(self):
+        return '%s %s' % (self.last_name, self.first_name)
 class RefferalConsultant(FullConsultant):
     user_led_1 = models.ForeignKey(
         "RelatedConsultant",
@@ -185,6 +184,9 @@ class RefferalConsultant(FullConsultant):
         related_name="consultants_of_refferal_consultant",
         blank=True
     )
+
+
+
     class Meta:
         verbose_name = _('Реферальный консультант')
         verbose_name_plural = _('Реферальные консультанты')
