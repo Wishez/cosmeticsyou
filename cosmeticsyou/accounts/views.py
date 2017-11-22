@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from .forms import RegistrationConsultantForm, RegistrationRefferalConsultantForm
 from home.forms import CallbackForm
-from .models import Consultant, RefferalConsultant, RelatedConsultant
+from .models import User, RefferalConsultant, RelatedConsultant
 from django.views.generic import TemplateView
 from django.http import Http404
 # Create your views here.
@@ -48,7 +48,7 @@ class BaseRegistrationView(TemplateView):
                 led_consultant_data = set_led_consultant(
                     consultant_num,
                     ["user_led", "user_led_1", "user_led_2"],
-                    [RefferalConsultant, RelatedConsultant, Consultant]
+                    [RefferalConsultant, RelatedConsultant, User]
                 )
 
                 if led_consultant_data["instance"]:
@@ -127,7 +127,7 @@ def personal_room(request, consultant_num):
     if request.method == 'GET':
         callback = CallbackForm()
         consultant = get_consultant(
-            [Consultant, RefferalConsultant, RelatedConsultant],
+            [User, RefferalConsultant, RelatedConsultant],
             consultant_num
         )
 

@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
-# from .abstract import UserBase
 from django.utils.translation import gettext_lazy as _
-
+from django.utils import timezone
 # Create your models here.
-
 
 class ConsultantManager(models.Manager):
     use_for_related_fields = True
@@ -43,7 +41,7 @@ class ConsultantBase(models.Model):
         blank=True
     )
 
-    registered_date = models.DateTimeField(auto_now_add=True)
+    registered_date = models.DateTimeField(_('Дата регистрации'), default=timezone.now)
     modified = models.DateTimeField(auto_now=True)
 
     objects = ConsultantManager()
@@ -98,7 +96,7 @@ class RefferalConsultantTableRelations(FullConsultant):
 class RelatedConsultantTableRelations(ConsultantBase):
     pass
 
-class Consultant(FullConsultant):
+class User(FullConsultant):
 
     user_led_1 = models.ForeignKey(
         RelatedConsultantTableRelations,
@@ -131,7 +129,7 @@ class Consultant(FullConsultant):
 
 class RelatedConsultant(RelatedConsultantTableRelations):
     user_led_1 = models.ForeignKey(
-        "Consultant",
+        User,
         verbose_name=_('Пригласивший консультант(Обычный)'),
         blank=True,
         null=True
@@ -143,7 +141,7 @@ class RelatedConsultant(RelatedConsultantTableRelations):
         null=True
     )
     user_lead_1 = models.ManyToManyField(
-        "Consultant",
+        User,
         verbose_name=_("Приглашённые консультантом(Обычные)"),
         related_name="consultants_of_related_consultant",
         blank=True
@@ -167,7 +165,7 @@ class RefferalConsultant(FullConsultant):
         null=True
     )
     user_led_2 = models.ForeignKey(
-        "Consultant",
+        User,
         verbose_name=_('Пригласивший консультант(Обычный)'),
         blank=True,
         null=True
@@ -179,7 +177,7 @@ class RefferalConsultant(FullConsultant):
         blank = True
     )
     user_lead_2 = models.ManyToManyField(
-        "Consultant",
+        User,
         verbose_name=_("Приглашённые консультантом(Обычные)"),
         related_name="consultants_of_refferal_consultant",
         blank=True
@@ -202,7 +200,7 @@ def set_refferal_data(instance, **kwargs):
         current_site = Site.objects.get_current().domain
         instance.url_to_personal_room = '%s/personal_room/room_%s' % (current_site, consultant_num)
         instance.refferal_url = '%s/registration/%s' % (current_site, consultant_num)
-@receiver(pre_save, sender=Consultant)
+@receiver(pre_save, sender=User)
 def set_refferal_data_to_consultant(sender, instance, **kwargs):
     print('Will Save')
     set_refferal_data(instance, **kwargs)

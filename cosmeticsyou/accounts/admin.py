@@ -98,6 +98,7 @@ class RelatedConsultantAdmin(admin.ModelAdmin):
         },),
     )
 # Register your models here.
-admin.site.register(Consultant, ConsultantAdmin)
+
+admin.site.register(User, ConsultantAdmin)
 admin.site.register(RefferalConsultant, ConsultantAdmin)
 admin.site.register(RelatedConsultant, RelatedConsultantAdmin)

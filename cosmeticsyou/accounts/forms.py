@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django import forms
 
-from .models import Consultant, RefferalConsultant
+from .models import User, RefferalConsultant
 # Create your models here.
 class BaseRegistrationForm(forms.ModelForm):
     class Meta:
@@ -62,7 +62,7 @@ class BaseRegistrationForm(forms.ModelForm):
 
 class RegistrationConsultantForm(BaseRegistrationForm):
     class Meta(BaseRegistrationForm.Meta):
-        model = Consultant
+        model = User
 
 
 class RegistrationRefferalConsultantForm(forms.ModelForm):
