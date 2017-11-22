@@ -200,6 +200,9 @@ def set_refferal_data(instance, **kwargs):
         current_site = Site.objects.get_current().domain
         instance.url_to_personal_room = '%s/personal_room/room_%s' % (current_site, consultant_num)
         instance.refferal_url = '%s/registration/%s' % (current_site, consultant_num)
+    else:
+        instance.url_to_personal_room = ""
+        instance.refferal_url = ""
 @receiver(pre_save, sender=User)
 def set_refferal_data_to_consultant(sender, instance, **kwargs):
     print('Will Save')
