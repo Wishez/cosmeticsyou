@@ -20,30 +20,15 @@ class BaseRegistrationView(TemplateView):
         consultant_num = data["user_led"]
         del data["checkReady"]
         del data["user_led"]
-        if  data["empty_middle_name"] == 'on':
+        print('Consultant num', consultant_num)
+        if "empty_middle_name" in data  and data["empty_middle_name"] == 'on':
             data["empty_middle_name"] = True
         else:
             data["empty_middle_name"] = False
 
-        print('User led', consultant_num)
-
         # Check of a refferal user.
-        if self.is_refferal_form and (consultant_num):
-
-            led_consultant_data = set_led_consultant(
-                consultant_num,
-                ["user_led", "user_led_1", "user_led_2"],
-                [RefferalConsultant, RelatedConsultant, Consultant]
-            )
-
-            if led_consultant_data["id"]:
-                print('set up led consultant:', led_consultant_data)
-                data[led_consultant_data["type"]] = led_consultant_data["id"]
-
-
-
-        print(data)
-        if self.is_refferal_form:
+        if self.is_refferal_form or consultant_num:
+            print('create refferal user')
             form = RegistrationRefferalConsultantForm(
                 data or None,
                 request.FILES or None
@@ -54,9 +39,22 @@ class BaseRegistrationView(TemplateView):
                 request.FILES or None
             )
 
-        print(form.is_valid())
+
         if form.is_valid():
             user = form.save(commit=False)
+
+            if self.is_refferal_form or consultant_num:
+
+                led_consultant_data = set_led_consultant(
+                    consultant_num,
+                    ["user_led", "user_led_1", "user_led_2"],
+                    [RefferalConsultant, RelatedConsultant, Consultant]
+                )
+
+                if led_consultant_data["instance"]:
+                    print('set up led consultant:', led_consultant_data, user)
+                    setattr(user, led_consultant_data["type"], led_consultant_data["instance"])
+
             user.save()
             return redirect('success')
         else:
@@ -89,7 +87,7 @@ def set_led_consultant(consultant_num, consultant_categories, consultants_models
         if consultant.exists():
             return {
                 "type": consultant_categories[index],
-                "id": consultant[0].id
+                "instance": consultant[0]
             }
         index = index + 1
 
