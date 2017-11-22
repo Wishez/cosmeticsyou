@@ -9,7 +9,7 @@ include blocks/header/header.pug
 main.personalRoom
 	.container
 		.personalRoomDataContainer()
-			h2.personalRoom__title Добро пожаловать в личный кабинет, {{ consultant.first_name }}!
+			h2.personalRoom__title Добро пожаловать, {{ consultant.first_name }}!
 			span  Ваша реферальная ссылка:
 			input.personalRoom__refferalUrl#refferalUrl(
 				onclick="this.select()", 

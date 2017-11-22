@@ -10,6 +10,8 @@ form#registrForm.registrForm(
     | {{ field }}
     | {{ field.errors }}
   | {% endfor %}
+  .registrForm__controller.controller
+    input#id_user_led.controller__input(name='user_led', type='hidden')
   | {% endautoescape %}
   script.
     document.getElementById('id_user_led').value = "{{ consultant_num }}";

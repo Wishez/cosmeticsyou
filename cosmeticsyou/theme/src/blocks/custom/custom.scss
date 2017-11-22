@@ -3,11 +3,13 @@ $susy: (
   global-box-sizing: border-box,
   use-custom: (rem: true),
   columns: 12,
+  gutters: 0,
   gutter-position: split
 );
+@include border-box-sizing;
 $border-box-sizing : true;
 // $columns: 12;
-$gutters: 1em;
+$gutters: 0;
 
 /* Fonts */
 $stackMuseo: 'Museo', monospace;
