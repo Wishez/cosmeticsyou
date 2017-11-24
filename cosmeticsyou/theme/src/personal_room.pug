@@ -1,5 +1,5 @@
 | {% extends "base.html" %}
-
+| {% load consultant_tags static %}
 | {% block title %}
 title {{ user.first_name }} {{ user.last_name }}
 | {% endblock %}
@@ -18,4 +18,29 @@ main.personalRoom
 				data-value='{{ consultant.refferal_url }}' 
 				value='{{ consultant.refferal_url }}'
 			) 
+			// begin panel
+			.panel.panel-default.referralsList
+				h3.panel-heading.referralsList__title Ваши рефералы
+				| {% if consultant.user_lead|count or consultant.user_lead_1|count or consultant.user_lead_2|count %}
+				// begin table
+				table.table.consultantReferralsList.text-left
+					thead
+						tr
+							td.tableCaption Имя
+							td.tableCaption Email
+							td.tableCaption Телефон
+							td.tableCaption Дата регистрации 
+					tbody
+						| {{ consultant.user_lead|make_referrals_data|safe }}
+						| {{ consultant.user_lead_1|make_referrals_data|safe }}
+						| {{ consultant.user_lead_2|make_referrals_data|safe }}
+				| {% else %}
+				.panel-body.referralsList__info
+					p К сожалению, у вас пока что нет рефералов.
+					img.sadImage.img-responsive.center-block(src="{% static '/cosmeticsyou/img/cat.jpg' %}", alt='Это очень печально.')
+				| {% endif %}			
+						
+			// end panel
+				
+
 | {% endblock %}
