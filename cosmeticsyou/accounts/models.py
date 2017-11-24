@@ -6,6 +6,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.contrib.sites.models import Site
 from django.conf import settings
+from django.core.mail import EmailMessage
 # Create your models here.
 
 
@@ -211,8 +212,6 @@ def set_refferal_data(instance, **kwargs):
     else:
         instance.url_to_personal_room = ""
         instance.refferal_url = ""
-
-from django.core.mail import EmailMessage
 
 def send_notification_to_registered_consultant(instance):
     isRegistered = False
