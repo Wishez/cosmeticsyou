@@ -8,6 +8,7 @@ from django.contrib.sites.models import Site
 from django.conf import settings
 # Create your models here.
 
+
 class ConsultantManager(models.Manager):
     use_for_related_fields = True
 
@@ -19,6 +20,7 @@ class ConsultantBase(models.Model):
     last_name = models.CharField(_('Фамилия'), max_length=36)
     first_name = models.CharField(_('Имя'), max_length=32)
     middle_name = models.CharField(_('Отчество'), max_length=32, blank=True, null=True)
+    empty_middle_name = models.BooleanField(_('Нет отчества.'), default=False)
     consultant_num = models.CharField(_('Номер консультанта'), max_length=40, blank=True, null=True)
     url_to_personal_room = models.CharField(
         _('Ссылка в личный кабинет'),
@@ -52,13 +54,17 @@ class ConsultantBase(models.Model):
     class Meta:
         abstract = True
         ordering = ['-registered_date']
+
+    def get_full_name(self):
+        middle_name = getattr(self, "middle_name", "")
+        if not middle_name:
+            middle_name = ''
+        return '%s %s %s' % (getattr(self, "last_name", ""), getattr(self, "first_name", ""), middle_name)
     def __str__(self):
         return '%s %s | Статус: %s' % (self.last_name, self.first_name, self.status)
 
 
 class FullConsultant(ConsultantBase):
-    middle_name = models.CharField(_('Отчество'), max_length=32, blank=True, null=True)
-    empty_middle_name = models.BooleanField(_('Нет отчества.'), default=False)
 
     birthday = models.DateTimeField(_('День рождения'))
     citizenship = models.BooleanField(_('Не гражданин РФ.'), default=False)
@@ -221,7 +227,7 @@ def send_notification_to_registered_consultant(instance):
         EmailMessage(
             'Регистрация на %s' % Site.objects.get_current(),
             message,
-            getattr(settings, "EMAIL_DEFAULT_USER", 'a.uchuvadov@gmail.com'),
+            getattr(settings, "DEFAULT_FROM_EMAIL", 'a.uchuvadov@gmail.com'),
             [instance.email]
         ).send()
 
