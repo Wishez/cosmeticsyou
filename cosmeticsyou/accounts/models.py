@@ -62,7 +62,7 @@ class ConsultantBase(models.Model):
             middle_name = ''
         return '%s %s %s' % (getattr(self, "last_name", ""), getattr(self, "first_name", ""), middle_name)
     def __str__(self):
-        return '%s %s | Статус: %s' % (self.last_name, self.first_name, self.status)
+        return '%s %s' % (self.last_name, self.first_name)
 
 
 class FullConsultant(ConsultantBase):
@@ -98,7 +98,8 @@ class FullConsultant(ConsultantBase):
     )
     class Meta:
         abstract = True
-
+    def __str__(self):
+        return '%s %s | Статус: %s' % (self.last_name, self.first_name, self.status)
 
 class RefferalConsultantTableRelations(FullConsultant):
     class Meta:
@@ -216,10 +217,10 @@ def set_refferal_data(instance, **kwargs):
 def send_notification_to_registered_consultant(instance):
     isRegistered = False
     if instance.status == _('Зарегистрированный А'):
-        message = _('Зарегистрированный А')
+        message = unicode(_('Зарегистрированный А'))
         isRegistered = True
     elif instance.status == _('Зарегистрированный Б'):
-        message = _('Зарегистрированный Б')
+        message = unicode(_('Зарегистрированный Б'))
         isRegistered = True
 
     if isRegistered:
