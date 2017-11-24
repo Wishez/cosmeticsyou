@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'cosmeticsyou.wsgi.application'
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'cosmeticsyou_db',
+            'NAME': 'cm',
             'USER': 'gm',
             'PASSWORD': 'demonstration',
             'HOST': 'localhost',
@@ -119,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-RU'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -131,6 +131,14 @@ SITE_ID = 1
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USER_TLS = True
+EMAIL_HOST_USER = 'a.uchuvadov@gmail.com'
+EMAIL_HOST_PASSWORD = 'Exedfljd_-_'
+EMAIL_DEFAULT_USER =  'a.uchuvadov@gmail.com'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

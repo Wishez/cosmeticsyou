@@ -2,6 +2,10 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from django.contrib.sites.models import Site
+from django.conf import settings
 # Create your models here.
 
 class ConsultantManager(models.Manager):
@@ -190,9 +194,7 @@ class RefferalConsultant(FullConsultant):
         verbose_name_plural = _('Реферальные консультанты')
 
 
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
-from django.contrib.sites.models import Site
+
 
 def set_refferal_data(instance, **kwargs):
     consultant_num = instance.consultant_num
@@ -203,13 +205,36 @@ def set_refferal_data(instance, **kwargs):
     else:
         instance.url_to_personal_room = ""
         instance.refferal_url = ""
+
+from django.core.mail import EmailMessage
+
+def send_notification_to_registered_consultant(instance):
+    isRegistered = False
+    if instance.status == _('Зарегистрированный А'):
+        message = _('Зарегистрированный А')
+        isRegistered = True
+    elif instance.status == _('Зарегистрированный Б'):
+        message = _('Зарегистрированный Б')
+        isRegistered = True
+
+    if isRegistered:
+        EmailMessage(
+            'Регистрация на %s' % Site.objects.get_current(),
+            message,
+            getattr(settings, "EMAIL_DEFAULT_USER", 'a.uchuvadov@gmail.com'),
+            [instance.email]
+        ).send()
+
 @receiver(pre_save, sender=User)
-def set_refferal_data_to_consultant(sender, instance, **kwargs):
-    print('Will Save')
+def pre_save_consultant(sender, instance, **kwargs):
     set_refferal_data(instance, **kwargs)
+    send_notification_to_registered_consultant(instance)
+
 @receiver(pre_save, sender=RefferalConsultant)
-def set_refferal_data_to_refferal_consultant(sender, instance, **kwargs):
+def pre_save_referral_consultant(sender, instance, **kwargs):
     set_refferal_data(instance, **kwargs)
+    send_notification_to_registered_consultant(instance)
+
 @receiver(pre_save, sender=RelatedConsultant)
-def set_refferal_data_to_related_consultant(sender, instance, **kwargs):
+def pre_save_related_consultant(sender, instance, **kwargs):
     set_refferal_data(instance, **kwargs)
