@@ -135,10 +135,10 @@ SITE_ID = 1
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_USER_TLS = True
-EMAIL_HOST_USER = 'a.uchuvadov@gmail.com'
-EMAIL_HOST_PASSWORD = 'Exedfljd_-_'
-EMAIL_DEFAULT_USER =  'a.uchuvadov@gmail.com'
+EMAIL_HOST_USER = 'shiningcollector@gmail.com'#'a.uchuvadov@gmail.com'
+EMAIL_HOST_PASSWORD = 'ruking1488' #'Exedfljd_-_'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL  = 'shiningCollector@gmail.com'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
