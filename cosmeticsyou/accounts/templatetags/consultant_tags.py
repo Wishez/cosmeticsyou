@@ -22,8 +22,8 @@ def create_referrals_list(related_referrals):
                     '<td class="referralOfConsultantInfo__registeredDate">%s</td>' \
                 '</tr>' % (
                 ref.get_full_name(),
-                get_prop(ref, "email"),
-                get_prop(ref, "phone_number"),
+                '<a href="mailto:%s">%s</a>' % (get_prop(ref, "email"), get_prop(ref, "email")),
+                '<a href="tel:%s">%s</a>' % (get_prop(ref, "phone_number"), get_prop(ref, "phone_number")),
                 formats.date_format(ref.registered_date, "DATE_FORMAT")
             )
 
