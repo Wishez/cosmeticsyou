@@ -2,6 +2,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.db.models.signals import pre_save
 
 class Callback(models.Model):
     callback_name = models.CharField(_('Имя'), max_length=30)
@@ -115,3 +116,39 @@ class Slider(models.Model):
     class Meta:
         verbose_name = _('Слайдер')
         verbose_name_plural = _('Слайды')
+
+class EmailMessage(models.Model):
+    registered_a = models.TextField(
+        _('Сообщение для зарегистрированного А'),
+        max_length=6000
+    )
+    registered_b = models.TextField(
+        _('Сообщение для зарегистрированного Б'),
+        max_length=6000
+    )
+    statuses = (
+        (_('Не активная группа'), 'Не активна группа'),
+        (_('Активная группа'), 'Активная группа'),
+    )
+    is_active = models.CharField(
+        _('Активация'),
+        default=_('Не активная группа'),
+        choices=statuses,
+        max_length=20
+    )
+
+    class Meta:
+        verbose_name = _('Email сообщение')
+        verbose_name_plural = _('Email сообщения')
+
+def switch_active_custom(sender, instance, **kwargs):
+
+    if instance.is_active == _('Активная'):
+        customs = sender.objects.all()
+        if len(customs):
+            for custom in customs:
+                custom.is_active = _('Не активная')
+                custom.save()
+        instance.is_active = _('Активная')
+
+pre_save.connect(switch_active_custom, sender=EmailMessage)
