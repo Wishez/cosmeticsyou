@@ -143,12 +143,12 @@ class EmailMessagesSetting(models.Model):
 
 def switch_active_custom(sender, instance, **kwargs):
 
-    if instance.is_active == _('Активная'):
+    if instance.is_active == _('Активная группа'):
         customs = sender.objects.all()
         if len(customs):
             for custom in customs:
-                custom.is_active = _('Не активная')
+                custom.is_active = _('Не активная группа')
                 custom.save()
-        instance.is_active = _('Активная')
+        instance.is_active = _('Активная группа')
 
 pre_save.connect(switch_active_custom, sender=EmailMessagesSetting)

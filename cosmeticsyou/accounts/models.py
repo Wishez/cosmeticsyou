@@ -218,6 +218,7 @@ def set_refferal_data(instance, **kwargs):
 def send_notification_to_registered_consultant(instance):
     isRegistered = False
     messages = EmailMessagesSetting.objects.get(is_active=_('Активная группа'))
+
     if instance.status == _('Зарегистрированный А'):
         message = messages.registered_a
         isRegistered = True
