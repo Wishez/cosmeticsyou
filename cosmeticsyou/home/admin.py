@@ -10,7 +10,13 @@ class CallbackAdmin(admin.ModelAdmin):
     search_fields = (
         'callback_name', 'callback_phone', 'status', 'called_at',
     )
-
+class EmailAdmin(admin.ModelAdmin):
+    list_per_page = 10
+    list_display = ('registered_a', 'registered_b','is_active',)
+    search_fields = (
+        'registered_a', 'registered_b','is_active',
+    )
 admin.site.register(Program)
 admin.site.register(Slider)
+admin.site.register(EmailMessage, EmailAdmin)
 admin.site.register(Callback, CallbackAdmin)
