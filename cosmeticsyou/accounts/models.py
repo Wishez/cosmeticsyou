@@ -7,6 +7,7 @@ from django.dispatch import receiver
 from django.contrib.sites.models import Site
 from django.conf import settings
 from django.core.mail import EmailMessage
+from home.models import EmailMessagesSetting
 # Create your models here.
 
 
@@ -216,11 +217,12 @@ def set_refferal_data(instance, **kwargs):
 
 def send_notification_to_registered_consultant(instance):
     isRegistered = False
+    messages = EmailMessagesSetting.objects.get(is_active=_('Активная группа'))
     if instance.status == _('Зарегистрированный А'):
-        message = unicode(_('Зарегистрированный А'))
+        message = messages.registered_a
         isRegistered = True
     elif instance.status == _('Зарегистрированный Б'):
-        message = unicode(_('Зарегистрированный Б'))
+        message = messages.registered_b
         isRegistered = True
 
     if isRegistered:

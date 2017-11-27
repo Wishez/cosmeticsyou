@@ -117,7 +117,7 @@ class Slider(models.Model):
         verbose_name = _('Слайдер')
         verbose_name_plural = _('Слайды')
 
-class EmailMessage(models.Model):
+class EmailMessagesSetting(models.Model):
     registered_a = models.TextField(
         _('Сообщение для зарегистрированного А'),
         max_length=6000
@@ -151,4 +151,4 @@ def switch_active_custom(sender, instance, **kwargs):
                 custom.save()
         instance.is_active = _('Активная')
 
-pre_save.connect(switch_active_custom, sender=EmailMessage)
+pre_save.connect(switch_active_custom, sender=EmailMessagesSetting)
