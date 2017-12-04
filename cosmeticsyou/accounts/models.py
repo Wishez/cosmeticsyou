@@ -83,7 +83,7 @@ class FullConsultant(ConsultantBase):
     num_home = models.CharField(_('Дом'), max_length=5)
     num_apartment = models.DecimalField(_('Квартира'), max_digits=999, decimal_places=1)
 
-    email = models.EmailField(_('E-mail'), unique=True)
+    email = models.EmailField(_('E-mail'))
     register_statuses = (
         (_('Новый'), 'Новый'),
         (_('Зарегистрированный А'), 'Зарегистрированный А'),
