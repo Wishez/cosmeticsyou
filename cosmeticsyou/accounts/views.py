@@ -14,9 +14,11 @@ class BaseRegistrationView(TemplateView):
     def __init__(self):
         self.consultant_num = ''
         self.is_refferal_form = False
+        self.form_data = None
 
     def post(self, request, **kwargs):
         data = extract_data(request.POST)
+        self.form_data = request.POST
         consultant_num = data["user_led"]
         del data["checkReady"]
         del data["user_led"]
@@ -65,12 +67,12 @@ class BaseRegistrationView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(BaseRegistrationView, self).get_context_data(**kwargs)
-
+        print(self.form_data)
         if self.is_refferal_form:
-            form = RegistrationConsultantForm()
+            form = RegistrationConsultantForm(data=self.form_data)
         else:
-            form = RegistrationRefferalConsultantForm()
-
+            form = RegistrationRefferalConsultantForm(data=self.form_data)
+        print(form)
         callback = CallbackForm()
         context["form"] = form
         context["callback"] = callback
