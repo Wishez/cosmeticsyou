@@ -118,14 +118,120 @@ class Slider(models.Model):
         verbose_name_plural = _('Слайды')
 
 class EmailMessagesSetting(models.Model):
+    node_parts = {
+        "help": '<span class="helpText">',
+        "variable": '<span class="variable">',
+        "close": '</span>',
+        "br": '<br/>',
+        "dash": "&mdash;"
+    }
+    help_parts = {
+        "main_variables": '%(variable)s{{first_name}}%(close)s %(dash)s %(help)sГарри%(close)s%(br)s'
+                     '%(variable)s{{last_name}}%(close)s %(dash)s %(help)sПоттер Эванс Верес%(close)s%(br)s'
+                     '%(variable)s{{middle_name}}%(close)s %(dash)s %(help)sИванов%(close)s%(br)s'
+                     '%(variable)s{{full_name}}%(close)s %(dash)s %(help)sГарри Поттер Эванс Верес%(close)s%(br)s'
+                     '%(variable)s{{status}}%(close)s %(dash)s %(help)sЗарегистрированный "А"/Новый%(close)s%(br)s'
+                     '%(variable)s{{site}}%(close)s %(dash)s %(help)scosmeticsyou.ru.%(close)s%(br)s' % node_parts,
+        "additional_variables": '%(variable)s{{consultant_num}}%(close)s %(dash)s %(help)s123456789%(close)s%(br)s'
+                     '%(variable)s{{refferal_ur}}%(close)s %(dash)s %(help)scosmeticsyou.ru/registration/123456789%(close)s%(br)s'
+                     '%(variable)s{{url_to_personal_room}}%(close)s %(dash)s %(help)spcosmeticsyou.ru/personal_room/123456789%(close)s%(br)s' % node_parts
+    }
+    variables_text_1 = '<div class="variablesHint">Доступные переменные:<br/><br/>' \
+                       '%(main_variables)s %(additional_variables)s</div>' % help_parts
+
+    variables_text_2 = '<div class="variablesHint">Доступные переменные:<br/><br/>' \
+                       '%(main_variables)s<div>' % help_parts
+
+    change_registration_status_subject= models.CharField(
+        _('Тема'),
+        help_text=_(
+            variables_text_2
+        ),
+        max_length=200,
+        default='Изменили статус регистрации'
+    )
     registered_a = models.TextField(
-        _('Сообщение для зарегистрированного А'),
-        max_length=6000
+        _('Сообщение для Зарегистрированного А'),
+        max_length=6000,
+        help_text=_(
+            variables_text_2
+        ),
+        default=_('Ваш текущий статус регистрации　ー　"Зарегистрированный А".')
     )
     registered_b = models.TextField(
-        _('Сообщение для зарегистрированного Б'),
-        max_length=6000
+        _('Сообщение для Зарегистрированного Б'),
+        max_length=6000,
+        help_text=_(
+            variables_text_2
+        ),
+        default=_('Ваш текущий статус регистрации　ー　"Зарегистрированный Б".')
     )
+    set_number_consultant_subject = models.CharField(
+        _('Новый номер(Тема)'),#сообщения для смены статуса консультанта.
+        max_length=200,
+        default=_('У вас есть собственный номер консультанта!'),
+        help_text=_(
+            variables_text_1
+        ),
+    )
+    set_number_consultant_message = models.TextField(
+        _('Новый номер(Сообщение)'),#Сообщение для консультната при установке номера консультанату
+        max_length=6000,
+        help_text=_(
+            variables_text_1
+        ),
+        default=_('{{first_name}}, мы присвоили вам уникальный номер консультанта ー {{consultant_num}}! '
+                'Через него вы можете заходить в свою персональную комнату ー {{url_to_personal_room}}.'
+                ''
+                'С уважением, Администрация!')
+    )
+    after_register_subject = models.CharField(
+        _('Тема'),
+        max_length=200,
+        help_text=_(
+            variables_text_2
+        ),
+        default=_('Почти зарегистрированы на сайте {{site}}!')
+
+    )
+    after_register_message = models.TextField(
+        _('Сообщение'),#_('Сообщение на почту для новоприбывшего консультанта'),
+        max_length=6000,
+        help_text=_(
+            variables_text_2
+        ),
+        default=_('Приветствую, {{fist_name}}!'
+                  'Вы зарегистрировались на нашем сайте. Скоро ваша заявка будет обра-'
+                  'ботана и вам будет присвоен новый статус регистрации, вместе с уни-'
+                  'кальным идентификатором. '
+                  'Всю эту информацию мы пришлём на ваш email ー от вас требуется только '
+                  'ожидание! '
+                  ''
+                  'С наилучшими пожеланиями, Администрация.')
+    )
+    change_number_consultant_subject = models.CharField(
+        _('Изменение номера(Тема)'),
+        max_length=200,
+        help_text=_(
+            variables_text_1
+        ),
+        default=_('Ваш уникальный номер был изменён!')
+
+    )
+
+
+    change_number_consultant_message = models.TextField(
+        _('Изменённый номер(Соббщение)'),#Сообщение для консультанта при смене номера консультаната
+        max_length=6000,
+        help_text=_(
+            variables_text_1
+        ),
+        default=_('{{first_name}}, вам следует знать, что мы обновили ваш номер консультанта ー {{consultant_num}}. '
+                  'Поскольку номер консультанта изменён, также изменился адрес в вашу персональную комнату ー　{{url_to_personal_room}}.'
+                  ''
+                  'С уважением, Администрация!')
+    )
+
     statuses = (
         (_('Не активная группа'), 'Не активна группа'),
         (_('Активная группа'), 'Активная группа'),
@@ -134,21 +240,26 @@ class EmailMessagesSetting(models.Model):
         _('Активация'),
         default=_('Не активная группа'),
         choices=statuses,
-        max_length=20
+        max_length=20,
     )
-
+    def __unicode__(self):
+        return _('Настройка отправляемых сообщений')
+    def __str__(self):
+        return str(_('Настройка отправляемых сообщений'))
     class Meta:
         verbose_name = _('Email сообщение')
         verbose_name_plural = _('Email сообщения')
 
+
+
 def switch_active_custom(sender, instance, **kwargs):
 
-    if instance.is_active == _('Активная группа'):
-        customs = sender.objects.all()
-        if len(customs):
-            for custom in customs:
-                custom.is_active = _('Не активная группа')
-                custom.save()
-        instance.is_active = _('Активная группа')
+     if instance.is_active == _('Активная группа'):
+         customs = sender.objects.all()
+         if len(customs):
+             for custom in customs:
+                 custom.is_active = _('Не активная группа')
+                 custom.save()
+         instance.is_active = _('Активная группа')
 
 pre_save.connect(switch_active_custom, sender=EmailMessagesSetting)
