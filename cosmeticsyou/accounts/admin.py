@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-
+from myadmin.admin import admin_site
 from .models import *
 
 class ConsultantAdmin(admin.ModelAdmin):
@@ -99,6 +99,6 @@ class RelatedConsultantAdmin(admin.ModelAdmin):
     )
 # Register your models here.
 
-admin.site.register(User, ConsultantAdmin)
-admin.site.register(RefferalConsultant, ConsultantAdmin)
-admin.site.register(RelatedConsultant, RelatedConsultantAdmin)
+admin_site.register(User, ConsultantAdmin)
+admin_site.register(RefferalConsultant, ConsultantAdmin)
+admin_site.register(RelatedConsultant, RelatedConsultantAdmin)

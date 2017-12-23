@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.contrib import admin
+from myadmin.admin import admin_site
+
 from .models import Share
 
 # Register your models here.
 
-admin.site.register(Share)
+admin_site.register(Share)
