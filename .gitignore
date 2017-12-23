@@ -3,5 +3,12 @@ bower_components
 grappelli
 site's-material
 .sass-cache
+sqlite.db
+db.sqlite3
 admin
 .idea
+jet
+debug.log
+jet.dashboard
+range_filter
+__pycache__
