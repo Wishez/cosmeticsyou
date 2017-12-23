@@ -35,7 +35,9 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig',
     'shares.apps.SharesConfig',
-    'grappelli',
+    'myadmin',
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,8 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'raven.contrib.django.raven_compat',
 ]
-
+RAVEN_CONFIG = {
+    'dsn': 'https://d8ada14164024e50869fd68ff729d366:a7fb598c3eed4c5ebba6fbef0865dc29@sentry.io/253653',
+}
 
 
 MIDDLEWARE = [
@@ -64,6 +69,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'home', 'templates'),
+            os.path.join(BASE_DIR, 'theme', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -85,12 +91,14 @@ WSGI_APPLICATION = 'cosmeticsyou.wsgi.application'
 
 DATABASES = {
     'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'cm',
-            'USER': 'gm',
-            'PASSWORD': 'demonstration',
-            'HOST': 'localhost',
-            'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            # 'ENGINE': 'django.db.backends.postgresql',
+            # 'NAME': 'cm',
+            # 'USER': 'gm',
+            # 'PASSWORD': 'demonstration',
+            # 'HOST': 'localhost',
+            # 'PORT': '5432'
         }
 }
 
@@ -133,15 +141,80 @@ SITE_ID = 1
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'a.uchuvadov@gmail.com'
-EMAIL_HOST_PASSWORD = 'Exedfljd_-_'
+EMAIL_HOST = 'smtp.gmail.com'#'smtp.yandex.ru'
+EMAIL_PORT = 587#465
+EMAIL_HOST_USER = 'shiningCollector@gmail.com' #'support@cosmeticsyou.ru'
+EMAIL_HOST_PASSWORD = 'ruking1488' #'Exedfljd_-_'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL  = 'shiningCollector@gmail.com'
+DEFAULT_FROM_EMAIL = 'support@cosmeticsyou.ru'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR + '/debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'unique-snowflake',
+#     }
+# }
+
+
+# Jet config
+JET_MODULE_GOOGLE_ANALYTICS_CLIENT_SECRETS_FILE = os.path.join(BASE_DIR, 'client_secrets.json')
+JET_DEFAULT_THEME = 'default'
+JET_SIDE_MENU_COMPACT = True
+JET_THEMES = [
+    {
+        'theme': 'default', # theme folder name
+        'color': '#47bac1', # color of the theme's button in user menu
+        'title': 'Default' # theme title
+    },
+    {
+        'theme': 'green',
+        'color': '#44b78b',
+        'title': 'Green'
+    },
+    {
+        'theme': 'light-green',
+        'color': '#2faa60',
+        'title': 'Light Green'
+    },
+    {
+        'theme': 'light-violet',
+        'color': '#a464c4',
+        'title': 'Light Violet'
+    },
+    {
+        'theme': 'light-blue',
+        'color': '#5EADDE',
+        'title': 'Light Blue'
+    },
+    {
+        'theme': 'light-gray',
+        'color': '#222',
+        'title': 'Light Gray'
+    }
+]
