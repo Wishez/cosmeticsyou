@@ -6,8 +6,9 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.contrib.sites.models import Site
 from django.conf import settings
-from django.core.mail import EmailMessage
 from home.models import EmailMessagesSetting
+from .parsers import MessageParser
+from model_utils import FieldTracker
 # Create your models here.
 
 
@@ -136,6 +137,7 @@ class User(FullConsultant):
         blank=True
     )
 
+    tracker = FieldTracker(fields=['consultant_num'])
     class Meta:
         verbose_name = _('Консультант')
         verbose_name_plural = _('Консультанты')
@@ -196,8 +198,7 @@ class RefferalConsultant(FullConsultant):
         blank=True
     )
 
-
-
+    tracker = FieldTracker(fields=['consultant_num'])
     class Meta:
         verbose_name = _('Реферальный консультант')
         verbose_name_plural = _('Реферальные консультанты')
@@ -215,9 +216,12 @@ def set_refferal_data(instance, **kwargs):
         instance.url_to_personal_room = ""
         instance.refferal_url = ""
 
+
+
 def send_notification_to_registered_consultant(instance):
     isRegistered = False
     messages = EmailMessagesSetting.objects.get(is_active=_('Активная группа'))
+
 
     if instance.status == _('Зарегистрированный А'):
         message = messages.registered_a
@@ -227,22 +231,48 @@ def send_notification_to_registered_consultant(instance):
         isRegistered = True
 
     if isRegistered:
-        EmailMessage(
-            'Регистрация на %s' % Site.objects.get_current(),
+        MessageParser(
+            instance,
             message,
-            getattr(settings, "DEFAULT_FROM_EMAIL", 'a.uchuvadov@gmail.com'),
-            [instance.email]
-        ).send()
+            'change_registration_status_subject',
+            False
+        )()
+
+
+def send_notification_about_set_consultant_number_if_needed(instance):
+    before = instance.tracker.changed().get('consultant_num')
+    after = instance.consultant_num
+
+    if before is None and after is not None:
+        MessageParser(
+            instance,
+            'set_number_consultant_message',
+            'set_number_consultant_subject'
+        )()
+def send_notification_about_updated_consultant_number_if_needed(instance):
+    before = instance.tracker.changed().get('consultant_num')
+    after = instance.consultant_num
+
+    if before != after:
+        MessageParser(
+            instance,
+            'change_number_consultant_message',
+            'change_number_consultant_subject'
+        )()
+
 
 @receiver(pre_save, sender=User)
 def pre_save_consultant(sender, instance, **kwargs):
     set_refferal_data(instance, **kwargs)
     send_notification_to_registered_consultant(instance)
-
+    send_notification_about_set_consultant_number_if_needed(instance)
+    send_notification_about_updated_consultant_number_if_needed(instance)
 @receiver(pre_save, sender=RefferalConsultant)
 def pre_save_referral_consultant(sender, instance, **kwargs):
     set_refferal_data(instance, **kwargs)
     send_notification_to_registered_consultant(instance)
+    send_notification_about_set_consultant_number_if_needed(instance)
+    send_notification_about_updated_consultant_number_if_needed(instance)
 
 @receiver(pre_save, sender=RelatedConsultant)
 def pre_save_related_consultant(sender, instance, **kwargs):
