@@ -5,6 +5,9 @@ from home.forms import CallbackForm
 from .models import User, RefferalConsultant, RelatedConsultant
 from django.views.generic import TemplateView
 from django.http import Http404
+from .parsers import MessageParser
+from threading import Thread
+from django.utils import timezone
 # Create your views here.
 
 
@@ -52,11 +55,17 @@ class BaseRegistrationView(TemplateView):
                     ["user_led", "user_led_1", "user_led_2"],
                     [RefferalConsultant, RelatedConsultant, User]
                 )
-
                 if led_consultant_data["instance"]:
                     setattr(user, led_consultant_data["type"], led_consultant_data["instance"])
 
-            user.save()
+            Thread(target=user.save).start()
+            Thread(target=MessageParser(
+                user,
+                'after_register_message',
+                'after_register_subject'
+            )).start()
+
+
             return redirect('success')
         else:
             return render(
@@ -67,12 +76,12 @@ class BaseRegistrationView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(BaseRegistrationView, self).get_context_data(**kwargs)
-        print(self.form_data)
+
         if self.is_refferal_form:
             form = RegistrationConsultantForm(data=self.form_data)
         else:
             form = RegistrationRefferalConsultantForm(data=self.form_data)
-        print(form)
+
         callback = CallbackForm()
         context["form"] = form
         context["callback"] = callback
