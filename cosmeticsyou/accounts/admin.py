@@ -7,7 +7,7 @@ class ConsultantAdmin(admin.ModelAdmin):
     list_per_page = 10
     list_display = ('last_name', 'first_name', 'consultant_num', 'phone_number', 'email', 'status', 'refferal_url', 'url_to_personal_room',)
     # date_hierarchy = 'last_name'
-    filter_fields = ('status', 'last_name', 'first_name', 'middle_name', 'citizenship', 'city', 'region',)
+    list_filter = ('status', 'last_name', 'first_name', 'middle_name', 'citizenship', 'city', 'region',)
     filter_horizontal = ('user_lead', 'user_lead_1', 'user_lead_2',)
     search_fields = (
         'last_name',
@@ -64,7 +64,7 @@ class ConsultantAdmin(admin.ModelAdmin):
 class RelatedConsultantAdmin(admin.ModelAdmin):
     list_per_page = 10
     list_display = ('last_name', 'first_name',  'middle_name', 'consultant_num', 'refferal_url', 'url_to_personal_room',)
-    filter_fields = ('last_name', 'first_name', 'middle_name', 'consultant_num',)
+    list_filter = ('last_name', 'first_name', 'middle_name', 'consultant_num',)
     filter_horizontal = ('user_lead', 'user_lead_1', 'user_lead_2',)
     search_fields = (
         'last_name',
