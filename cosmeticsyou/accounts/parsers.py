@@ -1,26 +1,30 @@
+# -*- encoding: utf-8 -*-
 from django.core.mail import EmailMessage
 from home.models import EmailMessagesSetting
 from django.conf import settings
 from django.contrib.sites.models import Site
+from sendsms import api
 
 class MessageParser():
     def __init__(
         self,
-        consultant,
-        message,
-        subject,
+        consultant=None,
+        message='',
+        subject='',
         isMessageKey=True
     ):
-        self.email_setting  = EmailMessagesSetting.objects.get(is_active='Активная группа')
         self.consultant = consultant
         # Проверка на обычноое ообщение
-        setting = self.email_setting
         if isMessageKey:
-            self.message = getattr(setting, message)
+            print(isMessageKey, message)
+            self.email_setting  = EmailMessagesSetting.objects.get(is_active='Активная группа')
+            setting = self.email_setting
+            self.message = getattr(setting, message, '')
+            self.subject = getattr(setting, subject, '')
         else:
             self.message = message
+            self.subject = subject
 
-        self.subject = getattr(setting, subject)
 
 
         self.variables = [
@@ -32,6 +36,7 @@ class MessageParser():
             'last_name',
             'status',
         ]
+
         self.full_name = '%s %s' % (
             getattr(consultant, 'first_name', None),
             getattr(consultant, 'last_name', None)
@@ -40,6 +45,7 @@ class MessageParser():
     def __call__(self):
         self.parse_text()
         self.send_parsed_text_to_email()
+
     def parse_extra_variables(self, text):
         text = text.replace(
             '{{site}}',
@@ -54,6 +60,7 @@ class MessageParser():
     def parse_text(self):
         message = self.message
         subject = self.subject
+
         consultant = self.consultant
         # Замена дополнительных переменных.
         message = self.parse_extra_variables(message)
@@ -68,6 +75,7 @@ class MessageParser():
                     pattern,
                     fill_variable
                 )
+
                 subject = subject.replace(
                     pattern,
                     fill_variable
@@ -84,3 +92,34 @@ class MessageParser():
             getattr(settings, "DEFAULT_FROM_EMAIL", 'support@cosmeticsyou.ru'),
             [self.consultant.email]
         ).send()
+
+
+def create_user_and_notify_about(user, page):
+    user.save()
+    MessageParser(
+        user,
+        'after_register_message',
+        'after_register_subject',
+        isMessageKey=True
+    )
+
+    send_sms_notification(page, user)
+
+def send_sms_notification(page, consultant):
+
+    phone_from = page.phone_from
+    phones_to = page.phones_to.replace(' ', '').split(',')
+    parser = MessageParser(
+        consultant,
+        message=page.message,
+        isMessageKey=False
+    )
+    parser.parse_text()
+    message = parser.message
+
+    print('message', message)
+    api.send_sms(
+        body=message,
+        from_phone=phone_from,
+        to=phones_to
+    )
