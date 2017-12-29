@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps'),
     jshint = require('gulp-jshint'),
-    uglify = require('gulp-uglify'),
+    uglify = require('gulp-uglify-es').default,
     cleanCSS = require('gulp-clean-css'),
     jsonminify = require('gulp-jsonminify'),
     image = require('gulp-image'),
@@ -17,12 +17,15 @@ var gulp = require('gulp'),
     rimraf = require('rimraf'),
     browserSync = require("browser-sync"),
     jsonlint = require("gulp-jsonlint"),
-    reload = browserSync.reload;
+    reload = browserSync.reload,
+    plumber = require("gulp-plumber");
 
 const dir = '../static/cosmeticsyou';
 const path = {
     build: {
-        html: '../home/templates',
+        accounts: '../accounts/templates',
+        shares: '../shares/templates',
+        pages: '../pages/templates',
         snippets: dir + '/snippets/',
         js: dir + '/js/',
         css: dir + '/css/',
@@ -30,7 +33,9 @@ const path = {
         fonts: dir + '/fonts/'
     },
     src: { 
-        html: 'src/*.pug', 
+        accounts: 'src/accounts/*.pug',
+        shares: 'src/shares/*.pug',
+        pages: 'src/pages/*.pug', 
         js: 'src/js/*.js',
         style: 'src/scss/*.scss',
         snippets: 'src/snippets/*/*.pug',
@@ -38,8 +43,8 @@ const path = {
         fonts: 'src/fonts/**/*.*'
     },
     watch: {
-        html: './src/**/*.pug',
-        js: './src/**/*.js',
+        html: '/src/**/*.pug',
+        js: '/src/**/*.js',
         style: './src/**/*.scss',
         image: './src/img/**/*',
         fonts: './src/fonts/**/*.*'
@@ -68,21 +73,32 @@ const settings = {
   build: './../static/cosmeticsyou'
 };
 
-gulp.task('html', () => {
-    gulp.src(path.src.html) //Выберем файлы по нужному пути
+function emmitTemplates(pathFrom, pathTo) {
+    return gulp.src(pathFrom)
+        .pipe(plumber())
         .pipe(rigger())
-        .pipe(pug()) //
-        .pipe(gulp.dest(path.build.html)); //Выплюнем их в папку build
-    gulp.src(path.src.snippets) //Выберем файлы по нужному пути
-        .pipe(pug()) //
-        .pipe(gulp.dest(path.build.snippets))
-        .pipe(reload({stream: true})); //И перезагрузим наш сервер для обновлений
+        .pipe(pug({
+            pretty: false
+        }))
+        .pipe(gulp.dest(pathTo));
+}
+
+gulp.task('html:pages', () => {
+    return emmitTemplates(path.src.pages, path.build.pages);
 });
+gulp.task('html:accounts', () => {
+    return emmitTemplates(path.src.accounts, path.build.accounts);
+});
+gulp.task('html:shares', () => {
+    return emmitTemplates(path.src.shares, path.build.shares);
+});
+gulp.task('html', ['html:pages', 'html:accounts', 'html:shares']);
 
 gulp.task('fastjs', () => {
     process.NODE_ENV = 'development';
 
     gulp.src(path.src.js)
+        .pipe(plumber()) 
         .pipe(rigger()) 
         .pipe(babel({
             presets: ['es2015']
@@ -95,6 +111,7 @@ gulp.task('source', () => {
     process.NODE_ENV = 'production';
 
     gulp.src(path.src.js) 
+        .pipe(plumber()) 
         .pipe(rigger()) 
         .pipe(babel({
             presets: ['es2015']
@@ -166,10 +183,10 @@ gulp.task('development', [
 ]);
 
 gulp.task('watch', function() {
-    gulp.watch(settings.src + '/**/*.scss', ['faststyles']);
+    gulp.watch(settings.src + '/**/*.{scss, sass}', ['faststyles']);
     gulp.watch(settings.src + '/img/**/*.*', ['fastimages']);
     gulp.watch(settings.src + '/**/*.js', ['fastjs']);
-    gulp.watch(settings.src + '/*.pug', ['html']);
+    gulp.watch(settings.src + '/**/*.pug', ['html']);
 });
 
 gulp.task('default', ['development', 'watch']);
