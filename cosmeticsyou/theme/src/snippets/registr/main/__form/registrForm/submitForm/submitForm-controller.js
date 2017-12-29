@@ -1,1 +1,0 @@
-//= checkReady/checkReady-controller.js

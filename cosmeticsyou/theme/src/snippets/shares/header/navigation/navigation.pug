@@ -3,7 +3,7 @@ nav.navContent__navigation.navigation.collapse.navbar-collapse#collapsable(role=
     li#navHome.navList__navItem.navItem(role="presentation")
       a.navItem__refer(href="{% url 'index' %}") Главная
     li#navShares.navList__navItem.navItem.active
-      a.navItem__refer(href="{% url 'share_list' %}") Акции
+      a.navItem__refer(href="{% url 'shares' %}") Акции
     li#navStore.navList__navItem.navItem(role="presentation")
       a.navItem__refer(href="http://beautystore.oriflame.ru/502181") Интернет магазин
     li#navOpportunities.dropdown.navList__navItem.navItem(role="presentation")
@@ -17,14 +17,14 @@ nav.navContent__navigation.navigation.collapse.navbar-collapse#collapsable(role=
          span.caret
          ul.dropdown-menu
            li#navBusiness.navItem
-             a(href="{% url 'index' %}") Бизнес
+             a(href="{% url 'business' %}") Бизнес
           
     li#navRegistr.navList__navItem.navItem(role="presentation")
-      a.navItem__refer(href="{% url 'registr' %}") Регистрация
+      a.navItem__refer(href="{% url 'registration' %}") Регистрация
     li#navVideos.navList__navItem.navItem( role="presentation")
-      a.navItem__refer(href="{% url 'index' %}") Видео
+      a.navItem__refer(href="{% url 'media' %}") Видео
     li#navContacts.navList__navItem.navItem( role="presentation")
-      a.navItem__refer(href="{% url 'index' %}") Контакты
+      a.navItem__refer(href="{% url 'contacts' %}") Контакты
       
 a#btnTop.navigation__btnTop(href="#header") 
   i.fa.fa-chevron-circle-up.fa-3x(aria-hidden="true")

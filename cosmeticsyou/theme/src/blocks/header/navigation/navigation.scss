@@ -53,18 +53,16 @@
   bottom: 2vw;
   right: 5vw;
   z-index: 999;
+  background: transparent;
   & i {
     color: $nightBlack;
   }
 }
 .dropdown-menu {
-  min-width: 124px;
-  @include breakpoint($lg) {
-    min-width: 129px;
-  }
-  @include breakpoint(max-width 787px) {
-    text-align: center;
-  }
+  width: 100% !important;
+  text-align: center;
+  min-width: auto;
+  padding: 0em 0 1em;
 } 
 
 .navList__navItem:hover .dropdown-menu .navItem__refer {

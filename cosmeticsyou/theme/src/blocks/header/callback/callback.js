@@ -23,7 +23,6 @@ $(document).on('click', '#callbackCloseFormBtn', (e) => {
 
 $(document).on('submit', '#callbackForm', (e) => {
   e.preventDefault();
-  console.log('submit');
   registerCallback();
 });// end submit
 

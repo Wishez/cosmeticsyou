@@ -8,16 +8,16 @@ from django.http import HttpResponse
 
 
 
-def index(request):
-    #program = Program.objects.filter(published__lte=timezone.now()).order_by('-published')
-    program = Program.objects.all()
-    slider = Slider.objects.all()
-    callback = CallbackForm()
-    return render(request, 'index.html', {
-        'program': program,
-        'slider': slider,
-        'callback': callback
-    })
+# def index(request):
+#     #program = Program.objects.filter(published__lte=timezone.now()).order_by('-published')
+#     program = Program.objects.all()
+#     slider = Slider.objects.all()
+#     callback = CallbackForm()
+#     return render(request, 'index.html', {
+#         'program': program,
+#         'slider': slider,
+#         'callback': callback
+#     })
 
 
 def register_callback(request):

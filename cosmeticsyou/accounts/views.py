@@ -3,21 +3,26 @@ from django.shortcuts import render, redirect
 from .forms import RegistrationConsultantForm, RegistrationRefferalConsultantForm
 from home.forms import CallbackForm
 from .models import User, RefferalConsultant, RelatedConsultant
-from django.views.generic import TemplateView
+# from django.views.generic import TemplateView
+from pages.views import BaseView
+from pages.models import RegistrationPage
 from django.http import Http404
-from .parsers import MessageParser
+from .parsers import *
 from threading import Thread
-from django.utils import timezone
+
+
 # Create your views here.
 
-
-class BaseRegistrationView(TemplateView):
-    template_name = 'registr.html'
+class BaseRegistrationView(BaseView):
+    template_name = 'registration.html'
 
     def __init__(self):
+        super(BaseRegistrationView, self).__init__()
         self.consultant_num = ''
         self.is_refferal_form = False
         self.form_data = None
+        self.active_page = 'registration'
+        self.page_model = RegistrationPage
 
     def post(self, request, **kwargs):
         data = extract_data(request.POST)
@@ -44,7 +49,6 @@ class BaseRegistrationView(TemplateView):
                 request.FILES or None
             )
 
-
         if form.is_valid():
             user = form.save(commit=False)
 
@@ -55,16 +59,17 @@ class BaseRegistrationView(TemplateView):
                     ["user_led", "user_led_1", "user_led_2"],
                     [RefferalConsultant, RelatedConsultant, User]
                 )
-                if led_consultant_data["instance"]:
+
+                if led_consultant_data and led_consultant_data["instance"]:
                     setattr(user, led_consultant_data["type"], led_consultant_data["instance"])
 
-            Thread(target=user.save).start()
-            Thread(target=MessageParser(
-                user,
-                'after_register_message',
-                'after_register_subject'
-            )).start()
-
+            Thread(
+                target=create_user_and_notify_about,
+                args=(
+                    user,
+                    RegistrationPage.objects.get(),
+                )
+            ).start()
 
             return redirect('success')
         else:
@@ -73,21 +78,17 @@ class BaseRegistrationView(TemplateView):
                 self.template_name,
                 self.get_context_data()
             )
-
-    def get_context_data(self, **kwargs):
-        context = super(BaseRegistrationView, self).get_context_data(**kwargs)
-
+    def set_additional_context(self, context):
         if self.is_refferal_form:
             form = RegistrationConsultantForm(data=self.form_data)
         else:
             form = RegistrationRefferalConsultantForm(data=self.form_data)
 
-        callback = CallbackForm()
         context["form"] = form
-        context["callback"] = callback
         context["consultant_num"] = self.consultant_num
 
         return context
+
 
 def set_led_consultant(consultant_num, consultant_categories, consultants_models):
     index = 0
@@ -102,6 +103,7 @@ def set_led_consultant(consultant_num, consultant_categories, consultants_models
         index = index + 1
 
     return False
+
 class RegistrationView(BaseRegistrationView):
     def __init__(self):
         super(RegistrationView, self).__init__()
@@ -114,19 +116,19 @@ class RefferalRegistrationView(BaseRegistrationView):
 
     def get(self, request, consultant_num):
         self.consultant_num = consultant_num
-        return render(
-            request,
-            self.template_name,
-            super(RefferalRegistrationView, self).get_context_data()
-        )
-def success(request):
-    callback = CallbackForm()
-    return render(request, 'success.html', {
-        "callback": callback
-    })
+        return super(RefferalRegistrationView, self).get(request)
+
+class SuccessView(BaseView):
+    template_name = 'success.html'
+
+    def __init__(self):
+        super(SuccessView, self).__init__()
+        self.page_model = None
+
 
 def get_consultant(models, consultant_num):
     is_found = False
+
     for Model in models:
         consultant = Model.objects.filter(consultant_num=consultant_num)
         if consultant.exists():
@@ -154,6 +156,7 @@ def personal_room(request, consultant_num):
             )
         else:
             raise Http404('')
+
 def extract_data(data):
     new_data = {}
     for key in data:

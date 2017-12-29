@@ -1,5 +1,3 @@
-//= slider/slider.js
-//= catalogs/catalogs.js
 $('.fadeSlider').slick({
   dots: true,
   infinite: true,

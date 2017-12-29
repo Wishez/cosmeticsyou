@@ -3,6 +3,6 @@
   p.share__date.
     Опубликовано: {{ share.published_date }}
   h2.share__title.shareTitle
-    a.shareTitle__name(href="{% url 'share_detail' pk=share.pk %}").
+    a.shareTitle__name(href="{% url 'single_share' slug=share.slug %}").
       {{ share.title }}
 | {% endfor %}

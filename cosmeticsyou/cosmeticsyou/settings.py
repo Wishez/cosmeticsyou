@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'raven.contrib.django.raven_compat',
+    'pages',
 ]
 RAVEN_CONFIG = {
     'dsn': 'https://d8ada14164024e50869fd68ff729d366:a7fb598c3eed4c5ebba6fbef0865dc29@sentry.io/253653',
@@ -68,7 +69,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'home', 'templates'),
+            os.path.join(BASE_DIR, 'pages', 'templates'),
+            os.path.join(BASE_DIR, 'shares', 'templates'),
+            os.path.join(BASE_DIR, 'accounts', 'templates'),
             os.path.join(BASE_DIR, 'theme', 'templates'),
         ],
         'APP_DIRS': True,
@@ -218,3 +221,7 @@ JET_THEMES = [
         'title': 'Light Gray'
     }
 ]
+
+IS_PRODUCTION = False
+# https://github.com/stefanfoulis/django-sendsms
+#  SENDSMS_BACKEND = 'sendsms.backends.console.SmsBackend'

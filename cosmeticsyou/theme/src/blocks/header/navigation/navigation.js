@@ -12,7 +12,7 @@ $('.navItem').not('#navOpportunities, #navRegistr').on('click', (e) => {
 }); // end blur
 
 $toggleButton.on('click', (e) => {
-  let screenWidth = window.innerWidth;
+  const screenWidth = window.innerWidth;
   if (screenWidth < 768) 
     $('#navOpportunities').addClass('open');
 });
@@ -26,7 +26,7 @@ $(document).on('click', '#btnTop' ,function()  {
   
   return false;
 });// end click
-let $btnTop = $('#btnTop');
+const $btnTop = $('#btnTop');
 
 
 // Кнопка, ведущая наверх
@@ -46,7 +46,7 @@ $("#navOpportunities").on('click', e => {
 });
 
 // Навигация по страницам
-let main = '#mainContent';
+// let main = '#mainContent';
 
 //$(document).on('click', '#navHome, #logo', e => {
 //  $cmt.showLoading(main);
@@ -55,20 +55,20 @@ let main = '#mainContent';
 //});// end click
 
 
-$(document).on('click', '#navVideos', e => {
-  $cmt.switchMenu('#navVideos');
-  $cmt.showLoading(main);
-  $cmt.showVideosPage();
-});// end click
+// $(document).on('click', '#navVideos', e => {
+//   $cmt.switchMenu('#navVideos');
+//   $cmt.showLoading(main);
+//   $cmt.showVideosPage();
+// });// end click
 
-$(document).on('click', '#navContacts', e => {
-  $cmt.switchMenu('#navContacts');
-  $cmt.showLoading(main);
-  $cmt.showContactsPage();
-});// end click
+// $(document).on('click', '#navContacts', e => {
+//   $cmt.switchMenu('#navContacts');
+//   $cmt.showLoading(main);
+//   $cmt.showContactsPage();
+// });// end click
 
-$(document).on('click', '#navBusiness', e => {
-  $cmt.switchMenu('#navBusiness');
-  $cmt.showLoading(main);
-  $cmt.showBusinessPage();
-});// end click
+// $(document).on('click', '#navBusiness', e => {
+//   $cmt.switchMenu('#navBusiness');
+//   $cmt.showLoading(main);
+//   $cmt.showBusinessPage();
+// });// end click
