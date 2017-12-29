@@ -1,15 +1,21 @@
 # -*- encoding: utf-8 -*-
-# import sys
-# reload(sys)
-# sys.setdefaultencoding('utf-8')
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-# Create your models here.
+from pages.validators import validate_slug_field
+from pages.models import BasePage
 
-class Share(models.Model):
+class Share(BasePage):
     title = models.CharField(max_length=250, verbose_name="Название акции")
     img = models.FileField(upload_to='uploads/%Y/%m/%d/', blank=True, null=True, verbose_name="Изображение")
+    slug = models.SlugField(
+        _('Название ссылки к странице акции'),
+        help_text=_('К примеру, "new-share-for_2018"'),
+        max_length=150,
+        validators=[validate_slug_field],
+        blank=True,
+        null=True
+    )
     text = models.TextField(blank=True, null=True, verbose_name="Параграф")
     text_2 = models.TextField( blank=True, null=True, verbose_name="Параграф")
     text_3 = models.TextField( blank=True, null=True, verbose_name="Параграф")

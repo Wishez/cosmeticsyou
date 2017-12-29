@@ -5,11 +5,9 @@ from django.utils import timezone
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.contrib.sites.models import Site
-from django.conf import settings
 from home.models import EmailMessagesSetting
 from .parsers import MessageParser
 from model_utils import FieldTracker
-# Create your models here.
 
 
 class ConsultantManager(models.Manager):
@@ -70,7 +68,7 @@ class ConsultantBase(models.Model):
 class FullConsultant(ConsultantBase):
 
     birthday = models.DateTimeField(_('День рождения'))
-    citizenship = models.BooleanField(_('Не гражданин РФ.'), default=False)
+    citizenship = models.BooleanField(_('Не гражданин РФ'), default=False)
     passport_data = models.CharField(
         _('Серия и номер паспорта'),
         max_length=26
@@ -277,3 +275,6 @@ def pre_save_referral_consultant(sender, instance, **kwargs):
 @receiver(pre_save, sender=RelatedConsultant)
 def pre_save_related_consultant(sender, instance, **kwargs):
     set_refferal_data(instance, **kwargs)
+    send_notification_to_registered_consultant(instance)
+    send_notification_about_set_consultant_number_if_needed(instance)
+    send_notification_about_updated_consultant_number_if_needed(instance)
