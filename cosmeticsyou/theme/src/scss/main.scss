@@ -3,9 +3,11 @@
   THIRD PARTY
 
 ***********/
-@import "compass";
+// @import "compass";
 @import "breakpoint";
 @import "susy";
+@import "intlTelInput";
+@import "sprite";
 // @import "font-awesome-compass";
 // @import "slick.scss"
 // @import "slick-theme.scss"
@@ -13,7 +15,7 @@
 @import "font-awesome";
 // @import 'bootstrap';
 // @import 'bootstrap-sprockets';
-@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+// @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../../bower_components/slick-carousel/slick/slick.scss";
 @import "../../bower_components/slick-carousel/slick/slick-theme.scss";
 /**********
@@ -22,14 +24,17 @@
 
 ***********/
 // Main files.
-@import "../fonts/fonts.scss";
 @import "../blocks/custom/custom.scss";
-@import "../blocks/header/header.scss";
-@import "../blocks/footer/footer.scss";
-@import "../snippets/home/home.scss";
-@import "../snippets/registr/registr.scss";
-@import "../snippets/opportunities/opportunities.scss";
-@import "../snippets/shares/shares.scss";
-@import "../snippets/videos/videos.scss";
-@import "../snippets/contacts/contacts.scss";
-@import "../snippets/errors/404.scss";
+@import "../styles/_header.scss";
+@import "../styles/_main.scss";
+@import "../styles/_footer.scss";
+// @import "../blocks/custom/custom.scss";
+// @import "../blocks/header/header.scss";
+// @import "../blocks/footer/footer.scss";
+// @import "../snippets/home/home.scss";
+// @import "../snippets/registr/registr.scss";
+// @import "../snippets/opportunities/opportunities.scss";
+// @import "../snippets/shares/shares.scss";
+// @import "../snippets/videos/videos.scss";
+// @import "../snippets/contacts/contacts.scss";
+// @import "../snippets/errors/404.scss";
