@@ -1,43 +1,15 @@
-/* Grid */
-$susy: (
-  global-box-sizing: border-box,
-  use-custom: (rem: true),
-  columns: 12,
-  gutters: 0,
-  gutter-position: split
-);
-@include border-box-sizing;
-$border-box-sizing : true;
-// $columns: 12;
-$gutters: 0;
+@import '../config/_normalize.scss';
+@import '../config/_breakpoints.scss';
+@import '../config/_colors.scss';
+@import '../config/_grid.scss';
+@import "../config/_fonts.scss";
 
-/* Fonts */
-$stackMuseo: 'Museo', monospace;
-/* Colors */
-$beige: #dfa76e;
-
-// Используемые цыета
-$darkGray: #202020;
-$white: #f4f4f4;
-$gray: #eee;
-$nightBlack: #3f3c39;
-$maroon: #952d2c;
-$hover-link: #bd0d0d;
-$cyan: #76c1e2;
-$viole: #a86fb9;
-$shadow: rgba(0, 0, 0, .9);
-$red: rgba(255, 18, 17, .9);
-$ghostBlack:  rgba(29, 22, 16, .8);
-/* breakpoints */
-$xxs: max-width 460px;
-$xs: max-width 769px;
-$sm: 769px 991px;
-$md: 992px 1199px;
-$lg: 1200px;
 /* Mixins */
 /* Body Custom */
 html, body {
   min-height: 100%;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 body {
   & * {
@@ -48,8 +20,8 @@ body {
   }
   position: relative;
   font: {
-    family: $stackMuseo;
-    size: 16px;
+    family: $mainFont;
+    size: 18px;
   }
   line-height: 145%;
   word-break: break-word;
@@ -60,20 +32,29 @@ body {
   background-color: $white;
   color: $darkGray;
 }
-
-h1, h2, h3, h4 {
-  color: $nightBlack;
+h1 {
+  font-size: em(28);
+}
+h2 {
+  font-size: em(21); 
+}
+h1, h2, h3  {
+  font-family: $decorativeFont;
 }
 p, li {
   margin-top: 1em;
+  max-width: 60rem;
 }
 
 a {
-  @include link-colors($nightBlack, $hover-link, $nightBlack, $nightBlack, $nightBlack);
+
+  // @include link-colors($nightBlack, $hover-link, $nightBlack, $nightBlack, $nightBlack);
   &:hover {
     text-decoration: none;  
+    color: $red;
   }
   &:active {
+    color: $red;
     text-decoration: none;  
   }
   &:focus {
