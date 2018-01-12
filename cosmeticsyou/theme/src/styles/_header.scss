@@ -1,0 +1,170 @@
+.header {
+	font-size: em(21);
+	& ul {
+		list-style: none;
+	}
+}
+
+
+.brand {
+	// min-width: em(450, 42);
+	padding-top: .1em;
+	background-color: $purple;
+	text-align: center;
+	font-size: em(42);
+	font-weight: 800; 
+	min-width: 35%;
+	@include breakpoint($sm) {
+		order: 1;	
+		min-width: 50%;
+	}
+	&, &:hover {
+		background-size: 0;
+		color: $white $i;
+	}
+	&__title {
+		line-height: 1.4;
+	}
+}
+
+.topNavigation {
+	// min-width: em(450, 21);
+	min-width: 30%;
+	justify-content: space-between;
+	flex-direction: column;
+	align-items: center;
+}
+.topNavigationItem {
+	&_registration {
+		transform: translate(0, 40%);
+	}
+
+}
+
+.contacts {
+	// min-width: em(450, 21);
+	min-width: 35%;
+	background-color: $purple;
+	line-height: 2.2;
+	// font-size: em(24);
+	padding: 1em 1em 1.5em 2.5em;
+	@include breakpoint($sm) {
+		order: 3;	
+		min-width: span(6);
+	}
+ }
+.contacts, .popupContacts {
+	@include round(em(2, 21), 'bottom-left');
+}
+ .contactsItem  {
+ 	&__label {
+ 		color: $gray;
+ 	}
+ }
+ .topNavigation, .bottomNavigation {
+ 	background-color: $gray;
+ 	&Item {
+		color: $darkGray;
+	 	&__refer {
+	 		background-image: transparent $i;
+	 		background-size: 0 $i;
+	 		color: inherit $i;
+	 	}
+ 	}
+ }
+ .topNavigation {
+ 	@include breakpoint($sm) {
+		order: 5;	
+		min-width: span(6);
+		flex-direction: row;
+	}
+ }
+.topNavigationItem {
+	&_shop {
+		text-align: center;
+		min-width: 100%;
+		@include flyShadow(false);
+		padding: 0 1em;
+		&:hover .imageContainer_shopping-bag {
+			transform: rotate(-10deg) translateY(25%);
+		}
+	}
+	@include breakpoint($sm) {
+		// min-width: em(85, 21);
+	}
+}
+ .bottomNavigation {
+	min-width: span(8);
+	justify-content: space-around;
+	padding-bottom: em(36, 21);
+	padding-top: em(72, 21); 
+	padding: 0 2em;
+ 	@include breakpoint($sm) {
+		order: 2;	
+		min-width: span(6);
+		flex-direction: column;
+	}
+}
+
+.bottomNavigationItem {
+	text-align: center;
+	align-items: flex-end;
+    justify-content: center;
+	&__refer {
+		padding-bottom: .8em;
+
+	    background-image: linear-gradient(to right, $purple 0%, $purple 100%) $i;
+		background-position: 0 2.2em $i;
+		background-size: 2.5em $i;
+
+ 		&_active, &:hover {
+ 			padding-bottom: 1.8em;
+ 		}	
+ 		&_active {
+			@include breakpoint($sm) {
+				border-image: 0;
+				padding-bottom: 0;
+				background-color: $purple;
+			}
+ 			
+ 		}
+	}
+}
+ .callback, .brand {
+ 	@include round(em(2, 21), 'bottom-right');
+ }
+ .callback {
+ 	@include flyShadow(2px 5px 15px 2px $shadow);
+ 	@include breakpoint($sm) {
+		order: 6;	
+	}
+ }
+ .popupContacts {
+ 	@include flyShadow(-2px 5px 15px 2px $shadow);
+ 	@include breakpoint($sm) {
+		order: 7;	
+	}
+ }
+ .callback, .popupContacts {
+ 	z-index: 1;
+ 	position: relative;
+ 	max-width: span(2);
+ 	min-width: span(2);
+ 	background-color: $red;
+ 	cursor: pointer;
+ 	padding: .5em 0;
+ }
+
+ .contactsDescription, .callbackFormWrapper  {
+	position: absolute;
+	display: none;
+	
+ }
+
+
+
+.imageContainer_shopping-bag {
+	transition: .2s ease-in-out;
+	margin-right: .5em;
+	transform: translateY(25%);
+}
