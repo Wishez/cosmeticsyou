@@ -18,7 +18,23 @@ var gulp = require('gulp'),
     browserSync = require("browser-sync"),
     jsonlint = require("gulp-jsonlint"),
     reload = browserSync.reload,
-    plumber = require("gulp-plumber");
+    plumber = require("gulp-plumber"),
+    notify = require("gulp-notify"),
+    through = require('gulp-through');
+
+
+const errorHandler = function() {
+    var args = Array.prototype.slice.call(arguments);
+
+    notify.onError({
+        title: 'Compile Error',
+        message: '<%= error.message %>',
+        sound: 'Submarine'
+    }).apply(this, args);
+
+    this.emit('end');
+};
+
 
 const dir = '../static/cosmeticsyou';
 const path = {
@@ -66,7 +82,8 @@ const scssPathes = [
   'node_modules/font-awesome-sass/assets/stylesheets/',
   'node_modules/semantic-ui-sass/',
   'node_modules/slick-carousel/slick',
-  'node_modules/compass-mixins/lib'
+  'node_modules/compass-mixins/lib',
+  'node_modules/intl-tel-input/src/css'
 ];
 const settings = {
   src: './src',
@@ -98,11 +115,12 @@ gulp.task('fastjs', () => {
     process.NODE_ENV = 'development';
 
     gulp.src(path.src.js)
-        .pipe(plumber()) 
+        .pipe(plumber({errorHandler: errorHandler}))
         .pipe(rigger()) 
         .pipe(babel({
             presets: ['es2015']
         }))
+        .on('error', errorHandler)
         .pipe(sourcemaps.init()) 
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(path.build.js))
@@ -127,7 +145,8 @@ gulp.task('faststyles', () => {
         .pipe(sourcemaps.init())
         .pipe(sass({
           includePaths: scssPathes
-        }).on('error', sass.logError))
+        })
+        .on('error', errorHandler))
         .pipe(autoprefixer({
           browsers: ['last 2 versions'],
           cascade: false
