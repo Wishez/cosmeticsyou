@@ -7,18 +7,16 @@ from .models import Callback
 class CallbackForm(forms.ModelForm):
     class Meta:
         model = Callback
-        fields = ('callback_name', 'callback_phone', 'callback_message',)
+        fields = ('callback_name', 'callback_phone',)
         widgets = {
             'callback_name': forms.TextInput(attrs={
-                'class': 'callbackForm__input',
+                'class': 'controller__input',
+                'placeholder': 'Иван Иванович Иванов'
                 # 'pattern': '([А-Я]|[A-Z])([а-я]+|[a-z]+)(([-\s])([А-Я]|[A-Z])?([а-я]+|[a-z]+))?'
             }),
             'callback_phone': forms.TextInput(attrs={
-                'class': 'callbackForm__input',
-                'type': 'tel'
-            }),
-            'callback_message': forms.Textarea(attrs={
-                'class': 'callbackForm__textarea',
-                'rows': '3'
+                'class': 'controller__input',
+                'type': 'tel',
+                'placeholder': '+7 (985) 905-12-51'
             }),
         }
