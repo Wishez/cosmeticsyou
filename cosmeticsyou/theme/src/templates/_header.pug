@@ -1,0 +1,113 @@
+header#header.header(
+	itemscope,
+    itemtype="https://schema.org/Organization"
+)
+	nav.navigation#navigation(role="navigation")
+		a#brand.brand(href="{% url 'index' %}")
+			h1.brand__title(
+				itemprop="name"
+			) Oriflame
+		.callback
+			.imgContainer.imageContainer_callback
+				figure.imgContainer.imgContainer_callback
+			.callbackFormWrapper
+				h2.callback__title Обратный вызов
+				form#callbackForm.callbackForm(method="post")
+					| {% csrf_token %}
+					| {% for field in callback %}
+					.controller
+					| {{ field.label_tag }}
+					.imgContainer.imageContainer_
+						figure.imgContainer.imgContainer_
+					| {{ field }}
+					| {{ field.errors }}
+					| {% endfor %}
+		ul.topNavigation
+			li.topNavigationItem(
+		   		role="presentation"
+			)
+				.imgContainer.imageContainer_shoping-bag
+					figure.imgContainer.imgContainer_shoping-bag
+				a.topNavigationItem__refer.not-follow(
+				rel='notfollow',
+				href="http://beautystore.oriflame.ru/502181"
+				) Интернет магазин
+			li.topNavigationItem(
+			  role="presentation",
+			  class="{% if active_page == 'registration' %}active{% endif %}"
+			)
+				a.topNavigationItem__refer(href="{% url 'registration' %}") Регистрация
+		ul#bottomNavigation.bottomNavigation
+			li.bottomNavigationItem(
+			   role="presentation",
+			   class="{% if active_page == 'home' %}active{% endif %}"
+			)
+				a.bottomNavigationItem__refer(href="{% url 'index' %}") Главная
+			li.bottomNavigationItem(
+			   role="presentation",
+			   class="{% if active_page == 'business' %}active{% endif %}"
+			)
+				a.bottomNavigationItem(href="{% url 'business' %}") Структура бизнеса
+			li.bottomNavigationItem(
+			   role="presentation",
+			   class="{% if active_page == 'shares' %}active{% endif %}"
+			)
+				a.bottomNavigationItem__refer(href="{% url 'shares' %}") Акции
+			li.bottomNavigationItem(
+			  role="presentation",
+			  class="{% if active_page == 'media' %}active{% endif %}"
+			)
+					a.bottomNavigationItem__refer(href="{% url 'media' %}") Медиа контент
+	ul.contacts
+		li.contactsItem(
+			itemscope,
+	    	itemtype="https://schema.org/ContactPoint"
+		)
+			span.contactsItem__label Email:
+			a.contactsItem__refer(
+		        href="mailto:{{ settings.email }}",
+		        itemprop="email"
+		    ) {{ settings.email }}
+		li.contactsItem(
+			itemscope,
+      		itemtype="https://schema.org/ContactPoint"
+		)
+			span.contactsItem__label Телефон:
+			a.contactsItem__refer(
+		        href="tel:{{ settings.email }}",
+		        itemprop="telephone"
+		    ) {{ settings.phone }}
+	.popupContacts
+		.imgContainer.imageContainer_shoping-bag
+			figure.imgContainer.imgContainer_shoping-bag
+		address.contactsDescription
+			ul.popupContactsList
+				li.contactsItem(
+					itemscope,
+			    	itemtype="https://schema.org/ContactPoint"
+				)
+					span.contactsItem__label Email:
+					a.contactsItem__refer(
+				        href="mailto:{{ settings.email }}",
+				        itemprop="email"
+				    ) {{ settings.email }}
+				li.contactsItem(
+					itemscope,
+		      		itemtype="https://schema.org/ContactPoint"
+				)
+					span.contactsItem__label Телефон:
+					a.contactsItem__refer(
+				        href="tel:{{ settings.phone }}",
+				        itemprop="telephone"
+				    ) {{ settings.phone }}
+				li.contactsItem(
+					itemscope,
+		      		itemtype="https://schema.org/ContactPoint"
+				)
+					span.contactsItem__label Адрес:
+					a.contactsItem__refer(
+				        href="{{ settings.addressHref }}", 
+				        itemprop="streetAddress"
+				    ) {{ settings.address }}
+			  
+	
