@@ -4,7 +4,11 @@
 		list-style: none;
 	}
 }
-
+.navigation {
+	@include breakpoint($sm-less) {
+		height: em(540, 21);
+	}
+}
 
 .brand {
 	// min-width: em(450, 42);
@@ -14,9 +18,10 @@
 	font-size: em(42);
 	font-weight: 800; 
 	min-width: 35%;
-	@include breakpoint($sm) {
+	@include breakpoint($sm-less) {
 		order: 1;	
 		min-width: 50%;
+		border-radius: 0;
 	}
 	&, &:hover {
 		background-size: 0;
@@ -24,6 +29,9 @@
 	}
 	&__title {
 		line-height: 1.4;
+		@include breakpoint($sm-less) {
+    		margin-top: .5em;
+		}
 	}
 }
 
@@ -43,14 +51,16 @@
 
 .contacts {
 	// min-width: em(450, 21);
+	
 	min-width: 35%;
 	background-color: $purple;
 	line-height: 2.2;
 	// font-size: em(24);
-	padding: 1em 1em 1.5em 2.5em;
-	@include breakpoint($sm) {
+	padding: 1em 1em 1.5em 5%;
+	@include breakpoint($sm-less) {
 		order: 3;	
 		min-width: span(6);
+		top: -9em;
 	}
  }
 .contacts, .popupContacts {
@@ -73,10 +83,11 @@
  	}
  }
  .topNavigation {
- 	@include breakpoint($sm) {
+ 	@include breakpoint($sm-less) {
 		order: 5;	
 		min-width: span(6);
 		flex-direction: row;
+		top: -5.1em;
 	}
  }
 .topNavigationItem {
@@ -85,24 +96,55 @@
 		min-width: 100%;
 		@include flyShadow(false);
 		padding: 0 1em;
+		@include breakpoint($sm-less) {
+	    	max-width: em(122, 21);
+    		min-width: 15%;
+    		padding: 0 0 1em;
+    		align-self: flex-end;
+    		order: 2;
+			background-color: $red;
+			@include round(em(2), 'top-left');
+			@include round(em(2), 'bottom-left');
+		}
 		&:hover .imageContainer_shopping-bag {
 			transform: rotate(-10deg) translateY(25%);
 		}
 	}
-	@include breakpoint($sm) {
-		// min-width: em(85, 21);
+	&_registration {
+		@include breakpoint($sm-less) {
+			// min-width: em(85, 21);
+			min-width: 65%;
+			@include round(0, 'top-left');
+			transform: translate(0, 36%);
+		}
 	}
 }
+
+.topNavigation, .contacts {
+	@include breakpoint($sm-less) {
+	    background: 0;
+	}
+}
+.topNavigation, .contacts, .callback, .popupContacts {
+	@include breakpoint($sm-less) {
+		position: relative;
+
+	}
+}
+
  .bottomNavigation {
 	min-width: span(8);
 	justify-content: space-around;
 	padding-bottom: em(36, 21);
 	padding-top: em(72, 21); 
-	padding: 0 2em;
- 	@include breakpoint($sm) {
+	padding: 0 1em;
+ 	@include breakpoint($sm-less) {
 		order: 2;	
 		min-width: span(6);
 		flex-direction: column;
+		justify-content: flex-start;
+		height: em(321);
+		padding: 0;
 	}
 }
 
@@ -110,21 +152,34 @@
 	text-align: center;
 	align-items: flex-end;
     justify-content: center;
+    @include breakpoint($sm-less) {
+    	flex: 0 0 20%;
+    	align-items: center;
+    }
+    &_active, &:hover, &:focus, &:hover &__refer_active {
+    	@include breakpoint($sm-less) {
+			background-color: $purple;
+			color: $white;
+		}
+    }
 	&__refer {
 		padding-bottom: .8em;
-
 	    background-image: linear-gradient(to right, $purple 0%, $purple 100%) $i;
 		background-position: 0 2.2em $i;
 		background-size: 2.5em $i;
-
- 		&_active, &:hover {
+		white-space: nowrap;
+ 		&_active, &:hover, &:focus {
  			padding-bottom: 1.8em;
+ 		}
+ 		&_active, &:hover, &:focus, & {
+ 			@include breakpoint($sm-less) {
+ 				padding-bottom: 0;
+ 			}
  		}	
  		&_active {
-			@include breakpoint($sm) {
-				border-image: 0;
-				padding-bottom: 0;
-				background-color: $purple;
+			@include breakpoint($sm-less) {
+				background-image: 0;
+				color: $white $i;
 			}
  			
  		}
@@ -132,19 +187,11 @@
 }
  .callback, .brand {
  	@include round(em(2, 21), 'bottom-right');
+ 	@include breakpoint($sm-less) {
+ 		@include round(0);
+ 	}
  }
- .callback {
- 	@include flyShadow(2px 5px 15px 2px $shadow);
- 	@include breakpoint($sm) {
-		order: 6;	
-	}
- }
- .popupContacts {
- 	@include flyShadow(-2px 5px 15px 2px $shadow);
- 	@include breakpoint($sm) {
-		order: 7;	
-	}
- }
+ 
  .callback, .popupContacts {
  	z-index: 1;
  	position: relative;
@@ -153,6 +200,27 @@
  	background-color: $red;
  	cursor: pointer;
  	padding: .5em 0;
+	@include breakpoint($sm-less) {
+		top: em(-143.7, 21);
+	}
+	&:hover {
+		z-index: 2;	
+	}
+ }
+ .callback {
+ 	@include flyShadow(2px 5px 15px 2px $shadow);
+ 	@include breakpoint($sm-less) {
+		order: 6;	
+		@include round(0, 'bottom-right');
+	}
+ }
+ .popupContacts {
+ 	@include flyShadow(-2px 5px 15px 2px $shadow);
+ 	@include breakpoint($sm-less) {
+		order: 7;	
+		@include flyShadow(0 0 15px -1px $shadow);
+		@include round(em(2), 'bottom-right');
+	}
  }
 
  .contactsDescription, .callbackFormWrapper  {
@@ -167,4 +235,12 @@
 	transition: .2s ease-in-out;
 	margin-right: .5em;
 	transform: translateY(25%);
+	@include breakpoint($sm-less) {
+		margin-right: 0;
+	}
+}
+.imageContainer__image_shopping-bag {
+	@include breakpoint($sm-less) {
+		background-image: url('./../img/icons/white_bag.png') $i;
+	}
 }

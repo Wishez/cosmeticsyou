@@ -8,7 +8,7 @@ $i: !important;
   $scale: 1.02
 ){
   transition: .3s ease;
-  &:hover {
+  &:hover, &:focus, &:active {
     @if $box-shadow == false{
     
     }

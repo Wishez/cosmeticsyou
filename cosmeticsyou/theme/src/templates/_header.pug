@@ -19,8 +19,8 @@ header#header.header.parent(
 						figure.imageContainer__image.imageContainer__image_shopping-bag
 					span.visible-hidden-smLess Интернет магазин
 			li.topNavigationItem.topNavigationItem_registration.registrationButton.child(
-			  role="presentation"
-			 
+			  	role="presentation"
+		 		class="{% if active_page == 'registration' %}registrationButton_active{% endif %}"
 			)
 				a.topNavigationItem__refer.registrationButton__refer(
 					href="{% url 'registration' %}", 
@@ -62,28 +62,32 @@ header#header.header.parent(
 					| {% endfor %}
 		ul#bottomNavigation.bottomNavigation.child.parent
 			li.bottomNavigationItem.child.parent(
-			   role="presentation"
+			   role="presentation",
+					class="{% if active_page == 'home' %}bottomNavigationItem_active{% endif %}"
 			)
 				a.bottomNavigationItem__refer(
 					href="{% url 'index' %}",
 					class="{% if active_page == 'home' %}bottomNavigationItem__refer_active{% endif %}"
 				) Главная
 			li.bottomNavigationItem.child.parent(
-			   role="presentation"
+			   role="presentation",
+					class="{% if active_page == 'business' %}bottomNavigationItem_active{% endif %}"
 			)
 				a.bottomNavigationItem__refer(
 					href="{% url 'business' %}",
 					class="{% if active_page == 'business' %}bottomNavigationItem__refer_active{% endif %}"
 				) Структура бизнеса
 			li.bottomNavigationItem.child.parent(
-			   role="presentation"
+			   role="presentation",
+					class="{% if active_page == 'shares' %}bottomNavigationItem_active{% endif %}"
 			)
 				a.bottomNavigationItem__refer(
 					href="{% url 'shares' %}",
 					class="{% if active_page == 'shares' %}bottomNavigationItem__refer_active{% endif %}"
 				) Акции
 			li.bottomNavigationItem.child.parent(
-			  role="presentation"
+			  role="presentation",
+					class="{% if active_page == 'media' %}bottomNavigationItem_active{% endif %}"
 			)
 				a.bottomNavigationItem__refer(
 					href="{% url 'media' %}",

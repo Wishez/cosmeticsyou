@@ -26,6 +26,9 @@
 	font-size: em(21);
 	@include round(em(2, 21));
 	// @include flyShadow();
+	&_active {
+		background-color: $purple;
+	}
 	&__refer {
 		padding: 1em 0;
 		display: block;
