@@ -1,15 +1,69 @@
+$i: !important;
 %round {
   border-radius: 50%;
 }
 
+@mixin flyShadow(
+  $box-shadow: '', 
+  $scale: 1.02
+){
+  transition: .3s ease;
+  &:hover {
+    @if $box-shadow == false{
+    
+    }
+    @if $box-shadow == '' {
+      @extend %flyShadow;
+    } @else {
+        box-shadow: $box-shadow;
+    }
+  }
+
+  @if $scale {
+    transform: scale(1);
+    &:hover {
+      transform: scale($scale);
+    }
+  }
+
+}
 @function em($goal, $context: 18) {
   @return ($goal / $context) * 1em;
 }
-
-@mixin round() {
-  @extend %round;
+@function adaptive($width, $height) {
+  @return ($height / $width) * 100%;
 }
-   
+
+@mixin round($value, $corner: '') {
+    @if $corner != '' {
+      $corner: $corner + '-';
+    }
+
+    border-#{$corner}radius: $value;
+}
+
+
+@mixin adaptiveImage(
+  $name, 
+  $max-width, 
+  $padding-bottom, 
+  $url, 
+  $isIcon: true
+) {
+  .imageContainer_#{$name} {
+    max-width: #{$max-width};
+
+  }
+  .imageContainer__image_#{$name} {
+    @if $isIcon {
+      $url: './../img/icons/#{$url}'; 
+    }
+
+    background-image: url('#{$url}');
+    padding-bottom: #{$padding-bottom};
+  }
+}
+
 @mixin multy-background($url, $color, $padding-bottom, $max-height) {
   background-image: url("#{$url}");
   
@@ -54,8 +108,9 @@
 }
 
 
-%colorsTransitions--props_color-background-transform-shadow 
-  transition: color 0.5s, background-color 0.5s, transform 0.1s, box-shadow, 0.5s $i
+%colorsTransitions--props_color-background-transform-shadow  {
+  transition: color 0.5s, background-color 0.5s, transform 0.1s, box-shadow, 0.5s $i;
+}
 
 @mixin smooth-transition-button($font-color: false, $background-color: false) {
   @extend %colorsTransitions--props_color-background-transform-shadow;

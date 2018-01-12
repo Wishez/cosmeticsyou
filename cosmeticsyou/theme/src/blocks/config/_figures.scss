@@ -1,0 +1,13 @@
+$figures: 
+	('shopping-bag', 'shopping_bag.png', 512, 512, em(56, 21)),
+	('callback', 'callback.png', 512, 512, em(101, 21)), 
+	('contacts', 'contacts.png', 512, 512, em(87, 21));
+
+@each $name, $url, $height, $width, $max-width in $figures {
+	@include adaptiveImage(
+		$name, 
+		$max-width, 
+		adaptive($width, $height),
+		$url
+	);
+}

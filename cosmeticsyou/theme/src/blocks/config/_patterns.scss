@@ -1,0 +1,54 @@
+.visible-hidden {
+	white-space: nowrap;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	width: 1px;
+	height: 1px;
+	position: absolute;
+}
+.visible-hidden-smLess {
+	@include breakpoint($sm-less) {
+		white-space: nowrap;
+		overflow: hidden;
+		clip: rect(1px, 1px, 1px, 1px);
+		width: 1px;
+		height: 1px;
+		position: absolute;
+	}  
+}
+
+.registrationButton {
+	background: $red;
+	color: $white $i;
+	text-align: center;
+	min-width: em(235, 21);
+	max-width: em(235, 21);
+	font-size: em(21);
+	@include round(em(2, 21));
+	// @include flyShadow();
+	&__refer {
+		padding: 1em 0;
+		display: block;
+	}
+	@extend %all-transition-3;
+	&:hover {
+		@extend %flyShadow;
+	}
+}
+
+.imageContainer {
+	display: inline-block;
+	&, &__image {
+		width: span(12);
+	}
+	&__image {
+		background: center no-repeat;
+		background-size: cover;
+	}
+}
+
+
+// .centered {
+// 	margin-left: auto;
+// 	margin-right: auto;
+// }

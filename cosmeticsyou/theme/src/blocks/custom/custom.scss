@@ -3,6 +3,10 @@
 @import '../config/_colors.scss';
 @import '../config/_grid.scss';
 @import "../config/_fonts.scss";
+@import "../config/_mixins.scss";
+@import "../config/_patterns.scss";
+@import "../config/_transitions.scss";
+@import "../config/_shadows.scss";
 
 /* Mixins */
 /* Body Custom */
@@ -23,7 +27,7 @@ body {
     family: $mainFont;
     size: 18px;
   }
-  line-height: 145%;
+  line-height: 1.4;
   word-break: break-word;
   hyphens: auto;
   -webkit-hyphenate-before: 2;
@@ -40,28 +44,37 @@ h2 {
 }
 h1, h2, h3  {
   font-family: $decorativeFont;
+  line-height: 1.15
 }
 p, li {
-  margin-top: 1em;
   max-width: 60rem;
 }
 
 a {
-
-  // @include link-colors($nightBlack, $hover-link, $nightBlack, $nightBlack, $nightBlack);
+  transition: .2s ease;
+  &, &:hover {
+    text-decoration: none;
+    background-image: linear-gradient(to right, $white  0%, $white 100%);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: 0.05em 0.05em;
+  }
+  color: $white;
   &:hover {
-    text-decoration: none;  
+    // text-decoration: none;  
     color: $red;
+    background-image: linear-gradient(to right, $red 0%, $red 100%);
   }
   &:active {
     color: $red;
-    text-decoration: none;  
+    // text-decoration: none;  
   }
   &:focus {
-    text-decoration: none;  
+    // text-decoration: none;  
   }
 }
 
+@import "../config/_figures.scss";
 .placeholder {
   color: #888;
 }
