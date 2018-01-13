@@ -1,6 +1,39 @@
 | {% extends 'base.html' %}
+- 
+	var slides = [
+		{
+			'name': 'hike',
+			'description': 'Мы команда консультантов. Работаем с Oriflame, зарабатываем на продаже различных полезных предметов: разнообразная косметика, аксессуары и вкусные, но и, самое главное, полезные продукты. А самый главный доход идёт с сформированной команды! Мы никогда не скучаем и имеем кучу бонусов.'
+		},
+		{
+			'name': 'team',
+			'description': 'Мы любим своих товарищей и стараемся помогать им развиваться в сфере, где работаем. Если у вас есть желание делать дело, мы готовы приложить все усилия для достижения результата!'
+		},
+		{
+			'name': 'business',
+			'description': 'Помимо нашей поддержки, вы будете обладать разными привилегиями на разнообразные предметы в каталогах oriflame. Вы и ваши близкие будете выглядеть и пахнуть ещё лучше за дешево! Или же делать бизнес на стороне;).'
+		},
+		{
+			'name': 'quest',
+			'description': 'Мы создаём для консультантов акции, участие в которых сулит богатство тому, кто выполнит все  условия акции. Вы любите интересные задания?'
+		},
+		{
+			'name': 'registration',
+			'description': "Пройдя регистрацию, вы официально станете любимым членом нашей замечательной команды!"
+		}];
 
 | {% block content %}
-// Main Content
-include ../blocks/main/main.pug
+.mainSlider
+	h2.visible-hidden Слайдер
+	#mainSlider.owl-carousel
+		each slide, i in slides
+			.slide
+				.imageContainer(class="imageContainer_" + slide.name)
+					figure.imageContainer__image(class="imageContainer__image_" + slide.name)
+				p.slide__description.parent.centered(class="slide__description_" + slide.name)= slide.description
+					if slide.name == 'registration'
+						span.slide__button.registrationButton.registrationButton_purple
+							a.registrationButton__refer(href="{% url 'registration' %}") Зарегистрироваться
+//- include ../blocks/main/main.pug
+
 | {% endblock %}

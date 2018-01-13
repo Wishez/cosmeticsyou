@@ -1,0 +1,55 @@
+@import './lib/owl.carousel.scss';
+@import './lib/owl.theme.default.scss';
+
+.main p {
+	// font-size: em
+}
+
+$slides: 
+	('hike', auto, 0), 
+	('team', em(6, 21), 0), 
+	('business', em(6, 21), em(1350 / 2 - 222, 21)), 
+	('quest', em(6, 21), em(159, 21)), 
+	('registration', em(6, 21), 0);
+
+@each $name, $textY, $textX in $slides{
+	.slide__description_#{$name} {
+		bottom: #{$textY};
+		right: #{$textX}; 
+	}
+	.imageContainer {
+		&__image_#{$name} {
+			background-image: url('./../img/slides/#{$name}.jpg');
+		}
+	}
+} 
+
+.mainSlider {
+	max-width: em(1350);
+	margin: em(84) auto;
+}
+
+.slide {
+	@include round(em(2, 21));
+	position: relative;
+ 	&__description {
+		font-size: em(21);
+		max-width: em(444, 21);
+		position: absolute;
+		background-color: $red;
+		padding:  em(17, 21) em(29, 21) em(32, 21); 
+		color: $white;
+		&_hike {
+			top: 0;
+		}
+ 	}
+	&__button {
+		margin-top: 1em;
+	}
+ 	& .imageContainer {
+ 		min-width: span(12);
+ 		&__image {
+			padding-bottom: adaptive(1350, 720);
+ 		}
+ 	}
+}

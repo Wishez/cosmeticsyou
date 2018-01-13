@@ -54,21 +54,19 @@ head
     $L = $L
       .script('https://code.jquery.com/jquery-3.1.1.min.js')
       .script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js')
-      .script('https://code.jquery.com/ui/1.12.1/jquery-ui.min.js')
       .script("{% static '/cosmeticsyou/js/main.js' %}");
 body
   .curtains
     figure.preloader
 
-  include ../blocks/header/callback/callback.pug
-  include ../blocks/header/header.pug
+  //- include ../blocks/callback/callback.pug
+  include ../templates/_header.pug
   // Main Content
   main.main#main
-    #mainContent.mainContent.container
-      | {% block content %}
-      | {% endblock %}
+    | {% block content %}
+    | {% endblock %}
   // Footer
-  include ../blocks/footer/footer.pug
+  include ../templates/_footer.pug
 link(
   rel="stylesheet",
   href="{% static 'cosmeticsyou/css/fonts.css' %}",
@@ -86,23 +84,6 @@ noscript
     lazyload="1"
   ) 
 
-
-link(
-  rel="stylesheet",
-  href="{% static 'cosmeticsyou/css/main.css' %}",
-  media="none",
-  onload="if(media!=='all')media='all'",
-  lazyload="1"
-)
-
-noscript
-   link(
-    rel="stylesheet",
-    href="{% static 'cosmeticsyou/css/main.css' %}",
-    media="none",
-    onload="if(media!=='all')media='all'",
-    lazyload="1"
-  ) 
 
 link(
   rel="stylesheet",

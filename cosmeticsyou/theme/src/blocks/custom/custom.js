@@ -1,9 +1,55 @@
-// jshint esversion: 6
-let cmt = {};
-    // select = {
-    //   $main: $('#mainContent')
-    // };
-    // requests;
+import NormalizeWheel from './../../js/lib/normwheel.js';
+
+let cmt = (function() {
+  return {};
+}());
+
+$(function() {
+  $('.preloader, .curtains').css({
+    'opacity': 0,
+    'zIndex': -10000
+  });
+  const $mainSlider = $('#mainSlider');
+
+  $mainSlider.on('wheel', '.owl-stage', function(e) {
+    const norm = NormalizeWheel(e.originalEvent);
+
+    if (norm.spinY > 0) {
+      $mainSlider.trigger('next.owl');
+    } else {
+      $mainSlider.trigger('prev.owl');
+    }
+
+    e.preventDefault();
+  });
+
+  $mainSlider.owlCarousel({
+  	loop: true,
+    autoplay: true,
+    autoplayTimeout: 6000,
+    autoplayHoverPause: true,
+    items: 1,
+    smartSpeed: 1000,
+    autoplaySpeed: 1000
+  });
+
+  $(document).on('click', '.not-follow', function(e) {
+	  const url = $(this).attr('href');
+	  
+	  window.open(url);
+	  
+	  e.preventDefault();
+  }); // end click
+});
+
+// if (!Modernizr.placeholder) {
+//    $.html5support();
+//    $.placeholder(); 
+// }
+// select = {
+//   $main: $('#mainContent')
+// };
+// requests;
 
 // cmt.showLoading = elem => {
 //   let img = '<img src="/static/cosmeticsyou/img/loader/ajax-loader.svg" alt="" style="margin: 50px auto; display: block;" />';
