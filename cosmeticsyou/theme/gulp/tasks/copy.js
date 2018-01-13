@@ -4,7 +4,7 @@ var image  = require('gulp-image');
 
 gulp.task('copy:fonts', function() {
     return gulp
-        .src(config.src.fonts + '/*.{svg,ttf,eot,woff,woff2}')
+        .src(config.src.fonts + '/**/*.{svg,ttf,eot,woff,woff2}')
         .pipe(gulp.dest(config.dest.fonts));
 });
 
@@ -38,7 +38,7 @@ gulp.task('copy:img:min', function() {
         .pipe(image())
         .pipe(gulp.dest(config.dest.img));
 });
-const imageTask = process.env.NODE_ENV == 'build' ? 'copy:img:min' : 'copy:img';
+const imageTask = process.env.NODE_ENV == 'production' ? 'copy:img:min' : 'copy:img';
 gulp.task('copy', [
     imageTask,
     // 'copy:rootfiles',

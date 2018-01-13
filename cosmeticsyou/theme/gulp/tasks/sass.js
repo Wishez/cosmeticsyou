@@ -16,7 +16,7 @@ var processors = [
     mqpacker({
         sort: sortMediaQueries
     }),
-    csso
+    // csso
 ];
 
 var scssPathes = [
@@ -46,7 +46,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('sass:watch', function() {
-    gulp.watch(config.src.sass + '/**/*.{sass,scss}', ['sass']);
+    gulp.watch(config.src.root + '/**/*.{sass,scss}', ['sass']);
 });
 
 

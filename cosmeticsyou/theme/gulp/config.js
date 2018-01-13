@@ -1,7 +1,7 @@
 var util = require('gulp-util');
 
 var production = util.env.production || util.env.prod || false;
-var BASE_DIR = './../../';
+var BASE_DIR = '../';
 var destPath = BASE_DIR + 'static/cosmeticsyou';
 
 var config = {
@@ -13,7 +13,7 @@ var config = {
         templates    : 'src/templates',
         templatesData: 'src/templates/data',
         pagelist     : 'src/index.yaml',
-        sass         : 'src/sass',
+        sass         : 'src/scss',
         // path for sass files that will be generated automatically via some of tasks
         sassGen      : 'src/sass/generated',
         js           : 'src/js',

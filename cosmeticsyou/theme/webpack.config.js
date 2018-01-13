@@ -64,6 +64,7 @@ function createConfig(env) {
         ScrollMagic: path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/ScrollMagic.js'),
         'animation.gsap': path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js'),
         'debug.addIndicators': path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js'),
+        'owl.carousel': path.resolve('node_modules', 'owl.carousel/dist/owl.carousel.js'),
       },
     },
     module: {

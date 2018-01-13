@@ -3,11 +3,12 @@ var pug     = require('gulp-pug');
 var config  = require('../config.js');
 var plumber = require('gulp-plumber');
 
+
 function emmitTemplates(pathFrom, pathTo) {
-    return gulp.src(pathFrom)
+    return gulp.src(pathFrom + '/*.pug')
         .pipe(plumber())
         .pipe(pug({
-            pretty: false
+            pretty: process.env.NODE_ENV !== 'production'
         }))
         .pipe(gulp.dest(pathTo));
 }
@@ -24,5 +25,5 @@ gulp.task('html:shares', () => {
 gulp.task('html', ['html:pages', 'html:accounts', 'html:shares']);
 
 gulp.task('html:watch', function() {
-    gulp.watch(config.src.html + '/**/*.{html}', ['html']);
+    gulp.watch(config.src.root + '/**/*.{html,pug}', ['html']);
 });

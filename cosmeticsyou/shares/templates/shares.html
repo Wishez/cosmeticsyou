@@ -1,2 +1,0 @@
-{% extends "base.html" %}
-{% block content %}<section class="shares">{% if shares %}{% for share in shares %}<div class="share"><p class="share__date">Опубликовано: {{ share.published_date }}</p><h2 class="share__title shareTitle"><a class="shareTitle__name" href="{% url 'single_share' slug=share.slug %}">{{ share.title }}</a></h2></div>{% endfor %}{% else %}<h2 class="successText text-center text-info">Акций нет.</h2>{% endif %}</section>{% endblock %}
