@@ -16,14 +16,30 @@
 		position: absolute;
 	}  
 }
+.visible-hidden-xs {
+	@include breakpoint($xs) {
+		white-space: nowrap;
+		overflow: hidden;
+		clip: rect(1px, 1px, 1px, 1px);
+		width: 1px;
+		height: 1px;
+		position: absolute;
+	}  
+}
 
 .registrationButton {
-	background: $red;
+	&_red {
+		background-color: $red;
+	}
+	&_purple {
+		background-color: $purple;
+	}
 	color: $white $i;
 	text-align: center;
 	min-width: em(235, 21);
 	max-width: em(235, 21);
 	font-size: em(21);
+	display: inline-block;
 	@include round(em(2, 21));
 	// @include flyShadow();
 	&_active {
@@ -32,6 +48,11 @@
 	&__refer {
 		padding: 1em 0;
 		display: block;
+		background-image: none $i;
+		&:hover {
+			color: $white $i;
+			background-image: none $i; 
+		}
 	}
 	@extend %all-transition-3;
 	&:hover {
@@ -42,6 +63,7 @@
 .imageContainer {
 	display: inline-block;
 	&, &__image {
+		transition: .3s ease-in-out;
 		width: span(12);
 	}
 	&__image {

@@ -40,7 +40,7 @@ h1 {
   font-size: em(28);
 }
 h2 {
-  font-size: em(21); 
+  font-size: em(24); 
 }
 h1, h2, h3  {
   font-family: $decorativeFont;
@@ -49,7 +49,9 @@ h1, h2, h3  {
 p, li {
   max-width: 60rem;
 }
-
+p:not(:first-child) {
+  margin-top: 1em;
+}
 a {
   transition: .2s ease;
   &, &:hover {
@@ -60,7 +62,7 @@ a {
     background-size: 0.05em 0.05em;
   }
   color: $white;
-  &:hover {
+  &:hover, &:focus {
     // text-decoration: none;  
     color: $red;
     background-image: linear-gradient(to right, $red 0%, $red 100%);
