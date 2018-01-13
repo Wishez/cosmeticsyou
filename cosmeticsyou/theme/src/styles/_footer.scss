@@ -1,0 +1,86 @@
+.footer {
+	font-size: em(21);
+}
+.brand_footer {
+	@include round(em(2), 'top-right');
+	@include round(0, 'bottom-right');
+}
+.navigation_footer {
+	min-width: 25%;
+	max-height:  em(300, 21);
+	@include round(em(2), 'top-left');
+	@include round(0, 'bottom-left');
+}
+.contacts_footer {
+	padding-left: 3em;
+	// @include round(em(2), 'bottom-right');
+}
+	// background-color: $gray;
+.footerInfo, .credo {
+	min-width: 37.5%;
+}
+.credo {
+	// min-width: span(5);
+}
+.credo {
+	padding: 0 2em;
+}
+.footerNavigation {
+	flex-direction: column;
+	justify-content: flex-start;
+	
+	padding: 0;
+}
+.footerNavigationItem {
+	@include round(em(2), 'bottom-left');
+	@include round(em(2), 'top-left');
+	&:not(.footerNavigationItem_registration) {
+		&, & .footerNavigationItem__refer {
+			height: em(63, 21);
+			min-width: 100%;
+			text-align: center;
+			align-items: center;
+		}
+		& .footerNavigationItem__refer {
+			line-height: 2.75;
+		}
+	}
+	&_active, &:hover {
+		background-color: $purple;
+		color: $white $i;
+	}
+	&:hover .footerNavigationItem__refer , &__refer_active {
+		color: $white $i;
+		background-image: none $i;
+		
+	 }
+	&_registration {
+		margin: auto;
+		transform: translateY(9%);
+	}
+	&__refer:not(&__refer_registration) {
+		color: $darkGray;
+	}
+	&__refer {
+		background-image: none;
+		&:hover {
+			background: 0;
+		}
+		&_active {
+		}
+	}
+
+}
+
+.copyright {
+	min-width: span(12);
+	text-align: center;
+	background-color: $darkGray;
+	font-size: em(16, 21);
+	color: $white;
+	min-height: em(134, 16);
+	flex-direction: column;
+	&__parahraph {
+
+	}
+}
