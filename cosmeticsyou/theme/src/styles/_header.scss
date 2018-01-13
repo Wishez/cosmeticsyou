@@ -262,10 +262,11 @@
  	}
  	@include breakpoint($sm-less) {
 		order: 6;	
-		@include round(0, 'bottom-right');
+		@include round(em(2), 'bottom-right');
 	}
 	@include breakpoint($xxs) {
 		margin-left: span(4);
+
 	}
 	
 	

@@ -1,19 +1,10 @@
 footer.footer.parent
 	section.footerInfo.child
 		a#brand.brand.brand_footer(href="{% url 'index' %}")
-			h1.brand__title(
+			h1.brand__title.brand__title_footer(
 				itemprop="name"
 			) Oriflame
 		ul.contacts.contacts_footer.child
-			li.contactsItem(
-				itemscope,
-		    	itemtype="https://schema.org/ContactPoint"
-			)
-				span.contactsItem__label.visible-hidden-xs Адрес:&thinsp;
-				a.contactsItem__refer(
-			        href="{{ settings.addressHref }}", 
-	    			itemprop="streetAddress"
-			    ) {{ settings.address }}
 			li.contactsItem(
 				itemscope,
 	      		itemtype="https://schema.org/ContactPoint"
@@ -32,6 +23,15 @@ footer.footer.parent
 			        href="mailto:{{ settings.email }}",
 			        itemprop="email"
 			    ) {{ settings.email }}
+			li.contactsItem(
+				itemscope,
+		    	itemtype="https://schema.org/ContactPoint"
+			)
+				span.contactsItem__label.visible-hidden-xs Адрес:&thinsp;
+				a.contactsItem__refer(
+			        href="{{ settings.addressHref }}", 
+	    			itemprop="streetAddress"
+			    ) {{ settings.address }}
 	section.credo.child.parent.centered
 		h2.visible-hidden Кредо
 		p.credo__paragraph Будем физически и духовно здоровы, используя качественную продукцию, распространяя её среди жильцов вашего жэка.
@@ -79,14 +79,14 @@ footer.footer.parent
 					class="{% if active_page == 'registration' %}topNavigationItem__refer_active{% endif %}"
 				) Регистрация
 	.copyright.child.parent.centered
-		p.copyright__paragraph &copy;2016&ndash;2018&nbsp;Сайт независимого консультанта&thinsp;
+		p.copyright__paragraph &copy;2016&nbsp;&ndash;&nbsp;2018&nbsp;Сайт&nbsp;независимого&nbsp;консультанта&thinsp;
 			br
-			| Сделанно при поддержки здоровой пищи от&nbsp;
-			a(href='https://oriflame.ru') Oriflame
+			| Сделанно при поддержке здоровой пищи от&nbsp;
+			a.copyright__refer.not-follow(href='https://oriflame.ru') Oriflame
 		p.copyright__paragraph(
 			itemscope, itemtype="https://schema.org/Person"
 		) Дизайн и разработка:&nbsp;
-			a.copyright__title_refer.not-follow(
+			a.copyright__refer.not-follow(
 				href="https://shining-present.ru/", 
 				itemprop="author"
 			) Филипп Журавлёв
