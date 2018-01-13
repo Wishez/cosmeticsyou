@@ -31,7 +31,7 @@ header#header.header.parent(
 				itemscope,
 		    	itemtype="https://schema.org/ContactPoint"
 			)
-				span.contactsItem__label Email:&thinsp;
+				span.contactsItem__label.visible-hidden-xs Email:&thinsp;
 				a.contactsItem__refer(
 			        href="mailto:{{ settings.email }}",
 			        itemprop="email"
@@ -40,7 +40,7 @@ header#header.header.parent(
 				itemscope,
 	      		itemtype="https://schema.org/ContactPoint"
 			)
-				span.contactsItem__label Телефон:&thinsp;
+				span.contactsItem__label.visible-hidden-xs Телефон:&thinsp;
 				a.contactsItem__refer(
 			        href="tel:{{ settings.email }}",
 			        itemprop="telephone"

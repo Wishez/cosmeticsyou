@@ -5,9 +5,15 @@
 	}
 }
 .navigation {
+	background-color: $gray;
 	@include breakpoint($sm-less) {
 		height: em(540, 21);
+		background-color: transparent;
 	}
+	@include breakpoint($xxs) {
+		height: auto;
+	}
+
 }
 
 .brand {
@@ -20,8 +26,11 @@
 	min-width: 35%;
 	@include breakpoint($sm-less) {
 		order: 1;	
-		min-width: 50%;
+		min-width: span(6);
 		border-radius: 0;
+	}
+	@include breakpoint($xxs) {
+		min-width: span(12);
 	}
 	&, &:hover {
 		background-size: 0;
@@ -32,35 +41,33 @@
 		@include breakpoint($sm-less) {
     		margin-top: .5em;
 		}
+		@include breakpoint($xxs) {
+			margin-top: 0;
+		}
 	}
 }
-
-.topNavigation {
-	// min-width: em(450, 21);
-	min-width: 30%;
-	justify-content: space-between;
-	flex-direction: column;
-	align-items: center;
-}
-.topNavigationItem {
-	&_registration {
-		transform: translate(0, 40%);
+.topNavigation, .contacts {
+	@include breakpoint($sm-less) {
+	    background: 0;
 	}
-
 }
-
 .contacts {
-	// min-width: em(450, 21);
-	
 	min-width: 35%;
 	background-color: $purple;
 	line-height: 2.2;
-	// font-size: em(24);
 	padding: 1em 1em 1.5em 5%;
 	@include breakpoint($sm-less) {
 		order: 3;	
 		min-width: span(6);
 		top: -9em;
+	}
+	@include breakpoint($xxs) {
+		order: 2;
+		min-width: span(12);	
+		top: 0;
+		background-color: $purple;
+		padding: 1em 0 1.5em;
+		text-align: center;
 	}
  }
 .contacts, .popupContacts {
@@ -70,24 +77,39 @@
  	&__label {
  		color: $gray;
  	}
+ 	&__refer {
+ 		&:hover {
+			$darkenWhite: darken($white, 25%);
+			color: $darkenWhite;
+			background-image: linear-gradient(to right, $darkenWhite 0%, $darkenWhite 100%);
+		}
+ 	}
  }
  .topNavigation, .bottomNavigation {
- 	background-color: $gray;
  	&Item {
 		color: $darkGray;
 	 	&__refer {
-	 		background-image: transparent $i;
+	 		background-image: none $i;
 	 		background-size: 0 $i;
 	 		color: inherit $i;
 	 	}
  	}
  }
+
  .topNavigation {
+ 	min-width: 30%;
+	justify-content: space-between;
+	flex-direction: column;
+	align-items: center;
  	@include breakpoint($sm-less) {
 		order: 5;	
 		min-width: span(6);
 		flex-direction: row;
 		top: -5.1em;
+	}
+	@include breakpoint($xxs) {
+		order: 4;	
+		min-width: span(12);
 	}
  }
 .topNavigationItem {
@@ -106,25 +128,36 @@
 			@include round(em(2), 'top-left');
 			@include round(em(2), 'bottom-left');
 		}
+		@include breakpoint($sm-less) {
+			margin-top: 1.4em;
+		}
+		@include breakpoint($xxs) {
+			padding-bottom: .6em;
+			@include round(em(2) $i, 'bottom-left');
+		}
 		&:hover .imageContainer_shopping-bag {
 			transform: rotate(-10deg) translateY(25%);
 		}
 	}
 	&_registration {
+		transform: translate(0, 40%);
 		@include breakpoint($sm-less) {
 			// min-width: em(85, 21);
-			min-width: 65%;
+			min-width: 50%;
+			max-width: 65%;
 			@include round(0, 'top-left');
 			transform: translate(0, 36%);
+		}
+		@include breakpoint($xxs) {
+			min-width: span(12);
+			@include round(em(2), 'top-left');
+			@include round(0, 'bottom-left');
+			@include round(0, 'bottom-right');
 		}
 	}
 }
 
-.topNavigation, .contacts {
-	@include breakpoint($sm-less) {
-	    background: 0;
-	}
-}
+
 .topNavigation, .contacts, .callback, .popupContacts {
 	@include breakpoint($sm-less) {
 		position: relative;
@@ -139,6 +172,7 @@
 	padding-top: em(72, 21); 
 	padding: 0 1em;
  	@include breakpoint($sm-less) {
+ 		background-color: $gray;
 		order: 2;	
 		min-width: span(6);
 		flex-direction: column;
@@ -146,6 +180,11 @@
 		height: em(321);
 		padding: 0;
 	}
+	@include breakpoint($xxs) {
+		order: 3;	
+		min-width: span(12);
+	}
+
 }
 
 .bottomNavigationItem {
@@ -202,41 +241,86 @@
  	padding: .5em 0;
 	@include breakpoint($sm-less) {
 		top: em(-143.7, 21);
+		min-width: 24%;
+	}
+	@include breakpoint($xxs) {
+		top: em(-183, 21);
 	}
 	&:hover {
 		z-index: 2;	
 	}
  }
+
  .callback {
  	@include flyShadow(2px 5px 15px 2px $shadow);
+ 	&:hover, &:focus {
+ 		.imageContainer__image {
+ 			transition: .8s ease-in-out;
+			transform: rotate(-360deg);
+		}
+ 	}
  	@include breakpoint($sm-less) {
 		order: 6;	
 		@include round(0, 'bottom-right');
 	}
+	@include breakpoint($xxs) {
+		margin-left: span(4);
+	}
+	
+	
  }
  .popupContacts {
  	@include flyShadow(-2px 5px 15px 2px $shadow);
+ 	&:hover, &:focus {
+	 	& .imageContainer__image {
+			transform: rotate(20deg);
+	 	}
+ 	}
  	@include breakpoint($sm-less) {
 		order: 7;	
 		@include flyShadow(0 0 15px -1px $shadow);
 		@include round(em(2), 'bottom-right');
+		margin-left: 2.2%;
+	}
+	@include breakpoint($xxs) { 
+		margin-left: 0;
+		@include round(em(2) $i, 'bottom-right');
 	}
  }
 
  .contactsDescription, .callbackFormWrapper  {
 	position: absolute;
 	display: none;
-	
  }
 
+ .callback, .popupContacts, .topNavigationItem_shop {
+	@include breakpoint($xxs) {
+		@include round(0);
+		min-width: span(4);
+	}
+}
 
-
-.imageContainer_shopping-bag {
-	transition: .2s ease-in-out;
-	margin-right: .5em;
-	transform: translateY(25%);
-	@include breakpoint($sm-less) {
-		margin-right: 0;
+.imageContainer {
+	&_callback {
+		@include breakpoint($xxs) {
+			max-width: em(55, 21);
+		}
+	}
+	&_contacts {
+		@include breakpoint($xxs) {
+			max-width: em(50, 21);
+		}
+	}
+	&_shopping-bag {
+		transition: .2s ease-in-out;
+		margin-right: .5em;
+		transform: translateY(25%);
+		@include breakpoint($sm-less) {
+			margin-right: 0;
+		}
+		@include breakpoint($xxs) {
+			transform: translateY(15%);
+		}
 	}
 }
 .imageContainer__image_shopping-bag {
