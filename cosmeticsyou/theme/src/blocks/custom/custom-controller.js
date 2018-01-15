@@ -5,7 +5,7 @@ $('.preloader, .curtains').css({
 	'zIndex': -10000
 });
 
-$(document).on('click', '.anchor, .address__item, .submitForm__agreement, .submitForm__conditions, #navStore .navItem__refer', function(e) {
+$(document).on('click', '.not-follow', function(e) {
   const url = $(this).attr('href');
   
   window.open(url);
@@ -14,9 +14,9 @@ $(document).on('click', '.anchor, .address__item, .submitForm__agreement, .submi
 }); // end click
 
 // Тесты
-if (!Modernizr.placeholder) {
-   $.html5support();
-   $.placeholder(); 
-}
+// if (!Modernizr.placeholder) {
+//    $.html5support();
+//    $.placeholder(); 
+// }
 
 //= ../header/callback/callback.js

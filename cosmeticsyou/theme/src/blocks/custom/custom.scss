@@ -42,9 +42,12 @@ h1 {
 h2 {
   font-size: em(24); 
 }
-h1, h2, h3  {
+h1, h2, h3, h4, h5, h6  {
   font-family: $decorativeFont;
   line-height: 1.15
+}
+button {
+  cursor: pointer;
 }
 p, li {
   max-width: 60rem;

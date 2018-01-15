@@ -9,9 +9,7 @@ $i: !important;
 ){
   transition: .3s ease;
   &:hover, &:focus, &:active {
-    @if $box-shadow == false{
     
-    }
     @if $box-shadow == '' {
       @extend %flyShadow;
     } @else {
@@ -56,10 +54,10 @@ $i: !important;
   }
   .imageContainer__image_#{$name} {
     @if $isIcon {
-      $url: './../img/icons/#{$url}'; 
+      $url: 'icons/#{$url}'; 
     }
 
-    background-image: url('#{$url}');
+    background-image: url('./../img/#{$url}');
     padding-bottom: #{$padding-bottom};
   }
 }

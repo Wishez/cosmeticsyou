@@ -1,15 +1,18 @@
 @import './lib/owl.carousel.scss';
 @import './lib/owl.theme.default.scss';
 
+.main {
+	// flex-direction: column;
+}
 .main p {
-	// font-size: em
+	// font-size: font-emphasize: 
 }
 
 $slides: 
 	('hike', auto, 0), 
 	('team', em(6, 21), 0), 
-	('business', em(6, 21), em(1350 / 2 - 222, 21)), 
-	('quest', em(6, 21), em(159, 21)), 
+	('business', em(6, 21), calc(50% - 222)), 
+	('quest', em(6, 21), span(2)), 
 	('registration', em(6, 21), 0);
 
 @each $name, $textY, $textX in $slides{
@@ -27,8 +30,26 @@ $slides:
 .mainSlider {
 	max-width: em(1350);
 	margin: em(84) auto;
+	@include breakpoint($xxs) {
+		margin-bottom: em(400);
+	}
 }
-
+#mainSlider {
+	display: flex;
+	flex-flow: column nowrap;
+	& .owl {
+		&-dots {
+			@include breakpoint($xxs) {
+				order: -1;
+			}
+		}
+	}	
+}
+.owl-stage-outer {
+	@include breakpoint($xxs) { 
+		overflow: visible $i;
+	}
+}
 .slide {
 	@include round(em(2, 21));
 	position: relative;
@@ -39,17 +60,232 @@ $slides:
 		background-color: $red;
 		padding:  em(17, 21) em(29, 21) em(32, 21); 
 		color: $white;
+		@include breakpoint($sm-less) {
+			font-size: em(18, 21);
+
+		}
+		@include breakpoint($xs) {
+			font-size: em(15);
+		}
+		@include breakpoint($xxs) {
+			bottom: auto;
+			top: 98%;
+			min-width: span(12);
+			left: 0;
+			margin-top: 0 $i;
+		}
 		&_hike {
 			top: 0;
 		}
  	}
+
 	&__button {
 		margin-top: 1em;
 	}
+
  	& .imageContainer {
  		min-width: span(12);
  		&__image {
 			padding-bottom: adaptive(1350, 720);
  		}
  	}
+}
+
+.programm {
+	flex-direction: column;
+	max-width: em(208);
+	margin: auto;
+	@include breakpoint($sm-less) {
+		max-width: 100%;
+	}
+	&__title {
+		white-space: nowrap;
+	}
+}
+.chain {
+	flex-wrap: nowrap;
+	
+	&:not(:first-child) {
+		margin-top: em(75);
+	}
+	&:nth-child(2n+0) {
+		align-self: flex-start;
+		& .chain__image {
+			order: 1;
+		}
+		& .chain__paragraph {
+			order: 2;
+			margin-left: em(75);
+			@include breakpoint($sm-less) {
+				margin-left: 0;
+			}
+		}
+	}
+	&:nth-child(2n+1)  {
+		align-self: flex-end;
+		& .chain__image {
+
+			order: 2;
+			@include breakpoint($sm-less) {
+				order: 1;
+			}
+		}
+		& .chain__paragraph {
+			order: 1;
+			margin-right: em(75);
+			@include breakpoint($sm-less) {
+				order: 2;
+				margin-right: 0;
+			}
+		}
+	}
+	&:not(:last-of-type) {
+		& .chain__image {	
+			&::after {
+				content: "";
+				position: absolute;
+				top: 100%;
+				width: em(13);
+				background-color: $gray;
+				height: em(75);
+				left: em(98.5);
+				left: calc(50% - 6.5px);
+				@include breakpoint($sm-less) {
+					content: none;
+				}
+			}
+		}
+	}
+
+	@include breakpoint($sm-less) {
+		align-self: auto $i;
+		flex-direction: column;
+		max-width: 100%;
+		padding: 0 1em;
+		align-items: center;
+		margin-top: em(65);
+	}
+	&__image {
+		background-color: $red;
+		max-width: em(210);
+		min-width: em(210);
+		position: relative;
+		&, & .imageContainer__image {
+			@include round(50%);
+		}
+	}
+	&__paragraph {
+		min-width: em(420);
+		max-width: em(420);
+		@include breakpoint($sm-less) {
+			min-width: span(12);
+			margin-top: em(35);
+		}
+	}
+}
+
+.items {
+	margin-top: em(70);
+	max-width: em(1350);
+	@include breakpoint($xxs) {
+		justify-content: center;
+	}
+	
+}
+.item:nth-last-child(2):nth-child(4n) {
+	@include breakpoint($sm-less) {
+		min-width: span(6);
+	}
+}
+
+.item {
+	cursor: pointer;
+	min-width: em(250);
+	max-width: 50%;
+	flex-flow: column nowrap;
+	display: flex;
+	margin-top: 1em;
+	@include breakpoint($sm-less) {
+		min-width: 50%;
+	}
+	@include breakpoint($xxs) {
+		min-width: span(11);
+	}
+	&:last-child {
+		// @include breakpoint($xs) {
+		// 	margin-top: 5em;
+		// }
+		
+	}
+	position: relative;
+	transition: .3s ease; 
+	padding: 1em 0 1.5em;
+    // transform: scale(1);
+    &_upper {
+    	top: -2em;
+    }
+    &:hover {
+        box-shadow: 0 5px 15px -1px $shadow;
+      	// transform: scale(1.02);
+    }
+ 
+	
+	&__title {
+		text-align: center;
+	}
+	&__image {
+		margin-top: 1em;
+		// padding: 0 .5em;
+	}
+	&Description {
+		max-width: em(370, 21);
+		&__description {
+			&:first-child { 
+				margin-top: 1em;
+			}
+		}
+	}
+}
+
+.choices {
+	min-width: em(265);
+    text-align: center;
+    justify-content: space-between;
+    position: absolute;
+    margin-bottom: 1em;
+    bottom: 95%;
+    @include breakpoint($sm-less) {
+    	top: 100%;
+    	bottom: auto;
+    }
+
+}
+.button {
+	padding: 1em 0;
+	color: $white;
+	@include round(em(2));
+	&_purple {
+		background-color: $purple;
+	}
+	&_red {
+		background-color: $red;
+	}
+}
+.choice {
+	max-width: em(125);
+	&__button {
+		
+	}
+}
+
+.main__registrationButton {
+	@include breakpoint($sm-less) {
+		margin-left: 10%;
+		margin-top: -1.5em;
+	}
+	@include breakpoint($xxs) {
+		margin-top: 2.5em;
+		margin-left: auto;
+	}
+
 }

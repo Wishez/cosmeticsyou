@@ -19,8 +19,9 @@
     )
       span.tel__label Телефон: 
       a.tel__item(
-        href="tel:{{ settings.email }}",
-        itemprop="telephone") {{ settings.phone }}
+          href="tel:{{ settings.phone }}",
+        itemprop="telephone"
+      ) {{ settings.phone }}
     .contacts__item.email(
       itemscope,
       itemtype="https://schema.org/ContactPoint"

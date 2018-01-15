@@ -1,13 +1,28 @@
 $figures: 
-	('shopping-bag', 'shopping_bag.png', 512, 512, em(56, 21)),
-	('callback', 'callback.png', 512, 512, em(101, 21)), 
-	('contacts', 'contacts.png', 512, 512, em(87, 21));
+	('shopping-bag', 'shopping_bag.png', 512, 512, em(56, 21), true),
+	('callback', 'callback.png', 512, 512, em(101, 21), true), 
+	('contacts', 'contacts.png', 512, 512, em(87, 21), true),
+	('callback_name', 'white_user.png', 512, 512, em(33, 21), true),
+	('callback_phone', 'white-phone.png', 512, 512, em(35, 21), true),
+	('programm', 'chains/programm.jpg', 512, 512, em(210), false),
+	('group', 'chains/group.jpg', 512, 512, em(210), false),
+	('stage', 'chains/stage.jpg', 512, 512, em(210), false),
+	('gifts', 'chains/gifts.jpg', 512, 512, em(210), false),
+	('step_1', 'steps/w_step_1.jpg', 512, 512, em(250), false),
+	('step_2', 'steps/w_step_2.jpg', 512, 512, em(250), false),
+	('step_3', 'steps/w_step_3.png', 512, 512, em(250), false),
+	('w_step_4', 'steps/w_step_4.jpg', 512, 512, em(250), false),
+	('m_step_4', 'steps/m_step_4.jpg', 512, 512, em(250), false);
 
-@each $name, $url, $height, $width, $max-width in $figures {
+@each $name, $url, $height, $width, $max-width, $isIcon in $figures {
+	
 	@include adaptiveImage(
 		$name, 
 		$max-width, 
 		adaptive($width, $height),
-		$url
+		$url,
+		$isIcon
 	);
 }
+
+

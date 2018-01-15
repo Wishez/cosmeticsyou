@@ -1,7 +1,11 @@
 .header {
 	font-size: em(21);
+	position: relative;
+	@include breakpoint($xxs) {
+		max-height: em(685, 21);
+	}
 }
-.footerNavigation, .contacts, .topNavigation, .bottomNavigation {
+ul {
 	list-style: none;
 }
 .navigation {
@@ -237,8 +241,8 @@
  	max-width: span(2);
  	min-width: span(2);
  	background-color: $red;
- 	cursor: pointer;
  	padding: .5em 0;
+ 	z-index: 2;
 	@include breakpoint($sm-less) {
 		top: em(-143.7, 21);
 		min-width: 24%;
@@ -247,14 +251,23 @@
 		top: em(-183, 21);
 	}
 	&:hover {
-		z-index: 2;	
+		z-index: 3;	
+	}
+	&__button {
+		background-color: transparent;
+		border: 0;
+		width: span(12);
+		height: span(12);
+		position: relative;
+		z-index: 4;
+ 		cursor: pointer;
 	}
  }
 
  .callback {
  	@include flyShadow(2px 5px 15px 2px $shadow);
  	&:hover, &:focus {
- 		.imageContainer__image {
+ 		.imageContainer__image_callback {
  			transition: .8s ease-in-out;
 			transform: rotate(-360deg);
 		}
@@ -272,6 +285,8 @@
  }
  .popupContacts {
  	@include flyShadow(-2px 5px 15px 2px $shadow);
+ 	position: relative;
+ 
  	&:hover, &:focus {
 	 	& .imageContainer__image {
 			transform: rotate(20deg);
@@ -287,12 +302,12 @@
 		margin-left: 0;
 		@include round(em(2) $i, 'bottom-right');
 	}
+	&__description {
+		max-width: em(470, 21);
+	}
  }
 
- .contactsDescription, .callbackFormWrapper  {
-	position: absolute;
-	display: none;
- }
+ 
 
  .callback, .popupContacts, .topNavigationItem_shop {
 	@include breakpoint($xxs) {
@@ -324,8 +339,42 @@
 		}
 	}
 }
-.imageContainer__image_shopping-bag {
-	@include breakpoint($sm-less) {
-		background-image: url('./../img/icons/white_bag.png') $i;
+.imageContainer__image {
+	&_shopping-bag {
+		@include breakpoint($sm-less) {
+			background-image: url('./../img/icons/white_bag.png') $i;
+		}
+	}
+	&_callback_phone {
+		fill: $white;
+	}
+}
+
+.callbackFormWrapper {
+	@include round(0, 'top-left');
+	@include round(0, 'bottom-left');
+}
+.popupContactsList {
+	@include round(0, 'top-right');
+	@include round(0, 'bottom-right');
+	// margin-top: 1em;
+	& .contactsItem {
+		&:not(:first-child) {
+			margin-top: 1em;
+		}
+			
+		&__label {
+			display: block;
+		}
+	}
+}
+
+.callbackForm {
+	margin-top: .5em;
+	&__button {
+		// max-width: em(175, 21);
+		cursor: pointer;
+		margin: 1em auto 0;
+		font-size: em(18, 18);
 	}
 }
