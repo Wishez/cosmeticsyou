@@ -1,6 +1,9 @@
 .header {
 	font-size: em(21);
 	position: relative;
+	@include breakpoint($sm-less) {
+		max-height: em(501, 21);
+	}
 	@include breakpoint($xxs) {
 		max-height: em(685, 21);
 	}
@@ -82,11 +85,7 @@ ul {
  		color: $gray;
  	}
  	&__refer {
- 		&:hover {
-			$darkenWhite: darken($white, 25%);
-			color: $darkenWhite;
-			background-image: linear-gradient(to right, $darkenWhite 0%, $darkenWhite 100%);
-		}
+ 		
  	}
  }
  .topNavigation, .bottomNavigation {
@@ -278,6 +277,8 @@ ul {
 	}
 	@include breakpoint($xxs) {
 		margin-left: span(4);
+		padding-bottom: 0;
+		// left: 	
 
 	}
 	
@@ -301,9 +302,16 @@ ul {
 	@include breakpoint($xxs) { 
 		margin-left: 0;
 		@include round(em(2) $i, 'bottom-right');
+
+	}
+	&__title {
+		
 	}
 	&__description {
 		max-width: em(470, 21);
+		@include breakpoint($xxs) { 
+			margin-left: -200%;
+		}
 	}
  }
 
@@ -353,6 +361,9 @@ ul {
 .callbackFormWrapper {
 	@include round(0, 'top-left');
 	@include round(0, 'bottom-left');
+	@include breakpoint($xxs) {
+		margin-left: -100%;
+	}
 }
 .popupContactsList {
 	@include round(0, 'top-right');

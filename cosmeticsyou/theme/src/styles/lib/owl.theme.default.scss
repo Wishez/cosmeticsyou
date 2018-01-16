@@ -19,10 +19,14 @@
   display: inline-block;
   cursor: pointer;
   border-radius: 3px; }
-.owl-nav [class*='owl-']:hover {
-   background: $purple;
-    color: #FFF;
-    text-decoration: none; }
+.owl-nav [class*='owl-'] {
+
+  &:hover, &:active, &:focus {
+      background: $purple;
+      color: #FFF;
+      text-decoration: none; 
+  }
+}
 .owl-nav .disabled {
   opacity: 0.5;
   cursor: default; }

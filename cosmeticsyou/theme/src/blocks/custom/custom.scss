@@ -65,10 +65,14 @@ a {
     background-size: 0.05em 0.05em;
   }
   color: $white;
+
   &:hover, &:focus {
     // text-decoration: none;  
-    color: $red;
-    background-image: linear-gradient(to right, $red 0%, $red 100%);
+    $darkenWhite: darken($white, 25%);
+    color: $darkenWhite;
+    background-image: linear-gradient(to right, $darkenWhite 0%, $darkenWhite 100%);
+    // color: $red;
+    // background-image: linear-gradient(to right, $red 0%, $red 100%);
   }
   &:active {
     color: $red;

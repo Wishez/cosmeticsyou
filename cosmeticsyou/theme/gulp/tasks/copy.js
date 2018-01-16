@@ -38,9 +38,10 @@ gulp.task('copy:img:min', function() {
         .pipe(image())
         .pipe(gulp.dest(config.dest.img));
 });
-const imageTask = process.env.NODE_ENV == 'production' ? 'copy:img:min' : 'copy:img';
+
+
 gulp.task('copy', [
-    imageTask,
+    config.env === 'production' ? 'copy:img:min' : 'copy:img',
     // 'copy:rootfiles',
     'copy:lib',
     'copy:fonts'

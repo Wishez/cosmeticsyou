@@ -34,15 +34,29 @@
 	&_purple {
 		background-color: $purple;
 	}
+	&:disabled {
+		background-color: $gray;
+		&__refer {
+			&:hover {
+				color: $darkGray $i;
+			}
+		}
+		&:hover {
+			color: $darkGray $i;
+			box-shadow: none;
+		}
+	}
+
 	color: $white $i;
 	text-align: center;
 	min-width: em(235, 21);
 	max-width: em(235, 21);
 	font-size: em(21);
 	display: inline-block;
+	position: relative;
 	@include round(em(2, 21));
 	&_centered {
-		margin: 1.5em auto;
+		margin: auto;
 		display: block;
 	}
 	// @include flyShadow();
@@ -59,8 +73,9 @@
 		}
 	}
 	@extend %all-transition-3;
-	&:hover {
+	&:hover, &:focus, &:active {
 		@extend %flyShadow;
+		z-index: 3;
 	}
 }
 
@@ -107,6 +122,9 @@
 		font-size: em(24);
 		padding-bottom: .3em;
 		justify-content: space-between;
+		@include breakpoint($xxs) { 
+			font-size: em(21);
+		}
 		& .closeButton {
 			text-align: right;
 			
@@ -139,7 +157,7 @@
 	}
 	@include breakpoint($xxs) {
 		min-width: 100vw$i;
-		// left: 0 $i;
+		left: 0 $i;
 		position: fixed;
 	}
 }
@@ -152,12 +170,18 @@
 }
 .controller {
 	&:not(:first-child) {
-		margin-top: .5em;
+		margin-top: 1em;
+	}
+
+	&_required {
+		color: $red;
 	}
 	&__icon {
 		margin-bottom: .15em;
 	}
 	&__input {
+		min-width: span(12);
+		max-width: span(12);
 		font-size: em(18, 21);
 		padding: em(16) em(12.5);
 		@include round(em(2, 21));
@@ -170,16 +194,54 @@
 		&_red {
 			border-color:  $red;
 		}
+		&_select {
+			padding: .5em;
+			margin-top: .5em;
+			max-height: em(200);
+		}
 
 	}
 	&__label {
 		align-self: flex-end;
 	}
+	&__checkbox {
+		-webkit-appearance: none;
+		align-self: center;
+		cursor: pointer;
+		// padding: em(9);
+		height: em(26);
+		width: em(26);
+		border: 2px solid $purple;
+		background-color: $gray;
+		max-width: span(1);
+		margin-right: span(1) / 2;
+		display: inline-block;
+		position: relative;
+		@include round(em(2));
+		&:checked:active {
+
+		}
+		&:checked:after {
+			content: '\2714';
+			// font-size: em(15);
+			position: absolute;
+			top: em(1);
+			left: em(3);
+			color: $darkGray;
+		}
+	}
+	&__checkboxLabel {
+		color: $white;
+		padding: .5em 0 .8em 1em ;
+		max-width: span(10);
+		background-color: $red;
+		@include round(em(2));
+	}
 }
 
 .restrictBlock {
 	margin: auto;
-	max-width: em(1000);
+	max-width: em(1350);
 }
 
 .button {
@@ -194,6 +256,10 @@
 	&_red {
 		background-color: $red;
 	}
+}
+
+.image {
+	width: 100%;
 }
 // .centered {
 // 	margin-left: auto;

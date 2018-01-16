@@ -46,17 +46,17 @@ header#header.header.parent(
 			        itemprop="telephone"
 			    ) {{ settings.phone }}
 		.callback.child.parent.centered
-			button.callback__button.showPopup(data-popup-id='#popupCallback')
+			button.callback__button.showPopup(data-popup-id='#popupCallback', aria-pressed="false")
 				.imageContainer.imageContainer_callback
 					figure.imageContainer__image.imageContainer__image_callback
 			#popupCallback.callbackFormWrapper.description.description_purple.description_left.description_beneath.visible-hidden
 				h2.description__title.parent Обратный вызов
-					button.closeButton.child(data-popup-id='#popupCallback')
+					button.closeButton.child(data-popup-id='#popupCallback', aria-pressed="false")
 						i.fa.fa-close.fa-1x
 				form#callbackForm.descriptionContent.callbackForm.parent(method="post")
 					| {% csrf_token %}
 					| {% for field in callback %}
-					.controller.parent.child.parent
+					.controller.parent.child
 						label.controller__label.child {{ field.label }}
 						.controller__icon.imageContainer.child(
 							class="imageContainer_{{ field.name }}"
@@ -67,7 +67,7 @@ header#header.header.parent(
 						| {{ field }}
 						| {{ field.errors }}
 					| {% endfor %}
-					button.registrationButton.callbackForm__button.registrationButton_red(type='submit')
+					button.registrationButton.callbackForm__button.registrationButton_red(type='submit', aria-pressed="false")
 						span.registrationButton__refer Заказать
 		ul#bottomNavigation.bottomNavigation.child.parent
 			li.bottomNavigationItem.child.parent(
@@ -104,12 +104,12 @@ header#header.header.parent(
 				) Медиа контент
 		section.popupContacts.child.parent.centered
 			h2.visible-hidden Высплывающие контакты
-			button.popupContacts__button.showPopup(data-popup-id='#popupContacts')
+			button.popupContacts__button.showPopup(data-popup-id='#popupContacts', aria-pressed="false")
 				.imageContainer.imageContainer_contacts
 					figure.imageContainer__image.imageContainer__image_contacts
 			address.popupContacts__description.description.description_purple.description_right.description_beneath.visible-hidden#popupContacts
-				h3.description__title.parent Филипп журавлёв
-					button#closeContactsButton.closeButton.child(data-popup-id='#popupContacts')
+				h3.description__title.popupContacts__title.parent Филипп журавлёв
+					button#closeContactsButton.closeButton.child(data-popup-id='#popupContacts', aria-pressed="false")
 						i.fa.fa-close.fa-1x
 				ul.descriptionContent.popupContactsList
 					li.contactsItem(

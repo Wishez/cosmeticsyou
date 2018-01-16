@@ -18,7 +18,11 @@ function createConfig(env) {
     context: path.join(__dirname, config.src.js),
     entry: {
       // vendor: ['jquery'],
-      main: './main.js'
+      main: './main.js',
+      sw: './sw.js',
+      registration: './registration.js',
+      intlTelInput: './intlTelInput.js',
+      utils: './utils.js'
     },
     output: {
       path: path.join(__dirname, config.dest.js),
@@ -65,6 +69,7 @@ function createConfig(env) {
         'animation.gsap': path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js'),
         'debug.addIndicators': path.resolve('node_modules', 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js'),
         'owl.carousel': path.resolve('node_modules', 'owl.carousel/dist/owl.carousel.js'),
+        Tooltip: path.resolve('node_modules', 'tooltip.js/dist/tooltip.js'),
       },
     },
     module: {

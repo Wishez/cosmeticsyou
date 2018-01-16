@@ -1,5 +1,5 @@
 import NormalizeWheel from './../../js/lib/normwheel.js';
-
+import { TimelineMax, TweenLite } from 'gsap';
 
 let cmt = (function() {
   return {};
@@ -146,6 +146,148 @@ const _ = (function() {
   };
 }());
 
+const SLIDER = (function() {
+  const _state = {
+    currentSlide: 1,
+    $slider: '',
+    isReverse: false
+  };
+  
+
+  const _init = (sliderSelector, options, isAnimatedSlides=false) => {
+    $(function() {
+      _state.$slider = $(sliderSelector);
+      const $slider = _state.$slider;
+      if (!$slider.length) {
+        return false;
+      }
+
+      $slider.owlCarousel(options);
+
+      $(document).on('keydown', function(e) {
+        e.preventDefault();
+        // const now = Date.now();
+          
+        switch (event.key) {
+          case 'ArrowLeft':
+            $slider.trigger('prev.owl');
+            break;
+          case 'ArrowRight':
+            $slider.trigger('next.owl');
+            break;
+          default:
+            return; // Quit when this doesn't handle the key event.
+        };
+      });
+      
+      $slider.on('wheel', '.owl-stage', function(e) {
+        const norm = NormalizeWheel(e.originalEvent);
+    
+        if (norm.spinY > 0) {
+          $slider.trigger('next.owl');
+          _state.isReverse = false;
+        } else {
+          $slider.trigger('prev.owl');
+          _state.isReverse = true;
+        }
+
+        // _animate();
+    
+        e.preventDefault();
+      }); // end load
+
+      // if (isAnimatedSlides) {
+      //   _animate();
+      // }
+    });
+  };
+
+  // function _animate() {
+  //   const reverse = _state.isReverse;
+  //   const $slider = _state.$slider;
+  //   const $slide = $($slider.find('.active')[0]).find('.slide');
+    
+  //   let addClass = '';
+  //   let removeClass = '';
+  //   let leftTransition = $slide.width() / 2;
+  //   let isAppend = true;
+ 
+  //   if (!reverse) {
+  //     addClass = 'slide_hidden';
+  //     removeClass = 'slide_shown';
+  //   } else {
+  //     leftTransition = 0;
+  //     isAppend = false;
+  //     addClass = 'slide_shown';
+  //     removeClass = 'slide_hidden';
+  //   }
+
+  //   console.log($slide, addClass, removeClass);
+
+  //   $slide
+  //     .addClass(addClass)
+  //     .removeClass(removeClass);
+        
+  //   if (addClass === 'slide_hidden')
+  //     setTimeout(() => {
+  //       TweenLite.to($slide, 0, {
+  //         opacity: 0 
+  //       });
+  //     }, 510);
+  //   else
+  //     TweenLite.to($slide, 0, {
+  //       opacity: 1
+  //     });
+
+  //   TweenLite.to($slide, 0.5, {
+  //     left: leftTransition 
+  //   });
+
+    // if (_state.isReverse) {
+    // setTimeout(() => {
+    //   animate(0.5, -5);
+    // }, 250);
+    // } else {
+    // animate();
+    // }
+  // }
+
+  return {
+    start: _init
+  };
+}());
+
+SLIDER.start('#mainSlider', {
+  loop: true,
+  loop: true,
+  autoplay: true,
+  autoplayTimeout: 6000,
+  autoplayHoverPause: true,
+  lazyLoad: true,
+  items: 1,
+  smartSpeed: 1000,
+  autoplaySpeed: 1000,
+  dots: true
+});
+SLIDER.start('#catalogs', {
+  loop: true,
+  autoplay: true,
+  autoplayTimeout: 6000,
+  autoplayHoverPause: true,
+  lazyLoad: true,
+  items: 1,
+  smartSpeed: 1000,
+  autoplaySpeed: 1000,
+  dots: false,
+  nav: true,
+  navText: ['&#8592;', '&#8594;'],
+  responsive: {
+    480: {
+      items: 2,
+    }
+  }
+}, true);
+
 $(function() {
   $('.preloader, .curtains').css({
     'opacity': 0,
@@ -153,50 +295,45 @@ $(function() {
   });
 
   const $mainSlider = $('#mainSlider');
+  const $catalogs = $('#catalogs');
 
   _.animatePopup();
 
+  $(document).on('click', '#checkReady', () => {
+    let $checkReady = $('#checkReady');
+    let $subButton = $('#registrataionSubmitButton');
 
+    if ($checkReady.prop('checked'))
+      $subButton.prop('disabled', false);
+    else 
+      $subButton.prop('disabled', true);  
+  }); // end click
+ 
 
-  $(document).on('keydown', function(e) {
-    e.preventDefault();
-    // const now = Date.now();
-      
-    switch (event.key) {
-      case 'ArrowLeft':
-        $mainSlider.trigger('prev.owl');
-        break;
-      case 'ArrowRight':
-        $mainSlider.trigger('next.owl');
-        break;
-      default:
-        return; // Quit when this doesn't handle the key event.
-    }
-  });
-  
-  $mainSlider.on('wheel', '.owl-stage', function(e) {
-    const norm = NormalizeWheel(e.originalEvent);
+  // $catalogs.owlCarousel({
+  // loop: true,
+  // autoplay: true,
+  // autoplayTimeout: 6000,
+  // autoplayHoverPause: true,
+  // lazyLoad: true,
+  // items: 2,
+  // smartSpeed: 1000,
+  // autoplaySpeed: 1000,
+  // dots: false,
+  // arrow: true
+  // });
 
-    if (norm.spinY > 0) {
-      $mainSlider.trigger('next.owl');
-    } else {
-      $mainSlider.trigger('prev.owl');
-    }
-
-    e.preventDefault();
-  });
-
-  $mainSlider.owlCarousel({
-  	loop: true,
-    autoplay: true,
-    autoplayTimeout: 6000,
-    autoplayHoverPause: true,
-    lazyLoad: true,
-    items: 1,
-    smartSpeed: 1000,
-    autoplaySpeed: 1000,
-    dots: true
-  });
+  // $mainSlider.owlCarousel({
+  	// loop: true,
+  //  autoplay: true,
+  //  autoplayTimeout: 6000,
+  //  autoplayHoverPause: true,
+  //  lazyLoad: true,
+  //  items: 1,
+  //  smartSpeed: 1000,
+  //  autoplaySpeed: 1000,
+  //  dots: true
+  // });
 
   $(document).on('click', '.choice__button', function(e) {
     const data = $(this).data();

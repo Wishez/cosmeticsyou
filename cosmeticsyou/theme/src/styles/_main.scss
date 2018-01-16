@@ -11,7 +11,7 @@
 $slides: 
 	('hike', auto, 0), 
 	('team', em(6, 21), 0), 
-	('business', em(6, 21), calc(50% - 222)), 
+	('business', em(6, 21), calc(50% - 222px)), 
 	('quest', em(6, 21), span(2)), 
 	('registration', em(6, 21), 0);
 
@@ -30,8 +30,13 @@ $slides:
 .mainSlider {
 	max-width: em(1350);
 	margin: em(84) auto;
+	@include breakpoint($sm-less) {
+		margin-top: 0;
+	}
 	@include breakpoint($xxs) {
-		margin-bottom: em(400);
+		margin-bottom: em(270);
+		margin-top: em(60);
+
 	}
 }
 #mainSlider {
@@ -179,13 +184,16 @@ $slides:
 		max-width: em(420);
 		@include breakpoint($sm-less) {
 			min-width: span(12);
-			margin-top: em(35);
+			margin-top: em(35, 21);
+		}
+		@include breakpoint($sm-less) {
+			margin-top: em(26, 21);
 		}
 	}
 }
 
 .items {
-	margin-top: em(70);
+	margin-top: em(95);
 	max-width: em(1350);
 	@include breakpoint($xxs) {
 		justify-content: center;
@@ -288,4 +296,144 @@ $slides:
 		margin-left: auto;
 	}
 
+}
+
+.questions, .catalogs {
+	margin: em(100) auto 0;
+}
+.questions, .catalogs__title {
+	@include breakpoint($xxs) {
+		padding: 0 5%;
+	}
+}
+.questions {
+	max-width: em(605);
+}
+
+.catalogs {
+	max-width: em(690);
+	margin-bottom: em(160);
+	&__title {
+		margin-bottom: em(21, 24);
+		@include breakpoint($xxs) { 
+
+		}
+	}
+}
+.catalogsList {
+	@include round(em(4));
+	position: relative;
+	// margin: 0 -1.5em;
+		
+	.owl-nav {
+		position: absolute;
+    	top: em(-55);
+    	right: 0;
+    	@include breakpoint($xxs) {
+    		right: 	1.5em;
+    	}
+	}
+}
+
+// .owl-item {
+// 	transform-style: preserve-3d;
+// 	perspective: 500px;
+// 	overflow: hidden;
+// 	cursor: pointer;
+// 	position: relative;
+// 	z-index: 10;
+// }
+// .slide_hidden {
+// 	z-index: -1;
+// }
+// .slide_shown {
+// 	transform: rotateY(0deg);
+// }
+// .slider_slide {
+// 	max-width: 100%;
+// 	transition: transform 0.8s;
+// }
+.catalog {
+	min-height: em(340);
+	min-width: em(340);
+	// margin: 0 -2.5px
+	@include breakpoint($xxs) {
+		min-height: em(250);
+	}
+	&_purple {
+		background-color: $purple;	
+	}
+	
+	&_red {
+		background-color: $red;
+	}
+	&__refer {
+		min-height: 100%;
+		min-width: 	100%;
+
+	}
+	
+}
+
+.question {
+	margin-top: em(60);
+}
+
+.registration {
+	& .child {
+		flex-basis: 50%;
+	}
+	justify-content: center;
+	// max-width: em(950);
+	&__title {
+		min-width: span(12);
+		margin: em(50) auto em(25);
+		text-align: center;
+	}
+	@include breakpoint ($xs) {
+		padding: 0 5%; 
+	} 
+	@include breakpoint ($xs) {
+
+	}
+}
+.registrationIntro__paragraph {
+	a {
+		color: $darkGray;
+		background-image: linear-gradient(to right, $darkGray 0%, $darkGray 100%);
+	}
+
+}
+.registrationIntro {
+	max-width: 30rem;
+	margin-top: 1.5em;
+}
+.intl-tel-input {min-width: 100%;}
+.registrationForm {
+	max-width: em(295);
+	margin-right: em(50);	
+	margin-bottom: 	em(50);
+	@include breakpoint ($xxs) {
+		margin-right: 0;
+	} 
+	&__button {
+		margin-top: em(24);
+	}
+	&__controller {
+		&_num_home {
+			margin-right: 15%;
+		}
+		&_num_home, &_num_apartment {
+			display: inline-flex;
+			max-width: span(5);
+
+		}
+	}
+
+}
+
+.iti-flag {background-image: url("./../img/flags.png");}
+ 
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .iti-flag {background-image: url("./../img/flags@2x.png");}
 }

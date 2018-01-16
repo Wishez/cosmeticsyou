@@ -88,6 +88,7 @@
     "slick-carousel": "^1.8.1",
     "susy": "^2.2.12",
     "three": "^0.89.0",
-    "three-orbit-controls": "^82.1.0"
+    "three-orbit-controls": "^82.1.0",
+    "tooltip.js": "^1.1.7"
   }
 }
