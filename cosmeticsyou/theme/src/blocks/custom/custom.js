@@ -1,9 +1,7 @@
 import NormalizeWheel from './../../js/lib/normwheel.js';
 import { TimelineMax, TweenLite } from 'gsap';
+import './../../js/intlTelInput.js';
 
-let cmt = (function() {
-  return {};
-}());
 
 const _ = (function() {
   const _screwed = props => {
@@ -22,8 +20,6 @@ const _ = (function() {
       itemHeight = $this.height(),
       offset = $this.offset(),
       leftPosition = offset.left,
-      // topPosition = offset.top,
-      // verticalTooltipVector = topPosition + tooltipHeight,
       horizontalTooltipVector = leftPosition + itemWidth + 100,
       props = {};
 
@@ -374,3 +370,28 @@ $(function() {
 //    $.placeholder(); 
 // }
 
+
+const PHONES = (function() {
+  $(function() {
+    
+    
+    $('#id_callback_phone').intlTelInput({
+      initialCountry: 'ru'
+    });
+  
+    $(document).on('input changepropery', '#id_phone_number, #id_callback_phone', function() {
+      const $this = $(this);
+      let currentValue = $this.val();
+      currentValue = currentValue.slice(currentValue.indexOf(' ') + 1);
+
+      if (currentValue.indexOf('+') !== -1)
+        return false;
+      
+      const title = $this.parent().find('.selected-flag').attr('title');
+      const code = title.slice(title.lastIndexOf(' ') + 1) + ' ';
+      const newValue = code + currentValue;
+
+      $this.val(newValue);
+    });
+  }); 
+}());

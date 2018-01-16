@@ -2,7 +2,11 @@
 @import './lib/owl.theme.default.scss';
 
 .main {
-	// flex-direction: column;
+	&Title {
+		min-width: span(12);
+		margin: em(50) auto em(25);
+		text-align: center;
+	}
 }
 .main p {
 	// font-size: font-emphasize: 
@@ -384,18 +388,10 @@ $slides:
 		flex-basis: 50%;
 	}
 	justify-content: center;
-	// max-width: em(950);
-	&__title {
-		min-width: span(12);
-		margin: em(50) auto em(25);
-		text-align: center;
-	}
+	margin-bottom: em(105);
 	@include breakpoint ($xs) {
 		padding: 0 5%; 
 	} 
-	@include breakpoint ($xs) {
-
-	}
 }
 .registrationIntro__paragraph {
 	a {
@@ -436,4 +432,35 @@ $slides:
  
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .iti-flag {background-image: url("./../img/flags@2x.png");}
+}
+
+.videos {  
+  max-width: em(1150);
+  margin: 0 auto em(105);
+  &__title {
+  	min-width: span(12);
+  	margin-bottom: 1em;
+    padding-left: .55em;
+  }
+  justify-content: center;
+}
+
+.video {
+ 	margin: 0 1em 2em;
+  	flex: 1 0 45%;
+  	border: 4px solid $red;
+  	max-width: span(8);
+  	@include round(em(5));
+  	@include breakpoint($xxs) {
+  		max-width: span(11);
+  	}
+}
+
+.video:nth-last-child(2):nth-child(4n) {
+	min-width: span(5);
+}
+.country-list  {
+	max-width: em(410, 21);
+	font-size: em(21);
+	color: $darkGray;
 }

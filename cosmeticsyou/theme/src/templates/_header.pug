@@ -56,8 +56,13 @@ header#header.header.parent(
 				form#callbackForm.descriptionContent.callbackForm.parent(method="post")
 					| {% csrf_token %}
 					| {% for field in callback %}
-					.controller.parent.child
+					.controller.parent.child(
+						title="{% if field.field.required %}Поле необходимо заполнить.{% else %}Поле можно оставить пустым.{% endif %}"
+					)
 						label.controller__label.child {{ field.label }}
+							| {% if field.field.required %}
+							span.controller_required *
+							| {% endif %}
 						.controller__icon.imageContainer.child(
 							class="imageContainer_{{ field.name }}"
 						)

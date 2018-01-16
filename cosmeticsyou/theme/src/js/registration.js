@@ -1,7 +1,6 @@
 import './lib/jquery.mask.js';
 import './intlTelInput.js';
 
-
 const REGISTRATION = (function() {
   const that = {};
   const _assert = (condition, message, SomeError=Error) => {
@@ -12,15 +11,6 @@ const REGISTRATION = (function() {
 
 
   const masks = {
-    // phone: {
-    //     current: '+7 (000) 000-00-00',
-    //     empty: '000000000000000',
-    //     idChoices: 'phoneChoices',
-    //     inputId: 'id_passport_data',
-    //     masks: [
-    //       PHONE_MASKS
-    //     ]
-    // },
     passport: {
       current: '0000-000000',
       idChoices: 'passportChoises',
@@ -108,6 +98,7 @@ const REGISTRATION = (function() {
 
   const $phone = $('#id_phone_number');
   const $passport = $(`#${masks.passport.inputId}`);
+
   const _maskHandler = {
     set: ($node, mask, pattern) => {
       $node.mask(mask, pattern);
@@ -244,7 +235,6 @@ const REGISTRATION = (function() {
 
     $phone.intlTelInput({
       initialCountry: 'ru'
-      // utilsScript: '/static/cosmeticsyou/js/utils.js'
     });
   };
 
@@ -313,28 +303,7 @@ const REGISTRATION = (function() {
       _titleCase($city, cityVal);
       _titleCase($street, streetVal);
     });
-    
-    const $phone = $('#id_phone_number');
-    const $flag = $('.selected-flag');
-	
-    $(document).on('input changepropery', '#id_phone_number', function() {
-    	
-    	let currentValue = $phone.val();
-    	currentValue = currentValue.slice(currentValue.indexOf(' ') + 1);
-
-    	if (currentValue.indexOf('+') !== -1)
-    		return false;
-    	
-    	const title = $flag.attr('title');
-    	const code = title.slice(title.lastIndexOf(' ') + 1) + ' ';
-    	const newValue = code + currentValue;
-
-    	$phone.val(newValue);
-    });
-    $('#registrationForm').submit(function() {
-  		$phone.val($phone.intlTelInput('getNumber'));
-
-    });
+  
 
     // $(document).on('click', '#id_empty_middle_name', (e) => {
     //   let $checkboxEmptyField = $('#id_empty_middle_name'),
