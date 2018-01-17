@@ -1,5 +1,5 @@
 import NormalizeWheel from './../../js/lib/normwheel.js';
-import { TimelineMax, TweenLite } from 'gsap';
+import { TweenMax } from 'gsap';
 import './../../js/intlTelInput.js';
 
 
@@ -38,23 +38,29 @@ const _ = (function() {
       .css(props);
   }
 
-  const _showElement = $node => {
-
-    $node
-      .addClass('shown_element')
-      .removeClass('visible-hidden');
+  const _showElement = ($node, state) => {
+    TweenMax.to($node, 0.2, {
+      opacity: 1,
+      onStart: function() {
+        $node
+          .css('zIndex', 1000)
+          .removeClass('visible-hidden');
+      },
+      onComplete: () => {
+        state.opened = true;
+      }
+    });
   };
-  const _hideElement = $node => {
-    
-    $node
-      .removeClass('shown_element');
-      
-    setTimeout(() => {
-      $node
-        .addClass('visible-hidden')
-        .css('zIndex', -1);
-
-    }, 310);
+  const _hideElement = ($node, state) => {
+    TweenMax.to($node, 0.2, {
+      opacity: 0,
+      onComplete: function() {
+        $node
+          .addClass('visible-hidden')
+          .css('zIndex', -1);
+        state.opened = false;
+      }
+    });
   };
 
   let _popupStates = {};
@@ -64,10 +70,10 @@ const _ = (function() {
 
     for ( const popupId in _popupStates ) {
       const popup = _popupStates[popupId];
+
       if (popupId !== lastOpenedPopup &&
           popup.opened) {
-        _hideElement($(popupId));
-        popup.opened = false;
+        _hideElement($(popupId), popup);
       }
     }
   };
@@ -75,7 +81,7 @@ const _ = (function() {
     
     $(document).on(
       'click', 
-      '.showPopup', 
+      '.showPopup:not(.closeButton)', 
       function() {
         const $this = $(this);
         
@@ -92,29 +98,16 @@ const _ = (function() {
         
         if (!elementState.opened) {
           _setPosition($this, $displayedElement);
-          _showElement($displayedElement);
+          _showElement($displayedElement, elementState);
           _popupStates.lastOpenedPopup = popupId;
           _hideOther();
-          elementState.opened = true;
+          // elementState.opened = true;
         } else {
-          _hideElement($displayedElement);
-          elementState.opened = false;
+          _hideElement($displayedElement, elementState);
+          // elementState.opened = false;
         }
         
       });
-    
-    // $(document).on(
-    //   'blur', 
-    //   displayedElementId, 
-    //   () => {
-        
-    //     if (elementState.opened) {
-    //       _hideElement($displayedElement);
-    //       elementState.opened = false;
-    //     }
-        
-    //   }
-    // );
     
     $(document).on(
       'click', 
@@ -126,12 +119,8 @@ const _ = (function() {
         const $displayedElement = $(popupId);
 
         if (elementState.opened) {
-          _hideElement($displayedElement);
-          elementState.opened = false;
+          _hideElement($displayedElement, elementState);
         }
-
-
-        
       });
   };
   return {
@@ -394,4 +383,59 @@ const PHONES = (function() {
       $this.val(newValue);
     });
   }); 
+}());
+
+const LADDER = (function() {
+  const _state = {
+    colors: {
+      purple: '#654178',
+      red: '#99303B'
+    },
+    prev: 0,
+    next: 0,
+    current: 0,
+    lastColor: ''
+  };
+
+  
+  const _redColor = _state.colors.red;
+  const _purpleColor = _state.colors.purple;
+
+  const _setColors = (invertColor=false) => {
+    const $nearestsSteps = $(`.ladderStep[data-index=${_state.next}], .ladderStep[data-index=${_state.prev}]`);
+    const index = _state.current;
+
+    _state.current % 3 === 0;
+    if (!invertColor) {
+      let color = '';
+      if (index % 3 === 0) {
+        color = _purpleColor;
+      } else {
+        color = _redColor;
+      }
+
+      $nearestsSteps.css('background-color', color);
+    } else {
+  
+      $nearestsSteps.css('background-color', '');
+    }
+
+  };
+  $(function() {
+
+    $(document).on('mouseenter' , '.ladderStep', function() {
+      const $this = $(this);
+      const index = $this.data('index');
+
+      _state.current = index;
+      _state.prev = index - 1;
+      _state.next = index + 1;
+
+      _setColors();
+      
+    });// end mouseover
+    $(document).on('mouseleave' , '.ladderStep', function() {       
+      _setColors(true);
+    });// end mouseout
+  });
 }());

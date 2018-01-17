@@ -39,4 +39,28 @@ $figures:
 	);
 }
 
+$steps: 
+	('registrationStep', 'man.png', 632, 960, (312 / 16 * 24), -30%, 100%),  
+	('mr_manager',  'warrior.png', 250, 97, (87  / 16 * 24), auto, auto),
+	('mr_diamond_director', 'knight.png', 596, 246, (110 / 16 * 24), 100%, auto),
+	('president', 'gentleman.png', 720, 360, (110 / 16 * 24), auto, auto), 
+	('diamond_president', 'putin.svg', 100, 100, (312 / 16 * 24), em(120, 16), auto);
 
+   
+@each $name, $url, $height, $width, $max-width, $x, $y in $steps {
+	$url: 'ladder/' + $url;
+
+	@include adaptiveImage(
+		$name, 
+		em($max-width, 24), 
+		adaptive($width, $height),
+		$url,
+		false
+	);
+
+	.ladderStep__image_#{$name} {
+		font-size: em(16, 21); 
+		top: #{$y};
+		left: #{$x};
+	}
+}

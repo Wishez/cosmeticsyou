@@ -97,11 +97,20 @@
 	color: $white;
 	cursor: pointer;
 	max-width: 15%;
+	position: absolute;
+	right: 1em;
+	top: 1em;
 }
 
 .description {
 	position: absolute;
-
+	box-shadow: 0 10px 35px -1px $shadow;
+	font: {
+		size: 18px $i;
+		family: $mainFont;
+	}
+	text-align: left;
+	text-transform: initial;
 	&_purple {
 		background-color: $purple;
 	}
@@ -120,6 +129,7 @@
 	&__title {
 		border-bottom: 1px solid #adadad;
 		font-size: em(24);
+		padding-right: 1em;
 		padding-bottom: .3em;
 		justify-content: space-between;
 		@include breakpoint($xxs) { 

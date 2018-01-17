@@ -287,7 +287,6 @@ ul {
  .popupContacts {
  	@include flyShadow(-2px 5px 15px 2px $shadow);
  	position: relative;
- 
  	&:hover, &:focus {
 	 	& .imageContainer__image {
 			transform: rotate(20deg);
@@ -308,6 +307,7 @@ ul {
 		
 	}
 	&__description {
+ 		font-size: em(24) $i;
 		max-width: em(470, 21);
 		@include breakpoint($xxs) { 
 			margin-left: -200%;
@@ -361,6 +361,9 @@ ul {
 .callbackFormWrapper {
 	@include round(0, 'top-left');
 	@include round(0, 'bottom-left');
+	font-size: em(24) $i;
+	& .descriptionContent {
+	}
 	@include breakpoint($xxs) {
 		margin-left: -100%;
 	}

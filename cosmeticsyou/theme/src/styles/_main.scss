@@ -464,3 +464,138 @@ $slides:
 	font-size: em(21);
 	color: $darkGray;
 }
+
+.business {
+	max-width: em(900);
+	margin: 0 auto em(105);
+}
+
+.bigWay {
+	margin-top: em(60);
+}
+
+.ladder {
+	margin: em(295) 0 ;
+	flex-flow: column nowrap;
+	display: flex;
+}
+
+.ladderStep {
+	max-width: em(412);
+	width: span(12);
+	@include flyShadow();
+	&_leftOffset {
+		margin-left: span(1);//6.25%;
+	}
+	&_doubleLeftOffset {
+		margin-left: span(2);//12.5%;
+	}
+	&_rightOffset {
+		margin-right: span(1);//6.25%;
+	}
+	&_doubleRightOffset {
+		margin-right: span(2);//12.5%;
+	}
+	&_left {
+		align-self: flex-start;
+	}
+	&_right {
+		align-self: flex-end;
+	}
+	&_center {
+		align-self: center;
+	}
+	@include breakpoint($xxs) {
+		margin: 0;
+	}
+	&:nth-child(2n+1) {
+		@include breakpoint($xxs) {
+			align-self: center;	
+		};
+
+	}
+	&:nth-child(4n+2) {
+		@include breakpoint($xxs) {
+			align-self: flex-end;	
+		}
+	}
+	&:nth-child(4n+4) {
+		@include breakpoint($xxs) {
+			align-self: flex-start;	
+		}
+	}
+	background-color: $red;
+	font-family: $decorativeFont;
+	text-align: center;
+	padding: 1em .5em;
+	text-transform: uppercase;
+	color: $white;
+	cursor: pointer;
+	position: relative;
+	&__description {
+	    min-width: span(12);
+	    top: 0 $i;
+		@include breakpoint($xxs) {
+			position: absolute;
+			min-width: span(12) $i;
+		}
+	}
+	transition: .3s ease;
+	&:hover {
+		background-color: $purple $i;
+		z-index: 199;
+	}
+	&:nth-child(3n+1) {
+		background-color: $purple;
+		&:hover {
+			background-color: $red $i;
+			z-index: 199;
+		}
+	}
+	&, &__refer {
+		font-size: em(21);
+	}
+
+	&__refer {
+		letter-spacing: .12em;
+		background-image: none;
+		font-weight: bold;
+		&:hover {
+			background-image: none;
+		}
+	}
+	&__image {
+		position: absolute;
+		z-index: 0;
+		// &_director, &_executed_director {
+		// 	transform: rotateY(180deg);
+		// }
+		&_diamond_president {
+			bottom: 100%;
+		}
+		&_president, &_mr_manager {
+			right: 100%;
+		}
+		&_mr_manager, &_president, &_mr_diamond_director {
+			bottom: 1%;
+			bottom: calc(0% + .2em);
+		}
+		
+	}
+	
+}
+.ladderStepBenifit {
+	&__title {
+	    font-size: 1em;
+    	margin: 1.5em 0 .5em;
+    	text-align: center;
+	}
+}
+.benifitList {
+	&Item {
+		margin-top: .5em;
+		&::before {
+			content:  "\2014\00a0\00a0";
+		}
+	}
+}

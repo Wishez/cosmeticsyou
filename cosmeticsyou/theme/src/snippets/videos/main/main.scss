@@ -1,8 +1,3 @@
-.videos {
-  @include display-flex(flex);
-  @include flex-flow(row wrap);
-  @include justify-content(space-between);
-  @include align-items(center);
-}
+
 
 @import "__item/__item.scss"
