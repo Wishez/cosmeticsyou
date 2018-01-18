@@ -50,45 +50,45 @@
 		var items = [
 			{
 				"title": "1 этап",
-				"itemName": "Название предмета",
+				"itemName": "Набор первого этапа",
 				'name': 'step_1',
-				"description": "Набор из крема для лица, омолаживающего геля для душа и глазощипательного мыла.",
+				"description": "Питательный крем для рук и тела\n\nМолоко и Мед - Золотая серия (код 31602)\n\nКрем-мыло Молоко и мед – Золотая серия (код 31604)\n\nУвлажняющий крем для душа Молоко и мед – Золотая серия (код 31605)\n\nСпециальное смягчающее средство Нежная забота (код 1276)",
 				"profit": "1171",
 				"comparePrice": "199",
 				"price": "1370"
 			},
 			{
 				"title": "2 этап",
-				"itemName": "Название предмета",
+				"itemName": "Набор второго этапа",
 				'name': 'step_2',
-				"description": "Набор из крема для лица, омолаживающего геля для душа и глазощипательного мыла.",
-				"profit": "1171",
+				"description": "Дневной крем, выравнивающий тон кожи, с SPF 20 Защита и осветление (код 25206)\n\nНочной крем, выравнивающий тон кожи Защита и осветление (код 25207)\n\nКрем для век Невероятный эффект (код 25264)\n\nМногофункциональная губная помада 5-в-1, The ONE Colour Stylist Дивный Пион (код 25264)\n\nМногофункциональная тушь для ресниц 5-в-1 The ONE Wonderlash Черный (код 30719)",
+				"profit": "2571",
 				"comparePrice": "199",
-				"price": "1370"
+				"price": "2770"
 			},
 			{
 				"title": "3 этап",
-				"itemName": "Название предмета",
+				"itemName": "Набор третьего этапа",
 				'name': 'step_3',
-				"description": "Набор из крема для лица, омолаживающего геля для душа и глазощипательного мыла.",
-				"profit": "1171",
+				"description": "Губная помада Золотой соблазн Giordani Gold Очаровательный Пионовый (код 22748)\n\nПарфюмерная вода Miss Giordani (код 30399)\n\nУльтраудлиняющая тушь для ресниц Giordani Gold (код 32079)\n\nАнтивозрастная тональная основа Giordani Gold Слоновая Кость (код 32049)",
+				"profit": "4161",
 				"comparePrice": "199",
-				"price": "1370"
+				"price": "4360"
 			},
 			{
 				"title": "4 этап",
-				"itemName": "Название предмета",
+				"itemName": "Набор для женщин",
 				'name': 'w_step_4',
-				"description": "Набор из крема для лица, омолаживающего геля для душа и глазощипательного мыла.",
-				"profit": "1171",
+				"description": "Вэлнэс Пэк для женщин (код 22791)\n\nТуалетная вода Eclat Femme (код 30128)\n\nСыворотка для лица против морщин NovAge Эколлаген (код 31147)",
+				"profit": "5601",
 				"comparePrice": "199",
-				"price": "1370",
+				"price": "5800",
 				'secondName': 'm_step_4',
-				'secondItemName': 'Название',
-				"secondDescription": "Набор из крема для лица, омолаживающего геля для душа и глазощипательного мыла.",
-				"secondProfit": "1171",
+				"secondItemName": "Набор для мужчин",
+				'secondDescription': 'Вэлнэс Пэк для мужчин (код 22793)\n\nТуалетная вода Eclat Homme (код 30173)\n\nПена для бритья Норд Ориджинал (код 32002)\n\nБальзам после бритья Норд Ориджинал (код 32004)\n\nШампунь для волос и тела Норд Ориджинал (код 32005)\n\nСпрей дезодорант-антиперспирант 24-часового действия Норд Ориджинал (код 32005)',
+				"secondProfit": "5601",
 				"secondComparePrice": "199",
-				"secondPrice": "1370"
+				"secondPrice": "5800"
 			},
 		];
 	var FAQ = [
@@ -138,7 +138,7 @@
 section.programm.parent.centered#programm
 	h2.programm__title.child С чёго стоит начать?  
 	each chain in chains
-		article.chain.child.parent
+		article.chain.parent
 			h3.chain__title.visible-hidden= chain.title
 			.chain__image.imageContainer.child(class='imageContainer_'+chain.name)
 				figure.imageContainer__image(class='imageContainer__image_'+chain.name)
@@ -147,10 +147,10 @@ section.programm.parent.centered#programm
 ul.items.parent.restrictBlock
 	each item in items 
 		//- begin item
-		li.item.item_upper.child.centered
+		li.item.item_upper.child.parent.centered
 			if item.secondName
 				//- begin choices
-				ul.choices.parent
+				ul.choices.parent.child
 					li.choice.child
 						button.choice__button.button.button_purple(
 							data-src='/static/cosmeticsyou/img/steps/w_step_4.jpg', 

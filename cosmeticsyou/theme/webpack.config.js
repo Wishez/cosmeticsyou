@@ -92,6 +92,11 @@ function createConfig(env) {
           exclude: [
             path.resolve(__dirname, 'node_modules'),
           ],
+          options: {
+            // plugins: ['transform-class-properties',
+            //   'transform-decorators-legacy',
+            //   'transform-object-rest-spread']
+          }
         }],
     },
   };

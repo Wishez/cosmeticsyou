@@ -4,8 +4,7 @@
 title Страница не найдена
 | {% endblock %}
 | {% block content %}
-include ../snippets/errors/header/header.pug
-.notFound.text-center
-  h2.notFound__title Страница не найдена
-  p.notFound__text Извините, но страницу, которую вы пытались найти &mdash; не существует.
+section.notFound.parent.centered.singleShare
+  h1.mainTitle Страница не найдена
+  p Страницу, которую вы пытаетесь найти &mdash; не существует.
 | {% endblock %}

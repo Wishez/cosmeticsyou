@@ -38,7 +38,7 @@ footer.footer.parent
 
 	nav.navigation.navigation_footer.child#footerNavigation(role="navigation")
 		ul.footerNavigation.parent
-			li.footerNavigationItem.child.parent(
+			li.footerNavigationItem.parent(
 			   role="presentation",
 					class="{% if active_page == 'home' %}footerNavigationItem_active{% endif %}"
 			)
@@ -46,7 +46,7 @@ footer.footer.parent
 					href="{% url 'index' %}",
 					class="{% if active_page == 'home' %}footerNavigationItem__refer_active{% endif %}"
 				) Главная
-			li.footerNavigationItem.child.parent(
+			li.footerNavigationItem.parent(
 			   role="presentation",
 					class="{% if active_page == 'business' %}footerNavigationItem_active{% endif %}"
 			)
@@ -54,7 +54,7 @@ footer.footer.parent
 					href="{% url 'business' %}",
 					class="{% if active_page == 'business' %}footerNavigationItem__refer_active{% endif %}"
 				) Структура бизнеса
-			li.footerNavigationItem.child.parent(
+			li.footerNavigationItem.parent(
 			   role="presentation",
 					class="{% if active_page == 'shares' %}footerNavigationItem_active{% endif %}"
 			)
@@ -62,7 +62,7 @@ footer.footer.parent
 					href="{% url 'shares' %}",
 					class="{% if active_page == 'shares' %}footerNavigationItem__refer_active{% endif %}"
 				) Акции
-			li.footerNavigationItem.child.parent(
+			li.footerNavigationItem.parent(
 			  role="presentation",
 					class="{% if active_page == 'media' %}footerNavigationItem_active{% endif %}"
 			)
@@ -70,7 +70,7 @@ footer.footer.parent
 					href="{% url 'media' %}",
 					class="{% if active_page == 'media' %}footerNavigationItem__refer_active{% endif %}"
 				) Медиа контент
-			li.footerNavigationItem.footerNavigationItem_registration.registrationButton_red.registrationButton.child(
+			li.footerNavigationItem.footerNavigationItem_registration.registrationButton_red.registrationButton.registrationButton_centered(
 			  	role="presentation"
 		 		class="{% if active_page == 'registration' %}registrationButton_active{% endif %}"
 			)
