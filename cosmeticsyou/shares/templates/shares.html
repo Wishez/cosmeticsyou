@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% block content %}
+<style>
+  .share__announce {
+  	-webkit-box-orient: vertical;
+  }
+</style>
+<section class="shares parent">{% if shares %}
+  <h1 class="mainTitle shares__title">Последние акции</h1>{% for share in shares %}
+  <article class="share child">
+    <h2 class="share__title"><a class="share__title_refer" href="{% url 'single_share' slug=share.slug %}">{{ share.title }}</a></h2>
+    <p class="shareMeta">
+      <time class="shareMeta__published" datetime="{{ share.published_date }}">Опубликовано: {{ share.published_date }}</time>
+    </p>
+    <p class="share__announce">{{ share.announce }}</p>
+  </article>{% endfor %}
+  {% else %}
+  <h1 class="mainTitle">Акций нет.</h1>{% endif %}
+</section>{% endblock %}
