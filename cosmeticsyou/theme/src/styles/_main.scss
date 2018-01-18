@@ -38,7 +38,7 @@ $slides:
 		margin-top: 0;
 	}
 	@include breakpoint($xxs) {
-		margin-bottom: em(270);
+		margin-bottom: em(335);
 		margin-top: em(60);
 
 	}
@@ -124,9 +124,9 @@ $slides:
 		}
 		& .chain__paragraph {
 			order: 2;
-			margin-left: em(75);
+			padding-left: em(50);
 			@include breakpoint($sm-less) {
-				margin-left: 0;
+				padding-left: 0;
 			}
 		}
 	}
@@ -141,10 +141,10 @@ $slides:
 		}
 		& .chain__paragraph {
 			order: 1;
-			margin-right: em(75);
+			padding-right: em(50);
 			@include breakpoint($sm-less) {
 				order: 2;
-				margin-right: 0;
+				padding-right: 0;
 			}
 		}
 	}
@@ -202,6 +202,9 @@ $slides:
 	@include breakpoint($xxs) {
 		justify-content: center;
 	}
+	@include breakpoint($sm-less) {
+		padding: 0 10%;
+	}
 	
 }
 .item:nth-last-child(2):nth-child(4n) {
@@ -251,7 +254,27 @@ $slides:
 	}
 	&Description {
 		max-width: em(370, 21);
+		min-width: span(12);
 		&__description {
+			&::-webkit-scrollbar-track
+			{
+				-webkit-box-shadow: inset 0 0 6px $shadow;
+				background-color: $darkGray;
+			}
+
+			&::-webkit-scrollbar
+			{
+				width: 6px;
+				background-color: $darkGray;
+			}
+
+			&::-webkit-scrollbar-thumb
+			{
+				background-color: $white;
+			}
+			max-height: em(200, 21);
+    		overflow-y: auto;
+			white-space: pre-line;
 			&:first-child { 
 				margin-top: 1em;
 			}
@@ -265,11 +288,14 @@ $slides:
     justify-content: space-between;
     position: absolute;
     margin-bottom: 1em;
-    bottom: 95%;
+    bottom: 100%;
+    left: 10%;
     @include breakpoint($sm-less) {
     	top: 100%;
     	bottom: auto;
+		margin-top: 1em;
     }
+    
 
 }
 .button {
@@ -283,8 +309,9 @@ $slides:
 		background-color: $red;
 	}
 }
+
 .choice {
-	max-width: em(125);
+	// max-width: em(125);
 	&__button {
 		
 	}
@@ -394,11 +421,11 @@ $slides:
 	} 
 }
 .registrationIntro__paragraph {
-	a {
-		color: $darkGray;
-		background-image: linear-gradient(to right, $darkGray 0%, $darkGray 100%);
-	}
 
+}
+.main p a {
+	color: $darkGray;
+	background-image: linear-gradient(to right, $darkGray 0%, $darkGray 100%);
 }
 .registrationIntro {
 	max-width: 30rem;
@@ -470,15 +497,40 @@ $slides:
 	margin: 0 auto em(105);
 }
 
-.bigWay {
+.section {
 	margin-top: em(60);
+	@include breakpoint($xxs) {
+	}
+	&__title {
+		@include breakpoint($xxs) {
+		}
+	}
+	&:not(.section_ladder) {
+	}
+}
+.main {
+	& h2, p {
+		@include breakpoint($xs) {
+			padding-left: 5%; 
+			padding-right: 5%; 
+		}
+	}
+	& p {
+		font-size: em(21);
+	}
 }
 
+
 .ladder {
-	margin: em(295) 0 ;
+	margin: em(295) 0 em(205);
 	flex-flow: column nowrap;
 	display: flex;
+	@include breakpoint($xxs) {
+		margin: em(370) 0 em(140);
+
+	}
 }
+
 
 .ladderStep {
 	max-width: em(412);
@@ -567,11 +619,11 @@ $slides:
 	&__image {
 		position: absolute;
 		z-index: 0;
-		// &_director, &_executed_director {
-		// 	transform: rotateY(180deg);
-		// }
 		&_diamond_president {
 			bottom: 100%;
+			@include breakpoint($xxs) {
+				left: 0;	
+			}
 		}
 		&_president, &_mr_manager {
 			right: 100%;
@@ -579,6 +631,12 @@ $slides:
 		&_mr_manager, &_president, &_mr_diamond_director {
 			bottom: 1%;
 			bottom: calc(0% + .2em);
+		}
+		&_registrationStep {
+			@include breakpoint($xxs) {
+				max-width: em(160 / 18 * 24, 16) $i;
+				left: 0 $i;
+			}
 		}
 		
 	}
@@ -598,4 +656,184 @@ $slides:
 			content:  "\2014\00a0\00a0";
 		}
 	}
+}
+.shares {
+	max-width: em(920);
+	margin: auto;
+	&__title {
+		margin-bottom: em(50);
+	}
+}
+
+.roomReferralRefer_refer, .share__title {
+	position: relative;
+	&:before {
+		background: no-repeat center;
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-size: cover;
+	}
+}
+.share__title, .roomReferralRefer {
+	&_refer {
+		padding-bottom: .2em;
+		text-indent: em(54, 24);
+		color: $red;
+		background-image: linear-gradient(to right, $red 0%, $red 100%);
+		display: block;
+	}
+}
+
+.roomReferralRefer {
+	&_refer {
+		max-width: em(210);
+		margin-top: em(32);
+		cursor: pointer;
+		text-indent: em(35);
+		&:before {
+			background-image: url('./../img/icons/link.png');
+			width: em(24);
+			height: em(24);
+		}
+	}
+	position: relative;
+	
+	&__notification {
+		position: absolute;
+		bottom: 40%;
+		left: 0;
+		z-index: 2;
+		transition: .2s ease;
+		opacity: 0;
+		text-align: center;
+		padding: .5em;
+		max-width: em(210);
+		margin: .5em 0;
+		@include round(em(2));
+		border: 1.5px solid $purple;
+		background-color: $white;
+	}
+}
+.share {
+	// flex-direction: column;
+	padding: 0 em(24);
+	margin-bottom: em(45);
+	& p {
+		padding: 0;
+	}
+	&__title {
+		
+		&:before {
+			background-image: url('./../img/icons/gift.png');
+			width: em(39.9, 24);
+			height: em(32, 24);
+		}
+	}
+	&__paragraph {
+		
+	}
+
+
+	&__announce {
+		display: block;
+		display: -webkit-box;
+		-webkit-line-clamp: 5;
+		margin-top: em(18);
+		// padding: 0 1em;
+		overflow: hidden;
+		height: em((18 * 5 * 1.3) +  (1.3 * 5));
+		text-overflow: ellipsis;
+	}
+
+
+}
+
+.shareMeta {
+    margin-top: .5em $i;
+}
+.room, .singleShare {
+	max-width: em(950);
+	margin: 0 auto em(235, 36);
+}
+.room {
+	margin-bottom: 3em;
+}
+.singleShare {
+	
+	&  p {
+		margin-top: em(21);
+	}
+	&  ul {
+		margin-top: em(18);
+	}
+	& li:not(:first-child) {
+		margin-top: em(15);
+	}
+	& h2 {
+		margin-top: em(50, 24);
+		& + p {
+			margin-top: em(17);
+		}
+	}
+
+	&__title {
+		font-size: em(36);
+		margin-bottom: em(16, 36);
+	}
+	@include breakpoint($sm-less) {
+		padding: 0 5%;
+
+	}
+}
+
+.singleShareMeta {
+	text-align: center;
+	font-size: em(21) $i;
+	margin-top: 0 $i;
+}
+.imageContainer_referral {
+	background-color: $red;
+	@include round(50%);
+	margin-right: em(18.5);
+}
+.referralsList {
+	margin-top: em(50);
+	&__title {
+		margin-bottom: em(32, 24);
+	}
+}
+.referral {
+	margin: 1.2em 0;
+	padding: 0 1em 1.2em;
+	&:not(:last-of-type) {
+		border-bottom: 1px solid #949494;
+	}
+	&:hover {
+		z-index: 1000;
+	}
+	&__title {
+		font-family: $mainFont;
+		font-weight: normal;
+		@include breakpoint($xxs) {
+			margin-top: em(21);
+		}
+
+	}
+	&__image, &__title {
+		cursor: pointer;
+	}
+	@include flyShadow();
+	align-items: center;
+	@include breakpoint($xxs) {
+		justify-content: center;
+		flex-direction: column;
+	};
+
+
+	&__image {
+		background-size: 60px;
+	}
+
 }

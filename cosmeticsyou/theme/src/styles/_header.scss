@@ -92,9 +92,9 @@ ul {
  	&Item {
 		color: $darkGray;
 	 	&__refer {
-	 		background-image: none $i;
-	 		background-size: 0 $i;
-	 		color: inherit $i;
+	 		background-image: none ;
+	 		// background-size: 0;
+	 		color: inherit ;
 	 	}
  	}
  }
@@ -212,6 +212,7 @@ ul {
 		white-space: nowrap;
  		&_active, &:hover, &:focus {
  			padding-bottom: 1.8em;
+ 			color: $darkGray;
  		}
  		&_active, &:hover, &:focus, & {
  			@include breakpoint($sm-less) {

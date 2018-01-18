@@ -46,8 +46,6 @@
 			box-shadow: none;
 		}
 	}
-
-	color: $white $i;
 	text-align: center;
 	min-width: em(235, 21);
 	max-width: em(235, 21);
@@ -64,6 +62,7 @@
 		background-color: $purple;
 	}
 	&__refer {
+		color: $white $i;
 		padding: 1em 0;
 		display: block;
 		background-image: none $i;
@@ -173,12 +172,20 @@
 }
 .descriptionContent {
 	margin-top: 1em;
+	& a {
+		color: $white $i;
+		background-image: linear-gradient(to right, $white 0%, $white 100%) $i;
+	}
 }
 .shown_element {
 	opacity: 1 $i;
 	z-index: 2 $i;
 }
+.showPopup {
+	position: relative;
+}
 .controller {
+	flex-basis: span(12);
 	&:not(:first-child) {
 		margin-top: 1em;
 	}
