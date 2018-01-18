@@ -82,7 +82,7 @@ class RelatedConsultantAdmin(admin.ModelAdmin):
         },),
         ('Данные консультанта', {
             'fields': (
-                ('consultant_num',),
+                ('consultant_num', 'status',),
             ),
         },),
         ('Рферальные данные', {

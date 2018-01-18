@@ -50,7 +50,19 @@ class ConsultantBase(models.Model):
 
     registered_date = models.DateTimeField(_('Дата регистрации'), default=timezone.now)
     modified = models.DateTimeField(auto_now=True)
+    register_statuses = (
+        (_('Новый'), 'Новый'),
+        (_('Зарегистрированный А'), 'Зарегистрированный А'),
+        (_('Зарегистрированный Б'), 'Зарегистрированный Б'),
+        (_('Пустой'), 'Пустой'),
+    )
 
+    status = models.CharField(
+        _('Статус регистрации'),
+        max_length=20,
+        choices=register_statuses,
+        default='Новый'
+    )
     objects = ConsultantManager()
     class Meta:
         abstract = True
@@ -83,19 +95,7 @@ class FullConsultant(ConsultantBase):
     num_apartment = models.DecimalField(_('Квартира'), max_digits=999, decimal_places=1)
 
     email = models.EmailField(_('E-mail'))
-    register_statuses = (
-        (_('Новый'), 'Новый'),
-        (_('Зарегистрированный А'), 'Зарегистрированный А'),
-        (_('Зарегистрированный Б'), 'Зарегистрированный Б'),
-        (_('Пустой'), 'Пустой'),
-    )
 
-    status = models.CharField(
-        _('Статус регистрации'),
-        max_length=20,
-        choices=register_statuses,
-        default='Новый'
-    )
     class Meta:
         abstract = True
     def __str__(self):
@@ -165,6 +165,7 @@ class RelatedConsultant(RelatedConsultantTableRelations):
         related_name="refferal_consultants_of_related_consultant",
         blank=True
     )
+    tracker = FieldTracker(fields=['consultant_num'])
     class Meta:
         verbose_name = _('Сторонний консультант')
         verbose_name_plural = _('Сторонний консультанты')
