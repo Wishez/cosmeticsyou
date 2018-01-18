@@ -30,6 +30,7 @@
     "jquery-color": "^2.1.2",
     "nivo-slider": "*",
     "jquery-ui": "^1.12.1",
-    "jquery-ui-scss": "^0.0.1"
+    "jquery-ui-scss": "^0.0.1",
+    "intl-tel-input": "^12.1.6"
   }
 }

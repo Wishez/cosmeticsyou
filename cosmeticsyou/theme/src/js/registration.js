@@ -304,7 +304,15 @@ const REGISTRATION = (function() {
       _titleCase($street, streetVal);
     });
   
+    $(document).on('click', '#checkReady', () => {
+      let $checkReady = $('#checkReady');
+      let $subButton = $('#registrataionSubmitButton');
 
+      if ($checkReady.prop('checked'))
+        $subButton.prop('disabled', false);
+      else 
+        $subButton.prop('disabled', true);  
+    }); // end click
     // $(document).on('click', '#id_empty_middle_name', (e) => {
     //   let $checkboxEmptyField = $('#id_empty_middle_name'),
     //       $middleName = $('#id_middle_name'),

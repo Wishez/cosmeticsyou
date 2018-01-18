@@ -1,5 +1,5 @@
 import NormalizeWheel from './../../js/lib/normwheel.js';
-import { TweenMax } from 'gsap';
+import { TweenMax, Linear } from 'gsap';
 import './../../js/intlTelInput.js';
 
 
@@ -25,7 +25,7 @@ const _ = (function() {
 
     
     if (horizontalTooltipVector + tooltipWidth > windowWidth) {
-      leftPosition = -itemWidth - ( tooltipWidth / 2) + 18;
+      leftPosition = -tooltipWidth;
     } else if (horizontalTooltipVector + tooltipWidth < 0) {
       leftPosition = 0;
     } else {
@@ -122,6 +122,8 @@ const _ = (function() {
           _hideElement($displayedElement, elementState);
         }
       });
+
+
   };
   return {
     screwed: _screwed,
@@ -151,7 +153,6 @@ const SLIDER = (function() {
 
       $(document).on('keydown', function(e) {
         e.preventDefault();
-        // const now = Date.now();
           
         switch (event.key) {
           case 'ArrowLeft':
@@ -175,67 +176,14 @@ const SLIDER = (function() {
           $slider.trigger('prev.owl');
           _state.isReverse = true;
         }
-
-        // _animate();
     
         e.preventDefault();
       }); // end load
 
-      // if (isAnimatedSlides) {
-      //   _animate();
-      // }
+
     });
   };
 
-  // function _animate() {
-  //   const reverse = _state.isReverse;
-  //   const $slider = _state.$slider;
-  //   const $slide = $($slider.find('.active')[0]).find('.slide');
-    
-  //   let addClass = '';
-  //   let removeClass = '';
-  //   let leftTransition = $slide.width() / 2;
-  //   let isAppend = true;
- 
-  //   if (!reverse) {
-  //     addClass = 'slide_hidden';
-  //     removeClass = 'slide_shown';
-  //   } else {
-  //     leftTransition = 0;
-  //     isAppend = false;
-  //     addClass = 'slide_shown';
-  //     removeClass = 'slide_hidden';
-  //   }
-
-  //   console.log($slide, addClass, removeClass);
-
-  //   $slide
-  //     .addClass(addClass)
-  //     .removeClass(removeClass);
-        
-  //   if (addClass === 'slide_hidden')
-  //     setTimeout(() => {
-  //       TweenLite.to($slide, 0, {
-  //         opacity: 0 
-  //       });
-  //     }, 510);
-  //   else
-  //     TweenLite.to($slide, 0, {
-  //       opacity: 1
-  //     });
-
-  //   TweenLite.to($slide, 0.5, {
-  //     left: leftTransition 
-  //   });
-
-    // if (_state.isReverse) {
-    // setTimeout(() => {
-    //   animate(0.5, -5);
-    // }, 250);
-    // } else {
-    // animate();
-    // }
-  // }
 
   return {
     start: _init
@@ -278,47 +226,11 @@ $(function() {
     'opacity': 0,
     'zIndex': -10000
   });
-
-  const $mainSlider = $('#mainSlider');
-  const $catalogs = $('#catalogs');
+  $(document).on;
 
   _.animatePopup();
 
-  $(document).on('click', '#checkReady', () => {
-    let $checkReady = $('#checkReady');
-    let $subButton = $('#registrataionSubmitButton');
 
-    if ($checkReady.prop('checked'))
-      $subButton.prop('disabled', false);
-    else 
-      $subButton.prop('disabled', true);  
-  }); // end click
- 
-
-  // $catalogs.owlCarousel({
-  // loop: true,
-  // autoplay: true,
-  // autoplayTimeout: 6000,
-  // autoplayHoverPause: true,
-  // lazyLoad: true,
-  // items: 2,
-  // smartSpeed: 1000,
-  // autoplaySpeed: 1000,
-  // dots: false,
-  // arrow: true
-  // });
-
-  // $mainSlider.owlCarousel({
-  	// loop: true,
-  //  autoplay: true,
-  //  autoplayTimeout: 6000,
-  //  autoplayHoverPause: true,
-  //  lazyLoad: true,
-  //  items: 1,
-  //  smartSpeed: 1000,
-  //  autoplaySpeed: 1000,
-  //  dots: true
-  // });
 
   $(document).on('click', '.choice__button', function(e) {
     const data = $(this).data();
@@ -344,6 +256,11 @@ $(function() {
 
       
   }); // end click
+  $(document).on('click', '.slideTo', function() {
+    $('html, body').animate({
+      scrollTop: $($(this).attr('href')).offset().top
+    }, 600, Linear.ease);
+  });
   $(document).on('click', '.not-follow', function(e) {
 	  const url = $(this).attr('href');
 	  
@@ -362,7 +279,6 @@ $(function() {
 
 const PHONES = (function() {
   $(function() {
-    
     
     $('#id_callback_phone').intlTelInput({
       initialCountry: 'ru'
@@ -434,6 +350,8 @@ const LADDER = (function() {
       _setColors();
       
     });// end mouseover
+
+
     $(document).on('mouseleave' , '.ladderStep', function() {       
       _setColors(true);
     });// end mouseout
