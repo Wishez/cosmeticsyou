@@ -29,7 +29,7 @@ class BaseView(TemplateView):
         if page.meta != '':
             self.meta = page.meta
 
-        context['title'] = page.title
+        context['title'] = page.page_title
         context['page'] = page
 
         return context

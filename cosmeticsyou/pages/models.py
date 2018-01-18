@@ -69,7 +69,7 @@ class PageManager(models.Manager):
     user_for_related_fields = True
 
 class BasePage(TimeStampedModel):
-    title = models.CharField(
+    page_title = models.CharField(
         _('Заголовок'),
         help_text=_('Название страницы во вкладке'),
         max_length=100,

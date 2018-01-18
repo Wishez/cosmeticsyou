@@ -7,7 +7,7 @@ from .models import *
 
 base_settings_page = ('Базовая настройка страницы', {
                 'fields': (
-                    ('title',),
+                    ('page_title',),
                     ('meta',),
                 ),
             },)
