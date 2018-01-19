@@ -26,7 +26,7 @@ class SingleShareView(BaseView):
         self.is_single_model = False
 
     def set_additionl_context(self, context):
-        context['title'] = self.page.title
+        context['title'] = self.page.page_title
 
         return context
     def get(self, request, slug):
