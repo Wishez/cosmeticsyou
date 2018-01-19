@@ -102,7 +102,7 @@ $slides:
 
 .programm {
 	flex-direction: column;
-	max-width: em(208);
+	max-width: em(1190);
 	margin: auto;
 	@include breakpoint($sm-less) {
 		max-width: 100%;
@@ -118,7 +118,7 @@ $slides:
 		margin-top: em(75);
 	}
 	&:nth-child(2n+0) {
-		align-self: flex-start;
+		align-self: flex-end;
 		& .chain__image {
 			order: 1;
 		}
@@ -131,7 +131,7 @@ $slides:
 		}
 	}
 	&:nth-child(2n+1)  {
-		align-self: flex-end;
+		align-self: flex-start;
 		& .chain__image {
 
 			order: 2;
@@ -387,6 +387,8 @@ $slides:
 .catalog {
 	min-height: em(340);
 	min-width: em(340);
+	display: flex;
+    align-items: center;
 	// margin: 0 -2.5px
 	@include breakpoint($xxs) {
 		min-height: em(250);

@@ -17,14 +17,27 @@ head
       http-equive="X-UA-Compatible",
       content="IE=edge"
     )
+    link(
+        rel="shortcut icon", 
+        type="image/x-icon", 
+        href="{% static '/cosmeticsyou/img/favicon.ico' %}"
+    )
+  
     | {% if title %}
-    title {{ title }}
+    title {{ title|safe }}
     | {% else %}
     | {% block title %}
     | {% endblock %}
     | {% endif %}
-    // Header and Footer
+    
     style.
+      img {
+        width: 100%;
+        margin-top: 1.5em;
+      }
+      .singleShareContent__mainImage {
+        margin-top: 1.5em;
+      }
       .curtains, .preloader {
         width: 100%;
         height: 100%;
@@ -37,7 +50,6 @@ head
         left: 0;
         background-color: #f7f7f7;
       }
-      
       .preloader {
         background: url("{% static 'cosmeticsyou/img/loader/ajax-loader.svg' %}") center no-repeat;
         background-size: 100px;
@@ -58,7 +70,6 @@ head
 body
   .curtains
     figure.preloader
-
   //- include ../blocks/callback/callback.pug
   include ../templates/_header.pug
   // Main Content

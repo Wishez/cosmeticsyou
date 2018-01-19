@@ -225,7 +225,7 @@ section.catalogs
 	ul.catalogsList#catalogs.owl-carousel
 		each catalog, i in catalogs
 			li.catalog.slide(class="catalog_"+ catalog.color, data-index= i)
-				a.catalog__refer(href= catalog.href)
-					img.image(data-lazy="http://ru.oriflame.com/catalogue-image.png")
+				a.catalog__refer.now-follow(href= catalog.href)
+					img.image(src="http://ru.oriflame.com/catalogue-image.png")
 //- end catalogs
 | {% endblock %}

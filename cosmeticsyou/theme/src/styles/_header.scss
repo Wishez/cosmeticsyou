@@ -24,6 +24,7 @@ ul {
 
 .brand {
 	// min-width: em(450, 42);
+	@include round(em(2, 42), 'bottom-right');
 	display: block;
 	padding-top: .1em;
 	background-color: $purple;
@@ -138,8 +139,14 @@ ul {
 			padding-bottom: .6em;
 			@include round(em(2) $i, 'bottom-left');
 		}
-		&:hover .imageContainer_shopping-bag {
-			transform: rotate(-10deg) translateY(25%);
+		&:hover  {
+			& .topNavigationItem__refer {
+				color: $red $i;
+				background-image: none;
+			}
+			& .imageContainer_shopping-bag {
+				transform: rotate(-10deg) translateY(25%);
+	 		}
 		}
 	}
 	&_registration {
@@ -228,12 +235,7 @@ ul {
  		}
 	}
 }
- .callback, .brand {
- 	@include round(em(2, 21), 'bottom-right');
- 	@include breakpoint($sm-less) {
- 		@include round(0);
- 	}
- }
+
  
  .callback, .popupContacts {
  	z-index: 1;
@@ -265,6 +267,7 @@ ul {
  }
 
  .callback {
+ 	@include round(em(2, 21), 'bottom-right');
  	@include flyShadow(2px 5px 15px 2px $shadow);
  	&:hover, &:focus {
  		.imageContainer__image_callback {
@@ -324,7 +327,11 @@ ul {
 		min-width: span(4);
 	}
 }
-
+.callback, .brand {
+ 	@include breakpoint($sm-less) {
+ 		@include round(0);
+ 	}
+ }
 .imageContainer {
 	&_callback {
 		@include breakpoint($xxs) {

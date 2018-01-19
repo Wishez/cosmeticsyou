@@ -5,6 +5,25 @@ style.
 	.share__announce {
 		-webkit-box-orient: vertical;
 	}
+	.share {
+		min-width: 33%;
+	}
+	.shares {
+		margin-bottom: 3em!important;
+	}
+	@media (max-width: 991px) {
+		.share {
+			min-width: 50%;
+		}
+	}
+	@media (max-width: 778px) {
+		.share {
+			min-width: 100%;
+		}
+		.share__title:before{
+			left:30px !important;
+		}
+	}
 section.shares.parent
 	| {% if shares %}
 	h1.mainTitle.shares__title Последние акции
@@ -12,10 +31,11 @@ section.shares.parent
 	article.share.child
 		h2.share__title
 			a.share__title_refer(href="{% url 'single_share' slug=share.slug %}") {{ share.title }}
-		
 		p.shareMeta
-			time.shareMeta__published(datetime="{{ share.published_date }}") Опубликовано: {{ share.published_date }}
+			time.shareMeta__published(datetime="{{ share.published_date }}") {{ share.published_date }}
+		| {% if share.announce %}
 		p.share__announce {{ share.announce }}
+		| {% endif %}
 	| {% endfor %}
 	| {% else %}
 	h1.mainTitle Акций нет.
