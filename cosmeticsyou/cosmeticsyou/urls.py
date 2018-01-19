@@ -6,6 +6,7 @@ from myadmin.admin import admin_site
 
 urlpatterns = [
 	url(r'', include('pages.urls')),
+    url(r'^api/', include('home.urls')),
     url(r'^personal_room/', include('accounts.urls')),
     url(r'^registration/', include('accounts.urls')),
     url(r'^share/', include('shares.urls')),

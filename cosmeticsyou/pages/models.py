@@ -85,7 +85,7 @@ class BasePage(TimeStampedModel):
 
     objects = PageManager()
     def __str__(self):
-        return self.title
+        return self.page_title
     class Meta:
         abstract=True
 

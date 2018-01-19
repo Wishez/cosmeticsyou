@@ -36,13 +36,19 @@ class BaseView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(BaseView, self).get_context_data(**kwargs)
-        is_page_set = self.page is not None
 
-        if self.is_single_model and is_page_set:
+        if self.is_single_model:
             self.get_page()
 
+        is_page_set = self.page is not None
+
         if is_page_set:
-            context = self.get_page_context(context)
+            page = self.page
+            context['title'] = page.page_title
+            context['page'] = page
+            # Установка мета-описания для текущей страницы
+            if page.meta != '':
+                self.meta = page.meta
 
         callback = CallbackForm()
 
@@ -62,12 +68,6 @@ class HomeView(BaseView):
         self.page_model = HomePage
         self.active_page = 'home'
 
-    def set_additional_context(self, context):
-
-        context['program'] = Program.objects.all()
-        context['slider'] = Slider.objects.all()
-
-        return context
 class MediaView(BaseView):
     template_name = 'media.html'
 
