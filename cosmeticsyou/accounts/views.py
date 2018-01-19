@@ -127,7 +127,7 @@ class SuccessView(BaseView):
 
 
 def get_consultant(models, consultant_num):
-    is_found = False
+    is_found = None
 
     for Model in models:
         consultant = Model.objects.filter(consultant_num=consultant_num)
@@ -135,6 +135,37 @@ def get_consultant(models, consultant_num):
             return consultant[0]
 
     return is_found
+
+class PersonalRoomPage(BaseView):
+    template_name = 'personal_room.html'
+
+    def __init__(self):
+        super(PersonalRoomPage, self).__init__()
+        self.is_single_model = False
+        self.consultant = None
+
+    def set_additional_context(self, context):
+        context['title'] = '%s | Персональная комната' % self.consultant.get_full_name()
+
+        context['consultant'] = self.consultant
+
+        return context
+
+    def get(self, request, consultant_num):
+        self.consultant = get_consultant(
+            [User, RefferalConsultant, RelatedConsultant],
+            consultant_num
+        )
+
+
+        if self.consultant is None:
+            raise Http404('')
+
+        return render(
+            request,
+            self.template_name,
+            super(PersonalRoomPage, self).get_context_data()
+        )
 
 def personal_room(request, consultant_num):
     if request.method == 'GET':
