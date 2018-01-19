@@ -256,11 +256,13 @@ $(function() {
 
       
   }); // end click
+
   $(document).on('click', '.slideTo', function() {
     $('html, body').animate({
       scrollTop: $($(this).attr('href')).offset().top
     }, 600, Linear.ease);
   });
+
   $(document).on('click', '.not-follow', function(e) {
 	  const url = $(this).attr('href');
 	  
@@ -270,11 +272,6 @@ $(function() {
 
   }); // end click
 });
-
-// if (!Modernizr.placeholder) {
-//    $.html5support();
-//    $.placeholder(); 
-// }
 
 
 const PHONES = (function() {
@@ -356,4 +353,48 @@ const LADDER = (function() {
       _setColors(true);
     });// end mouseout
   });
+}());
+
+
+const CALLBACK = (function() {
+  $(function() {
+    $(document).on('submit', '#callbackForm', function(event) {
+      event.preventDefault();
+      registerCallback($(this));
+    });
+  });// end load
+
+  function registerCallback($form) {  
+      
+
+    let requestData = {
+        'callback_name': $form.find('#id_callback_name').val(),
+        'callback_phone': $form.find('#id_callback_phone').val()
+      },
+      csrftoken = $form.find('input[name="csrfmiddlewaretoken"]').attr('value');
+
+  
+    $.ajaxSetup({
+      url: '/api/register_callback/',
+      type: 'POST',
+      data: requestData,
+      beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          xhr.setRequestHeader('X-CSRFToken', csrftoken);
+        }
+      }
+    });
+        
+    $.ajax({
+      success: function(respond) {
+        $form.html(respond);
+      },
+      error : function(xhr,errmsg,err) {
+        console.log('failure');
+      }
+    });
+  } // end registerCallback
+  function csrfSafeMethod(method) {
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
 }());
