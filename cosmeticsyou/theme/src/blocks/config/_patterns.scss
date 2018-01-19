@@ -207,9 +207,25 @@
 		border-style: solid;
 		&_purple {
 			border-color: $purple;
+			&:focus {
+				&:invalid {
+					border-color: $red;//#5C1D31;	
+				}
+				&:valid {
+					border-color: #437A67;	
+				}
+			}
 		}
 		&_red {
 			border-color:  $red;
+			&:focus {
+				&:invalid {
+					border-color: $purple;//#5C1D31;	
+				}
+				&:valid {
+					border-color: #437A67;	
+				}
+			}
 		}
 		&_select {
 			padding: .5em;
@@ -218,6 +234,8 @@
 		}
 
 	}
+
+	
 	&__label {
 		align-self: flex-end;
 	}
