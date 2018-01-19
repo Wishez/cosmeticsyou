@@ -27,7 +27,7 @@ def register_callback(request):
             user = form.save(commit=False)
             user.save()
             print(form)
-            html = '<h3 class="callback__success">Спасибо за запрос.<br /> Скоро с вами свяжутся.</h2>'
+            html = '<p>В скором времени, мы обработаем вашу заявку.<br /> Заранее, спасибо за ожидание!</p>'
             return HttpResponse(html)
 
     return HttpResponse('')
