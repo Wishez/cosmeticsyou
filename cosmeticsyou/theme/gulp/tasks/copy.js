@@ -41,7 +41,7 @@ gulp.task('copy:img:min', function() {
 
 
 gulp.task('copy', [
-    config.env === 'production' ? 'copy:img:min' : 'copy:img',
+    // config.env === 'production' ? 'copy:img:min' : 'copy:img',
     // 'copy:rootfiles',
     'copy:lib',
     'copy:fonts'

@@ -3,7 +3,8 @@ from django.core.mail import EmailMessage
 from home.models import EmailMessagesSetting
 from django.conf import settings
 from django.contrib.sites.models import Site
-from sendsms import api
+from twilio.rest import Client
+import os, time
 
 class MessageParser():
     def __init__(
@@ -109,6 +110,9 @@ def send_sms_notification(page, consultant):
 
     phone_from = page.phone_from
     phones_to = page.phones_to.replace(' ', '').split(',')
+    account_sid = page.account_sid
+    auth_token = page.auth_token
+
     parser = MessageParser(
         consultant,
         message=page.message,
@@ -116,10 +120,22 @@ def send_sms_notification(page, consultant):
     )
     parser.parse_text()
     message = parser.message
+    print('account_sid:', account_sid)
+    print('auth_token:', auth_token)
+    client = Client(account_sid, auth_token)
 
-    print('message', message)
-    api.send_sms(
-        body=message,
-        from_phone=phone_from,
-        to=phones_to
-    )
+    for phone_to in phones_to:
+        print('Will send from', phone_from, 'to', phone_to, 'the message', message)
+        time.sleep(1)
+        message = client.messages.create(
+            phone_to,
+            body=message,
+            from_=phone_from
+        )
+
+
+        # api.send_sms(
+        #     body=message,
+        #     from_phone=phone_from,
+        #     to=phones_to
+        # )

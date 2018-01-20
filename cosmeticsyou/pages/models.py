@@ -148,14 +148,14 @@ class RegistrationPage(BasePage):
         max_length=20,
         blank=True,
         null=True,
-        default="+79651581481"
+        default="+17609068017"
     )
     phones_to = models.TextField(
         _('Телефоны для отправления сообщений'),
         max_length=1000,
         blank=True,
         null=True,
-        default="+79651581481",
+        default="+79859051251",
         help_text='Указывайте телефоны через запятую +7000999222,+7222111333'
     )
     message = models.TextField(
@@ -165,6 +165,22 @@ class RegistrationPage(BasePage):
         null=True,
         default="Панель администрирования пополнилась новым консультаном!",
         help_text=variables_text_2
+    )
+    account_sid = models.CharField(
+        _('Account Sid'),
+        max_length=350,
+        blank=True,
+        null=True,
+        default="",
+        help_text="Account Sid из аккаунта TwilioAPI"
+    )
+    auth_token = models.CharField(
+        _('Auth Token'),
+        max_length=350,
+        blank=True,
+        null=True,
+        default="",
+        help_text="Auth Token из аккаунта TwilioAPI"
     )
 
     class Meta:

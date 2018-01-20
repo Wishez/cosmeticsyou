@@ -118,12 +118,12 @@ class RefferalRegistrationView(BaseRegistrationView):
         self.consultant_num = consultant_num
         return super(RefferalRegistrationView, self).get(request)
 
-class SuccessView(BaseView):
+class SuccessView(BaseRegistrationView):
     template_name = 'success.html'
 
     def __init__(self):
         super(SuccessView, self).__init__()
-        self.page_model = None
+
 
 
 def get_consultant(models, consultant_num):

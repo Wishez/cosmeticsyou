@@ -54,6 +54,8 @@ class RegistrationPageAdmin(SingleModelAdmin):
         base_settings_page,
         ('Настройка отправки сообщений', {
             'fields': (
+                ('account_sid',),
+                ('auth_token',),
                 ('phone_from',),
                 ('phones_to',),
                 ('message',),
