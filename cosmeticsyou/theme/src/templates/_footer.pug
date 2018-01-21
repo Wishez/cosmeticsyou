@@ -29,12 +29,12 @@ footer.footer.parent
 			)
 				span.contactsItem__label.visible-hidden-xs Адрес:&thinsp;
 				a.contactsItem__refer(
-			        href="{{ settings.addressHref }}", 
+			        href="{{ settings.addressHref }}",
 	    			itemprop="streetAddress"
 			    ) {{ settings.address }}
 	section.credo.child.parent.centered
 		h2.visible-hidden Кредо
-		p.credo__paragraph Будем физически и духовно здоровы, используя качественную продукцию, распространяя её среди жильцов вашего жэка.
+		p.credo__paragraph Будем физически и духовно здоровы, используя качественную и полезную продукцию.
 
 	nav.navigation.navigation_footer.child#footerNavigation(role="navigation")
 		ul.footerNavigation.parent
@@ -75,7 +75,7 @@ footer.footer.parent
 		 		class="{% if active_page == 'registration' %}registrationButton_active{% endif %}"
 			)
 				a.footerNavigationItem__refer.footerNavigationItem__refer_registration.registrationButton__refer.child(
-					href="{% url 'registration' %}", 
+					href="{% url 'registration' %}",
 					class="{% if active_page == 'registration' %}topNavigationItem__refer_active{% endif %}"
 				) Регистрация
 	.copyright.child.parent.centered
@@ -87,6 +87,6 @@ footer.footer.parent
 			itemscope, itemtype="https://schema.org/Person"
 		) Дизайн и разработка:&nbsp;
 			a.copyright__refer.not-follow(
-				href="https://shining-present.ru/", 
+				href="https://shining-present.ru/",
 				itemprop="author"
 			) Филипп Журавлёв
