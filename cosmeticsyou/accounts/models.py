@@ -165,6 +165,8 @@ class RelatedConsultant(RelatedConsultantTableRelations):
         related_name="refferal_consultants_of_related_consultant",
         blank=True
     )
+    email = models.EmailField(_('E-mail'), blank=True, null=True)
+
     tracker = FieldTracker(fields=['consultant_num'])
     class Meta:
         verbose_name = _('Сторонний консультант')
@@ -276,6 +278,6 @@ def pre_save_referral_consultant(sender, instance, **kwargs):
 @receiver(pre_save, sender=RelatedConsultant)
 def pre_save_related_consultant(sender, instance, **kwargs):
     set_refferal_data(instance, **kwargs)
-    send_notification_to_registered_consultant(instance)
+    #send_notification_to_registered_consultant(instance)
     send_notification_about_set_consultant_number_if_needed(instance)
     send_notification_about_updated_consultant_number_if_needed(instance)

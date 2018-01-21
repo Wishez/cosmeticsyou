@@ -63,13 +63,14 @@ class ConsultantAdmin(admin.ModelAdmin):
 
 class RelatedConsultantAdmin(admin.ModelAdmin):
     list_per_page = 10
-    list_display = ('last_name', 'first_name',  'middle_name', 'consultant_num', 'refferal_url', 'url_to_personal_room',)
+    list_display = ('last_name', 'first_name',  'middle_name', 'consultant_num', 'refferal_url', 'url_to_personal_room', 'email',)
     list_filter = ('last_name', 'first_name', 'middle_name', 'consultant_num',)
     filter_horizontal = ('user_lead', 'user_lead_1', 'user_lead_2',)
     search_fields = (
         'last_name',
         'first_name',
         'middle_name',
+        'email',
         'user_led',
         'user_led_1',
         'user_led_2',
@@ -78,6 +79,7 @@ class RelatedConsultantAdmin(admin.ModelAdmin):
         ('Основная информация', {
             'fields': (
                 ('first_name', 'last_name',),
+                ('email',),
             ),
         },),
         ('Данные консультанта', {

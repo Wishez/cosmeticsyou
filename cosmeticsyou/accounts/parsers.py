@@ -87,12 +87,13 @@ class MessageParser():
 
 
     def send_parsed_text_to_email(self):
-        EmailMessage(
-            self.subject,
-            self.message,
-            getattr(settings, "DEFAULT_FROM_EMAIL", 'support@cosmeticsyou.ru'),
-            [self.consultant.email]
-        ).send()
+        if hasattr(self.consultant, 'email'):
+            EmailMessage(
+                self.subject,
+                self.message,
+                getattr(settings, "DEFAULT_FROM_EMAIL", 'support@cosmeticsyou.ru'),
+                [self.consultant.email]
+            ).send()
 
 
 def create_user_and_notify_about(user, page):
@@ -120,14 +121,11 @@ def send_sms_notification(page, consultant):
     )
     parser.parse_text()
     message = parser.message
-    print('account_sid:', account_sid)
-    print('auth_token:', auth_token)
     client = Client(account_sid, auth_token)
 
     for phone_to in phones_to:
-        print('Will send from', phone_from, 'to', phone_to, 'the message', message)
-        time.sleep(1)
-        message = client.messages.create(
+        time.sleep(4)
+        client.messages.create(
             phone_to,
             body=message,
             from_=phone_from
