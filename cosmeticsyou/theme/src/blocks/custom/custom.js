@@ -1,6 +1,94 @@
-import NormalizeWheel from './../../js/lib/normwheel.js';
 import { TweenMax, Linear } from 'gsap';
 import './../../js/intlTelInput.js';
+import NormalizeWheel from './../../js/lib/normwheel.js';
+import 'owl.carousel';
+
+const SLIDER = (function() {
+  const _state = {
+    currentSlide: 1,
+    $slider: '',
+    isReverse: false
+  };
+  
+
+  const _init = (sliderSelector, options, isAnimatedSlides=false) => {
+    $(function() {
+      _state.$slider = $(sliderSelector);
+      const $slider = _state.$slider;
+      if (!$slider.length) {
+        return false;
+      }
+
+      $slider.owlCarousel(options);
+
+      // $(document).on('keydown', '.owl-carousel', function(e) {
+      //   e.preventDefault();
+          
+      //   switch (event.key) {
+      //     case 'ArrowLeft':
+      //       $slider.trigger('prev.owl');
+      //       break;
+      //     case 'ArrowRight':
+      //       $slider.trigger('next.owl');
+      //       break;
+      //     default:
+      //       return; // Quit when this doesn't handle the key event.
+      //   };
+      // });
+      
+      $slider.on('wheel', '.owl-stage', function(e) {
+        const norm = NormalizeWheel(e.originalEvent);
+    
+        if (norm.spinY > 0) {
+          $slider.trigger('next.owl');
+          _state.isReverse = false;
+        } else {
+          $slider.trigger('prev.owl');
+          _state.isReverse = true;
+        }
+    
+        e.preventDefault();
+      }); // end load
+
+
+    });
+  };
+
+
+  return {
+    start: _init
+  };
+}());
+
+SLIDER.start('#mainSlider', {
+  loop: true,
+  autoplay: true,
+  autoplayTimeout: 6000,
+  autoplayHoverPause: true,
+  lazyLoad: true,
+  items: 1,
+  smartSpeed: 1000,
+  autoplaySpeed: 1000,
+  dots: true
+});
+SLIDER.start('#catalogs', {
+  loop: true,
+  autoplay: true,
+  autoplayTimeout: 6000,
+  autoplayHoverPause: true,
+  lazyLoad: true,
+  items: 1,
+  smartSpeed: 1000,
+  autoplaySpeed: 1000,
+  dots: false,
+  nav: true,
+  navText: ['&#8592;', '&#8594;'],
+  responsive: {
+    480: {
+      items: 2,
+    }
+  }
+}, true);
 
 
 const _ = (function() {
@@ -133,93 +221,7 @@ const _ = (function() {
   };
 }());
 
-const SLIDER = (function() {
-  const _state = {
-    currentSlide: 1,
-    $slider: '',
-    isReverse: false
-  };
-  
 
-  const _init = (sliderSelector, options, isAnimatedSlides=false) => {
-    $(function() {
-      _state.$slider = $(sliderSelector);
-      const $slider = _state.$slider;
-      if (!$slider.length) {
-        return false;
-      }
-
-      $slider.owlCarousel(options);
-
-      $(document).on('keydown', function(e) {
-        e.preventDefault();
-          
-        switch (event.key) {
-          case 'ArrowLeft':
-            $slider.trigger('prev.owl');
-            break;
-          case 'ArrowRight':
-            $slider.trigger('next.owl');
-            break;
-          default:
-            return; // Quit when this doesn't handle the key event.
-        };
-      });
-      
-      $slider.on('wheel', '.owl-stage', function(e) {
-        const norm = NormalizeWheel(e.originalEvent);
-    
-        if (norm.spinY > 0) {
-          $slider.trigger('next.owl');
-          _state.isReverse = false;
-        } else {
-          $slider.trigger('prev.owl');
-          _state.isReverse = true;
-        }
-    
-        e.preventDefault();
-      }); // end load
-
-
-    });
-  };
-
-
-  return {
-    start: _init
-  };
-}());
-
-SLIDER.start('#mainSlider', {
-  loop: true,
-  loop: true,
-  autoplay: true,
-  autoplayTimeout: 6000,
-  autoplayHoverPause: true,
-  lazyLoad: true,
-  items: 1,
-  smartSpeed: 1000,
-  autoplaySpeed: 1000,
-  dots: true
-});
-SLIDER.start('#catalogs', {
-  loop: true,
-  autoplay: true,
-  autoplayTimeout: 6000,
-  autoplayHoverPause: true,
-  lazyLoad: true,
-  items: 1,
-  smartSpeed: 1000,
-  autoplaySpeed: 1000,
-  dots: false,
-  nav: true,
-  navText: ['&#8592;', '&#8594;'],
-  responsive: {
-    480: {
-      items: 2,
-    }
-  }
-}, true);
 
 $(function() {
   $('.preloader, .curtains').css({

@@ -20,9 +20,7 @@ function createConfig(env) {
       // vendor: ['jquery'],
       main: './main.js',
       sw: './sw.js',
-      registration: './registration.js',
-      intlTelInput: './intlTelInput.js',
-      utils: './utils.js'
+      registration: './registration.js'
     },
     output: {
       path: path.join(__dirname, config.dest.js),
