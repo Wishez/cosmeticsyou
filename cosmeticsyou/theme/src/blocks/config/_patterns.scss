@@ -100,10 +100,13 @@
 	right: 1em;
 	top: 1em;
 }
-
+.owl-stage {
+	will-change: transform;
+}
 .description {
 	position: absolute;
 	box-shadow: 0 10px 35px -1px $shadow;
+	will-change: opacity, left, right, top, bottom;
 	font: {
 		size: 18px $i;
 		family: $mainFont;

@@ -224,11 +224,17 @@ const _ = (function() {
 
 
 $(function() {
-  $('.preloader, .curtains').css({
-    'opacity': 0,
-    'zIndex': -10000
-  });
-  $(document).on;
+  const $curtain = $('.preloader, .curtains');
+  TweenMax.to(
+    $curtain, 0.7, {
+      opacity: 0,
+      onComplete: () => {
+        setTimeout(() => {
+          $curtain.remove();
+        }, 100); 
+      }
+    });
+
 
   _.animatePopup();
 
