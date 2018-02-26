@@ -7,14 +7,14 @@
  * 	Default theme - Owl Carousel CSS File
  */
 .owl-nav {
-  margin-top: 10px;
+  margin: 1.5rem auto;
   text-align: center;
   -webkit-tap-highlight-color: transparent; }
 .owl-nav [class*='owl-'] {
   color: #FFF;
-  font-size: 14px;
-  margin: 5px;
-  padding: 4px 7px;
+  font-size: em(14);
+  margin: em(5, 14);
+  padding: em(4, 14) em(5, 14);
   background: #D6D6D6;
   display: inline-block;
   cursor: pointer;
@@ -32,7 +32,7 @@
   cursor: default; }
 
 .owl-nav.disabled + .owl-dots {
-  margin-top: 10px; }
+  margin: 1.5rem auto; }
 
 .owl-dots {
   text-align: center;
@@ -40,7 +40,7 @@
 .owl-dots .owl-dot {
   display: inline-block;
   zoom: 1;
-  *display: inline; }
+}
 .owl-dots .owl-dot span {
     width: 10px;
     height: 10px;
@@ -48,8 +48,9 @@
     background: #D6D6D6;
     display: block;
     -webkit-backface-visibility: visible;
-    transition: opacity 200ms ease;
+    transition: background-color 200ms ease-in, opacity 200ms ease;
     border-radius: 30px; 
+    
 }
 .owl-dots .owl-dot.active span, .owl-dots .owl-dot:hover span {
   background: $purple; 

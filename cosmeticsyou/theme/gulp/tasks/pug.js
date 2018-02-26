@@ -7,9 +7,11 @@ var plumber = require('gulp-plumber');
 function emmitTemplates(pathFrom, pathTo) {
     return gulp.src(pathFrom + '/*.pug')
         .pipe(plumber())
-        .pipe(pug({
-            pretty: process.env.NODE_ENV !== 'production'
-        }))
+        .pipe(pug(
+        // {
+            // pretty: process.env.NODE_ENV !== 'production'
+        // }
+        ))
         .pipe(gulp.dest(pathTo));
 }
 

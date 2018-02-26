@@ -6,6 +6,8 @@ var CACHE_NAME = 'cosmeticsyou-cache-v1';
 var staticCssPath = '/static/cosmeticsyou/css/';
 var staticJsPath = '/static/cosmeticsyou/js/';
 var staticFontPath = '/static/cosmeticsyou/fonts/'; 
+var staticImagesPath = '/static/cosmeticsyou/img/'; 
+var icons = staticImagesPath + 'icons/';
 
 var urlsToCache = [
   staticCssPath + 'main.css',
@@ -48,7 +50,47 @@ var urlsToCache = [
   staticFontPath + 'Roboto/Roboto-Italic.svg',
   staticFontPath + 'Roboto/Roboto-Italic.ttf',
   staticFontPath + 'Roboto/Roboto-Italic.woff',
-  staticFontPath + 'Roboto/Roboto-Italic.woff2'
+  staticFontPath + 'Roboto/Roboto-Italic.woff2',
+
+  staticImagesPath + 'slides/hike.jpg',
+  staticImagesPath + 'slides/business.jpg',
+  staticImagesPath + 'slides/registration.jpg',
+  staticImagesPath + 'slides/team.jpg',
+  staticImagesPath + 'slides/quest.jpg',
+  staticImagesPath + 'chains/programm.jpg',
+  staticImagesPath + 'chains/group.jpg',
+  staticImagesPath + 'chains/gifts.jpg',
+  staticImagesPath + 'chains/stage.jpg',
+
+  staticImagesPath + 'steps/w_step_1.jpg',
+  staticImagesPath + 'steps/w_step_2.jpg',
+  staticImagesPath + 'steps/w_step_3.png',
+  staticImagesPath + 'steps/w_step_4.jpg',
+  staticImagesPath + 'steps/m_step_4.jpg',
+
+  icons + 'shopping_bag.png',
+  icons + 'white_user.png',
+  icons + 'white-phone.png',
+  icons + 'contacts.png',
+  icons + 'callback.png',
+  icons + 'gift.png',
+  icons + 'calendar.png',
+  icons + 'user_card.png',
+  icons + 'phone.png',
+  icons + 'envelope.png',
+  icons + 'city.png',
+  icons + 'region.png',
+  icons + 'street.png',
+  icons + 'appartment.png',
+  icons + 'home.png',
+
+  staticImagesPath + 'ladder/putin.svg',
+  staticImagesPath + 'ladder/gentleman.png',
+  staticImagesPath + 'ladder/knight.png',
+  staticImagesPath + 'ladder/warrior.png',
+  staticImagesPath + 'ladder/man.png',
+
+
 ];
 
 self.addEventListener('install', function(e) {
@@ -61,40 +103,61 @@ self.addEventListener('install', function(e) {
       .catch(function(err) {
         console.log(err, 1);
       })
-  );	
+  );  
 });
 
-self.addEventListener('fetch', function(e) {
-  e.respondWith(
-    caches.match(e.request)
-      .then(function(resp) {
-        if (resp) 
-          return resp;
+self.addEventListener('activate', function(e) {
+  caches.keys().then(function(keyList) {
+    return Promise.all(keyList.map(function(key) {
+      if (key !== CACHE_NAME) {
+        return caches.delete(key);
+      }
+    })
+    );
+  });
 
-        var fetchRequest = e.request.clone();
-
-        return fetch(fetchRequest)
-          .then(function(resp) {
-            if(!resp || resp.status !== 200 || resp.type !== 'basic') {
-			              return resp;
-			            }
-			            var responseToCache = resp.clone();
-			            
-            caches.open(CACHE_NAME)
-              .then(function(cache) {
-                cache.put(e.request, responseToCache);
-              });
-
-            return resp;
-          })
-          .catch(function(err) {
-            console.log(err, 3);
-          });
-
-
-      })
-      .catch(function(err) {
-        console.log(err, 2);
-      })
+  return self.clients.claim();
+});
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.open(CACHE_NAME).then(function(cache) {
+      return cache.match(event.request).then(function(response) {
+        var fetchPromise = fetch(event.request).then(function(networkResponse) {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+        
+        return response || fetchPromise;
+      });
+    })
   );
 });
+// self.addEventListener('fetch', function(e) {
+//   e.respondWith(
+//     caches.match(e.request)
+//       .then(function(resp) {
+//         return resp || fetch(e.request)
+//           .then(function(resp) {
+//             if(!resp || resp.status !== 200 || resp.type !== 'basic') {
+// 			              return resp;
+// 			            }
+// 			            var responseToCache = resp.clone();
+			            
+//             caches.open(CACHE_NAME)
+//               .then(function(cache) {
+//                 cache.put(e.request, responseToCache);
+//               });
+
+//             return resp;
+//           })
+//           .catch(function(err) {
+//             console.log(err, 3);
+//           });
+
+
+//       })
+//       .catch(function(err) {
+//         console.log(err, 2);
+//       })
+//   );
+// });

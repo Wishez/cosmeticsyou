@@ -26,8 +26,21 @@
 		position: absolute;
 	}  
 }
+.materialShadow { 
+	box-shadow: 0 0 10px $shadow;
+}
 
+.lazy {
+	opacity: 0;
+	transition: opacity 1s ease;
+	will-change: opacity;
+}
+
+.fadeIn {
+	opacity: 1;
+}
 .registrationButton {
+	font-size: 1em $i;
 	&_red {
 		background-color: $red;
 	}
@@ -190,7 +203,10 @@
 .controller {
 	flex-basis: span(12);
 	&:not(:first-child) {
-		margin-top: 1em;
+		margin-top: 1.5rem;
+	}
+	@include breakpoint($xxs) {
+		width: span(12);
 	}
 
 	&_required {
@@ -203,7 +219,7 @@
 		min-width: span(12);
 		max-width: span(12);
 		font-size: em(18, 21);
-		padding: em(16) em(12.5);
+		padding: 1rem;
 		@include round(em(2, 21));
 		background-color: $gray;
 		border-width: 2px ;
@@ -299,7 +315,3 @@
 .image {
 	width: 100%;
 }
-// .centered {
-// 	margin-left: auto;
-// 	margin-right: auto;
-// }

@@ -11,6 +11,14 @@
         margin-top: 0.5em;
         font-size: 13px;
     }
+    .visible-hidden {
+      white-space: nowrap;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      width: 1px;
+      height: 1px;
+      position: absolute;
+    }
     .variable {
         color: #050709;
         cursor:pointer;
@@ -28,6 +36,22 @@
         -webkit-transform:scale(1.02);
         color: #050709 !important;
     }
+
+    .copiedHint {
+      position: fixed;
+      top: 0;
+      right: 0;
+      border: 2px solid #99303B;
+      background: #f7f7f7;
+      border-radius: 2px;
+      display: none;
+      color: #212121;
+      text-align: center;
+      padding: 1em .5em;
+      max-width: 200px;
+      line-height: 1.5;
+    }
+
     .variablesHint {
         color: #888;
         padding: 1em 1em;
@@ -37,7 +61,7 @@
         box-shadow: 0 5px 10px -4px rgba(0, 0, 0, 0.6);
 
     }
- </style>
+</style>
 <script>
     (function($) {
         var _screwed = function(selector, callback, event) {
@@ -70,11 +94,11 @@
 
             _screwed(variableClass, function() {
                 $(variableClass).css('color', '#bbb');
-            }, 'mouseover');
+            }, 'mouseover'); // end bouseiver
 
             _screwed(variableClass, function() {
                 $(variableClass).css('color', '#212121');
-            }, 'mouseout');
+            }, 'mouseout'); // end mouseout
 
             _screwed(variableClass, function(event) {
 
@@ -83,15 +107,59 @@
                  try {
                     var successful = document.execCommand('copy');
                     var msg = successful ? 'successful' : 'unsuccessful';
-                    console.log('Copying text command was ' + msg);
+
                   } catch (err) {
                     console.log('Oops, unable to copy');
                   }
+            });// end click
+            var ctrPressed = false;
+            _screwed(window, function(event) {
+                if (event.which === 17) {
+                   ctrPressed = true;
+                }
+            }, 'keydown');
+            var $copiedHint = $("<div class='copiedHint'></div>")
+                .html("Текст скопирован.<br/>Отпустите <strong>Ctrl</strong>!")
+                .appendTo($('body'));
+
+            _screwed(window, function(event) {
+              ctrPressed = false;
+              $copiedHint.hide('fast');
+            }, 'keyup');
+
+            var $copiedText = $('<div class="visible-hidden"></div>')
+              .appendTo($('body'));
+
+            _screwed('input, textarea', function(event) {
+                 if (ctrPressed) {
+                     var text = event.target.value
+                     if (text) {
+                         $copiedText.text(text);
+
+                         SelectText($copiedText[0]);
+
+                         try {
+                            var successful = document.execCommand('copy');
+                            var msg = successful ? 'successful' : 'unsuccessful';
+
+                            $copiedHint.css({
+                              left: event.clientX,
+                              top: event.clientY - 70,
+                            })
+                            $copiedHint.show('fast');
+
+                          } catch (err) {
+                              console.log('Oops, unable to copy');
+                          }
+
+                     }
+                 }
             });
-        }); // end click
+        }); // end load
 
 
     })(django.jQuery);
 </script>
+
 
 {% endblock %}

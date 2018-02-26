@@ -1,5 +1,5 @@
 import './lib/jquery.mask.js';
-import './intlTelInput.js';
+// import './intlTelInput.js';
 
 const REGISTRATION = (function() {
   const that = {};
@@ -96,7 +96,7 @@ const REGISTRATION = (function() {
     }
   };
 
-  const $phone = $('#id_phone_number');
+  
   const $passport = $(`#${masks.passport.inputId}`);
 
   const _maskHandler = {
@@ -105,10 +105,10 @@ const REGISTRATION = (function() {
     },
     get: (id) => {
       const mask = $(id).data('mask');
-      _assert(
-        typeof mask === 'undefined', 
-        'Choice has no mask!'
-      );
+      // _assert(
+      //   typeof mask === 'undefined', 
+      //   'Choice has no mask!'
+      // );
       
       return mask;  
     }, 
@@ -233,9 +233,9 @@ const REGISTRATION = (function() {
    
     _addChoices(masks);
 
-    $phone.intlTelInput({
-      initialCountry: 'ru'
-    });
+    // $phone.intlTelInput({
+    //   initialCountry: 'ru'
+    // });
   };
 
   // Обновляет каждое слово с большой буквы.

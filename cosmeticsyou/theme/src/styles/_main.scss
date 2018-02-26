@@ -1,11 +1,12 @@
 @import './lib/owl.carousel.scss';
 @import './lib/owl.theme.default.scss';
 
-.main {
-	&Title {
-		min-width: span(12);
-		margin: em(50) auto em(25);
-		text-align: center;
+.mainTitle {
+	min-width: span(12);
+	margin: 3rem auto 0;
+	text-align: center;
+	@include breakpoint($sm-less) {
+		margin-top: 6rem;
 	}
 }
 .main p {
@@ -14,10 +15,10 @@
 
 $slides: 
 	('hike', auto, 0), 
-	('team', em(6, 21), 0), 
-	('business', em(6, 21), calc(50% - 222px)), 
-	('quest', em(6, 21), span(2)), 
-	('registration', em(6, 21), 0);
+	('team', 0, 0), 
+	('business', 0, calc(50% - 222px)), 
+	('quest', 0, span(2)), 
+	('registration', 0, 0);
 
 @each $name, $textY, $textX in $slides{
 	.slide__description_#{$name} {
@@ -34,13 +35,16 @@ $slides:
 .mainSlider {
 	max-width: em(1350);
 	margin: em(84) auto;
+	& .owl-stage-outer, & .owl-stage {
+		overflow: hidden;
+    	max-height: em(764);
+	}
 	@include breakpoint($sm-less) {
 		margin-top: 0;
 	}
 	@include breakpoint($xxs) {
-		margin-bottom: em(335);
-		margin-top: em(60);
-
+		margin-bottom: 3rem;
+    	margin-top: 3rem;
 	}
 }
 #mainSlider {
@@ -59,6 +63,9 @@ $slides:
 		overflow: visible $i;
 	}
 }
+.slide__description:not(.slide__description_hike) {
+	bottom: em(7, 18) $i;
+}
 .slide {
 	@include round(em(2, 21));
 	position: relative;
@@ -67,20 +74,25 @@ $slides:
 		max-width: em(444, 21);
 		position: absolute;
 		background-color: $red;
-		padding:  em(17, 21) em(29, 21) em(32, 21); 
-		color: $white;
+		padding:  1.5rem; 
+		color: $white;		
+		margin-top: 0 $i;
+	
 		@include breakpoint($sm-less) {
 			font-size: em(18, 21);
 
 		}
 		@include breakpoint($xs) {
 			font-size: em(15);
+			position: static;
+			width: 100%;
+			max-width: none;
 		}
 		@include breakpoint($xxs) {
-			bottom: auto;
-			top: 98%;
+			// bottom: auto;
+			// top: 98%;
 			min-width: span(12);
-			left: 0;
+			// left: 0;
 			margin-top: 0 $i;
 		}
 		&_hike {
@@ -115,11 +127,12 @@ $slides:
 	flex-wrap: nowrap;
 	
 	&:not(:first-child) {
-		margin-top: em(75);
+		margin: 3rem 0 1rem; 
+
 	}
 	&:nth-child(2n+0) {
 		align-self: flex-end;
-		& .chain__image {
+		& .chainImage {
 			order: 1;
 		}
 		& .chain__paragraph {
@@ -132,7 +145,7 @@ $slides:
 	}
 	&:nth-child(2n+1)  {
 		align-self: flex-start;
-		& .chain__image {
+		& .chainImage {
 
 			order: 2;
 			@include breakpoint($sm-less) {
@@ -149,7 +162,7 @@ $slides:
 		}
 	}
 	&:not(:last-of-type) {
-		& .chain__image {	
+		& .chainImage {	
 			&::after {
 				content: "";
 				position: absolute;
@@ -174,15 +187,6 @@ $slides:
 		align-items: center;
 		margin-top: em(65);
 	}
-	&__image {
-		background-color: $red;
-		max-width: em(210);
-		min-width: em(210);
-		position: relative;
-		&, & .imageContainer__image {
-			@include round(50%);
-		}
-	}
 	&__paragraph {
 		min-width: em(420);
 		max-width: em(420);
@@ -203,13 +207,28 @@ $slides:
 		justify-content: center;
 	}
 	@include breakpoint($sm-less) {
-		padding: 0 10%;
+		padding: 0 1.5rem;
 	}
 	
 }
 .item:nth-last-child(2):nth-child(4n) {
 	@include breakpoint($sm-less) {
 		min-width: span(6);
+	}
+}
+
+.chainImage {
+	position: relative;
+			
+	&, &__image {
+		width: em(210);
+		height: em(210);
+		@include breakpoint($sm-less) {
+			margin-bottom: 1.5rem;
+		}
+	}
+	&__image {
+		@include round(50%);
 	}
 }
 
@@ -295,7 +314,10 @@ $slides:
     	bottom: auto;
 		margin-top: 1em;
     }
-    
+    @include breakpoint($xs) {
+    	left: auto;
+    	margin: .2rem auto;
+    }
 
 }
 .button {
@@ -359,10 +381,15 @@ $slides:
 	.owl-nav {
 		position: absolute;
     	top: em(-55);
+    	margin-top: 0;
     	right: 0;
     	@include breakpoint($xxs) {
     		right: 	1.5em;
     	}
+	}
+
+	.owl-prev, .owl-next {
+		width: em(55, 14);
 	}
 }
 
@@ -421,10 +448,16 @@ $slides:
 	@include breakpoint ($xs) {
 		padding: 0 5%; 
 	} 
+	& .mainTitle {
+		@include breakpoint ($xxs) {
+			order: 1;
+		}
+	}
 }
 .registrationIntro__paragraph {
 
 }
+
 .main p a {
 	color: $darkGray;
 	background-image: linear-gradient(to right, $darkGray 0%, $darkGray 100%);
@@ -432,15 +465,21 @@ $slides:
 .registrationIntro {
 	max-width: 30rem;
 	margin-top: 1.5em;
+	@include breakpoint($xxs) {
+		order: 2;
+	}
 }
 .intl-tel-input {min-width: 100%;}
 .registrationForm {
 	max-width: em(295);
 	margin-right: em(50);	
 	margin-bottom: 	em(50);
-	@include breakpoint ($xxs) {
+	@include breakpoint ($xs) {
 		margin-right: 0;
 	} 
+	@include breakpoint($xxs) {
+		order: 3;
+	}
 	&__button {
 		margin-top: em(24);
 	}
@@ -513,12 +552,15 @@ $slides:
 .main {
 	& h2, p {
 		@include breakpoint($xs) {
-			padding-left: 5%; 
-			padding-right: 5%; 
+			padding-left: 1.5rem; 
+			padding-right: 1.5rem; 
 		}
 	}
 	& p {
 		font-size: em(21);
+		@include breakpoint($xs) {
+			font-size: em(18);
+		}
 	}
 }
 
@@ -627,10 +669,10 @@ $slides:
 				left: 0;	
 			}
 		}
-		&_president, &_mr_manager {
+		&_diamond_executed_director, &_mr_manager {
 			right: 100%;
 		}
-		&_mr_manager, &_president, &_mr_diamond_director {
+		&_mr_manager, &_diamond_executed_director, &_diamond_director {
 			bottom: 1%;
 			bottom: calc(0% + .2em);
 		}
@@ -663,7 +705,7 @@ $slides:
 	max-width: em(920);
 	margin: auto;
 	&__title {
-		margin-bottom: em(50);
+		// margin-bottom: em(50);
 	}
 }
 
@@ -720,8 +762,8 @@ $slides:
 }
 .share {
 	// flex-direction: column;
-	padding: 0 em(24);
-	margin-bottom: em(45);
+	padding: 0 1.5rem;
+	margin: 3rem auto;
 	& p {
 		padding: 0;
 	}
@@ -731,6 +773,22 @@ $slides:
 			background-image: url('./../img/icons/gift.png');
 			width: em(39.9, 24);
 			height: em(32, 24);
+			top: 3px;
+			will-change: transform;
+			transition: transform .5s ease-in;
+		}
+		&:hover {
+			
+			&.share__title:before {
+				transform: scale(1.1);
+			}
+			& .share__title {
+				&_refer {
+					$darkenRed: darken($red, 15%);
+					color: $darkenRed;
+					background-image: linear-gradient(to right, $darkenRed 0%, $darkenRed 100%);
+				}
+			}
 		}
 	}
 	&__paragraph {
@@ -742,10 +800,10 @@ $slides:
 		display: block;
 		display: -webkit-box;
 		-webkit-line-clamp: 5;
-		margin-top: em(18);
+		// margin-top: 1.5rem;
 		// padding: 0 1em;
 		overflow: hidden;
-		height: em((18 * 5 * 1.3) +  (1.3 * 5));
+		height: em((18 * 5 * 1.5));
 		text-overflow: ellipsis;
 	}
 

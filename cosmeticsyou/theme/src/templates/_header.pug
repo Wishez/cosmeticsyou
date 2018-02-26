@@ -3,12 +3,12 @@ header#header.header.parent(
     itemtype="https://schema.org/Organization"
 )
 	nav.navigation.parent.child#navigation(role="navigation")
-		a#brand.brand(href="{% url 'index' %}")
+		a#brand.brand.materialShadow(href="{% url 'index' %}")
 			h1.brand__title(
 				itemprop="name"
 			) Oriflame
-		ul.topNavigation.child.parent
-			li.topNavigationItem.topNavigationItem_shop.child(
+		ul.topNavigation.child.parent.centered.column
+			li.topNavigationItem.topNavigationItem_shop(
 		   		role="presentation"
 			)
 				a.topNavigationItem__refer.not-follow(
@@ -18,7 +18,7 @@ header#header.header.parent(
 					.imageContainer.imageContainer_shopping-bag
 						figure.imageContainer__image.imageContainer__image_shopping-bag
 					span.visible-hidden-smLess Интернет магазин
-			li.topNavigationItem.topNavigationItem_registration.registrationButton.registrationButton_red.child(
+			li.topNavigationItem.topNavigationItem_registration.registrationButton.materialShadow.registrationButton_red(
 			  	role="presentation"
 		 		class="{% if active_page == 'registration' %}registrationButton_active{% endif %}"
 			)
@@ -26,7 +26,7 @@ header#header.header.parent(
 					href="{% url 'registration' %}", 
 					class="{% if active_page == 'registration' %}topNavigationItem__refer_active{% endif %}"
 				) Регистрация
-		ul.contacts.child
+		ul.contacts.child.materialShadow.leftPadding
 			li.contactsItem(
 				itemscope,
 		    	itemtype="https://schema.org/ContactPoint"

@@ -16,7 +16,7 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 body {
-  & * {
+  * {
     margin: 0;
     padding: 0;
     border: 0;
@@ -27,7 +27,7 @@ body {
     family: $mainFont;
     size: 18px;
   }
-  line-height: 1.4;
+  line-height: 1.5;
   word-break: break-word;
   hyphens: auto;
   -webkit-hyphenate-before: 2;
@@ -45,7 +45,7 @@ h2 {
 h1, h2, h3, h4, h5, h6  {
   font-family: $decorativeFont;
   line-height: 1.5;
-  letter-spacing: .12em;
+  letter-spacing: 1.12;
 }
 button {
   cursor: pointer;
@@ -54,7 +54,7 @@ p, li {
   max-width: 60rem;
 }
 p:not(:first-child) {
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 a {
   transition: .2s ease;
@@ -68,23 +68,19 @@ a {
   color: $white;
 
   &:hover, &:focus {
-    // text-decoration: none;  
     $darkenWhite: darken($white, 25%);
     color: $darkenWhite;
     background-image: linear-gradient(to right, $darkenWhite 0%, $darkenWhite 100%);
-    // color: $red;
-    // background-image: linear-gradient(to right, $red 0%, $red 100%);
   }
   &:active {
     color: $red;
-    // text-decoration: none;  
   }
   &:focus {
-    // text-decoration: none;  
+
   }
+}
+.singleShareContent__mainImage {
+  margin-top: 1.5rem;
 }
 
 @import "../config/_figures.scss";
-.placeholder {
-  color: #888;
-}
