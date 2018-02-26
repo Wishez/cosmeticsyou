@@ -120,6 +120,7 @@
 	position: absolute;
 	box-shadow: 0 10px 35px -1px $shadow;
 	will-change: opacity, left, right, top, bottom;
+
 	font: {
 		size: 18px $i;
 		family: $mainFont;
@@ -183,6 +184,7 @@
 	@include breakpoint($xxs) {
 		min-width: 100vw$i;
 		left: 0 $i;
+		top: 15vh $i;
 		position: fixed;
 	}
 }

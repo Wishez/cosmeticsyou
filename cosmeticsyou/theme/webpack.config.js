@@ -19,7 +19,7 @@ function createConfig(env) {
     entry: {
       main: './main.js',
       sw: './sw.js',
-      slider: './slider.js',
+      media: './media.js',
       registration: './registration.js'
     },
     output: {

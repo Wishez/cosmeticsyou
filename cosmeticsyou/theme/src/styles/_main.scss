@@ -44,7 +44,7 @@ $slides:
 	}
 	@include breakpoint($xxs) {
 		margin-bottom: 3rem;
-    	margin-top: 3rem;
+    	margin-top: 6rem;
 	}
 }
 #mainSlider {
@@ -66,6 +66,7 @@ $slides:
 .slide__description:not(.slide__description_hike) {
 	bottom: em(7, 18) $i;
 }
+
 .slide {
 	@include round(em(2, 21));
 	position: relative;
@@ -87,13 +88,14 @@ $slides:
 			position: static;
 			width: 100%;
 			max-width: none;
+			margin-top: -0.6em $i;
 		}
 		@include breakpoint($xxs) {
 			// bottom: auto;
 			// top: 98%;
 			min-width: span(12);
 			// left: 0;
-			margin-top: 0 $i;
+			// margin-top: 0 $i;
 		}
 		&_hike {
 			top: 0;
@@ -479,6 +481,7 @@ $slides:
 	} 
 	@include breakpoint($xxs) {
 		order: 3;
+		max-width: none;
 	}
 	&__button {
 		margin-top: em(24);
@@ -504,28 +507,92 @@ $slides:
 
 .videos {  
   max-width: em(1150);
-  margin: 0 auto em(105);
+  margin: 3rem auto 6rem;
   &__title {
   	min-width: span(12);
   	margin-bottom: 1em;
-    padding-left: .55em;
+    // padding-left: .55em;
   }
   justify-content: center;
+  @include breakpoint($xs) {
+	  padding: 0 1.5rem;
+  }
 }
 
 .video {
- 	margin: 0 1em 2em;
-  	flex: 1 0 45%;
+	@extend %flyShadow;
+
+ 	margin: 0 1rem 1.5em;
+  	flex: 1 0 25%;
+  	min-width: 30%;
+  	padding-bottom: 22%;
   	border: 4px solid $red;
   	max-width: span(8);
   	@include round(em(5));
-  	@include breakpoint($xxs) {
-  		max-width: span(11);
-  	}
+  	@include breakpoint($sm-less) {
+  		padding-bottom: 33.25%;
+  		min-width: 50%;
+  	} 
+  	@include breakpoint($xs) {
+  		min-width: 100%;
+  		padding-bottom: 56.25%;
+
+  	} 
+  	
 }
 
 .video:nth-last-child(2):nth-child(4n) {
 	min-width: span(5);
+}
+.youtube {
+	position: relative;
+	// padding-top: 56.25%;
+	overflow: hidden;
+	cursor: pointer;
+}
+.youtube img {
+	width: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0.7;
+	height: 100%;
+}
+.youtube .play-button {
+	width: 90px;
+	height: 60px;
+	background-color: #333;
+	box-shadow: 0 0 30px rgba( 0,0,0,0.6 );
+	z-index: 1;
+	opacity: 0.8;
+	border-radius: 6px;
+}
+.youtube .play-button:before {
+	content: "";
+	border-style: solid;
+	border-width: 15px 0 15px 26.0px;
+	border-color: transparent transparent transparent #fff;
+}
+.youtube img,
+.youtube .play-button {
+	cursor: pointer;
+}
+.youtube img,
+.youtube iframe,
+.youtube .play-button,
+.youtube .play-button:before {
+	position: absolute;
+}
+.youtube .play-button,
+.youtube .play-button:before {
+	top: 50%;
+	left: 50%;
+	transform: translate3d( -50%, -50%, 0 );
+}
+.youtube iframe {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
 }
 .country-list  {
 	max-width: em(410, 21);
@@ -540,6 +607,12 @@ $slides:
 
 .section {
 	margin-top: em(60);
+	&__title, &__paragraph {
+		@include breakpoint($xxs) {
+			margin-right: 1.5rem;
+			margin-left: 1.5rem;
+		}
+	}
 	@include breakpoint($xxs) {
 	}
 	&__title {
@@ -552,8 +625,8 @@ $slides:
 .main {
 	& h2, p {
 		@include breakpoint($xs) {
-			padding-left: 1.5rem; 
-			padding-right: 1.5rem; 
+			// padding-left: 1.5rem; 
+			// padding-right: 1.5rem; 
 		}
 	}
 	& p {
@@ -703,7 +776,8 @@ $slides:
 }
 .shares {
 	max-width: em(920);
-	margin: auto;
+	margin: 0 auto 3em;
+	
 	&__title {
 		// margin-bottom: em(50);
 	}
@@ -764,6 +838,13 @@ $slides:
 	// flex-direction: column;
 	padding: 0 1.5rem;
 	margin: 3rem auto;
+	min-width: 33%;
+	@include breakpoint($sm) {
+		min-width: 50%;
+	}
+	@include breakpoint($xs) {
+		min-width: 100%;
+	}
 	& p {
 		padding: 0;
 	}
@@ -843,7 +924,7 @@ $slides:
 		margin-bottom: em(16, 36);
 	}
 	@include breakpoint($sm-less) {
-		padding: 0 5%;
+		padding: 0 1.5rem;
 
 	}
 }

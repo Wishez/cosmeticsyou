@@ -177,7 +177,7 @@ ul.items.parent.restrictBlock
 			.itemDescription.description.description_black.description_inline.visible-hidden(id= item.name)
 				h4.description__title.parent= item.itemName
 					button.item__closeButton.closeButton.child(data-popup-id="#" + item.name, aria-pressed="false")
-						i.fa.fa-close.fa-1x
+						i.fas.fa-times.fa-1x
 				.description__content
 					p.itemDescription__description= item.description
 					if item.price
@@ -193,7 +193,7 @@ ul.items.parent.restrictBlock
 				.itemDescription.description.description_black.visible-hidden.description_inline(id= item.secondName)
 					h4.description__title.parent= item.secondItemName
 						button.item__closeButton.closeButton.child(data-popup-id="#" + item.secondName, aria-pressed="false")
-							i.fa.fa-close.fa-1x
+							i.fas.fa-times.fa-1x
 					.description__content
 						p.itemDescription__description= item.secondDescription
 						if item.secondPrice

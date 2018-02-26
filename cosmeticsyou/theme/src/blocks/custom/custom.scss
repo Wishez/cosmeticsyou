@@ -45,7 +45,7 @@ h2 {
 h1, h2, h3, h4, h5, h6  {
   font-family: $decorativeFont;
   line-height: 1.5;
-  letter-spacing: 1.12;
+  letter-spacing: .12em;
 }
 button {
   cursor: pointer;
@@ -63,7 +63,7 @@ a {
     background-image: linear-gradient(to right, $white  0%, $white 100%);
     background-repeat: repeat-x;
     background-position: bottom;
-    background-size: 0.05em 0.05em;
+    background-size: 1px 1px;
   }
   color: $white;
 

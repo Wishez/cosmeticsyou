@@ -9,6 +9,10 @@ $gutters: 0;
 	display: flex;
 	flex-flow: row wrap;
 }
+.inlineParent {
+	display: inline-flex;
+	flex-flow: row wrap;
+}
 .child {
 	flex: 1 0 20%;
 }
@@ -17,3 +21,38 @@ $gutters: 0;
 	justify-content: center;
 	align-items: center;
 }
+
+.row {
+	flex-flow: row wrap
+}
+.column {
+	flex-flow: column wrap
+}
+
+
+.h-around {
+	justify-content: space-around
+}
+.h-between {
+	justify-content: space-between
+}
+.h-start {
+	justify-content: flex-start
+}
+.h-end {
+	justify-content: flex-end
+}
+.h-centered {
+	justify-content: center
+}
+
+.v-centered{
+	align-items: center
+}
+.v-start{
+	align-items: flex-start
+}
+.v-end{
+	align-items: flex-end
+}
+

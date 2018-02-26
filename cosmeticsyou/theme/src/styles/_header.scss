@@ -26,7 +26,7 @@ ul {
 	// min-width: em(450, 42);
 	@include round(em(2, 42), 'bottom-right');
 	display: block;
-	padding-top: .1em;
+	padding-top: .5em;
 	background-color: $purple;
 	text-align: center;
 	font-size: em(42);
@@ -45,7 +45,9 @@ ul {
 		color: $white $i;
 	}
 	&__title {
+		letter-spacing: 0 $i;
 		line-height: 1.4;
+
 		@include breakpoint($sm-less) {
     		margin-top: .5em;
 		}
@@ -86,6 +88,8 @@ ul {
  .contactsItem  {
  	&__label {
  		color: $gray;
+ 		margin-right: .5rem;
+ 		font-size: 2rem;
  	}
  	&__refer {
  		
@@ -125,6 +129,9 @@ ul {
 		min-width: 100%;
 		@include flyShadow(false);
 		padding: 0 1em;
+		 @include breakpoint($sm) {
+		    top: -13px $i;
+		}
 		@include breakpoint($sm-less) {
 	    	max-width: em(122, 21);
     		min-width: span(3);
@@ -134,7 +141,7 @@ ul {
 			background-color: $red;
 			@include round(em(2), 'top-left');
 			@include round(em(2), 'bottom-left');
-			top: -4px;
+			// top: -4px;
     		position: relative;
     		box-shadow: 0 0 10px $shadow;
 		}
@@ -257,11 +264,11 @@ ul {
  	padding: .5em 0;
  	z-index: 2;
 	@include breakpoint($sm-less) {
-		top: em(-155, 21);
+		top: -174px;//em(-197, 21);
 		min-width: 24%;
 	}
 	@include breakpoint($xxs) {
-		top: em(-186);
+		top: em(-186, 18);
 		height: em(79);
 		font-size: em(18, 21);
 	}

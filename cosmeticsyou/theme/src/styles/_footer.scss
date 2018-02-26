@@ -23,9 +23,10 @@
 		min-width: span(5);
 	    background-color: $gray;
 	}
+
 	@include breakpoint($xxs) {
 		// min-height:  em(301.5, 21);
-		top: em(-220.8, 21) $i;
+		top: em(-252, 21) $i;
 	}
 }
 .contacts_footer {
@@ -65,9 +66,10 @@
 }
 .credo, .navigation_footer {
 	@include breakpoint($sm-less) {
-		top: em(-201, 21);
+		top: em(-228, 21);
 	}
 	@include breakpoint($xxs) {
+		top: em(-201, 21);
 		min-width: span(12);
 	}
 }

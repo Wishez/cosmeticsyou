@@ -4,24 +4,36 @@
 h1.mainTitle Медиа контент
 section.videos.parent
 	h2.videos__title Видео
-	iframe.video(
-		width="560",
-		height="315", src="https://www.youtube.com/embed/g3aI1uMFV-Q",
-		frameborder="0",
-		allowfullscreen
-	)
-	iframe.video( 
-		width="560",
-		height="315", 
-		src="https://www.youtube.com/embed/94Zxxf-4_VE",
-		frameborder="0",
-		allowfullscreen
-	)
-	iframe.video(
-		width="560", 
-		height="315",
-		src="https://www.youtube.com/embed/KuHhkFDJKP8", 
-		frameborder="0",
-		allowfullscreen
-	)
+	<div class="youtube video" data-embed="g3aI1uMFV-Q">
+		<div class="play-button"></div>
+	</div>
+	<div class="youtube video" data-embed="94Zxxf-4_VE">
+		<div class="play-button"></div>
+	</div>
+	<div class="youtube video" data-embed="KuHhkFDJKP8">
+		<div class="play-button"></div>
+	</div>
+	//- iframe.video(
+	//- 	width="560",
+	//- 	height="315", src="https://www.youtube.com/embed/g3aI1uMFV-Q",
+	//- 	frameborder="0",
+	//- 	allowfullscreen
+	//- )
+	//- iframe.video( 
+	//- 	width="560",
+	//- 	height="315", 
+	//- 	src="https://www.youtube.com/embed/94Zxxf-4_VE",
+	//- 	frameborder="0",
+	//- 	allowfullscreen
+	//- )
+	//- iframe.video(
+	//- 	width="560", 
+	//- 	height="315",
+	//- 	src="https://www.youtube.com/embed/KuHhkFDJKP8", 
+	//- 	frameborder="0",
+	//- 	allowfullscreen
+	//- )
+
+script.
+	$L = $L.script('media.js');
 | {% endblock %}

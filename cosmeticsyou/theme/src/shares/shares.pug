@@ -3,27 +3,11 @@
 | {% block content %}
 style.
 	.share__announce {
-		-webkit-box-orient: vertical;
+		-webkit-box-orient: vertical;	
 	}
-	.share {
-		min-width: 33%;
-	}
-	.shares {
-		margin-bottom: 3em!important;
-	}
-	@media (max-width: 991px) {
-		.share {
-			min-width: 50%;
-		}
-	}
-	@media (max-width: 778px) {
-		.share {
-			min-width: 100%;
-		}
-		.share__title:before{
-			left:30px !important;
-		}
-	}
+	
+	
+
 section.shares.parent
 	| {% if shares %}
 	h1.mainTitle.shares__title Последние акции

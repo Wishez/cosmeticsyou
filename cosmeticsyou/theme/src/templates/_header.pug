@@ -30,21 +30,19 @@ header#header.header.parent(
 			li.contactsItem(
 				itemscope,
 		    	itemtype="https://schema.org/ContactPoint"
-			)
-				span.contactsItem__label.visible-hidden-xs Email:&thinsp;
-				a.contactsItem__refer(
-			        href="mailto:{{ settings.email }}",
-			        itemprop="email"
-			    ) {{ settings.email }}
+			).
+				<a class="contactsItem__refer inlineParent v-centered" href="mailto:{{ settings.email }}" itemprop="email">
+					<i class="contactsItem__label fas fa-envelope-square"></i>
+					{{ settings.email }}	
+				</a>
 			li.contactsItem(
 				itemscope,
 	      		itemtype="https://schema.org/ContactPoint"
-			)
-				span.contactsItem__label.visible-hidden-xs Телефон:&thinsp;
-				a.contactsItem__refer(
-			        href="tel:{{ settings.email }}",
-			        itemprop="telephone"
-			    ) {{ settings.phone }}
+			).
+				<a class="contactsItem__refer inlineParent v-centered" href="tel:{{ settings.email }}" itemprop="telephone">
+					<i class="contactsItem__label fab fa-whatsapp-square"></i>{{ settings.phone }}
+				</a>
+				
 		.callback.child.parent.centered
 			button.callback__button.showPopup(data-popup-id='#popupCallback', aria-pressed="false")
 				.imageContainer.imageContainer_callback
@@ -52,7 +50,7 @@ header#header.header.parent(
 			#popupCallback.callbackFormWrapper.description.description_purple.description_left.description_beneath.visible-hidden
 				h2.description__title.parent Обратный вызов
 					button.closeButton.child(data-popup-id='#popupCallback', aria-pressed="false")
-						i.fa.fa-close.fa-1x
+						i.fas.fa-times.fa-1x
 				form#callbackForm.descriptionContent.callbackForm.parent(method="post")
 					| {% csrf_token %}
 					| {% for field in callback %}
@@ -115,7 +113,7 @@ header#header.header.parent(
 			address.popupContacts__description.description.description_purple.description_right.description_beneath.visible-hidden#popupContacts
 				h3.description__title.popupContacts__title.parent Наши контакты
 					button#closeContactsButton.closeButton.child(data-popup-id='#popupContacts', aria-pressed="false")
-						i.fa.fa-close.fa-1x
+						i.fas.fa-times.fa-1x
 				ul.descriptionContent.popupContactsList
 					li.contactsItem(
 						itemscope,

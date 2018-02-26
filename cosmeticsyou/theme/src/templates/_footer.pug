@@ -8,30 +8,26 @@ footer.footer.parent
 			li.contactsItem(
 				itemscope,
 	      		itemtype="https://schema.org/ContactPoint"
-			)
-				span.contactsItem__label.visible-hidden-xs Телефон:&thinsp;
-				a.contactsItem__refer(
-			        href="tel:{{ settings.email }}",
-			        itemprop="telephone"
-			    ) {{ settings.phone }}
+			).
+				<a class="contactsItem__refer inlineParent v-centered" href="tel:{{ settings.email }}" itemprop="telephone">
+					<i class="contactsItem__label fab fa-whatsapp-square"></i>{{ settings.phone }}
+				</a>
 			li.contactsItem(
 				itemscope,
 		    	itemtype="https://schema.org/ContactPoint"
-			)
-				span.contactsItem__label.visible-hidden-xs Email:&thinsp;
-				a.contactsItem__refer(
-			        href="mailto:{{ settings.email }}",
-			        itemprop="email"
-			    ) {{ settings.email }}
+			).
+				<a class="contactsItem__refer inlineParent v-centered" href="mailto:{{ settings.email }}" itemprop="email">
+					<i class="contactsItem__label fas fa-envelope-square"></i>
+					{{ settings.email }}	
+				</a>
 			li.contactsItem(
 				itemscope,
 		    	itemtype="https://schema.org/ContactPoint"
-			)
-				span.contactsItem__label.visible-hidden-xs Адрес:&thinsp;
-				a.contactsItem__refer(
-			        href="{{ settings.addressHref }}",
-	    			itemprop="streetAddress"
-			    ) {{ settings.address }}
+			).
+				<a class="contactsItem__refer inlineParent v-centered" href="{{ settings.addressHref }}" itemprop="streetAddress">
+					<i class="contactsItem__label fas fa-address-card"></i>
+					{{ settings.address }}
+				</a>
 	section.credo.child.parent.centered
 		h2.visible-hidden Кредо
 		p.credo__paragraph Будем физически и духовно здоровы, используя качественную и полезную продукцию.

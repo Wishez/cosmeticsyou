@@ -17,7 +17,7 @@ section#registration.registration.parent.restrictBlock
 
 		.registrationForm__controller.controller.parent.child(		class="registrationForm__controller_{{ field.name }}", title="{% if field.field.required %}Поле необходимо заполнить.{% else %}Поле можно оставить пустым.{% endif %}"
 		)
-			label.controller__label.child {{ field.label }}
+			label.controller__label.child(for="{{ field.field.id }}}") {{ field.label }}
 				| {% if field.field.required %}
 				span.controller_required *
 				| {% endif %}
