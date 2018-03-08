@@ -56,7 +56,8 @@ section#registration.registration.parent.restrictBlock
 		p.registrationIntro__paragraph Все ваши заказы, вы можете оформлять на дому, а получать их в месте, которое считаете для себя удобным.
 		p.registrationIntro__paragraph Вы сможете набирать команду, регистрировать её через сайт по своей собственной реферальной ссылке.
 		p.registrationIntro__paragraph Работая в команде, мы уважаем друг друга, помогаем в разнообразных трудностях и идём к успеху зарабатывая вместе!
-
+| {% endblock %}
+| {% block internal_page_script %}
 script.
 	var cacheConsultantNumber  = localStorage.getItem('led_consultant_num');
 
@@ -69,5 +70,5 @@ script.
 
 	document.getElementById('id_user_led').value = consultant_num;
 
-
+	fbq('track', 'CompleteRegistration');
 | {% endblock %}
