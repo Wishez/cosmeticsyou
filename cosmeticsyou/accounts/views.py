@@ -9,7 +9,7 @@ from pages.models import RegistrationPage
 from django.http import Http404
 from .parsers import *
 from threading import Thread
-
+from marks.models import Mark
 
 # Create your views here.
 
@@ -89,20 +89,36 @@ class BaseRegistrationView(BaseView):
 
         return context
 
+    def get(self, request):
+        data = extract_data(request.GET)
 
-def set_led_consultant(consultant_num, consultant_categories, consultants_models):
-    index = 0
+        if 'utm_source' in data:
+            utm_marks = ['utm_source', 'utm_medium', 'utm_content', 'utm_term', 'utm_campaign']
+            mark = Mark()
+            for utm_mark in utm_marks:
+                if utm_mark in data:
+                    setattr(mark, utm_mark, data[utm_mark])
 
-    for Model in consultants_models:
-        consultant = Model.objects.is_consultant(consultant_num)
-        if consultant.exists():
-            return {
-                "type": consultant_categories[index],
-                "instance": consultant[0]
-            }
-        index = index + 1
+            mark.save()
 
-    return False
+            return redirect('registration')
+
+        return super(BaseRegistrationView, self).get(request)
+
+
+    def set_led_consultant(consultant_num, consultant_categories, consultants_models):
+        index = 0
+
+        for Model in consultants_models:
+            consultant = Model.objects.is_consultant(consultant_num)
+            if consultant.exists():
+                return {
+                    "type": consultant_categories[index],
+                    "instance": consultant[0]
+                }
+            index = index + 1
+
+        return False
 
 class RegistrationView(BaseRegistrationView):
     def __init__(self):
@@ -193,4 +209,4 @@ def extract_data(data):
     for key in data:
        new_data[key] = data[key]
     return new_data
-new_data = {'last_name': 'Журавлёв', 'first_name': 'Филипп', 'middle_name': '', 'empty_middle_name': 'on', 'birthday': '2017-11-03', 'passport_data': '9705 - 455421', 'phone_number': '+7 (213) 123 12 31', 'city': 'Moscow','region': 'Moscow', 'street': 'Igralnaya', 'num_home': '1', 'num_apartment': '1', 'email': 'rory_mercury@list.ru', 'checkReady': 'on'}
+# new_data = {'last_name': 'Журавлёв', 'first_name': 'Филипп', 'middle_name': '', 'empty_middle_name': 'on', 'birthday': '2017-11-03', 'passport_data': '9705 - 455421', 'phone_number': '+7 (213) 123 12 31', 'city': 'Moscow','region': 'Moscow', 'street': 'Igralnaya', 'num_home': '1', 'num_apartment': '1', 'email': 'rory_mercury@list.ru', 'checkReady': 'on'}

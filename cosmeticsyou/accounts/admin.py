@@ -28,22 +28,28 @@ class ConsultantAdmin(admin.ModelAdmin):
         'user_led_2',
     )
     fieldsets = (
-        ('Основная информация', {
+        ('Персональные данные', {
             'fields': (
-                ('first_name', 'last_name',),
+                ('email',),
+                ('last_name',),
+                ('first_name',),
                 ('middle_name',),
-                ('birthday', 'citizenship',),
-            ),
-        },),
-        ('Личные данные', {
-            'fields': (
                 ('passport_data',),
-                ('phone_number', 'email',),
-                ('city', 'region',),
-                ('street', 'num_home', 'num_apartment',),
+                ('birthday',),
+                ('phone_number',),
+                ('citizenship',),
             ),
         },),
-        ('Данные консультанта', {
+        ('Адрес', {
+            'fields': (
+                ('region',),
+                ('city',),
+                ('street',),
+                ('num_home',),
+                ('num_apartment',),
+            ),
+        },),
+        ('Технические данные', {
             'fields': (
                 ('consultant_num', 'status',),
             ),
@@ -76,13 +82,14 @@ class RelatedConsultantAdmin(admin.ModelAdmin):
         'user_led_2',
     )
     fieldsets = (
-        ('Основная информация', {
+        ('Персональная данные', {
             'fields': (
-                ('first_name', 'last_name',),
                 ('email',),
+                ('last_name',),
+                ('first_name',),
             ),
         },),
-        ('Данные консультанта', {
+        ('Технические данные', {
             'fields': (
                 ('consultant_num', 'status',),
             ),

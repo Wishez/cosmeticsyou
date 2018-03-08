@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig',
     'shares.apps.SharesConfig',
+    'marks.apps.MarksConfig',
     'myadmin',
     'jet.dashboard',
     'jet',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'raven.contrib.django.raven_compat',
+
     'pages',
 ]
 RAVEN_CONFIG = {
