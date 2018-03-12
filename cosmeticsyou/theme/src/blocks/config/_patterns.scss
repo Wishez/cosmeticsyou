@@ -27,7 +27,7 @@
 	}  
 }
 .materialShadow { 
-	box-shadow: 0 0 10px $shadow;
+	box-shadow: 0 2px 6px $shadow;
 }
 
 .lazy {
@@ -84,7 +84,8 @@
 			background-image: none $i; 
 		}
 	}
-	@extend %all-transition-3;
+	transition: z-index .3s, box-shadow .3s ease, color .3s ease, background .3s ease;
+	// @extend %all-transition-3;
 	&:hover, &:focus, &:active {
 		@extend %flyShadow;
 		z-index: 3;

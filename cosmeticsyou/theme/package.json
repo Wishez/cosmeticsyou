@@ -59,6 +59,7 @@
     "webpack-bundle-analyzer": "^1.5.3"
   },
   "dependencies": {
+    "animejs": "^2.2.0",
     "bootstrap-sass": "^3.3.7",
     "breakpoint-sass": "^2.7.1",
     "compass-mixins": "^0.12.10",

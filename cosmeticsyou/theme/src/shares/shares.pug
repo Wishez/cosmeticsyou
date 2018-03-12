@@ -5,20 +5,17 @@ style.
 	.share__announce {
 		-webkit-box-orient: vertical;	
 	}
-	
-	
-
 section.shares.parent
 	| {% if shares %}
 	h1.mainTitle.shares__title Последние акции
-	| {% for share in shares %}
+	| {% for share in shares|slice:"0:6" %}
 	article.share.child
 		h2.share__title
 			a.share__title_refer(href="{% url 'single_share' slug=share.slug %}") {{ share.title }}
 		p.shareMeta
 			time.shareMeta__published(datetime="{{ share.published_date }}") {{ share.published_date }}
 		| {% if share.announce %}
-		p.share__announce {{ share.announce }}
+		p.share__announce {{ share.announce|safe }}
 		| {% endif %}
 	| {% endfor %}
 	| {% else %}
