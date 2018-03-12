@@ -1,52 +1,51 @@
 | {% extends "base.html" %}
 
 | {% block content %}
-<style>
+style.
 
-@media (max-width: 480px) {
-	.singleShare__title {
-		font-size: 7vw;
+	.singleShare h3 {
+	   margin-top:2.08333em;
 	}
-}
-.singleShare h3 {
-   margin-top:2.08333em;
-}
-.singleShare h2 + *:first-of-type, .singleShare h3 + *:first-of-type, img {
-	margin-top: 1.618em;
-}
-.singleShare a {
-   color: #99303B;
-   background-image: linear-gradient(to right,#99303B 0, #99303B 100%);
-}
-.singleShare ul {
-	margin-top: 1.5rem;
-}
-img {
-	box-shadow: 2px 2px 4px rgba(0,0,0,.25);
-	display: block;
-	max-width: 100%;
-}
-.singleShare, img {
-	border-radius: 2px;
-}
-.singleShare {
-	border: 1em solid #654178;
-    margin-top: 2.617924em;
-    border-left: 0;
-    border-right: 0;
-    padding-bottom: 4.235801032em;
-}
-.singleShare__title {
-	margin-top: 1.618rem;
-}
-.singleShare ul li:before {
-	content: "\25EF";
-    position: relative;
-    top: -0.15625em;
-    font-size: 0.61804697156983930779em;
-    margin-right: 0.38198205906664975759em;
-}
-</style>
+	.singleShare h2 + *:first-of-type, .singleShare h3 + *:first-of-type, img {
+		margin-top: 1.618em;
+	}
+	.singleShare a {
+	   color: #99303B;
+	   background-image: linear-gradient(to right,#99303B 0, #99303B 100%);
+	}
+	.singleShare ul {
+		margin-top: 1.5rem;
+	}
+	img {
+		box-shadow: 2px 2px 4px rgba(0,0,0,.25);
+		display: block;
+		max-width: 100%;
+	}
+	.singleShare, img {
+		border-radius: 2px;
+	}
+	.singleShare {
+		border: 1em solid #654178;
+	    margin-top: 2.617924em;
+	    border-left: 0;
+	    border-right: 0;
+	    padding-bottom: 4.235801032em;
+	}
+	.singleShare__title {
+		margin-top: 1.618rem;
+	}
+	.singleShare ul li:before {
+		content: "\25EF";
+	    position: relative;
+	    top: -0.15625em;
+	    font-size: 0.61804697156983930779em;
+	    margin-right: 0.38198205906664975759em;
+	}
+	@media (max-width: 480px) {
+		.singleShare__title {
+			font-size: 7vw;
+		}
+	}
 section.singleShare
 	h1.mainTitle.singleShare__title {{ page.title }}
 	p.singleShareMeta
