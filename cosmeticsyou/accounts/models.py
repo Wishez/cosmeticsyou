@@ -83,18 +83,20 @@ class FullConsultant(ConsultantBase):
     citizenship = models.BooleanField(_('Не гражданин РФ'), default=False)
     passport_data = models.CharField(
         _('Серия и номер паспорта'),
-        max_length=26
+        max_length=26,
+        blank = True, null = True,
+        default=""
     )
     phone_number = models.CharField(_('Номер телефона'), max_length=26)
 
     city = models.CharField(_('Город'), max_length=50)
-    region = models.CharField(_('Область'), max_length=50, blank=True, null=True)
-
-    street = models.CharField(_('Улица'), max_length=50)
-    num_home = models.CharField(_('Дом'), max_length=5)
-    num_apartment = models.DecimalField(_('Квартира'), max_digits=999, decimal_places=1)
-
+    region = models.CharField(_('Почтовый Индекс'), max_length=50, default="", blank = True, null = True)
     email = models.EmailField(_('E-mail'))
+
+    street = models.CharField(_('Улица'), max_length=50, blank = True, null = True, default="")
+    num_home = models.CharField(_('Дом'), max_length=5, blank = True, null = True, default="")
+    num_apartment = models.DecimalField(_('Квартира'), max_digits=999, decimal_places=1, blank = True, null = True, default=0)
+
 
     class Meta:
         abstract = True
