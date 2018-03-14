@@ -15,9 +15,12 @@ section#registration.registration.parent.restrictBlock
 		| {% autoescape on %}
 		| {% for field in form %}
 
-		.registrationForm__controller.controller.parent.child(		class="registrationForm__controller_{{ field.name }}", title="{% if field.field.required %}Поле необходимо заполнить.{% else %}Поле можно оставить пустым.{% endif %}"
+		.registrationForm__controller.controller.parent.child(class="registrationForm__controller_{{ field.name }}", title="{% if field.field.required %}Поле необходимо заполнить.{% else %}Поле можно оставить пустым.{% endif %}"
 		)
-			label.controller__label.child(for="{{ field.field.id }}}") {{ field.label }}
+			label.controller__label.light.child(
+				id="{{ field.name }}_label", 
+				for="{{ field.name }}"
+			) {{ field.label }}
 				| {% if field.field.required %}
 				span.controller_required *
 				| {% endif %}
@@ -59,16 +62,17 @@ section#registration.registration.parent.restrictBlock
 | {% endblock %}
 | {% block internal_page_script %}
 script.
-	var cacheConsultantNumber  = localStorage.getItem('led_consultant_num');
+	var cacheConsultantNumber  = localStorage.led_consultant_num;
 
 	var consultant_num = "{{ consultant_num }}";
+
 	if (!cacheConsultantNumber) {
-	  localStorage.setItem('led_consultant_num', consultant_num);
+	  localStorage.led_consultant_num = consultant_num;
 	} else {
-	  consultant_num = localStorage.getItem('led_consultant_num');
+	  consultant_num = localStorage.led_consultant_num;
 	}
 
 	document.getElementById('id_user_led').value = consultant_num;
 
-	fbq('track', 'CompleteRegistration');
+	//- fbq('track', 'CompleteRegistration');
 | {% endblock %}

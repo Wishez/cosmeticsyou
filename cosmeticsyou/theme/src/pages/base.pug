@@ -45,7 +45,7 @@ html.no-js(lang="ru")
     <link rel="icon" type="image/png" sizes="32x32" href="/static/cosmeticsyou/img/appIcons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/static/cosmeticsyou/img/appIcons/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/cosmeticsyou/img/appIcons/favicon-16x16.png">
-    <link rel="manifest" href="/static/cosmeticsyou/manifest.json">
+    <link rel="manifest" href="/static/manifest.json">
 
     <meta name="msapplication-TileColor" content="#333">
     <meta name="msapplication-TileImage" content="/static/cosmeticsyou/img/appIcons/ms-icon-144x144.png">
@@ -68,16 +68,13 @@ html.no-js(lang="ru")
       onload="if(media!=='all')media='all'",
       lazyload="1"
     )
-    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    //- <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
     noscript
        link(
         rel="stylesheet",
-        href="{% static 'cosmeticsyou/css/fonts.css' %}",
-        media="none",
-        onload="if(media!=='all')media='all'",
-        lazyload="1"
+        href="{% static 'cosmeticsyou/css/fonts.css' %}"
       ) 
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    //- <script async src="https://cdn.ampproject.org/v0.js"></script>
     link(
         rel="stylesheet",
         href="{% static 'cosmeticsyou/css/main.css' %}",
@@ -211,7 +208,7 @@ html.no-js(lang="ru")
 
   script.
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/static/cosmeticsyou/js/sw.js')
+        navigator.serviceWorker.register('/static/sw.js')
           .then(function(reg){
                console.log('ServiceWorker registration successful with scope: ', reg.scope);
           }).catch(function(err) {

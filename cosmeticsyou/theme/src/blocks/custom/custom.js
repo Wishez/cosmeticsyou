@@ -174,7 +174,22 @@ $(function() {
 
       
   }); // end click
+  $(document).on('blur', 'input', function() {
+    const $this = $(this);
+      
+    if ($this.val()) {
+      $this.addClass('controller__input_hasValue');
+    } else {
+      $this.removeClass('controller__input_hasValue');
+    }
+  });
 
+  $(document).on('click', '.controller__label', function() {
+    const name = $(this).attr('for'); 
+      
+    console.log(name, $(`input[name="${name}"]`));
+    $(`input[name="${$(this).attr('for')}"]`).focus();
+  });
 
   $(document).on('click', '.slideTo', function() {
     $('html, body').animate({
