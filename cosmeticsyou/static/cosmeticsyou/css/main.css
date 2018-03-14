@@ -810,13 +810,13 @@ template { display: none; }
 
 .visible-hidden { white-space: nowrap; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); width: 1px; height: 1px; position: absolute; }
 
-.materialShadow { box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
+.materialShadow { box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); }
 
 .lazy { opacity: 0; transition: opacity 1s ease; will-change: opacity; }
 
 .fadeIn { opacity: 1; }
 
-.registrationButton { font-size: 1em !important; text-align: center; min-width: 11.19048em; max-width: 11.19048em; font-size: 1.16667em; display: inline-block; position: relative; border-radius: 0.09524em; }
+.registrationButton { font-size: 1em !important; text-align: center; min-width: 11.19048em; max-width: 11.19048em; font-size: 1.16667em; display: inline-block; position: relative; border-radius: 0.09524em; transition: z-index .3s, box-shadow .3s ease, color .3s ease, background .3s ease; }
 
 .registrationButton_red { background-color: #99303B; }
 
@@ -868,6 +868,12 @@ template { display: none; }
 
 .description_upstair { bottom: 100% !important; top: auto !important; }
 
+.light { font-weight: 200; }
+
+.bold { font-weight: bold; }
+
+.semi { font-weight: 600; }
+
 .descriptionContent { margin-top: 1em; }
 
 .descriptionContent a { color: #f7f7f7 !important; background-image: linear-gradient(to right, #f7f7f7 0%, #f7f7f7 100%) !important; }
@@ -884,13 +890,23 @@ template { display: none; }
 
 .controller__icon { margin-bottom: .15em; }
 
-.controller__input { min-width: 100%; max-width: 100%; font-size: 0.85714em; padding: 1rem; border-radius: 0.09524em; background-color: #eaeaea; border-width: 2px; border-style: solid; }
+.controller__input { min-width: 100%; max-width: 100%; font-size: 0.85714em; margin-top: 0.19048em; padding: 1rem; border-radius: 0.09524em; background-color: #eaeaea; border-width: 2px; border-style: solid; transition: border .3s ease-in; }
+
+.controller__input:focus { outline: none; }
 
 .controller__input_purple { border-color: #654178; }
 
 .controller__input_purple:focus:invalid { border-color: #99303B; }
 
 .controller__input_purple:focus:valid { border-color: #437A67; }
+
+.controller__input_hasValue.controller__input_purple:invalid { border-color: #99303B; }
+
+.controller__input_hasValue.controller__input_purple:valid { border-color: #437A67; }
+
+.controller__input_hasValue.controller__input_red:invalid { border-color: #654178; }
+
+.controller__input_hasValue.controller__input_red:valid { border-color: #437A67; }
 
 .controller__input_red { border-color: #99303B; }
 
@@ -900,7 +916,7 @@ template { display: none; }
 
 .controller__input_select { padding: .5em; margin-top: .5em; max-height: 11.11111em; }
 
-.controller__label { -ms-flex-item-align: end; align-self: flex-end; }
+.controller__label { -ms-flex-item-align: end; align-self: flex-end; cursor: pointer; }
 
 .controller__checkbox { -webkit-appearance: none; -ms-flex-item-align: center; -ms-grid-row-align: center; align-self: center; cursor: pointer; height: 1.44444em; width: 1.44444em; border: 2px solid #654178; background-color: #eaeaea; max-width: 8.33333%; margin-right: 4.16667%; display: inline-block; position: relative; border-radius: 0.11111em; }
 
@@ -917,8 +933,6 @@ template { display: none; }
 .button_red { background-color: #99303B; }
 
 .image { width: 100%; }
-
-.registrationButton { transition: .3s ease; }
 
 .registrationButton:hover, .registrationButton:focus, .registrationButton:active, .video, .ladderStep:hover, .ladderStep:focus, .ladderStep:active, .referral:hover, .referral:focus, .referral:active { box-shadow: 0 10px 15px -1px rgba(0, 0, 0, 0.4); }
 
@@ -1122,7 +1136,7 @@ ul { list-style: none; }
 
 .bottomNavigationItem__refer { padding-bottom: .7em; background-image: linear-gradient(to right, #654178 0%, #654178 100%) !important; background-position: 0 2.2em !important; background-size: 2.5em !important; white-space: nowrap; }
 
-.bottomNavigationItem__refer_active, .bottomNavigationItem__refer:hover, .bottomNavigationItem__refer:focus { padding-bottom: 1.8em; color: #202020; }
+.bottomNavigationItem__refer_active, .bottomNavigationItem__refer:hover, .bottomNavigationItem__refer:focus { padding-bottom: 1.65em; color: #202020; }
 
 .callback, .popupContacts { z-index: 1; position: relative; max-width: 16.66667%; min-width: 16.66667%; background-color: #99303B; padding: .5em 0; z-index: 2; }
 

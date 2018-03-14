@@ -1,39 +1,5 @@
-
 {% extends "base.html" %}
-{% block content %}
-<style>
-  .share__announce {
-  	-webkit-box-orient: vertical;
-  }
-  .share {
-  	min-width: 33%;
-  }
-  .shares {
-  	margin-bottom: 3em!important;
-  }
-  @media (max-width: 991px) {
-  	.share {
-  		min-width: 50%;
-  	}
-  }
-  @media (max-width: 778px) {
-  	.share {
-  		min-width: 100%;
-  	}
-  	.share__title:before{
-  		left:30px !important;
-  	}
-  }
-</style>
-<section class="shares parent">{% if shares %}
-  <h1 class="mainTitle shares__title">Последние акции</h1>{% for share in shares %}
-  <article class="share child">
-    <h2 class="share__title"><a class="share__title_refer" href="{% url 'single_share' slug=share.slug %}">{{ share.title }}</a></h2>
-    <p class="shareMeta">
-      <time class="shareMeta__published" datetime="{{ share.published_date }}">{{ share.published_date }}</time>
-    </p>{% if share.announce %}
-    <p class="share__announce">{{ share.announce }}</p>{% endif %}
-  </article>{% endfor %}
-  {% else %}
-  <h1 class="mainTitle">Акций нет.</h1>{% endif %}
-</section>{% endblock %}
+{% block content %}<style>.share__announce {
+	-webkit-box-orient: vertical;	
+}</style><section class="shares parent">{% if shares %}<h1 class="mainTitle shares__title">Последние акции</h1>{% for share in shares|slice:"0:6" %}<article class="share child"><h2 class="share__title"><a class="share__title_refer" href="{% url 'single_share' slug=share.slug %}">{{ share.title }}</a></h2><p class="shareMeta"><time class="shareMeta__published" datetime="{{ share.published_date }}">{{ share.published_date }}</time></p>{% if share.announce %}<p class="share__announce">{{ share.announce|safe }}</p>{% endif %}</article>{% endfor %}
+{% else %}<h1 class="mainTitle">Акций нет.</h1>{% endif %}</section>{% endblock %}
