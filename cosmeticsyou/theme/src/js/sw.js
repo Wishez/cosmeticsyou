@@ -15,6 +15,7 @@ var urlsToCache = [
 
   staticJsPath + 'main.js',
   staticJsPath + 'registration.js',
+  staticJsPath + 'media.js',
 
   staticFontPath + 'Politica/Politica.eot',
   staticFontPath + 'Politica/Politica.ttf',
@@ -80,17 +81,12 @@ var urlsToCache = [
   icons + 'envelope.png',
   icons + 'city.png',
   icons + 'region.png',
-  icons + 'street.png',
-  icons + 'appartment.png',
-  icons + 'home.png',
 
   staticImagesPath + 'ladder/putin.svg',
   staticImagesPath + 'ladder/gentleman.png',
   staticImagesPath + 'ladder/knight.png',
   staticImagesPath + 'ladder/warrior.png',
-  staticImagesPath + 'ladder/man.png',
-
-
+  staticImagesPath + 'ladder/man.png'
 ];
 
 self.addEventListener('install', function(e) {
@@ -100,64 +96,28 @@ self.addEventListener('install', function(e) {
       .then(function(cache) {
         return cache.addAll(urlsToCache);
       })
-      .catch(function(err) {
-        console.log(err, 1);
-      })
   );  
 });
 
 self.addEventListener('activate', function(e) {
-  caches.keys().then(function(keyList) {
-    return Promise.all(keyList.map(function(key) {
-      if (key !== CACHE_NAME) {
-        return caches.delete(key);
-      }
+  e.waitUntil(
+    caches.keys().then(function(keyList) {
+      return Promise.all(keyList.map(function(key) {
+        if (key !== CACHE_NAME) {
+          return caches.delete(key);
+        }
+      })
+      );
     })
-    );
-  });
+  );
 
   return self.clients.claim();
 });
+
 self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.open(CACHE_NAME).then(function(cache) {
-      return cache.match(event.request).then(function(response) {
-        var fetchPromise = fetch(event.request).then(function(networkResponse) {
-          cache.put(event.request, networkResponse.clone());
-          return networkResponse;
-        });
-        
-        return response || fetchPromise;
-      });
-    })
-  );
+    event.respondWith(
+      cache.match(event.request).then(function(response) {
+        return response || fetch(event.request);
+      })
+    );
 });
-// self.addEventListener('fetch', function(e) {
-//   e.respondWith(
-//     caches.match(e.request)
-//       .then(function(resp) {
-//         return resp || fetch(e.request)
-//           .then(function(resp) {
-//             if(!resp || resp.status !== 200 || resp.type !== 'basic') {
-// 			              return resp;
-// 			            }
-// 			            var responseToCache = resp.clone();
-			            
-//             caches.open(CACHE_NAME)
-//               .then(function(cache) {
-//                 cache.put(e.request, responseToCache);
-//               });
-
-//             return resp;
-//           })
-//           .catch(function(err) {
-//             console.log(err, 3);
-//           });
-
-
-//       })
-//       .catch(function(err) {
-//         console.log(err, 2);
-//       })
-//   );
-// });
