@@ -5,7 +5,7 @@ from django.conf import settings
 
 if getattr(settings, 'IS_PRODUCTION', False):
     reload(sys)
-    sys.set_default_encoding('utf-8')
+    sys.setdefaultencoding('utf-8')
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _

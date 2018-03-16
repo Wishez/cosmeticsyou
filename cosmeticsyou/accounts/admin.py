@@ -7,7 +7,7 @@ class ConsultantAdmin(admin.ModelAdmin):
     list_per_page = 10
     list_display = ('last_name', 'first_name', 'consultant_num', 'phone_number', 'email', 'status', 'refferal_url', 'url_to_personal_room',)
     # date_hierarchy = 'last_name'
-    list_filter = ('status', 'last_name', 'first_name', 'middle_name', 'citizenship', 'city', 'region',)
+    list_filter = ('status', 'last_name', 'first_name', 'middle_name',  'city', 'region',)
     filter_horizontal = ('user_lead', 'user_lead_1', 'user_lead_2',)
     search_fields = (
         'last_name',
@@ -16,11 +16,11 @@ class ConsultantAdmin(admin.ModelAdmin):
         'city',
         'region',
         'consultant_num',
-        'passport_data',
+        # 'passport_data',
         'birthday',
-        'street',
-        'num_home',
-        'num_apartment',
+        # 'street',
+        # 'num_home',
+        # 'num_apartment',
         'email',
         'phone_number',
         'user_led',
@@ -32,15 +32,13 @@ class ConsultantAdmin(admin.ModelAdmin):
             'fields': (
                 ('first_name', 'last_name',),
                 ('middle_name',),
-                ('birthday', 'citizenship',),
+                ('birthday',),
             ),
         },),
         ('Личные данные', {
             'fields': (
-                ('passport_data',),
                 ('phone_number', 'email',),
                 ('city', 'region',),
-                ('street', 'num_home', 'num_apartment',),
             ),
         },),
         ('Данные консультанта', {

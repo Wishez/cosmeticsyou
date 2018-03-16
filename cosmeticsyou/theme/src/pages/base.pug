@@ -10,7 +10,7 @@ head
   | {% if meta %}
   meta(
     name='description',
-    meta='{{ meta }}'
+    content='{{ meta }}'
   )
   | {% endif %}
   meta(
@@ -261,15 +261,17 @@ body
 
     var BasePath = '{{ site }}/';
     $LAB.setGlobalDefaults({
-      AlwaysPreserveOrder:true
+      //- AlwaysPreserveOrder:true
     });
     var $L = $LAB
-      .script('https://code.jquery.com/jquery-3.1.1.min.js')
-      .script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js')
       .script("{% static '/cosmeticsyou/js/modernizr.js' %}")
+      .script('https://code.jquery.com/jquery-3.1.1.min.js')
+      .wait()
+      .script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js')
       .script("{% static '/cosmeticsyou/js/main.js' %}");
 
-
+| {% block additional_page_scripts %}
+| {% endblock %}
 link(
   rel="stylesheet",
   href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/pepper-grinder/theme.min.css",
@@ -365,16 +367,16 @@ link(
 link(
   rel='preload',
   as='script',
-  href="'https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js'"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"
 )
 link(
   rel='preload',
   as='script',
-  href="'https://code.jquery.com/jquery-3.1.1.min.js'"
+  href="https://code.jquery.com/jquery-3.1.1.min.js"
 )
 script.
   if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register("{% static '/cosmeticsyou/js/sw.js' %}")
+      navigator.serviceWorker.register("/static/sw.js")
         .then(function(reg){
             console.log(true);
         }).catch(function(err) {

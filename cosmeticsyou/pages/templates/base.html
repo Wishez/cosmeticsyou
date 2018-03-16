@@ -1,4 +1,4 @@
-{% load static %}<!DOCTYPE html><html class="no-js" lang="ru"></html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">{% if meta %}<meta name="description" meta="{{ meta }}">{% endif %}<meta http-equive="X-UA-Compatible" content="IE=edge">{% if title %}<title>{{ title }}</title>{% else %}
+{% load static %}<!DOCTYPE html><html class="no-js" lang="ru"></html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">{% if meta %}<meta name="description" content="{{ meta }}">{% endif %}<meta http-equive="X-UA-Compatible" content="IE=edge">{% if title %}<title>{{ title }}</title>{% else %}
 {% block title %}
 {% endblock %}
 {% endif %}<!-- Header and Footer--><style>.header {
@@ -226,19 +226,20 @@
 
 var BasePath = '{{ site }}/';
 $LAB.setGlobalDefaults({
-  AlwaysPreserveOrder:true
+  //- AlwaysPreserveOrder:true
 });
 var $L = $LAB
-  .script('https://code.jquery.com/jquery-3.1.1.min.js')
-  .script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js')
   .script("{% static '/cosmeticsyou/js/modernizr.js' %}")
+  .script('https://code.jquery.com/jquery-3.1.1.min.js')
+  .wait()
+  .script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js')
   .script("{% static '/cosmeticsyou/js/main.js' %}");
-
-</script></body><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/pepper-grinder/theme.min.css" media="none" onload="if (media !== &quot;all&quot;) media=&quot;all&quot;" lazyload="1"><link rel="stylesheet" href="{% static 'cosmeticsyou/css/main.css' %}" media="none" onload="if(media!=='all')media='all'" lazyload="1"><link rel="preload" as="style" href="{% static 'cosmeticsyou/css/main.css' %}"><noscript><link rel="stylesheet" href="{% static 'cosmeticsyou/css/main.css' %}" media="none" onload="if(media!=='all')media='all'" lazyload="1"></noscript><link rel="preload" as="style" href="{% static 'cosmeticsyou/css/main.css' %}"><link href="{% static 'cosmeticsyou/css/ie10greater.css' %}" rel="stylesheet" media="none" onload="if(media!=='all') media='all'" lazyload="1"><link rel="preload" as="style" href="{% static 'cosmeticsyou/css/ie10greater.css' %}"><noscript><link rel="stylesheet" href="{% static 'cosmeticsyou/css/ie10greater.css' %}" media="none" onload="if(media!=='all')media='all'" lazyload="1"></noscript><!--[if IE]>
+</script></body>{% block additional_page_scripts %}
+{% endblock %}<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/pepper-grinder/theme.min.css" media="none" onload="if (media !== &quot;all&quot;) media=&quot;all&quot;" lazyload="1"><link rel="stylesheet" href="{% static 'cosmeticsyou/css/main.css' %}" media="none" onload="if(media!=='all')media='all'" lazyload="1"><link rel="preload" as="style" href="{% static 'cosmeticsyou/css/main.css' %}"><noscript><link rel="stylesheet" href="{% static 'cosmeticsyou/css/main.css' %}" media="none" onload="if(media!=='all')media='all'" lazyload="1"></noscript><link rel="preload" as="style" href="{% static 'cosmeticsyou/css/main.css' %}"><link href="{% static 'cosmeticsyou/css/ie10greater.css' %}" rel="stylesheet" media="none" onload="if(media!=='all') media='all'" lazyload="1"><link rel="preload" as="style" href="{% static 'cosmeticsyou/css/ie10greater.css' %}"><noscript><link rel="stylesheet" href="{% static 'cosmeticsyou/css/ie10greater.css' %}" media="none" onload="if(media!=='all')media='all'" lazyload="1"></noscript><!--[if IE]>
 <link type="text/css" rel="stylesheet" href="{% static 'cosmeticsyou/css/ie9.css' %}" lazyload="1" />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><script>$L = $L.script("{% static 'cosmeticsyou/js/jquery.html5support.min.js' %}");</script><link rel="preload" as="script" href="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"><link rel="preload" as="script" href="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"><link rel="preload" as="script" href="{% static 'cosmeticsyou/css/ie9.css' %}"><link rel="preload" as="script" href="{% static 'cosmeticsyou/js/jquery.html5support.min.js' %}"><![endif]--><link rel="preload" as="script" href="{% static '/cosmeticsyou/js/main.js' %}"><link rel="preload" as="script" href="{% static '/cosmeticsyou/js/modernizr.js' %}"><link rel="preload" as="script" href="'https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js'"><link rel="preload" as="script" href="'https://code.jquery.com/jquery-3.1.1.min.js'"><script>if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register("{% static '/cosmeticsyou/js/sw.js' %}")
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><script>$L = $L.script("{% static 'cosmeticsyou/js/jquery.html5support.min.js' %}");</script><link rel="preload" as="script" href="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"><link rel="preload" as="script" href="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"><link rel="preload" as="script" href="{% static 'cosmeticsyou/css/ie9.css' %}"><link rel="preload" as="script" href="{% static 'cosmeticsyou/js/jquery.html5support.min.js' %}"><![endif]--><link rel="preload" as="script" href="{% static '/cosmeticsyou/js/main.js' %}"><link rel="preload" as="script" href="{% static '/cosmeticsyou/js/modernizr.js' %}"><link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"><link rel="preload" as="script" href="https://code.jquery.com/jquery-3.1.1.min.js"><script>if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register("/static/sw.js")
       .then(function(reg){
           console.log(true);
       }).catch(function(err) {

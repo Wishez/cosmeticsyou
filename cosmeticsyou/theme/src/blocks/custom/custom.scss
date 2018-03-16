@@ -25,7 +25,7 @@ $maroon: #952d2c;
 $hover-link: #bd0d0d;
 $cyan: #76c1e2;
 $viole: #a86fb9;
-$shadow: rgba(0, 0, 0, .9);
+$shadow: rgba(0, 0, 0, .25);
 $red: rgba(255, 18, 17, .9);
 $ghostBlack:  rgba(29, 22, 16, .8);
 /* breakpoints */
@@ -51,7 +51,7 @@ body {
     family: $stackMuseo;
     size: 16px;
   }
-  line-height: 145%;
+  line-height: 1.5;
   word-break: break-word;
   hyphens: auto;
   -webkit-hyphenate-before: 2;
@@ -65,9 +65,13 @@ h1, h2, h3, h4 {
   color: $nightBlack;
 }
 p, li {
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 
+[class*="video"] {
+  border-radius: 3px;
+  box-shadow: 2px 4px 6px 0 $shadow;
+}
 a {
   @include link-colors($nightBlack, $hover-link, $nightBlack, $nightBlack, $nightBlack);
   &:hover {
@@ -83,4 +87,33 @@ a {
 
 .placeholder {
   color: #888;
+}
+
+.fullWidth {
+  min-width: 100%;
+}
+
+.halfWidth {
+  min-width: 100%;
+}
+
+.parent {
+  display: flex;
+}
+
+.child {
+  flex: 1 0 25%;
+}
+.materialShadow { 
+  box-shadow: 2px 4px 6px $shadow;
+}
+.contentWrapper {
+  padding: 1.5rem;
+}
+
+.row {
+  flex-direction: row;
+}
+.wrap {
+  flex-wrap: wrap;
 }

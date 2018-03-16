@@ -2,60 +2,63 @@
 // 2. Cache files
 // 3. Confirm whether all the requored assets are cached or not
 
-var CACHE_NAME = '24cyber-cache-v1';
-var staticCssPath = '/';
-var staticJsPath = '/'; 
+var CACHE_NAME = 'business-oriflame-cache-v1';
+var staticCssPath = '/static/cosmeticsyou/css';
+var staticJsPath = '/static/cosmeticsyou/js'; 
+var staticFontsPath = '/static/cosmeticsyou/fonts/'; 
+var mainFont = staticFontsPath + 'museo/Museo';
 
 var urlsToCache = [
 	staticCssPath + '/main.css',
 	staticJsPath + '/main.js',
-	staticJsPath + '/modernizr.js'
+	staticJsPath + '/modernizr.js',
+	mainFont + '300-Regular-webfont.eot',
+	mainFont + '300-Regular-webfont.ttf',
+	mainFont + '300-Regular-webfont.woff',
+	mainFont + '300-Regular-webfont.svg',
+
+	mainFont + '500-Regular-webfont.eot',
+	mainFont + '500-Regular-webfont.ttf',
+	mainFont + '500-Regular-webfont.woff',
+	mainFont + '500-Regular-webfont.svg',
+
+	mainFont + '700-Regular-webfont.eot',
+	mainFont + '700-Regular-webfont.ttf',
+	mainFont + '700-Regular-webfont.woff',
+	mainFont + '700-Regular-webfont.svg',
+
+
 ];
 
 self.addEventListener('install', function(e) {
-	e.waitUntil(
-		caches
-			.open(CACHE_NAME)
-			.then(function(cache) {
-				return cache.addAll(urlsToCache);
-			})
-			.catch(function(err) {
-				console.log(err, 1);
-			})
-	);	
+  e.waitUntil(
+    caches
+      .open(CACHE_NAME)
+      .then(function(cache) {
+        return cache.addAll(urlsToCache);
+      })
+  );  
 });
 
-self.addEventListener('fetch', function(e) {
-	e.respondWith(
-		caches.match(e.request)
-			.then(function(resp) {
-				if (resp) 
-					return resp;
+self.addEventListener('activate', function(e) {
+  e.waitUntil(
+    caches.keys().then(function(keyList) {
+      return Promise.all(keyList.map(function(key) {
+        if (key !== CACHE_NAME) {
+          return caches.delete(key);
+        }
+      })
+      );
+    })
+  );
 
-				var fetchRequest = e.request.clone();
+  return self.clients.claim();
+});
 
-				return fetch(fetchRequest)
-					.then(function(resp) {
-						if(!resp || resp.status !== 200 || resp.type !== 'basic') {
-			              return resp;
-			            }
-			            var responseToCache = resp.clone();
-			            
-						caches.open(CACHE_NAME)
-							.then(function(cache) {
-								cache.put(e.request, responseToCache);
-							});
-
-						return resp;
-					})
-					.catch(function(err) {
-						console.log(err, 3);
-					});
-
-
-			})
-			.catch(function(err) {
-				console.log(err, 2);
-			})
-	);
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+      cache.match(event.request).then(function(response) {
+        return response || fetch(event.request);
+      })
+    );
 });

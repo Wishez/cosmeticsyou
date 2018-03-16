@@ -11,14 +11,16 @@ class CallbackForm(forms.ModelForm):
         widgets = {
             'callback_name': forms.TextInput(attrs={
                 'class': 'callbackForm__input',
-                # 'pattern': '([А-Я]|[A-Z])([а-я]+|[a-z]+)(([-\s])([А-Я]|[A-Z])?([а-я]+|[a-z]+))?'
+                # 'pattern': '([А-Я]|[A-Z])([а-я]+|[a-z]+)(([-\s])([А-Я]|[A-Z])?([а-я]+|[a-z]+))?',
+                'autocomplete': 'name'
             }),
             'callback_phone': forms.TextInput(attrs={
                 'class': 'callbackForm__input',
-                'type': 'tel'
+                'type': 'tel',
+                'autocomplete': 'tel'
             }),
             'callback_message': forms.Textarea(attrs={
                 'class': 'callbackForm__textarea',
-                'rows': '3'
+                'rows': '3',
             }),
         }

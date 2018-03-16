@@ -2,9 +2,9 @@
   max-width: 780px;
   margin: 34px auto 0;
   & figure {
-    box-shadow: 0 0 15px $shadow;
+    box-shadow: 2px 4px 6px $shadow;
     border-radius: 5px;
-    border: 1px solid $nightBlack;
+    // border: 1px solid $nightBlack;
     background: url('../img/success.jpg') no-repeat center;
     background-size: cover;
     padding-bottom: (453% / 604) * 100;
