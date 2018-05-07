@@ -1,354 +1,353 @@
 .visible-hidden {
-	white-space: nowrap;
-	overflow: hidden;
-	clip: rect(1px, 1px, 1px, 1px);
-	width: 1px;
-	height: 1px;
-	position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    width: 1px;
+    height: 1px;
+    position: absolute;
 }
 .visible-hidden-smLess {
-	@include breakpoint($sm-less) {
-		white-space: nowrap;
-		overflow: hidden;
-		clip: rect(1px, 1px, 1px, 1px);
-		width: 1px;
-		height: 1px;
-		position: absolute;
-	}  
+    @include breakpoint($sm-less) {
+        white-space: nowrap;
+        overflow: hidden;
+        clip: rect(1px, 1px, 1px, 1px);
+        width: 1px;
+        height: 1px;
+        position: absolute;
+    }
 }
 .visible-hidden-xs {
-	@include breakpoint($xs) {
-		white-space: nowrap;
-		overflow: hidden;
-		clip: rect(1px, 1px, 1px, 1px);
-		width: 1px;
-		height: 1px;
-		position: absolute;
-	}  
+    @include breakpoint($xs) {
+        white-space: nowrap;
+        overflow: hidden;
+        clip: rect(1px, 1px, 1px, 1px);
+        width: 1px;
+        height: 1px;
+        position: absolute;
+    }
 }
-.materialShadow { 
-	box-shadow: 0 2px 6px $shadow;
+.materialShadow {
+    box-shadow: 0 2px 6px $shadow;
 }
-
 .lazy {
-	opacity: 0;
-	transition: opacity 1s ease;
-	will-change: opacity;
+    opacity: 0;
+    transition: opacity 1s ease;
+    will-change: opacity;
 }
-
 .fadeIn {
-	opacity: 1;
+    opacity: 1;
 }
 .registrationButton {
-	font-size: 1em $i;
-	&_red {
-		background-color: $red;
-	}
-	&_purple {
-		background-color: $purple;
-	}
-	&:disabled {
-		background-color: $gray;
-		&__refer {
-			&:hover {
-				color: $darkGray $i;
-			}
-		}
-		&:hover {
-			color: $darkGray $i;
-			box-shadow: none;
-		}
-	}
-	text-align: center;
-	min-width: em(235, 21);
-	max-width: em(235, 21);
-	font-size: em(21);
-	display: inline-block;
-	position: relative;
-	@include round(em(2, 21));
-	&_centered {
-		margin: auto;
-		display: block;
-	}
-	// @include flyShadow();
-	&_active {
-		background-color: $purple;
-	}
-	&__refer {
-		color: $white $i;
-		padding: 1em 0;
-		display: block;
-		background-image: none $i;
-		&:hover {
-			color: $white $i;
-			background-image: none $i; 
-		}
-	}
-	transition: z-index .3s, box-shadow .3s ease, color .3s ease, background .3s ease;
-	// @extend %all-transition-3;
-	&:hover, &:focus, &:active {
-		@extend %flyShadow;
-		z-index: 3;
-	}
-}
+    font-size: 1em $i;
+    
 
+    &_white {
+        background-color: transparent;
+        border: 5px solid;
+        color: $white;
+    }
+    &_red {
+        background-color: $red;
+    }
+    &_purple {
+        background-color: $purple;
+    }
+    &:disabled {
+        background-color: $gray;
+        &__refer {
+            &:hover {
+                color: $darkGray $i;
+            }
+        }
+        &:hover {
+            color: $darkGray $i;
+            box-shadow: none;
+        }
+    }
+    text-align: center;
+    min-width: em(250, 21);
+    max-width: em(250, 21);
+    font-size: em(21);
+    display: inline-block;
+    position: relative;
+    @include round(em(2, 21));
+    &_centered {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    } // @include flyShadow();
+    &_active {
+        background-color: $purple;
+    }
+    padding: .75em .5em 1em;
+    &__refer {
+        color: $white $i;
+        background-image: none $i;
+        &:hover {
+            color: $white $i;
+            background-image: none $i;
+        }
+    }
+    transition: z-index .3s, box-shadow .3s ease, color .3s ease, background .3s ease; // @extend %all-transition-3;
+    &:hover, &:focus, &:active {
+        @extend %flyShadow;
+        z-index: 3;
+    }
+
+}
 .imageContainer {
-	display: inline-block;
-	&, &__image {
-		transition: .3s ease-in-out;
-		width: span(12);
-	}
-	&__image {
-		background: center no-repeat;
-		background-size: cover;
-	}
+    display: inline-block;
+    &, &__image {
+        transition: .3s ease-in-out;
+        width: span(12);
+    }
+    &__image {
+        background: center no-repeat;
+        background-size: cover;
+    }
 }
-
 .closeButton {
-	background-color: transparent;
-	border: 0;
-	color: $white;
-	cursor: pointer;
-	max-width: 15%;
-	position: absolute;
-	right: 1em;
-	top: 1em;
-}
-.owl-stage {
-	will-change: transform;
+    background-color: transparent;
+    border: 0;
+    color: $white;
+    cursor: pointer;
+    max-width: 15%;
+    position: absolute;
+    right: 1em;
+    top: 1em;
 }
 .description {
-	position: absolute;
-	box-shadow: 0 10px 35px -1px $shadow;
-	will-change: opacity, left, right, top, bottom;
+    position: absolute;
+    box-shadow: 0 10px 35px -1px $shadow;
+    will-change: opacity, left, right, top, bottom;
+    font: {
+        size: 18px $i;
+        family: $mainFont;
+    }
+    text-align: left;
+    text-transform: initial;
 
-	font: {
-		size: 18px $i;
-		family: $mainFont;
-	}
-	text-align: left;
-	text-transform: initial;
-	&_purple {
-		background-color: $purple;
-	}
-	&_black {
-		background-color: $darkGray;	
-	}
-	opacity: 0;
-	z-index: -1;
-	@include round(em(2, 21));
-	font-size: em(24);
-	min-width: em(350, 21);
-	color: $white;
-	padding:  em(21, 21) em(21, 21) em(32, 21);
-	// line-height: 2;
-	transition: opacity .3s ease;
-	&__title {
-		border-bottom: 1px solid #adadad;
-		font-size: em(24);
-		padding-right: 1em;
-		padding-bottom: .3em;
-		justify-content: space-between;
-		@include breakpoint($xxs) { 
-			font-size: em(21);
-		}
-		& .closeButton {
-			text-align: right;
-			
-		}
-	}
-	&_inline {
-		top: 0 $i;
-		bottom: auto $i;
-	}
-	&_beneath {
-		top: 100% $i;
-		bottom: auto $i;
-		// top: calc(100% + 1em);
-	}
-	&_right {
-		right: 0 $i;
-		left: auto $i;
-		// right: calc(0 - 1em);
+    &_purple {
+        background-color: $purple;
+    }
+    &_black {
+        background-color: $darkGray;
+    }
+    opacity: 0;
+    z-index: -1;
+    @include round(em(2, 21));
+    font-size: em(24);
+    min-width: em(350, 21);
+    color: $white;
+    padding : em(21, 21) em(21, 21) em(32, 21);
+    transition: opacity 270ms cubic-bezier(0.2, 0, 0.4, 1);
 
-	}
-	&_left {
-		left: 0 $i;
-		right: auto $i;
-		// left: calc(0 - 1em);
-	}
-	&_upstair {
-		bottom: 100% $i;
-		top: auto $i;
-		// bottom: calc(100% - 1em);
-	}
-	@include breakpoint($xxs) {
-		min-width: 100vw$i;
-		left: 0 $i;
-		top: 15vh $i;
-		position: fixed;
-	}
+    &__title {
+        border-bottom: 1px solid #adadad;
+        font-size: em(24);
+        padding-right: 1em;
+        padding-bottom: .3em;
+        justify-content: space-between;
+
+        @include breakpoint($xxs) {
+            font-size: em(21);
+        }
+
+        & .closeButton {
+            text-align: right;
+        }
+
+    }
+    &_inline {
+        top: 0 $i;
+        bottom: auto $i;
+    }
+    &_beneath {
+        top: 100% $i;
+        bottom: auto $i; // top: calc(100% + 1em);
+    }
+    &_right {
+        right: 0 $i;
+        left: auto $i; // right: calc(0 - 1em);
+    }
+    &_left {
+        left: 0 $i;
+        right: auto $i; // left: calc(0 - 1em);
+    }
+    &_upstair {
+        bottom: 100% $i;
+        top: auto $i; // bottom: calc(100% - 1em);
+    }
+    @include breakpoint($xxs) {
+        min-width: 80vw$i;
+        left: 10vw $i;
+        top: 22.5vh $i;
+        position: fixed;
+    }
 }
 .light {
-	font-weight: 200;
+    font-weight: 200;
 }
 .bold {
-	font-weight: bold;
+    font-weight: bold;
 }
 .semi {
-	font-weight: 600;	
+    font-weight: 600;
+}
+.marginTop {
+
+	&_1 {
+	    margin-top: 1em;
+	}
+	&_77 {
+		margin-top: em(77);
+	}
+}
+.margin {
+    &_center {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 .descriptionContent {
-	margin-top: 1em;
-	& a {
-		color: $white $i;
-		background-image: linear-gradient(to right, $white 0%, $white 100%) $i;
-	}
+    margin-top: 1em;
+    & a {
+        color: $white $i;
+        background-image: linear-gradient(to right, $white 0%, $white 100%) $i;
+    }
 }
 .shown_element {
-	opacity: 1 $i;
-	z-index: 2 $i;
+    opacity: 1 $i;
+    z-index: 2 $i;
 }
 .showPopup {
-	position: relative;
+    position: relative;
 }
 .controller {
-	flex-basis: span(12);
-	&:not(:first-child) {
-		margin-top: 1.5rem;
-	}
-	@include breakpoint($xxs) {
-		width: span(12);
-	}
-
-	&_required {
-		color: $red;
-	}
-	&__icon {
-		margin-bottom: .15em;
-	}
-	&__input {
-		min-width: span(12);
-		max-width: span(12);
-		font-size: em(18, 21);
-		margin-top: em(4, 21);
-		padding: 1rem;
-		@include round(em(2, 21));
-		background-color: $gray;
-		border-width: 2px ;
-		border-style: solid;
-		transition: border .3s ease-in;
-		&:focus {
-			outline: none;
-		}
-		&_purple {
-			border-color: $purple;
-			&:focus {
-				&:invalid {
-					border-color: $red;//#5C1D31;	
-				}
-				&:valid {
-					border-color: #437A67;	
-				}
-			}
-		}
-
-		&_hasValue {
-			&.controller__input_purple {
-				&:invalid {
-					border-color: $red;//#5C1D31;	
-				}
-				&:valid {
-					border-color: #437A67;	
-				}	
-			}
-			&.controller__input_red {
-				&:invalid {
-					border-color: $purple;//#5C1D31;	
-				}
-				&:valid {
-					border-color: #437A67;	
-				}	
-			}
-		}
-		&_red{
-			border-color:  $red;
-			&:focus {
-				&:invalid {
-					border-color: $purple;//#5C1D31;	
-				}
-				&:valid {
-					border-color: #437A67;	
-				}	
-			}
-		}
-		&_select {
-			padding: .5em;
-			margin-top: .5em;
-			max-height: em(200);
-		}
-
-	}
-
-	
-	&__label {
-		align-self: flex-end;
-		cursor: pointer;
-	}
-	&__checkbox {
-		-webkit-appearance: none;
-		align-self: center;
-		cursor: pointer;
-		// padding: em(9);
-		height: em(26);
-		width: em(26);
-		border: 2px solid $purple;
-		background-color: $gray;
-		max-width: span(1);
-		margin-right: span(1) / 2;
-		display: inline-block;
-		position: relative;
-		@include round(em(2));
-		&:checked:active {
-
-		}
-		&:checked:after {
-			content: '\2714';
-			// font-size: em(15);
-			position: absolute;
-			top: em(1);
-			left: em(3);
-			color: $darkGray;
-		}
-	}
-	&__checkboxLabel {
-		color: $white;
-		padding: .5em 0 .8em 1em ;
-		max-width: span(10);
-		background-color: $red;
-		@include round(em(2));
-	}
+    flex-basis: span(12);
+    &:not(:first-child) {
+        margin-top: 1.5rem;
+    }
+    @include breakpoint($xxs) {
+        width: span(12);
+    }
+    &_required {
+        color: $red;
+    }
+    &__icon {
+        margin-bottom: .15em;
+    }
+    &__input {
+        min-width: span(12);
+        max-width: span(12);
+        font-size: em(18, 21);
+        margin-top: em(4, 21);
+        padding: 1rem;
+        @include round(em(2, 21));
+        background-color: $gray;
+        border-width: 2px;
+        border-style: solid;
+        transition: border .3s ease-in;
+        &:focus {
+            outline: none;
+        }
+        &_purple {
+            border-color: $purple;
+            &:focus {
+                &:invalid {
+                    border-color: $red; //#5C1D31;	
+                }
+                &:valid {
+                    border-color: #437A67;
+                }
+            }
+        }
+        &_hasValue {
+            &.controller__input_purple {
+                &:invalid {
+                    border-color: $red; //#5C1D31;	
+                }
+                &:valid {
+                    border-color: #437A67;
+                }
+            }
+            &.controller__input_red {
+                &:invalid {
+                    border-color: $purple; //#5C1D31;	
+                }
+                &:valid {
+                    border-color: #437A67;
+                }
+            }
+        }
+        &_red {
+            border-color: $red;
+            &:focus {
+                &:invalid {
+                    border-color: $purple; //#5C1D31;	
+                }
+                &:valid {
+                    border-color: #437A67;
+                }
+            }
+        }
+        &_select {
+            padding: .5em;
+            margin-top: .5em;
+            max-height: em(200);
+        }
+    }
+    &__label {
+        align-self: flex-end;
+        cursor: pointer;
+    }
+    &__checkbox {
+        -webkit-appearance: none;
+        align-self: center;
+        cursor: pointer; // padding: em(9);
+        height: em(26);
+        width: em(26);
+        border: 2px solid $purple;
+        background-color: $gray;
+        max-width: span(1);
+        margin-right: span(1) / 2;
+        display: inline-block;
+        position: relative;
+        @include round(em(2));
+        &:checked:active {}
+        &:checked:after {
+            content: '\2714'; // font-size: em(15);
+            position: absolute;
+            top: em(1);
+            left: em(3);
+            color: $darkGray;
+        }
+    }
+    &__checkboxLabel {
+        color: $white;
+        padding: .5em 1em .8em;
+        max-width: span(10);
+        background-color: $red;
+        @include round(em(2));
+    }
 }
-
 .restrictBlock {
-	margin: auto;
-	max-width: em(1350);
+    margin: auto;
+    max-width: em(1350);
 }
-
 .button {
-	border: 0;
-	width: 100%;
-	max-width: em(125);
-	color: $white;
-	@include round(em(2));
-	&_purple {
-		background-color: $purple;
-	}
-	&_red {
-		background-color: $red;
-	}
+    border: 0;
+    width: 100%;
+    max-width: em(125);
+    color: $white;
+    @include round(em(2));
+    &_purple {
+        background-color: $purple;
+    }
+    &_red {
+        background-color: $red;
+    }
 }
-
 .image {
-	width: 100%;
+    width: 100%;
 }

@@ -12,21 +12,23 @@ class MessageParser():
         consultant=None,
         message='',
         subject='',
-        isMessageKey=True
+        isMessageKey=True,
+        recipients=[]
     ):
         self.consultant = consultant
         # Проверка на обычноое ообщение
         if isMessageKey:
-            print(isMessageKey, message)
             self.email_setting  = EmailMessagesSetting.objects.get(is_active='Активная группа')
             setting = self.email_setting
             self.message = getattr(setting, message, '')
             self.subject = getattr(setting, subject, '')
+
         else:
             self.message = message
             self.subject = subject
 
 
+        self.recipients = recipients
 
         self.variables = [
             'refferal_url',
@@ -36,6 +38,11 @@ class MessageParser():
             'first_name',
             'last_name',
             'status',
+            'phone_number',
+            'email',
+            'region',
+            'birthday',
+            'city'
         ]
 
         self.full_name = '%s %s' % (
@@ -87,23 +94,55 @@ class MessageParser():
 
 
     def send_parsed_text_to_email(self):
-        if hasattr(self.consultant, 'email'):
+        recipients_length = len(self.recipients)
+        recipients = []
+        consultant_has_email = hasattr(self.consultant, 'email')
+
+        if recipients_length:
+            recipients += self.recipients
+        else:
+            recipients += self.consultant.email
+
+
+
+        if consultant_has_email or recipients_length:
             EmailMessage(
                 self.subject,
                 self.message,
                 getattr(settings, "DEFAULT_FROM_EMAIL", 'support@cosmeticsyou.ru'),
-                [self.consultant.email]
+                recipients
             ).send()
+
+
 
 
 def create_user_and_notify_about(user, page):
     user.save()
+
     MessageParser(
         user,
         'after_register_message',
         'after_register_subject',
         isMessageKey=True
     )
+
+    birthday = '%s' % user.birthday
+    middle_name = getattr(user, 'middle_name', '')
+
+    MessageParser(
+        user,
+        'ФИО: {{last_name}} {{first_name}} %s\n'
+        'День рождения: {{birthday}}\n'
+        'Телефон: {{phone_number}}\n'
+        'Email: {{email}}\n'
+        'Почтовый индекс: {{region}}\n'
+        'Город: {{city}}\n'
+        '\nК панели администрирования: https://{{site}}/admin/accounts/user/\n' % (middle_name),
+        'Новый консультант присоединился к нашим рядам.',
+        isMessageKey=False,
+        recipients=["shiningfinger@list.ru", "uchuvadov60@inbox.ru"]
+    )()
+
 
     send_sms_notification(page, user)
 
@@ -114,11 +153,15 @@ def send_sms_notification(page, consultant):
     account_sid = page.account_sid
     auth_token = page.auth_token
 
+    if not auth_token:
+        return False
+
     parser = MessageParser(
         consultant,
         message=page.message,
         isMessageKey=False
     )
+
     parser.parse_text()
     message = parser.message
     client = Client(account_sid, auth_token)
@@ -130,10 +173,3 @@ def send_sms_notification(page, consultant):
             body=message,
             from_=phone_from
         )
-
-
-        # api.send_sms(
-        #     body=message,
-        #     from_phone=phone_from,
-        #     to=phones_to
-        # )

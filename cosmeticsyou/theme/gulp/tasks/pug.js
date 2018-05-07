@@ -2,16 +2,14 @@ var gulp    = require('gulp');
 var pug     = require('gulp-pug');
 var config  = require('../config.js');
 var plumber = require('gulp-plumber');
-
+// const gulpAmpValidator = require('gulp-amphtml-validator');
 
 function emmitTemplates(pathFrom, pathTo) {
-    return gulp.src(pathFrom + '/*.pug')
+    return gulp.src(pathFrom + '/*.{pug,html}')
         .pipe(plumber())
-        .pipe(pug(
-        // {
+        .pipe(pug({
             // pretty: process.env.NODE_ENV !== 'production'
-        // }
-        ))
+        }))
         .pipe(gulp.dest(pathTo));
 }
 

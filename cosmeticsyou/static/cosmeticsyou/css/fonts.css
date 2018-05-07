@@ -1,24 +1,86 @@
 /* Fonts */
-@font-face { font-family: "Roboto"; font-style: normal; font-weight: normal; src: url("../fonts/Roboto/Roboto-Regular.eot?") format("eot"), url("../fonts/Roboto/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Regular.woff") format("woff"), url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype"), url('../fonts/Roboto/Roboto-Regular.svg#str-replace("Roboto", " ", "_")') format("svg"); font-display: fallback; }
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/Roboto/Roboto-Regular.eot?") format("eot"), url("../fonts/Roboto/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Regular.woff") format("woff");
+  font-display: fallback;
+}
 
-@font-face { font-family: "Roboto"; font-style: italic; font-weight: normal; src: url("../fonts/Roboto/Roboto-Italic.eot?") format("eot"), url("../fonts/Roboto/Roboto-Italic.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Italic.woff") format("woff"), url("../fonts/Roboto/Roboto-Italic.ttf") format("truetype"), url('../fonts/Roboto/Roboto-Italic.svg#str-replace("Roboto", " ", "_")') format("svg"); font-display: fallback; }
+@font-face {
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: normal;
+  src: url("../fonts/Roboto/Roboto-Italic.eot?") format("eot"), url("../fonts/Roboto/Roboto-Italic.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Italic.woff") format("woff");
+  font-display: fallback;
+}
 
-@font-face { font-family: "Roboto"; font-style: normal; font-weight: bold; src: url("../fonts/Roboto/Roboto-Bold.eot?") format("eot"), url("../fonts/Roboto/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Bold.woff") format("woff"), url("../fonts/Roboto/Roboto-Bold.ttf") format("truetype"), url('../fonts/Roboto/Roboto-Bold.svg#str-replace("Roboto", " ", "_")') format("svg"); font-display: fallback; }
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: bold;
+  src: url("../fonts/Roboto/Roboto-Bold.eot?") format("eot"), url("../fonts/Roboto/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Bold.woff") format("woff");
+  font-display: fallback;
+}
 
-@font-face { font-family: "Roboto"; font-style: italic; font-weight: bold; src: url("../fonts/Roboto/Roboto-BoldItalic.eot?") format("eot"), url("../fonts/Roboto/Roboto-BoldItalic.woff2") format("woff2"), url("../fonts/Roboto/Roboto-BoldItalic.woff") format("woff"), url("../fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype"), url('../fonts/Roboto/Roboto-BoldItalic.svg#str-replace("Roboto", " ", "_")') format("svg"); font-display: fallback; }
+@font-face {
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: bold;
+  src: url("../fonts/Roboto/Roboto-BoldItalic.eot?") format("eot"), url("../fonts/Roboto/Roboto-BoldItalic.woff2") format("woff2"), url("../fonts/Roboto/Roboto-BoldItalic.woff") format("woff");
+  font-display: fallback;
+}
 
-@font-face { font-family: "Roboto"; font-style: normal; font-weight: 200; src: url("../fonts/Roboto/Roboto-Light.eot?") format("eot"), url("../fonts/Roboto/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Light.woff") format("woff"), url("../fonts/Roboto/Roboto-Light.ttf") format("truetype"), url('../fonts/Roboto/Roboto-Light.svg#str-replace("Roboto", " ", "_")') format("svg"); font-display: fallback; }
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 200;
+  src: url("../fonts/Roboto/Roboto-Light.eot?") format("eot"), url("../fonts/Roboto/Roboto-Light.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Light.woff") format("woff");
+  font-display: fallback;
+}
 
-@font-face { font-family: "Politica"; font-style: normal; font-weight: normal; src: url("../fonts/Politica/Politica.eot?") format("eot"), url("../fonts/Politica/Politica.woff2") format("woff2"), url("../fonts/Politica/Politica.woff") format("woff"), url("../fonts/Politica/Politica.ttf") format("truetype"), url('../fonts/Politica/Politica.svg#str-replace("Politica", " ", "_")') format("svg"); font-display: fallback; }
+@font-face {
+  font-family: "Politica";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/Politica/Politica.eot?") format("eot"), url("../fonts/Politica/Politica.woff2") format("woff2"), url("../fonts/Politica/Politica.woff") format("woff");
+  font-display: fallback;
+}
 
-@font-face { font-family: "Politica"; font-style: normal; font-weight: bold; src: url("../fonts/Politica/Politica-Bold.eot?") format("eot"), url("../fonts/Politica/Politica-Bold.woff2") format("woff2"), url("../fonts/Politica/Politica-Bold.woff") format("woff"), url("../fonts/Politica/Politica-Bold.ttf") format("truetype"), url('../fonts/Politica/Politica-Bold.svg#str-replace("Politica", " ", "_")') format("svg"); font-display: fallback; }
+@font-face {
+  font-family: "Politica";
+  font-style: normal;
+  font-weight: bold;
+  src: url("../fonts/Politica/Politica-Bold.eot?") format("eot"), url("../fonts/Politica/Politica-Bold.woff2") format("woff2"), url("../fonts/Politica/Politica-Bold.woff") format("woff");
+  font-display: fallback;
+}
 
-@font-face { font-family: "Politica"; font-style: italic; font-weight: bold; src: url("../fonts/Politica/Politica-BoldItalic.eot?") format("eot"), url("../fonts/Politica/Politica-BoldItalic.woff2") format("woff2"), url("../fonts/Politica/Politica-BoldItalic.woff") format("woff"), url("../fonts/Politica/Politica-BoldItalic.ttf") format("truetype"), url('../fonts/Politica/Politica-BoldItalic.svg#str-replace("Politica", " ", "_")') format("svg"); font-display: fallback; }
+@font-face {
+  font-family: "Politica";
+  font-style: italic;
+  font-weight: bold;
+  src: url("../fonts/Politica/Politica-BoldItalic.eot?") format("eot"), url("../fonts/Politica/Politica-BoldItalic.woff2") format("woff2"), url("../fonts/Politica/Politica-BoldItalic.woff") format("woff");
+  font-display: fallback;
+}
 
-@font-face { font-family: "Politica"; font-style: normal; font-weight: 800; src: url("../fonts/Politica/Politica-ExtraBold.eot?") format("eot"), url("../fonts/Politica/Politica-ExtraBold.woff2") format("woff2"), url("../fonts/Politica/Politica-ExtraBold.woff") format("woff"), url("../fonts/Politica/Politica-ExtraBold.ttf") format("truetype"), url('../fonts/Politica/Politica-ExtraBold.svg#str-replace("Politica", " ", "_")') format("svg"); font-display: fallback; }
+@font-face {
+  font-family: "Politica";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../fonts/Politica/Politica-ExtraBold.eot?") format("eot"), url("../fonts/Politica/Politica-ExtraBold.woff2") format("woff2"), url("../fonts/Politica/Politica-ExtraBold.woff") format("woff");
+  font-display: fallback;
+}
 
-@font-face { font-family: "FontAwesome"; src: url("../fonts/fontawesome-webfont.eot?") format("eot"), url("../fonts/fontawesome-webfont.woff2") format("woff2"), url("../fonts/fontawesome-webfont.woff") format("woff"), url("../fonts/fontawesome-webfont.ttf") format("truetype"), url('../fonts/fontawesome-webfont.svg#str-replace("FontAwesome", " ", "_")') format("svg"); font-display: fallback; }
+@font-face {
+  font-family: "FontAwesome";
+  src: url("../fonts/fontawesome-webfont.eot?") format("eot"), url("../fonts/fontawesome-webfont.woff2") format("woff2"), url("../fonts/fontawesome-webfont.woff") format("woff");
+  font-display: fallback;
+}
 
-@font-face { font-family: "slick"; src: url("../fonts/slick.eot?") format("eot"), url("../fonts/slick.woff2") format("woff2"), url("../fonts/slick.woff") format("woff"), url("../fonts/slick.ttf") format("truetype"), url('../fonts/slick.svg#str-replace("slick", " ", "_")') format("svg"); font-display: fallback; }
+@font-face {
+  font-family: "slick";
+  src: url("../fonts/slick.eot?") format("eot"), url("../fonts/slick.woff2") format("woff2"), url("../fonts/slick.woff") format("woff");
+  font-display: fallback;
+}
 
 /*# sourceMappingURL=fonts.css.map */

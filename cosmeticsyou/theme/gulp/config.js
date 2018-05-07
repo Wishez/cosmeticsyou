@@ -30,7 +30,12 @@ var config = {
         lib          : 'src/lib',
         pages        : 'src/pages',
         accounts     : 'src/accounts',
-        shares       : 'src/shares'
+        shares       : 'src/shares',
+        amp: {
+            shares: '../shares/templates',
+            pages: '../pages/templates',
+            accounts: '../accounts/templates',
+        }
     },
     dest: {
         root    : destPath,

@@ -14,7 +14,6 @@ var urlsToCache = [
   staticCssPath + 'fonts.css',
 
   staticJsPath + 'main.js',
-  staticJsPath + 'registration.js',
   staticJsPath + 'media.js',
 
   staticFontPath + 'Politica/Politica.eot',
@@ -115,9 +114,9 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('fetch', function(event) {
-    event.respondWith(
-      cache.match(event.request).then(function(response) {
-        return response || fetch(event.request);
-      })
-    );
+  event.respondWith(
+    cache.match(event.request).then(function(response) {
+      return response || fetch(event.request);
+    })
+  );
 });

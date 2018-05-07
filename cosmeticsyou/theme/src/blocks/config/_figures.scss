@@ -17,12 +17,12 @@ $figures:
 	('street', 'street.png', 512, 512, em(35, 21), true),
 	('region', 'region.png', 512, 512, em(35, 21), true),
 	('num_apartment', 'appartment.png', 512, 512, em(35, 21), true),
-	('birthday', 'calendar.png', 512, 512, em(35, 21), true),
-	('step_1', 'steps/w_step_1.jpg', 512, 512, em(250), false),
-	('step_2', 'steps/w_step_2.jpg', 512, 512, em(250), false),
-	('step_3', 'steps/w_step_3.png', 512, 512, em(250), false),
-	('w_step_4', 'steps/w_step_4.jpg', 512, 512, em(250), false),
-	('m_step_4', 'steps/m_step_4.jpg', 512, 512, em(250), false);
+	('birthday', 'calendar.png', 512, 512, em(35, 21), true);
+	// ('step_1', 'steps/w_step_1.jpg', 512, 512, em(250), false),
+	// ('step_2', 'steps/w_step_2.jpg', 512, 512, em(250), false),
+	// ('step_3', 'steps/w_step_3.jpg', 512, 512, em(250), false),
+	// ('w_step_4', 'steps/w_step_4.jpg', 512, 512, em(250), false);
+	// ('m_step_4', 'steps/m_step_4.jpg', 512, 512, em(250), false);
 
 
 @each $name, $url, $height, $width, $max-width, $isIcon in $figures {

@@ -1,26 +1,6 @@
 | {% extends 'base.html' %}
 - 
-	var slides = [
-		{
-			'name': 'hike',
-			'description': 'Мы команда консультантов. Работаем с Oriflame, зарабатываем на продаже различных полезных предметов: разнообразная косметика, аксессуары и вкусные, но и, самое главное, полезные продукты. А самый главный доход идёт с сформированной команды! Мы никогда не скучаем и имеем кучу бонусов.'
-		},
-		{
-			'name': 'team',
-			'description': 'Мы любим своих товарищей и стараемся помогать им развиваться в сфере, где работаем. Если у вас есть желание делать дело, мы готовы приложить все усилия для достижения результата!'
-		},
-		{
-			'name': 'business',
-			'description': 'Помимо нашей поддержки, вы будете обладать разными привилегиями на разнообразные предметы в каталогах oriflame. В них вы найдёте море интересных вещей для вас и ваших близких! Или же делать бизнес на стороне;).'
-		},
-		{
-			'name': 'quest',
-			'description': 'Мы создаём для консультантов акции, участие в которых сулит богатство тому, кто выполнит все  условия акции. Вы любите интересные задания?'
-		},
-		{
-			'name': 'registration',
-			'description': "Пройдя регистрацию, вы официально станете любимым членом нашей замечательной команды!"
-		}];
+
 		var chains = [
 			{
 				'name': 'programm',
@@ -52,34 +32,34 @@
 				"title": "1 этап",
 				"itemName": "Набор первого этапа",
 				'name': 'step_1',
-				"description": "Питательный крем для рук и тела\n\nМолоко и Мед - Золотая серия (код 31602)\n\nКрем-мыло Молоко и мед – Золотая серия (код 31604)\n\nУвлажняющий крем для душа Молоко и мед – Золотая серия (код 31605)\n\nСпециальное смягчающее средство Нежная забота (код 1276)",
-				"profit": "Разница с ценой в каталоге составит 1033 + 5% от суммы набора"
+				"description": "Для разогрева, мы предлагаем вам питательный крем для рук и тела\n\nМолоко и Мед - Золотая серия (Код: 31602)\n\nКрем-мыло Молоко и мед – Золотая серия (Код: 31604).",
+				//- "profit": "Ваш бонус будеРазница с ценой в каталоге составит 1033 + 5% от суммы набора."
 			},
 			{
 				"title": "2 этап",
 				"itemName": "Набор второго этапа",
 				'name': 'step_2',
-				"description": "Набор продуктов The ONE: губная помада The ONE Colour Stylist (оттенок «Дивный пион») и тушь для ресниц 5-в-11 The ONE Wonderlash (оттенок «Черный»). Модные тенденции, универсальные решения на каждый день и секреты мастерства бьюти-экспертов — бренд The ONE поможет тебе перенести образы с подиума в жизнь!",
-				"profit": "Разница с ценой в каталоге составит 2066 + 5% от суммы набора"
+				"description": "Вам будет доступен набор продуктов The ONE: Губная помада The ONE Colour Stylist (оттенок «Дивный пион») и тушь для ресниц 5-в-11 The ONE Wonderlash (оттенок «Черный»).",
+				"profit": "Ваша выгода будет в разнице с ценой в каталоге ー 2066 + 5% от суммы набора"
 			},
 			{
 				"title": "3 этап",
 				"itemName": "Набор третьего этапа",
 				'name': 'step_3',
-				"description": "Комплимент по вкусу: продукты Optimals Age Revive (код 540211; антивозрастной дневной и ночной крем, а также крем для кожи вокруг глаз) или туалетную воду Eclat Femme для нее (код 540212) или Eclat Homme для него (код 540213).",
-				"profit": "Разница с ценой в каталоге составит 3099 + 5% от суммы набора"
+				"description": "Вы получите  продукты Optimals Age Revive антивозрастной дневной и ночной крем, а также крем для кожи вокруг глаз(Код: 540211;), или туалетную воду Eclat Femme для неё (Код: 540212), но, возможно, Eclat Homme для него (Код: 540213).",
+				"profit": "Ваша выгода будет в разнице с ценой в каталоге ー 3099 + 5% от суммы набора."
 				
 			},
 			{
 				"title": "4 этап",
-				"itemName": "Набор для женщин",
-				'name': 'w_step_4',
-				"description": "«Вэлнэс Пэк» для женщин (540214)",
-				'secondName': 'm_step_4',
-				"secondItemName": "Набор для мужчин",
-				'secondDescription': '«Вэлнэс Пэк» для мужчин (код 540215)',
-				"profit": "Разница с ценой в каталоге составит 4 130 + 5% от суммы набора",
-				"secondProfit": "Разница с ценой в каталоге составит 4 130 + 5% от суммы набора"
+				"itemName": "Набор на выбор",
+				'name': 'step_4',
+				"description": "«Вэлнэс Пэк» для женщин (Код: 540214) или «Вэлнэс Пэк» для мужчин (Код: 540215)",
+				//- 'secondName': 'm_step_4',
+				//- "secondItemName": "Набор для мужчин",
+				//- 'secondDescription': '«Вэлнэс Пэк» для мужчин (код 540215)',
+				"profit": "Ваша выгода будет в разнице с ценой в каталоге ー  4 130 + 5% от суммы набора.",
+				//- "secondProfit": "Разница с ценой в каталоге составит 4 130 + 5% от суммы набора"
 			},
 		];
 	var FAQ = [
@@ -96,42 +76,44 @@
 			"paragraphs": ["Разрабатывая косметику, специалисты придерживаются разработке продукта, имеющий не только декоративные свойства, но и поддерживающий организм в тонусе настолько, насколько это возможно.", "Велнес — это деньги, потраченные на то, чтобы чувствовать себя более здоровым, даже если вы не “больны” по обычным медицинским параметрам. Сегодня главная потребность большинства людей не в деньгах, а в здоровье."]
 		}
 	];
-	var catalogs = [
-		{
-			"href": 'http://ru.oriflame.com/ecatalogue/502181?per=201609',
-			"color": "red" 
-		},
-		{
-		"href": 'http://ru.oriflame.com/ecatalogue/502181?per=201609',
-		"color": "purple" 
-		},
-		{
-		"href": 'http://ru.oriflame.com/ecatalogue/502181?per=201609',
-		"color": "red" 
-		},
-		{
-		"href": 'http://ru.oriflame.com/ecatalogue/502181?per=201609',
-		"color": "purple" 
-		}
-	];
-| {% block content %}
-//- script.
-//- 	$L = $L.script("slider.js");
+	
+| {% block content %}	
+style.
+	.main {
+		-ms-transform: translateY(-10em);	
+		-webkit-transform: translateY(-10em);
+		transform: translateY(-10em);	
+		margin-bottom: -10em;
+	}
 .mainSlider
 	h2.visible-hidden Слайдер
-	#mainSlider.owl-carousel
-		each slide, i in slides
-			.slide
-				//- picture
-				//- 	source(srcset="/static/cosmeticsyou/img/slides/" + slide.name + '.jpg', media="screen")
-				//- 	img.image(src="/static/cosmeticsyou/img/chains/" + slide.name + '.jpg')
-				.imageContainer(class="imageContainer_" + slide.name)
-					figure.imageContainer__image(class="imageContainer__image_" + slide.name)
-				p.slide__description.parent.centered(class="slide__description_" + slide.name)= slide.description
-					if slide.name == 'registration'
-						span.slide__button.registrationButton.registrationButton_purple
-							a.registrationButton__refer(href="{% url 'registration' %}") Зарегистрироваться
-section.programm.parent.centered#programm
+	//- #mainSlider
+	.pieces-slider
+		.pieces-slider__slide
+			img.pieces-slider__image(src="/static/cosmeticsyou/img/slides/				hike.jpg", alt="")
+			p.pieces-slider__text.visible-hidden(data-index="0") Мы <strong>команда консультантов</strong>. <strong>Работаем</strong> с Oriflame, <strong>зарабатываем на продаже</strong> различных полезных предметов: разнообразная <strong>косметика</strong>, <strong>аксессуары</strong> и вкусные, но и, самое главное, <strong>полезные продукты</strong>. А самый главный доход идёт с сформированной команды! Мы никогда <strong>не скучаем</strong> и <strong>имеем кучу бонусов</strong>.
+		.pieces-slider__slide
+			img.pieces-slider__image(src="/static/cosmeticsyou/img/slides/team.jpg", alt="")
+			p.pieces-slider__text.visible-hidden(data-index="1"). 
+				Мы <strong>любим</strong> своих товарищей и <strong>стараемся помогать</strong> им развиваться в сфере, где работаем. Если у вас есть желание делать дело, мы готовы приложить все усилия для <strong>достижения результата</strong>!
+		.pieces-slider__slide
+			img.pieces-slider__image(src="/static/cosmeticsyou/img/slides/business.jpg", alt="")
+			p.pieces-slider__text.visible-hidden(data-index="2") Помимо нашей поддержки, вы будете обладать <strong>разными привилегиями на разнообразные предметы</strong> в каталогах oriflame. В них вы найдёте море интересных вещей <strong>для вас и ваших близких</strong>! Или же делать бизнес на стороне;).
+		.pieces-slider__slide
+			img.pieces-slider__image(src="/static/cosmeticsyou/img/slides/quest.jpg", alt="")
+			p.pieces-slider__text.visible-hidden(data-index="3") Мы создаём для консультантов <strong>акции</strong>, участие в которых <strong>сулит богатство</strong> тому, кто <strong>выполнит все  условия</strong> акции. <i>Вы любите интересные задания?</i>
+		.pieces-slider__slide
+			img.pieces-slider__image(src="/static/cosmeticsyou/img/slides/registration.jpg", alt="")
+			p.pieces-slider__text.visible-hidden(data-index="4") <strong>Пройдя регистрацию</strong>, вы официально станете любимым членом нашей замечательной команды!
+				span.slide__button.registrationButton.registrationButton_white.registrationButton_centered.marginTop_1.materialShadow
+					a.registrationButton__refer(href="{% url 'registration' %}") Зарегистрироваться
+	    
+		canvas.pieces-slider__canvas
+		button#prevButton.pieces-slider__button.materialShadow.pieces-slider__button--prev Сюда
+		button#nextButton.pieces-slider__button.materialShadow.pieces-slider__button--next Туда
+		.sliderText
+			p#sliderText
+section.programm.parent.centered.margin_center#programm
 	h2.programm__title.child С чёго стоит начать?  
 	each chain in chains
 		article.chain.parent
@@ -141,38 +123,45 @@ section.programm.parent.centered#programm
 				img.image.lazy.materialShadow.chainImage__image(data-src="/static/cosmeticsyou/img/chains/" + chain.name + '.jpg')
 			p.chain__paragraph.child.parent.centered= chain.description
 //- begin items
-ul.items.parent.restrictBlock
+ul.items.parent.restrictBlock.v-end
 	each item in items 
 		//- begin item
-		li.item.item_upper.child.parent.centered
-			if item.secondName
-				//- begin choices
-				ul.choices.parent.child
-					li.choice.child
-						button.choice__button.button.button_purple(
-							data-src='/static/cosmeticsyou/img/steps/w_step_4.jpg', 
-							data-popup-id="#" + item.name,
-							aria-pressed="false"
-						) Женщинам
-					li.choice.child
-						button.choice__button.button.button_red(
-							data-src='/static/cosmeticsyou/img/steps/m_step_4.jpg',
-						 	data-popup-id="#" + item.secondName,
-						 	aria-pressed="false"
-						) Мужчинам
-				//- end choices
+		li.item.child.parent.centered
+			//- if item.secondName
+			//- 	//- begin choices
+			//- 	ul.choices.parent.child
+			//- 		li.choice.child
+			//- 			button.choice__button.button.button_purple(
+			//- 				data-src='/static/cosmeticsyou/img/steps/w_step_4.jpg', 
+			//- 				data-popup-id="#" + item.name,
+			//- 				aria-pressed="false"
+			//- 			) Женщинам
+			//- 		li.choice.child
+			//- 			button.choice__button.button.button_red(
+			//- 				data-src='/static/cosmeticsyou/img/steps/m_step_4.jpg',
+			//- 			 	data-popup-id="#" + item.secondName,
+			//- 			 	aria-pressed="false"
+			//- 			) Мужчинам
+			//- 	//- end choices
 			h3.item__title= item.title
-			.imageContainer.item__image(class="imageContainer_" + item.name)
-				if item.secondName
-					figure#figureWithChoice.imageContainer__image.showPopup(
-						data-popup-id="#" + item.name,
-						class="imageContainer__image_" + item.name
-					)
-				else
-					figure.imageContainer__image.showPopup(
-						data-popup-id="#" + item.name,
-						class="imageContainer__image_" + item.name
-					)
+			.item__image
+				//- if item.secondName
+				//- 	figure#figureWithChoice.imageContainer__image.showPopup(
+				//- 		data-popup-id="#" + item.name,
+				//- 		class="imageContainer__image_" + item.name
+				//- 	)
+				//- else
+				
+				//- figure.imageContainer__image.showPopup(
+				//- 	data-popup-id="#" + item.name,
+				//- 	class="imageContainer__image_" + item.name
+				//- )
+				picture.child.showPopup(
+					data-popup-id="#" + item.name
+				)
+
+					source(srcset="/static/cosmeticsyou/img/steps/" + item.name + '.jpg', media="screen")
+					img.image.lazy.materialShadow(data-src="/static/cosmeticsyou/img/steps/" + item.name + '.jpg')
 
 			.itemDescription.description.description_black.description_inline.visible-hidden(id= item.name)
 				h4.description__title.parent= item.itemName
@@ -189,22 +178,22 @@ ul.items.parent.restrictBlock
 					if item.profit
 						p.itemDescription__profit Профит: 
 							strong #{item.profit}₽
-			if item.secondName
-				.itemDescription.description.description_black.visible-hidden.description_inline(id= item.secondName)
-					h4.description__title.parent= item.secondItemName
-						button.item__closeButton.closeButton.child(data-popup-id="#" + item.secondName, aria-pressed="false")
-							i.fas.fa-times.fa-1x
-					.description__content
-						p.itemDescription__description= item.secondDescription
-						if item.secondPrice
-							p.itemDescription__price Обычная цена: 
-								strong #{item.secondPrice}₽
-						if item.secondComparePrice
-							p.itemDescription__comparePrice Цена на новом этапе: 
-								strong #{item.secondComparePrice}₽
-						if item.secondProfit
-							p.itemDescription__profit Профит: 
-								strong #{item.secondProfit}₽
+			//- if item.secondName
+			//- 	.itemDescription.description.description_black.visible-hidden.description_inline(id= item.secondName)
+			//- 		h4.description__title.parent= item.secondItemName
+			//- 			button.item__closeButton.closeButton.child(data-popup-id="#" + item.secondName, aria-pressed="false")
+			//- 				i.fas.fa-times.fa-1x
+			//- 		.description__content
+			//- 			p.itemDescription__description= item.secondDescription
+			//- 			if item.secondPrice
+			//- 				p.itemDescription__price Обычная цена: 
+			//- 					strong #{item.secondPrice}₽
+			//- 			if item.secondComparePrice
+			//- 				p.itemDescription__comparePrice Цена на новом этапе: 
+			//- 					strong #{item.secondComparePrice}₽
+			//- 			if item.secondProfit
+			//- 				p.itemDescription__profit Профит: 
+			//- 					strong #{item.secondProfit}₽
 		//- end item
 //- end items
 //- begin registration__main
@@ -224,14 +213,13 @@ section.questions
 //- end questions
 //- begin catalogs
 section.catalogs
-	h2.catalogs__title Каталоги
-	ul.catalogsList#catalogs.owl-carousel
-		each catalog, i in catalogs
-			li.catalog.slide(class="catalog_"+ catalog.color, data-index= i)
-				a.catalog__refer.now-follow(href= catalog.href)
-					picture
-						source(srcset="https://ru.oriflame.com/catalogue-image.png", media="screen")
-						img.image(src="https://ru.oriflame.com/catalogue-image.png")
+	h2.catalogs__title Текущий каталог
+	//- ul.catalogsList#catalogs.owl-carousel
+	div.catalog
+		a.catalog__refer.now-follow(href="http://ru.oriflame.com/ecatalogue/502181?per=201609")
+			picture
+				source(srcset="https://ru.oriflame.com/catalogue-image.png", media="screen")
+				img.materialShadow.image.lazy(data-src="https://ru.oriflame.com/catalogue-image.png")
 					
 //- end catalogs
 

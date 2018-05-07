@@ -1,4 +1,5 @@
 .header {
+	z-index: 10;
 	font-size: em(21);
 	position: relative;
 	@include breakpoint($sm-less) {
@@ -23,10 +24,11 @@ ul {
 }
 
 .brand {
-	// min-width: em(450, 42);
 	@include round(em(2, 42), 'bottom-right');
 	display: block;
-	padding-top: .5em;
+	@include breakpoint($md-up) {
+		padding-top: .3em;
+	}
 	background-color: $purple;
 	text-align: center;
 	font-size: em(42);
@@ -66,7 +68,7 @@ ul {
 	min-width: 35%;
 	background-color: $purple;
 	line-height: 2.2;
-	padding: 2rem 1.5rem;
+	padding: 1.25em 1.5rem 1.75em;
 	@include breakpoint($sm-less) {
 		order: 3;	
 		min-width: span(6);
@@ -130,9 +132,9 @@ ul {
 		@include flyShadow(false);
 		padding: 0 1em;
 		 @include breakpoint($sm) {
-		    top: -13px $i;
 		}
 		@include breakpoint($sm-less) {
+		    top: -13px;
 	    	max-width: em(122, 21);
     		min-width: span(3);
     		padding: 0 0 1em;
@@ -148,10 +150,10 @@ ul {
 		@include breakpoint($xs) {
 			box-shadow: none;
 			margin-top: 1.2em;
-			top: 0;
 			z-index: 1;
 		}
 		@include breakpoint($xxs) {
+			top: 0;
 			padding-bottom: .6em;
 			@include round(em(2) $i, 'bottom-left');
 		}
@@ -335,6 +337,7 @@ ul {
 		max-width: em(470, 21);
 		@include breakpoint($xxs) { 
 			margin-left: -200%;
+			max-width: em(200, 21);
 		}
 	}
  }
@@ -389,12 +392,13 @@ ul {
 .callbackFormWrapper {
 	@include round(0, 'top-left');
 	@include round(0, 'bottom-left');
-	font-size: em(24) $i;
+	font-size: em(21) $i;
+
 	& .descriptionContent {
 	}
 	@include breakpoint($xxs) {
 		margin-left: -100%;
-		width: 100vw;
+		// width: 100vw;
 		font-size: em(18, 21);
 		padding: 1.5rem 1.5rem 3rem;
 	}

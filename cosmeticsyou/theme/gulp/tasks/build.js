@@ -9,6 +9,7 @@ function build(cb) {
         'webpack',
         'copy',
         'html',
+        // 'amphtml:validate',
         cb
     );
 }

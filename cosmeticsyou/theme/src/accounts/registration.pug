@@ -2,8 +2,6 @@
 | {% load static %}
 
 | {% block content %}
-script.
-	$L = $L.script("registration.js");
 section#registration.registration.parent.restrictBlock
 	h1.mainTitle.child Регистрация
 
@@ -43,11 +41,8 @@ section#registration.registration.parent.restrictBlock
 	      		type="checkbox",
 	      		name="checkReady"
 	    	)
-			label.controller__checkboxLabel.child(for="checkReady") Вы ознакомились с 
-				a.not-follow(href="https://	ru-eshop.oriflame.com/iframe/custom/ru/consultant/Registration.pdf") договором 
-				| и 
-				a.not-follow(href="https://ru-eshop.oriflame.com/iframe/custom/ru/consultant/Registration.pdf") условиями
-				| ?
+			label.controller__checkboxLabel.child.materialShadow(for="checkReady") Отправляя данную форму, вы соглашаетесь с 
+				a.not-follow(href="/static/docs/policity.rtf", download) Политикой о защите персональных данных
 
 		button.registrationButton.registrationButton_centered.registrationForm__button.registrationButton_red(type='submit', disabled, aria-pressed="false")#registrataionSubmitButton
 			span.registrationButton__refer Зерегистрироваться
@@ -73,6 +68,4 @@ script.
 	}
 
 	document.getElementById('id_user_led').value = consultant_num;
-
-	//- fbq('track', 'CompleteRegistration');
 | {% endblock %}

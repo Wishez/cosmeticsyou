@@ -1,9 +1,12 @@
-import { TweenMax, Linear } from 'gsap';
+import {TweenLite} from 'gsap';
 import './../../js/intlTelInput.js';
 import lozad from 'lozad';
 
 
 const _ = (function() {
+
+  
+
   const _screwed = props => {
     const event = typeof props.event === 'undefined' ? 
       'click' : props.event;
@@ -39,7 +42,7 @@ const _ = (function() {
   }
 
   const _showElement = ($node, state) => {
-    TweenMax.to($node, 0.2, {
+    TweenLite.to($node, 0.2, {
       opacity: 1,
       onStart: function() {
         $node
@@ -52,7 +55,7 @@ const _ = (function() {
     });
   };
   const _hideElement = ($node, state) => {
-    TweenMax.to($node, 0.2, {
+    TweenLite.to($node, 0.2, {
       opacity: 0,
       onComplete: function() {
         $node
@@ -129,7 +132,7 @@ const _ = (function() {
     screwed: _screwed,
     show: _showElement,
     hide: _hideElement,
-    animatePopup: _animatePopup
+    animatePopup: _animatePopup,
   };
 }());
 
@@ -148,6 +151,8 @@ $(function() {
   }).observe();
 
 
+
+
   _.animatePopup();
 
   $(document).on('click', '.choice__button', function(e) {
@@ -156,6 +161,7 @@ $(function() {
     const url = data.src;
 
     const $figure = $('#figureWithChoice');
+
 
     $figure
       .animate({
@@ -174,6 +180,34 @@ $(function() {
 
       
   }); // end click
+
+  let isAfterSlider = false;
+
+  if (window.innerWidth < 580) {
+    translateSliderText();
+    isAfterSlider = true;
+  }
+
+  function translateSliderText() {
+    const windowWidth = window.innerWidth;
+    const $sliderText = $('.sliderText');
+    const $slider = $('.pieces-slider');
+
+    if (windowWidth <= 580 && !isAfterSlider) {
+      $sliderText.remove();
+      $slider.after($sliderText);
+      isAfterSlider = true;
+    }
+
+    if (windowWidth > 580 && isAfterSlider) {
+      $sliderText.remove();
+      $slider.append($sliderText);
+      isAfterSlider = false;
+    }
+  };
+
+  $(window).on('resize', translateSliderText);
+
   $(document).on('blur', 'input', function() {
     const $this = $(this);
       
@@ -194,7 +228,7 @@ $(function() {
   $(document).on('click', '.slideTo', function() {
     $('html, body').animate({
       scrollTop: $($(this).attr('href')).offset().top
-    }, 600, Linear.ease);
+    }, 600);
   });
 
   $(document).on('click', '.not-follow', function(e) {

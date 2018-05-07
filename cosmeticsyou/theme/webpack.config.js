@@ -20,7 +20,6 @@ function createConfig(env) {
       main: './main.js',
       sw: './sw.js',
       media: './media.js',
-      registration: './registration.js'
     },
     output: {
       path: path.join(__dirname, config.dest.js),
@@ -35,6 +34,11 @@ function createConfig(env) {
       //     name: 'vendor',
       //     filename: '[name].js',
       //     minChunks: Infinity
+      // }),
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   children: true,
+      //   async: true,
+      //   minChunks: 2
       // }),
       new webpack.LoaderOptionsPlugin({
         options: {
