@@ -13,15 +13,15 @@ html.no-js(amp lang="ru")
       content='{{ meta }}'
     )
     | {% endif %}
-    
+
     meta(name="format-detection" content="telephone={{ settings.phone }}")
 
     link(rel='dns-prefetch' href="https://cosmeticsyou.ru")
     link(rel='prefetch' href="/static/cosmeticsyou/css/main.css")
     link(rel='prefetch' href="/static/cosmeticsyou/js/main.js")
-    
+
     link(rel='prefetch' href="/static/cosmeticsyou/js/media.js")
-    
+
     link(rel='prerender' href="/")
     link(rel='prerender' href="/registration")
     link(rel='prerender' href="/business")
@@ -46,7 +46,7 @@ html.no-js(amp lang="ru")
 
     <meta name="msapplication-TileColor" content="#333">
     <meta name="msapplication-TileImage" content="/static/cosmeticsyou/img/appIcons/ms-icon-144x144.png">
-    
+
     meta(name="apple-mobile-web-app-capable", content="yes")
     meta(name="theme-color" content="#f1f1f1")
     link(
@@ -65,12 +65,12 @@ html.no-js(amp lang="ru")
       onload="if(media!=='all')media='all'",
       lazyload="1"
     )
-    
+
     noscript
        link(
         rel="stylesheet",
         href="{% static 'cosmeticsyou/css/fonts.css' %}"
-      ) 
+      )
     link(
         rel="stylesheet",
         href="{% static 'cosmeticsyou/css/main.css' %}",
@@ -82,7 +82,7 @@ html.no-js(amp lang="ru")
        link(
         rel="stylesheet",
         href="{% static 'cosmeticsyou/css/main.css' %}"
-      ) 
+      )
 
     | {% if title %}
     title {{ title|safe }}
@@ -90,7 +90,7 @@ html.no-js(amp lang="ru")
     | {% block title %}
     | {% endblock %}
     | {% endif %}
-    
+
     style.
       .sk-chasing-dots {
         position: fixed;
@@ -98,7 +98,7 @@ html.no-js(amp lang="ru")
         left: calc(50% - 30px);
         width: 60px;
         height: 60px;
-      
+
         -webkit-animation: sk-chasingDotsRotate 2s infinite linear;
                 animation: sk-chasingDotsRotate 2s infinite linear; }
       .curtains {
@@ -121,14 +121,14 @@ html.no-js(amp lang="ru")
         left: 0;
         background-color: #f7f7f7;
       }
-      
+
       .sk-chasing-dots .sk-child {
         width: 60%;
         height: 60%;
         display: inline-block;
         position: absolute;
         top: 0;
-        
+
         border-radius: 100%;
         -webkit-animation: sk-chasingDotsBounce 2s infinite ease-in-out;
                 animation: sk-chasingDotsBounce 2s infinite ease-in-out; }
@@ -167,9 +167,6 @@ html.no-js(amp lang="ru")
         50% {
           -webkit-transform: scale(1);
                   transform: scale(1); } }
-    
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
   body
     .curtains.
       <div class="sk-chasing-dots">
@@ -186,19 +183,17 @@ html.no-js(amp lang="ru")
     // Footer
     include ../templates/_footer.pug
 
-  <!--[if IE]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-  script(async, src="/static/cosmeticsyou/js/main.js")
-  script(async, src="https://use.fontawesome.com/releases/v5.0.6/js/all.js")
-  script.
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/static/sw.js').then(function(reg){console.log('ServiceWorker registration successful with scope: ', reg.scope);}).catch(function(err) {console.log("No it didn't. This happened: ", err)});}
+    include ../templates/_svg.pug
 
-  | {% if settings.widgets %}
-  | {{ settings.widgets|safe }}
-  | {% endif %}
-  | {% block internal_page_script %}
-  | {% endblock %}
-  <!-- /Yandex.Metrika counter -->
+
+    script(async, src="/static/cosmeticsyou/js/main.js")
+    
+
+    <script>if ('serviceWorker' in navigator) {navigator.serviceWorker.register('/static/sw.js').then(function(reg){console.log('ServiceWorker registration successful with scope: ', reg.scope);}).catch(function(err) {console.log("No it didn't. This happened: ", err)});}</script>
+
+
+    | {% if settings.widgets %}
+    | {{ settings.widgets|safe }}
+    | {% endif %}
+    | {% block internal_page_script %}
+    | {% endblock %}

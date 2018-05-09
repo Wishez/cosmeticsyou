@@ -6,7 +6,9 @@ header#header.header.parent(
 		a#brand.brand.materialShadow(href="{% url 'index' %}")
 			h1.brand__title(
 				itemprop="name"
-			) Oriflame
+			) 
+				svg( viewBox="0 0 173 64" aria-hidden="true" role="img")
+					use(xlink:href="#siteLogo")
 		ul.topNavigation.child.parent.centered.column
 			li.topNavigationItem.topNavigationItem_shop(
 		   		role="presentation"
@@ -32,7 +34,9 @@ header#header.header.parent(
 		    	itemtype="https://schema.org/ContactPoint"
 			).
 				<a class="contactsItem__refer inlineParent v-centered" href="mailto:{{ settings.email }}" itemprop="email">
-					<i class="contactsItem__label fas fa-envelope-square"></i>
+				<svg class="contactsItem__label" width="1em" height="1em"  viewBox="0 0 512 512" role="image" aria-hidden="true">
+					<use xlink:href="#envelopeIcon" />
+				</svg>
 					{{ settings.email }}	
 				</a>
 			li.contactsItem(
@@ -40,7 +44,10 @@ header#header.header.parent(
 	      		itemtype="https://schema.org/ContactPoint"
 			).
 				<a class="contactsItem__refer inlineParent v-centered" href="tel:{{ settings.email }}" itemprop="telephone">
-					<i class="contactsItem__label fab fa-whatsapp-square"></i>{{ settings.phone }}
+					<svg class="contactsItem__label" width="1em" height="1em"  viewBox="0 0 320 512" role="image" aria-hidden="true">
+						<use xlink:href="#phoneIcon" />
+					</svg>
+					{{ settings.phone }}
 				</a>
 				
 		.callback.child.parent.centered
@@ -50,7 +57,9 @@ header#header.header.parent(
 			#popupCallback.callbackFormWrapper.description.description_purple.description_left.description_beneath.visible-hidden
 				h2.description__title.parent Обратный вызов
 					button.closeButton.child(data-popup-id='#popupCallback', aria-pressed="false")
-						i.fas.fa-times.fa-1x
+						<svg width="1em" height="1em"  viewBox="0 0 512 512" role="image" aria-hidden="true">
+							<use xlink:href="#svgCloseButton" />
+						</svg>
 				form#callbackForm.descriptionContent.callbackForm.parent(method="post")
 					| {% csrf_token %}
 					| {% for field in callback %}
@@ -113,7 +122,9 @@ header#header.header.parent(
 			address.popupContacts__description.description.description_purple.description_right.description_beneath.visible-hidden#popupContacts
 				h3.description__title.popupContacts__title.parent Наши контакты
 					button#closeContactsButton.closeButton.child(data-popup-id='#popupContacts', aria-pressed="false")
-						i.fas.fa-times.fa-1x
+						<svg width="1em" height="1em"  viewBox="0 0 512 512" role="image" aria-hidden="true">
+							<use xlink:href="#svgCloseButton" />
+						</svg>
 				ul.descriptionContent.popupContactsList
 					li.contactsItem(
 						itemscope,

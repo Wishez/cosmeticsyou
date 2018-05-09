@@ -85,6 +85,7 @@ style.
 		transform: translateY(-10em);	
 		margin-bottom: -10em;
 	}
+	
 .mainSlider
 	h2.visible-hidden Слайдер
 	//- #mainSlider
@@ -127,46 +128,20 @@ ul.items.parent.restrictBlock.v-end
 	each item in items 
 		//- begin item
 		li.item.child.parent.centered
-			//- if item.secondName
-			//- 	//- begin choices
-			//- 	ul.choices.parent.child
-			//- 		li.choice.child
-			//- 			button.choice__button.button.button_purple(
-			//- 				data-src='/static/cosmeticsyou/img/steps/w_step_4.jpg', 
-			//- 				data-popup-id="#" + item.name,
-			//- 				aria-pressed="false"
-			//- 			) Женщинам
-			//- 		li.choice.child
-			//- 			button.choice__button.button.button_red(
-			//- 				data-src='/static/cosmeticsyou/img/steps/m_step_4.jpg',
-			//- 			 	data-popup-id="#" + item.secondName,
-			//- 			 	aria-pressed="false"
-			//- 			) Мужчинам
-			//- 	//- end choices
 			h3.item__title= item.title
 			.item__image
-				//- if item.secondName
-				//- 	figure#figureWithChoice.imageContainer__image.showPopup(
-				//- 		data-popup-id="#" + item.name,
-				//- 		class="imageContainer__image_" + item.name
-				//- 	)
-				//- else
-				
-				//- figure.imageContainer__image.showPopup(
-				//- 	data-popup-id="#" + item.name,
-				//- 	class="imageContainer__image_" + item.name
-				//- )
 				picture.child.showPopup(
 					data-popup-id="#" + item.name
 				)
-
 					source(srcset="/static/cosmeticsyou/img/steps/" + item.name + '.jpg', media="screen")
 					img.image.lazy.materialShadow(data-src="/static/cosmeticsyou/img/steps/" + item.name + '.jpg')
 
 			.itemDescription.description.description_black.description_inline.visible-hidden(id= item.name)
 				h4.description__title.parent= item.itemName
 					button.item__closeButton.closeButton.child(data-popup-id="#" + item.name, aria-pressed="false")
-						i.fas.fa-times.fa-1x
+						<svg width="1em" height="1em"  viewBox="0 0 512 512" role="image" aria-hidden="true">
+							<use xlink:href="#svgCloseButton" />
+						</svg>
 				.description__content
 					p.itemDescription__description= item.description
 					if item.price
@@ -178,23 +153,8 @@ ul.items.parent.restrictBlock.v-end
 					if item.profit
 						p.itemDescription__profit Профит: 
 							strong #{item.profit}₽
-			//- if item.secondName
-			//- 	.itemDescription.description.description_black.visible-hidden.description_inline(id= item.secondName)
-			//- 		h4.description__title.parent= item.secondItemName
-			//- 			button.item__closeButton.closeButton.child(data-popup-id="#" + item.secondName, aria-pressed="false")
-			//- 				i.fas.fa-times.fa-1x
-			//- 		.description__content
-			//- 			p.itemDescription__description= item.secondDescription
-			//- 			if item.secondPrice
-			//- 				p.itemDescription__price Обычная цена: 
-			//- 					strong #{item.secondPrice}₽
-			//- 			if item.secondComparePrice
-			//- 				p.itemDescription__comparePrice Цена на новом этапе: 
-			//- 					strong #{item.secondComparePrice}₽
-			//- 			if item.secondProfit
-			//- 				p.itemDescription__profit Профит: 
-			//- 					strong #{item.secondProfit}₽
 		//- end item
+		
 //- end items
 //- begin registration__main
 .registrationButton.main__registrationButton.registrationButton_red.registrationButton_centered

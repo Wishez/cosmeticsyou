@@ -3,29 +3,39 @@ footer.footer.parent
 		a#brand.brand.brand_footer(href="{% url 'index' %}")
 			h1.brand__title.brand__title_footer(
 				itemprop="name"
-			) Oriflame
+			) 
+				svg( viewBox="0 0 173 64" aria-hidden="true" role="img")
+					use(xlink:href="#siteLogo")
 		ul.contacts.contacts_footer.child
 			li.contactsItem(
 				itemscope,
-	      		itemtype="https://schema.org/ContactPoint"
+					itemtype="https://schema.org/ContactPoint"
 			).
 				<a class="contactsItem__refer inlineParent v-centered" href="tel:{{ settings.email }}" itemprop="telephone">
-					<i class="contactsItem__label fab fa-whatsapp-square"></i>{{ settings.phone }}
+				<svg class="contactsItem__label" width="1em" height="1em"  viewBox="0 0 320 512" role="image" aria-hidden="true">
+					<use xlink:href="#phoneIcon" />
+				</svg>
+
+					{{ settings.phone }}
 				</a>
 			li.contactsItem(
 				itemscope,
-		    	itemtype="https://schema.org/ContactPoint"
+				itemtype="https://schema.org/ContactPoint"
 			).
 				<a class="contactsItem__refer inlineParent v-centered" href="mailto:{{ settings.email }}" itemprop="email">
-					<i class="contactsItem__label fas fa-envelope-square"></i>
+					<svg class="contactsItem__label" width="1em" height="1em"  viewBox="0 0 512 512" role="image" aria-hidden="true">
+						<use xlink:href="#envelopeIcon" />
+					</svg>
 					{{ settings.email }}	
 				</a>
 			li.contactsItem(
 				itemscope,
-		    	itemtype="https://schema.org/ContactPoint"
+				itemtype="https://schema.org/ContactPoint"
 			).
 				<a class="contactsItem__refer inlineParent v-centered" href="{{ settings.addressHref }}" itemprop="streetAddress">
-					<i class="contactsItem__label fas fa-address-card"></i>
+					<svg class="contactsItem__label" width="1em" height="1em"  viewBox="0 0 512 512" role="image" aria-hidden="true">
+						<use xlink:href="#streetViewIcon" />
+					</svg>
 					{{ settings.address }}
 				</a>
 	section.credo.child.parent.centered
@@ -35,7 +45,7 @@ footer.footer.parent
 	nav.navigation.navigation_footer.child#footerNavigation(role="navigation")
 		ul.footerNavigation.parent
 			li.footerNavigationItem.parent(
-			   role="presentation",
+				role="presentation",
 					class="{% if active_page == 'home' %}footerNavigationItem_active{% endif %}"
 			)
 				a.footerNavigationItem__refer.child(
@@ -43,7 +53,7 @@ footer.footer.parent
 					class="{% if active_page == 'home' %}footerNavigationItem__refer_active{% endif %}"
 				) Главная
 			li.footerNavigationItem.parent(
-			   role="presentation",
+				role="presentation",
 					class="{% if active_page == 'business' %}footerNavigationItem_active{% endif %}"
 			)
 				a.footerNavigationItem__refer.child(
@@ -51,7 +61,7 @@ footer.footer.parent
 					class="{% if active_page == 'business' %}footerNavigationItem__refer_active{% endif %}"
 				) Структура бизнеса
 			li.footerNavigationItem.parent(
-			   role="presentation",
+				role="presentation",
 					class="{% if active_page == 'shares' %}footerNavigationItem_active{% endif %}"
 			)
 				a.footerNavigationItem__refer.child(
@@ -59,7 +69,7 @@ footer.footer.parent
 					class="{% if active_page == 'shares' %}footerNavigationItem__refer_active{% endif %}"
 				) Акции
 			li.footerNavigationItem.parent(
-			  role="presentation",
+				role="presentation",
 					class="{% if active_page == 'media' %}footerNavigationItem_active{% endif %}"
 			)
 				a.footerNavigationItem__refer.child(
@@ -67,8 +77,8 @@ footer.footer.parent
 					class="{% if active_page == 'media' %}footerNavigationItem__refer_active{% endif %}"
 				) Медиа контент
 			li.footerNavigationItem.footerNavigationItem_registration.registrationButton_red.registrationButton.materialShadow.registrationButton_centered(
-			  	role="presentation"
-		 		class="{% if active_page == 'registration' %}registrationButton_active{% endif %}"
+				role="presentation"
+class="{% if active_page == 'registration' %}registrationButton_active{% endif %}"
 			)
 				a.footerNavigationItem__refer.footerNavigationItem__refer_registration.registrationButton__refer.child(
 					href="{% url 'registration' %}",

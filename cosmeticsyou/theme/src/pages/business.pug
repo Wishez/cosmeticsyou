@@ -255,7 +255,9 @@ section.business
 					.ladderStep__description.description.description_left.description_beneath.description_black.visible-hidden(id= step.name)
 						h4.description__title.parent= step.title
 							button.closeButton.child(data-popup-id='#' + step.name)
-								i.fas.fa-times
+								<svg width="1em" height="1em"  viewBox="0 0 512 512" role="image" aria-hidden="true">
+									<use xlink:href="#svgCloseButton" />
+								</svg>
 						.descriptionContent
 							p.ladderStep__achieve= step.achieve
 							if step.discount

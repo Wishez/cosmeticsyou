@@ -11,7 +11,7 @@
     }
 }
 .main p {
-    // font-size: font-emphasize: 
+    // font-size: font-emphasize:
 }
 $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), ('quest', 0, span(2)), ('registration', 0, 0);
 @each $name, $textY, $textX in $slides {
@@ -134,7 +134,7 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         grid-gap: 2.5rem;
 
-        // grid-template-rows: 
+        // grid-template-rows:
         // grid-template-areas: "first second third" "fourth fourth fourth";
     }
 
@@ -157,7 +157,7 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     }
     &:nth-of-type(3) {
         // grid-area: third;
-        
+
     }
     &:nth-of-type(4) {
         @include breakpoint(769px  1024px) {
@@ -219,18 +219,18 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     min-width: em(250);
     flex-flow: column nowrap;
     display: flex;
-    
+
     @include breakpoint($sm-less) {
         min-width: 50%;
     }
     @include breakpoint($xxs) {
         min-width: span(11);
     }
-    
+
     position: relative;
     transition: .3s ease;
-     
-    
+
+
     &_upper {
         top: -2em;
     }
@@ -302,7 +302,7 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
 }
 .main__registrationButton {
     margin-top: 3em;
-    
+
 }
 .questions, .catalogs {
     margin: em(100) auto 0;
@@ -466,7 +466,7 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     flex: 1 0 25%;
     min-width: 30%;
     padding-bottom: 22%;
-    
+
     max-width: span(8);
     @include round(em(5));
     @include breakpoint($sm-less) {
@@ -551,8 +551,8 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
 .main {
     & h2, p {
         @include breakpoint($xs) {
-            // padding-left: 1.5rem; 
-            // padding-right: 1.5rem; 
+            // padding-left: 1.5rem;
+            // padding-right: 1.5rem;
         }
     }
     & p {
@@ -874,4 +874,74 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     &__image {
         background-size: 60px;
     }
+}
+
+
+
+.singleShare {
+  border: 1em solid #654178;
+    margin-top: 2.617924em;
+    border-left: 0;
+    border-right: 0;
+    padding-bottom: 4.235801032em;
+    max-width: 60ch;
+  h2, h3 {
+    margin-left: -4px;
+  }
+  h3 {
+     margin-top:2.08333em;
+  }
+  *+* {
+    margin-top: 1.618em;
+  }
+  img {
+    width: 100%;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.25);
+    display: block;
+    max-width: 100%;
+  }
+  h2 + *:first-of-type, h3 + *:first-of-type, img {
+    margin-top: 1.618em;
+  }
+  a {
+     color: #99303B;
+
+     background-image: linear-gradient(to right,#99303B 0, #99303B 100%);
+  }
+  ul {
+    margin-top: 1.5rem;
+  }
+  &, img {
+    border-radius: 2px;
+  }
+  &__title {
+    margin-top: 1.618rem;
+  }
+  ul li:before {
+    content: "\25EF";
+      position: relative;
+      top: -0.15625em;
+      font-size: 0.61804697156983930779em;
+      margin-right: 0.38198205906664975759em;
+  }
+}
+
+
+
+@media (min-width: 769px) {
+  .singleShare {
+    -webkit-transform: translateX(2em);
+      -ms-transform: translateX(2em);
+      transform: translateX(2em);
+  }
+}
+@media (max-width: 768px) {
+  .singleShare {
+    margin-top: 4.5em
+  }
+}
+@media (max-width: 480px) {
+  .singleShare__title {
+    font-size: 7vw;
+  }
 }
