@@ -171,20 +171,22 @@
         right: 0 $i;
         left: auto $i; // right: calc(0 - 1em);
     }
-    &_left {
-        left: 0 $i;
-        right: auto $i; // left: calc(0 - 1em);
-    }
+
     &_upstair {
         bottom: 100% $i;
         top: auto $i; // bottom: calc(100% - 1em);
     }
+    &_left {
+        left: 0 $i;
+        right: auto $i; // left: calc(0 - 1em);
+    }
     @include breakpoint($xxs) {
         min-width: 80vw$i;
         left: 10vw $i;
-        top: 22.5vh $i;
+        // top: 22.5vh $i;
         position: fixed;
     }
+
 }
 .light {
     font-weight: 200;

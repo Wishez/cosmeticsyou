@@ -5,6 +5,8 @@
 	@include round(em(2), 'top-right');
 	@include round(0, 'bottom-right');
 	background-color: $purple;
+	display: block;
+
 
 }
 .brand__title_footer {
@@ -26,18 +28,19 @@
 
 	@include breakpoint($xxs) {
 		// min-height:  em(301.5, 21);
-		top: em(-252, 21) $i;
+		top: em(-229, 21) $i;
 	}
 }
 .contacts_footer {
 	padding-left: 3em;
+	padding-top: 0;
 	// @include round(em(2), 'bottom-right');
 	@include breakpoint($sm-less) {
 		top: em(300, 21);
 		text-align: right;
 		padding-right: 2em;
 		background-color: $purple;
-		
+
 	}
 	@include breakpoint($xxs) {
 		text-align: left;
@@ -66,7 +69,7 @@
 }
 .credo, .navigation_footer {
 	@include breakpoint($sm-less) {
-		top: em(-228, 21);
+		top: em(-209, 21);
 	}
 	@include breakpoint($xxs) {
 		top: em(-201, 21);
@@ -120,7 +123,7 @@
 	&:hover .footerNavigationItem__refer , &__refer_active {
 		color: $white $i;
 		background-image: none $i;
-		
+
 	 }
 	&_registration {
 		// margin: auto;

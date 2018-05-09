@@ -45,9 +45,9 @@ ul {
     }
     &__title {
         letter-spacing: 0 $i;
-				line-height: 1;
+        line-height: 1;
         @include breakpoint($sm-less) {
-            margin-top: 0.5em;
+            // margin-top: 0.5em;
         }
         @include breakpoint($xxs) {
             margin-top: 0;
@@ -219,10 +219,13 @@ ul {
     text-align: center;
     align-items: flex-end;
     justify-content: center;
-		transition-timing-function: cubic-bezier(0.2, 0,0.4,1);
-		transition-duration: 250ms;
-    @include breakpoint($sm-less) {
+    &,
+    & a {
+        transition-timing-function: cubic-bezier(0.2, 0, 0.4, 1);
+        transition-duration: 250ms;
+    }
 
+    @include breakpoint($sm-less) {
         flex: 0 0 20%;
         align-items: center;
     }
@@ -233,14 +236,7 @@ ul {
         @include breakpoint($sm-less) {
             background-color: $purple;
             color: $white $i;
-            box-shadow: 0 2px 6px rgba(0,0,0,.5);
-						width: -webkit-fill-available;
-						height: -webkit-fill-available;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						background-image: none $i;
-
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
         }
     }
     &__refer {
@@ -255,6 +251,22 @@ ul {
             padding-bottom: 1.65em;
             color: $darkGray;
         }
+        @include breakpoint($sm-less) {
+            width: -webkit-fill-available;
+            height: -webkit-fill-available;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: none $i;
+        }
+
+        &_active,
+        &:hover,
+        &:focus {
+            @include breakpoint($sm-less) {
+                color: $white $i;
+            }
+        }
         &_active,
         &:hover,
         &:focus,
@@ -266,7 +278,6 @@ ul {
         &_active {
             @include breakpoint($sm-less) {
                 background-image: 0;
-                color: $white $i;
             }
         }
     }
@@ -288,7 +299,7 @@ ul {
 
     @include breakpoint($xxs) {
         top: em(-186, 18);
-				padding-bottom: .25em $i;
+        padding-bottom: 0.25em $i;
         height: em(79);
         font-size: em(18, 21);
     }
