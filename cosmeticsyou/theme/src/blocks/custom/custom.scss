@@ -1,3 +1,4 @@
+@import "../config/_easing.scss";
 @import '../config/_normalize.scss';
 @import '../config/_breakpoints.scss';
 @import '../config/_colors.scss';
@@ -7,6 +8,7 @@
 @import "../config/_patterns.scss";
 @import "../config/_transitions.scss";
 @import "../config/_shadows.scss";
+
 
 /* Mixins */
 /* Body Custom */
@@ -40,7 +42,7 @@ h1 {
   font-size: em(28);
 }
 h2 {
-  font-size: em(24); 
+  font-size: em(24);
 }
 h1, h2, h3, h4, h5, h6  {
   font-family: $decorativeFont;
@@ -57,7 +59,7 @@ p:not(:first-child) {
   margin-top: 1.5em;
 }
 a {
-  transition: .2s ease;
+  transition: .2s $standart;
   &, &:hover {
     text-decoration: none;
     background-image: linear-gradient(to right, $white  0%, $white 100%);
