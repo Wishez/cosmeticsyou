@@ -1,4 +1,5 @@
-@import './lib/slider.scss';
+@import "./lib/slider.scss";
+
 .main {
     z-index: 9;
 }
@@ -10,10 +11,9 @@
         margin-top: 6rem;
     }
 }
-.main p {
-    // font-size: font-emphasize:
-}
-$slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), ('quest', 0, span(2)), ('registration', 0, 0);
+
+$slides: ("hike", auto, 0), ("team", 0, 0), ("business", 0, calc(50% - 222px)),
+    ("quest", 0, span(2)), ("registration", 0, 0);
 @each $name, $textY, $textX in $slides {
     .slide__description_#{$name} {
         bottom: #{$textY};
@@ -21,7 +21,7 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     }
     .imageContainer {
         &__image_#{$name} {
-            background-image: url('./../img/slides/#{$name}.jpg');
+            background-image: url("./../img/slides/#{$name}.jpg");
         }
     }
 }
@@ -29,7 +29,8 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     max-width: em(1350);
     margin: 0 auto;
 
-    & .owl-stage-outer, & .owl-stage {
+    & .owl-stage-outer,
+    & .owl-stage {
         overflow: hidden;
         max-height: em(764);
     }
@@ -57,7 +58,7 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     &:not(:first-child) {
         margin: 3rem 0 1rem;
     }
-    &:nth-child(2n+0) {
+    &:nth-child(2n + 0) {
         align-self: flex-end;
         & .chainImage {
             order: 1;
@@ -70,7 +71,7 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
             }
         }
     }
-    &:nth-child(2n+1) {
+    &:nth-child(2n + 1) {
         align-self: flex-start;
         & .chainImage {
             order: 2;
@@ -133,9 +134,6 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         grid-gap: 2.5rem;
-
-        // grid-template-rows:
-        // grid-template-areas: "first second third" "fourth fourth fourth";
     }
 
     @include breakpoint($xxs) {
@@ -149,19 +147,10 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
 .item {
     margin-left: auto;
     margin-right: auto;
-    &:nth-of-type(1) {
-        // grid-area: first;
-    }
-    &:nth-of-type(2) {
-        // grid-area: second;
-    }
-    &:nth-of-type(3) {
-        // grid-area: third;
 
-    }
     &:nth-of-type(4) {
-        @include breakpoint(769px  1024px) {
-            grid-area: 2   / 2 / 2 / 2;
+        @include breakpoint(769px 1024px) {
+            grid-area: 2 / 2 / 2 / 2;
         }
     }
 }
@@ -172,7 +161,8 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
 }
 .chainImage {
     position: relative;
-    &, &__image {
+    &,
+    &__image {
         width: em(210);
         height: em(210);
         @include breakpoint($sm-less) {
@@ -184,10 +174,10 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     }
 }
 #sliderText {
-	will-change: opacity;
+    will-change: opacity;
 }
 .sliderText {
-    transition: all .4s cubic-bezier(0.2, 0.0, 0.6, 1);
+    transition: all 0.4s cubic-bezier(0.2, 0, 0.6, 1);
     max-width: 30em;
     bottom: 10em;
     font-size: 16px;
@@ -207,18 +197,15 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     }
 
     @include breakpoint($xxs) {
-    	transform: none;
-    	right: 0;
+        transform: none;
+        right: 0;
         position: static;
         min-width: 100%;
         margin-top: -4em;
     }
 }
 .item {
-    cursor: pointer;
     min-width: em(250);
-    flex-flow: column nowrap;
-    display: flex;
 
     @include breakpoint($sm-less) {
         min-width: 50%;
@@ -228,20 +215,26 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     }
 
     position: relative;
-    transition: .3s ease;
-
 
     &_upper {
         top: -2em;
     }
-    &:hover {
-        // box-shadow: 0 5px 15px -1px $shadow; // transform: scale(1.02);
-    }
+
     &__title {
         text-align: center;
     }
     &__image {
-        margin-top: 1em; // padding: 0 .5em;
+        margin-top: 1em;
+        transition-duration: 270ms;
+        transition-timing-function: $decelleration;
+
+        &:hover,
+        &:focus {
+            transition-timing-function: $acceleration;
+            box-shadow: 0 5px 15px -1px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+            z-index: 10;
+        }
     }
     &Description {
         max-width: em(370, 21);
@@ -269,11 +262,11 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
         }
     }
 }
-.itemDescription[id*=step] {
-  @include breakpoint($xs) {
-    left: auto $i;
-    top: 20vw $i;
-  }
+.itemDescription[id*="step"] {
+    @include breakpoint($xs) {
+        left: auto $i;
+        top: 20vw $i;
+    }
 }
 .choices {
     min-width: em(265);
@@ -290,7 +283,7 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     }
     @include breakpoint($xs) {
         left: auto;
-        margin: .2rem auto;
+        margin: 0.2rem auto;
     }
 }
 .button {
@@ -304,100 +297,59 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
         background-color: $red;
     }
 }
-.choice {
-    // max-width: em(125);
-    &__button {}
-}
+
 .main__registrationButton {
     margin-top: 3em;
-
 }
-.questions, .catalogs {
+.introCatalog__registration {
+    @include breakpoint(629px) {
+        grid-area: 2 / 1 / 3 / 3;
+    }
+}
+.alignSection {
     margin: em(100) auto 0;
 }
-.questions, .catalogs__title {
+.questions {
     @include breakpoint($xxs) {
         padding: 0 5%;
     }
+    margin-bottom: em(144);
 }
 .questions {
     max-width: em(605);
 }
-.catalogs {
-    max-width: em(690);
+
+.intro {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 845px;
     margin-bottom: em(160);
+    @include breakpoint(max-width 629px) {
+        padding: 0 1.5em 0 2em;
+    }
     &__title {
-        margin-bottom: em(21, 24);
-        @include breakpoint($xxs) {}
-    }
-}
-.catalogsList {
-    @include round(em(4));
-    position: relative; // margin: 0 -1.5em;
-    .owl-nav {
-        position: absolute;
-        top: em(-55);
-        margin-top: 0;
-        right: 0;
-        @include breakpoint($xxs) {
-            right: 1.5em;
+        @include breakpoint($xs) {
+            margin-top: 2.5em;
         }
-    }
-    .owl-prev, .owl-next {
-        width: em(55, 14);
-    }
-}
-// .owl-item {
-// 	transform-style: preserve-3d;
-// 	perspective: 500px;
-// 	overflow: hidden;
-// 	cursor: pointer;
-// 	position: relative;
-// 	z-index: 10;
-// }
-// .slide_hidden {
-// 	z-index: -1;
-// }
-// .slide_shown {
-// 	transform: rotateY(0deg);
-// }
-// .slider_slide {
-// 	max-width: 100%;
-// 	transition: transform 0.8s;
-// }
-.catalog {
-    min-height: em(340);
-    min-width: em(340);
-    display: flex;
-    align-items: center; // margin: 0 -2.5px
-    @include breakpoint($xxs) {
-        min-height: em(250);
-    }
-    &_purple {
-        background-color: $purple;
-    }
-    &_red {
-        background-color: $red;
-    }
-    &__refer {
-        min-height: 100%;
-        min-width: 100%;
+        @include breakpoint(max-width 629px) {
+            text-align: center;
+        }
     }
 }
 .question {
     margin-top: em(60);
 }
+
 .registration {
     & .child {
         flex-basis: 50%;
     }
     justify-content: center;
     margin-bottom: em(105);
-    @include breakpoint ($xs) {
+    @include breakpoint($xs) {
         padding: 0 5%;
     }
     & .mainTitle {
-        @include breakpoint ($xxs) {
+        @include breakpoint($xxs) {
             order: 1;
         }
     }
@@ -408,7 +360,6 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     }
 }
 .registrationIntro__paragraph {
-
 }
 .main p a {
     color: $darkGray;
@@ -428,7 +379,7 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     max-width: em(295);
     margin-right: em(50);
     margin-bottom: em(50);
-    @include breakpoint ($xs) {
+    @include breakpoint($xs) {
         margin-right: 0;
     }
     @include breakpoint($xxs) {
@@ -442,7 +393,8 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
         &_num_home {
             margin-right: 15%;
         }
-        &_num_home, &_num_apartment {
+        &_num_home,
+        &_num_apartment {
             display: inline-flex;
             max-width: span(5);
         }
@@ -451,7 +403,12 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
 .iti-flag {
     background-image: url("./../img/flags.png");
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2 / 1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
     .iti-flag {
         background-image: url("./../img/flags@2x.png");
     }
@@ -505,7 +462,7 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     width: 90px;
     height: 60px;
     background-color: #333;
-    box-shadow: 0 0 30px rgba( 0, 0, 0, 0.6);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
     z-index: 1;
     opacity: 0.8;
     border-radius: 6px;
@@ -513,19 +470,24 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
 .youtube .play-button:before {
     content: "";
     border-style: solid;
-    border-width: 15px 0 15px 26.0px;
+    border-width: 15px 0 15px 26px;
     border-color: transparent transparent transparent #fff;
 }
-.youtube img, .youtube .play-button {
+.youtube img,
+.youtube .play-button {
     cursor: pointer;
 }
-.youtube img, .youtube iframe, .youtube .play-button, .youtube .play-button:before {
+.youtube img,
+.youtube iframe,
+.youtube .play-button,
+.youtube .play-button:before {
     position: absolute;
 }
-.youtube .play-button, .youtube .play-button:before {
+.youtube .play-button,
+.youtube .play-button:before {
     top: 50%;
     left: 50%;
-    transform: translate3d( -50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
 }
 .youtube iframe {
     height: 100%;
@@ -544,20 +506,25 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
 }
 .section {
     margin-top: em(60);
-    &__title, &__paragraph {
+    &__title,
+    &__paragraph {
         @include breakpoint($xxs) {
             margin-right: 1.5rem;
             margin-left: 1.5rem;
         }
     }
-    @include breakpoint($xxs) {}
-    &__title {
-        @include breakpoint($xxs) {}
+    @include breakpoint($xxs) {
     }
-    &:not(.section_ladder) {}
+    &__title {
+        @include breakpoint($xxs) {
+        }
+    }
+    &:not(.section_ladder) {
+    }
 }
 .main {
-    & h2, p {
+    & h2,
+    p {
         @include breakpoint($xs) {
             // padding-left: 1.5rem;
             // padding-right: 1.5rem;
@@ -606,18 +573,17 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     @include breakpoint($xxs) {
         margin: 0;
     }
-    &:nth-child(2n+1) {
+    &:nth-child(2n + 1) {
         @include breakpoint($xxs) {
             align-self: center;
         }
-        ;
     }
-    &:nth-child(4n+2) {
+    &:nth-child(4n + 2) {
         @include breakpoint($xxs) {
             align-self: flex-end;
         }
     }
-    &:nth-child(4n+4) {
+    &:nth-child(4n + 4) {
         @include breakpoint($xxs) {
             align-self: flex-start;
         }
@@ -625,7 +591,7 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     background-color: $red;
     font-family: $decorativeFont;
     text-align: center;
-    padding: 1em .5em;
+    padding: 1em 0.5em;
     text-transform: uppercase;
     color: $white;
     cursor: pointer;
@@ -634,9 +600,9 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
         min-width: span(12);
         top: 0 $i;
         &[id] {
-          @include breakpoint($xs) {
-            left: 0 $i;
-          }
+            @include breakpoint($xs) {
+                left: 0 $i;
+            }
         }
 
         @include breakpoint($xxs) {
@@ -644,23 +610,24 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
             min-width: span(12) $i;
         }
     }
-    transition: .3s ease;
+    transition: 0.3s $sharp;
     &:hover {
         background-color: $purple $i;
         z-index: 199;
     }
-    &:nth-child(3n+1) {
+    &:nth-child(3n + 1) {
         background-color: $purple;
         &:hover {
             background-color: $red $i;
             z-index: 199;
         }
     }
-    &, &__refer {
+    &,
+    &__refer {
         font-size: em(21);
     }
     &__refer {
-        letter-spacing: .12em;
+        letter-spacing: 0.12em;
         background-image: none;
         font-weight: bold;
         &:hover {
@@ -676,12 +643,15 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
                 left: 0;
             }
         }
-        &_diamond_executed_director, &_mr_manager {
+        &_diamond_executed_director,
+        &_mr_manager {
             right: 100%;
         }
-        &_mr_manager, &_diamond_executed_director, &_diamond_director {
+        &_mr_manager,
+        &_diamond_executed_director,
+        &_diamond_director {
             bottom: 1%;
-            bottom: calc(0% + .2em);
+            bottom: calc(0% + 0.2em);
         }
         &_registrationStep {
             @include breakpoint($xxs) {
@@ -694,26 +664,31 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
 .ladderStepBenifit {
     &__title {
         font-size: 1em;
-        margin: 1.5em 0 .5em;
+        margin: 1.5em 0 0.5em;
         text-align: center;
     }
 }
 .benifitList {
     &Item {
-        margin-top: .5em;
+        margin-top: 0.5em;
         &::before {
             content: "\2014\00a0\00a0";
         }
     }
 }
+.share__preview {
+    margin-bottom: 1.5em;
+}
 .shares {
     max-width: em(920);
     margin: 0 auto 3em;
+
     &__title {
         // margin-bottom: em(50);
     }
 }
-.roomReferralRefer_refer, .share__title {
+.roomReferralRefer_refer,
+.share__title {
     position: relative;
     &:before {
         background: no-repeat center;
@@ -724,9 +699,10 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
         background-size: cover;
     }
 }
-.share__title, .roomReferralRefer {
+.share__title,
+.roomReferralRefer {
     &_refer {
-        padding-bottom: .2em;
+        padding-bottom: 0.2em;
         text-indent: em(54, 24);
         color: $red;
         background-image: linear-gradient(to right, $red 0%, $red 100%);
@@ -740,23 +716,24 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
         cursor: pointer;
         text-indent: em(35);
         &:before {
-            background-image: url('./../img/icons/link.png');
+            background-image: url("./../img/icons/link.png");
             width: em(24);
             height: em(24);
         }
     }
     position: relative;
+
     &__notification {
         position: absolute;
         bottom: 40%;
         left: 0;
         z-index: 2;
-        transition: .2s ease;
+        transition: 0.2s $standart;
         opacity: 0;
         text-align: center;
-        padding: .5em;
+        padding: 0.5em;
         max-width: em(210);
-        margin: .5em 0;
+        margin: 0.5em 0;
         @include round(em(2));
         border: 1.5px solid $purple;
         background-color: $white;
@@ -778,12 +755,12 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     }
     &__title {
         &:before {
-            background-image: url('./../img/icons/gift.png');
+            background-image: url("./../img/icons/gift.png");
             width: em(39.9, 24);
             height: em(32, 24);
             top: 3px;
             will-change: transform;
-            transition: transform .5s ease-in;
+            transition: transform 0.5s $sharp;
         }
         &:hover {
             &.share__title:before {
@@ -793,26 +770,33 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
                 &_refer {
                     $darkenRed: darken($red, 15%);
                     color: $darkenRed;
-                    background-image: linear-gradient(to right, $darkenRed 0%, $darkenRed 100%);
+                    background-image: linear-gradient(
+                        to right,
+                        $darkenRed 0%,
+                        $darkenRed 100%
+                    );
                 }
             }
         }
     }
-    &__paragraph {}
     &__announce {
         display: block;
         display: -webkit-box;
-        -webkit-line-clamp: 5; // margin-top: 1.5rem;
-        // padding: 0 1em;
+        -webkit-line-clamp: 5;
         overflow: hidden;
         height: em((18 * 5 * 1.5));
         text-overflow: ellipsis;
     }
 }
 .shareMeta {
-    margin-top: .5em $i;
+    margin-top: 0.5em $i;
+    &__published {
+        color: #909090;
+        font-weight: 200;
+    }
 }
-.room, .singleShare {
+.room,
+.singleShare {
     max-width: em(950);
     margin: 0 auto em(235, 36);
 }
@@ -831,7 +815,7 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
     }
     & h2 {
         margin-top: em(50, 24);
-        &+p {
+        & + p {
             margin-top: em(17);
         }
     }
@@ -875,7 +859,8 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
             margin-top: em(21);
         }
     }
-    &__image, &__title {
+    &__image,
+    &__title {
         cursor: pointer;
     }
     @include flyShadow();
@@ -884,78 +869,74 @@ $slides: ('hike', auto, 0), ('team', 0, 0), ('business', 0, calc(50% - 222px)), 
         justify-content: center;
         flex-direction: column;
     }
-    ;
     &__image {
         background-size: 60px;
     }
 }
-
-
-
 .singleShare {
-  border: 1em solid #654178;
+    border: 1em solid #654178;
     margin-top: 2.617924em;
     border-left: 0;
     border-right: 0;
     padding-bottom: 4.235801032em;
     max-width: 60ch;
-  h2, h3 {
-    margin-left: -4px;
-  }
-  h3 {
-     margin-top:2.08333em;
-  }
-  *+* {
-    margin-top: 1.618em;
-  }
-  img {
-    width: 100%;
-    box-shadow: 2px 2px 4px rgba(0,0,0,.25);
-    display: block;
-    max-width: 100%;
-  }
-  h2 + *:first-of-type, h3 + *:first-of-type, img {
-    margin-top: 1.618em;
-  }
-  a {
-     color: #99303B;
-
-     background-image: linear-gradient(to right,#99303B 0, #99303B 100%);
-  }
-  ul {
-    margin-top: 1.5rem;
-  }
-  &, img {
-    border-radius: 2px;
-  }
-  &__title {
-    margin-top: 1.618rem;
-  }
-  ul li:before {
-    content: "\25EF";
-      position: relative;
-      top: -0.15625em;
-      font-size: 0.61804697156983930779em;
-      margin-right: 0.38198205906664975759em;
-  }
+    h2,
+    h3 {
+        margin-left: -4px;
+    }
+    h3 {
+        margin-top: 2.08333em;
+    }
+    * + * {
+        margin-top: 1.618em;
+    }
+    img {
+        width: 100%;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+        display: block;
+        max-width: 100%;
+    }
+    h2 + *:first-of-type,
+    h3 + *:first-of-type,
+    img {
+        margin-top: 1.618em;
+    }
+    a {
+        color: #99303b;
+        background-image: linear-gradient(to right, #99303b 0, #99303b 100%);
+    }
+    ul {
+        margin-top: 1.5rem;
+    }
+    &,
+    img {
+        border-radius: 2px;
+    }
+    &__title {
+        margin-top: 1.618rem;
+    }
+    ul li:before {
+        content: "\25EF";
+        position: relative;
+        top: -0.15625em;
+        font-size: 0.61804697156983930779em;
+        margin-right: 0.38198205906664975759em;
+    }
 }
-
-
-
 @media (min-width: 769px) {
-  .singleShare {
-    -webkit-transform: translateX(2em);
-      -ms-transform: translateX(2em);
-      transform: translateX(2em);
-  }
+    .singleShare {
+        -webkit-transform: translateX(2em);
+        -ms-transform: translateX(2em);
+        transform: translateX(2em);
+    }
 }
 @media (max-width: 768px) {
-  .singleShare {
-    margin-top: 4.5em
-  }
+    .singleShare {
+        margin-top: 4.5em;
+    }
 }
 @media (max-width: 480px) {
-  .singleShare__title {
-    font-size: 7vw;
-  }
+    .singleShare__title {
+        font-size: 7vw;
+    }
 }

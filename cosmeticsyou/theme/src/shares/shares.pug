@@ -9,14 +9,22 @@ section.shares.parent
 	| {% if shares %}
 	h1.mainTitle.shares__title Последние акции
 	| {% for share in shares|slice:"0:6" %}
-	article.share.child
+	article.share.child.parent.column.h-end
 		h2.share__title
 			a.share__title_refer(href="{% url 'single_share' slug=share.slug %}") {{ share.title }}
 		p.shareMeta
 			time.shareMeta__published(datetime="{{ share.published_date }}") {{ share.published_date }}
+			
 		| {% if share.announce %}
 		p.share__announce {{ share.announce|safe }}
 		| {% endif %}
+		
+		| {% if share.img %}
+		picure.share__preview.order_first
+			source(srcset="/media/{{ share.img }}", media="screen")
+			img.materialShadow.image.lazy(data-src="/media/{{ share.img }}")
+		| {% endif %}
+		
 	| {% endfor %}
 	| {% else %}
 	h1.mainTitle Акций нет.

@@ -44,14 +44,11 @@ ul {
         color: $white $i;
     }
     &__title {
+        max-height: 211px;
+        max-width: 7em;
+        margin: auto;
         letter-spacing: 0 $i;
         line-height: 1;
-        @include breakpoint($sm-less) {
-            // margin-top: 0.5em;
-        }
-        @include breakpoint($xxs) {
-            margin-top: 0;
-        }
     }
 }
 .topNavigation,
@@ -66,12 +63,14 @@ ul {
     background-color: $purple;
     line-height: 2.2;
     padding: 1.25em 1.5rem 1.75em;
+
     @include breakpoint($sm-less) {
         order: 3;
         min-width: span(6);
-        top: -9em;
+        top: -10em;
         box-shadow: none;
     }
+
     @include breakpoint($xxs) {
         order: 2;
         min-width: span(12);
@@ -293,7 +292,7 @@ ul {
     padding: 0.5em 0 0.75em;
     z-index: 2;
     @include breakpoint($sm-less) {
-        top: -174px; //em(-197, 21);
+        top: -160px;
         min-width: 24%;
     }
 

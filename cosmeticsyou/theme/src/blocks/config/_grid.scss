@@ -50,9 +50,28 @@ $gutters: 0;
 	align-items: center
 }
 .v-start{
-	align-items: flex-start
+	align-items: flex-start;
+
+	&_self {
+		align-self: flex-start
+	}
 }
 .v-end{
 	align-items: flex-end
 }
 
+.display {
+  &_grid {
+    @supports (display: grid) {
+      display: grid;
+    }
+  }
+}
+
+.grid {
+	&_gap {
+		@supports (display: grid) {
+      grid-gap: 1em 1.618em;
+    }
+	}
+}

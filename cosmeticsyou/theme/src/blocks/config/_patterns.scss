@@ -16,6 +16,11 @@
         position: absolute;
     }
 }
+.order {
+  &_first {
+    order: -1;
+  }
+}
 .visible-hidden-xs {
     @include breakpoint($xs) {
         white-space: nowrap;
@@ -26,12 +31,13 @@
         position: absolute;
     }
 }
+
 .materialShadow {
     box-shadow: 0 2px 6px $shadow;
 }
 .lazy {
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity 270ms $acceleration;
     will-change: opacity;
 }
 .fadeIn {
@@ -40,18 +46,23 @@
 .registrationButton {
     font-size: 1em $i;
 
-
-    &_white {
-        background-color: transparent;
-        border: 5px solid;
-        color: $white;
-    }
+    // &_white {
+    //     background-color: transparent;
+    //     border: 5px solid;
+    //     color: $white;
+    // }
     &_red {
         background-color: $red;
     }
+
     &_purple {
         background-color: $purple;
     }
+
+    &_green {
+        background-color: $green;
+    }
+
     &:disabled {
         background-color: $gray;
         &__refer {
@@ -64,6 +75,7 @@
             box-shadow: none;
         }
     }
+
     text-align: center;
     min-width: em(250, 21);
     max-width: em(250, 21);
@@ -71,15 +83,16 @@
     display: inline-block;
     position: relative;
     @include round(em(2, 21));
+
     &_centered {
         margin-left: auto;
         margin-right: auto;
         display: block;
-    } // @include flyShadow();
+    }
     &_active {
         background-color: $purple;
     }
-    padding: .75em .5em 1em;
+    padding: 0.75em 0.5em 1em;
     &__refer {
         color: $white $i;
         background-image: none $i;
@@ -88,17 +101,23 @@
             background-image: none $i;
         }
     }
-    transition: z-index .3s, box-shadow .3s ease, color .3s ease, background .3s ease; // @extend %all-transition-3;
-    &:hover, &:focus, &:active {
+
+    transition-property: z-index, box-shadow, background;
+    transition-duration: 270ms;
+    transition-timing-function: $sharp;
+
+    &:hover,
+    &:focus,
+    &:active {
         @extend %flyShadow;
         z-index: 3;
     }
-
 }
 .imageContainer {
     display: inline-block;
-    &, &__image {
-        transition: .3s ease-in-out;
+    &,
+    &__image {
+        transition: 0.3s $decelleration;
         width: span(12);
     }
     &__image {
@@ -120,6 +139,7 @@
     position: absolute;
     box-shadow: 0 10px 35px -1px $shadow;
     will-change: opacity, left, right, top, bottom;
+
     font: {
         size: 18px $i;
         family: $mainFont;
@@ -133,21 +153,25 @@
     &_black {
         background-color: $darkGray;
     }
+    &_green {
+        background-color: $green;
+    }
+
     opacity: 0;
     z-index: -1;
     @include round(em(2, 21));
     font-size: em(24);
     min-width: em(350, 21);
     color: $white;
-    padding : em(21, 21) em(18, 21) em(32, 21) em(24, 21);
-    transition: opacity 270ms cubic-bezier(0.2, 0, 0.4, 1);
+    padding: em(21, 21) em(18, 21) em(32, 21) em(24, 21);
+    transition: opacity 270ms $sharp;
 
     &__title {
         border-bottom: 1px solid #adadad;
         font-size: em(24);
         margin-left: -4px;
         padding-right: 1em;
-        padding-bottom: .3em;
+        padding-bottom: 0.3em;
         justify-content: space-between;
 
         @include breakpoint($xxs) {
@@ -157,7 +181,6 @@
         & .closeButton {
             text-align: right;
         }
-
     }
     &_inline {
         top: 0 $i;
@@ -186,7 +209,6 @@
         // top: 22.5vh $i;
         position: fixed;
     }
-
 }
 .light {
     font-weight: 200;
@@ -198,15 +220,22 @@
     font-weight: 600;
 }
 .marginTop {
-
-	&_1 {
-	    margin-top: 1em;
-	}
-	&_77 {
-		margin-top: em(77);
-	}
+    &_1 {
+        margin-top: 1em;
+    }
+    &_77 {
+        margin-top: em(77);
+    }
 }
 .margin {
+    &-bottom {
+        &_base {
+            margin-bottom: 1em;
+        }
+        &_small {
+            margin-bottom: em(21, 24);
+        }
+    }
     &_center {
         margin-left: auto;
         margin-right: auto;
@@ -217,6 +246,16 @@
     & a {
         color: $white $i;
         background-image: linear-gradient(to right, $white 0%, $white 100%) $i;
+    }
+}
+.heading {
+    &-offset {
+        &_base {
+            margin-left: -3px;
+        }
+        &_large {
+            margin-left: -5px;
+        }
     }
 }
 .shown_element {
@@ -238,7 +277,7 @@
         color: $red;
     }
     &__icon {
-        margin-bottom: .15em;
+        margin-bottom: 0.15em;
     }
     &__input {
         min-width: span(12);
@@ -250,7 +289,7 @@
         background-color: $gray;
         border-width: 2px;
         border-style: solid;
-        transition: border .3s ease-in;
+        transition: border 0.3s $standart;
         &:focus {
             outline: none;
         }
@@ -261,7 +300,7 @@
                     border-color: $red; //#5C1D31;
                 }
                 &:valid {
-                    border-color: #437A67;
+                    border-color: #437a67;
                 }
             }
         }
@@ -271,7 +310,7 @@
                     border-color: $red; //#5C1D31;
                 }
                 &:valid {
-                    border-color: #437A67;
+                    border-color: #437a67;
                 }
             }
             &.controller__input_red {
@@ -279,7 +318,7 @@
                     border-color: $purple; //#5C1D31;
                 }
                 &:valid {
-                    border-color: #437A67;
+                    border-color: #437a67;
                 }
             }
         }
@@ -290,13 +329,13 @@
                     border-color: $purple; //#5C1D31;
                 }
                 &:valid {
-                    border-color: #437A67;
+                    border-color: #437a67;
                 }
             }
         }
         &_select {
-            padding: .5em;
-            margin-top: .5em;
+            padding: 0.5em;
+            margin-top: 0.5em;
             max-height: em(200);
         }
     }
@@ -317,9 +356,10 @@
         display: inline-block;
         position: relative;
         @include round(em(2));
-        &:checked:active {}
+        &:checked:active {
+        }
         &:checked:after {
-            content: '\2714'; // font-size: em(15);
+            content: "\2714"; // font-size: em(15);
             position: absolute;
             top: em(1);
             left: em(3);
@@ -328,7 +368,7 @@
     }
     &__checkboxLabel {
         color: $white;
-        padding: .5em 1em .8em;
+        padding: 0.5em 1em 0.8em;
         max-width: span(10);
         background-color: $red;
         @include round(em(2));

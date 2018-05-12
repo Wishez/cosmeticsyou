@@ -106,7 +106,7 @@ style.
 		.pieces-slider__slide
 			img.pieces-slider__image(src="/static/cosmeticsyou/img/slides/registration.jpg", alt="")
 			p.pieces-slider__text.visible-hidden(data-index="4") <strong>Пройдя регистрацию</strong>, вы официально станете любимым членом нашей замечательной команды!
-				span.slide__button.registrationButton.registrationButton_white.registrationButton_centered.marginTop_1.materialShadow
+				span.slide__button.registrationButton.registrationButton_green.registrationButton_centered.marginTop_1.materialShadow
 					a.registrationButton__refer(href="{% url 'registration' %}") Зарегистрироваться
 	    
 		canvas.pieces-slider__canvas
@@ -114,6 +114,30 @@ style.
 		button#nextButton.pieces-slider__button.materialShadow.pieces-slider__button--next Туда
 		.sliderText
 			p#sliderText
+				
+//- begin catalogs
+
+section.intro.margin_center.parent.row.wrap.display_grid.grid_gap.v-end
+	
+	div.introPresent
+		h3.intro__title.margin-bottom_base.heading-offset_large.width_fill У нас для вас подарок
+		a.catalog__refer(href="/shares/")
+			picture
+				source(srcset="/static/cosmeticsyou/img/awesomePresent.jpg", media="screen")
+				img.materialShadow.image.lazy(data-src="/static/cosmeticsyou/img/awesomePresent.jpg")
+		
+					
+	div.introCatalog
+		h3.intro__title.margin-bottom_base.heading-offset_large.width_fill Текущий каталог
+		a.catalog__refer.not-follow(href="http://ru.oriflame.com/ecatalogue/502181?per=201609")
+			picture
+				source(srcset="https://ru.oriflame.com/catalogue-image.png", media="screen")
+				img.materialShadow.image.lazy(data-src="https://ru.oriflame.com/catalogue-image.png")
+		
+		
+	.introCatalog__registration.registrationButton.main__registrationButton.registrationButton_purple.registrationButton_centered
+		a.registrationButton__refer(href="{% url 'registration' %}") Регистрация
+//- end catalogs
 section.programm.parent.centered.margin_center#programm
 	h2.programm__title.child С чёго стоит начать?  
 	each chain in chains
@@ -127,16 +151,16 @@ section.programm.parent.centered.margin_center#programm
 ul.items.parent.restrictBlock.v-end
 	each item in items 
 		//- begin item
-		li.item.child.parent.centered
-			h3.item__title= item.title
-			.item__image
+		li.item.child.parent.centered.column
+			h3.item__title.heading-offset_base= item.title
+			.item__image(tabindex="0")
 				picture.child.showPopup(
 					data-popup-id="#" + item.name
 				)
 					source(srcset="/static/cosmeticsyou/img/steps/" + item.name + '.jpg', media="screen")
 					img.image.lazy.materialShadow(data-src="/static/cosmeticsyou/img/steps/" + item.name + '.jpg')
 
-			.itemDescription.description.description_black.description_inline.visible-hidden(id= item.name)
+			.itemDescription.description.description_green.description_inline.visible-hidden(id= item.name)
 				h4.description__title.parent= item.itemName
 					button.item__closeButton.closeButton.child(data-popup-id="#" + item.name, aria-pressed="false")
 						<svg width="1em" height="1em"  viewBox="0 0 512 512" role="image" aria-hidden="true">
@@ -161,7 +185,7 @@ ul.items.parent.restrictBlock.v-end
 	a.registrationButton__refer(href="{% url 'registration' %}") Регистрация
 //- end registration__main
 //- begin questions
-section.questions
+section.questions.alignSection
 	h2.visible-hidden Часто задаваемые вопросы
 	//- begin question
 	each question in FAQ
@@ -169,18 +193,11 @@ section.questions
 			h3.question__title= question.title
 			each answer in question.paragraphs
 				p.question__paragraph= answer
+				
+	.introCatalog__registration.registrationButton.main__registrationButton.registrationButton_green.registrationButton_centered
+		a.registrationButton__refer(href="{% url 'registration' %}") Регистрация
 
 //- end questions
-//- begin catalogs
-section.catalogs
-	h2.catalogs__title Текущий каталог
-	//- ul.catalogsList#catalogs.owl-carousel
-	div.catalog
-		a.catalog__refer.not-follow(href="http://ru.oriflame.com/ecatalogue/502181?per=201609")
-			picture
-				source(srcset="https://ru.oriflame.com/catalogue-image.png", media="screen")
-				img.materialShadow.image.lazy(data-src="https://ru.oriflame.com/catalogue-image.png")
-					
-//- end catalogs
+
 
 | {% endblock %}
