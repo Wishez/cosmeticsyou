@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from twilio.rest import Client
 import os, time
+from threading import Thread
 
 class MessageParser():
     def __init__(
@@ -117,34 +118,40 @@ class MessageParser():
 
 
 def create_user_and_notify_about(user, page):
-    user.save()
+	user.save()
 
-    MessageParser(
-        user,
-        'after_register_message',
-        'after_register_subject',
-        isMessageKey=True
-    )
+	send_sms_notification(page, user)
 
-    birthday = '%s' % user.birthday
-    middle_name = getattr(user, 'middle_name', '')
+	notificateUserToMail = MessageParser(
+		user,
+		'after_register_message',
+		'after_register_subject',
+		isMessageKey=True
+	)
 
-    MessageParser(
-        user,
-        'ФИО: {{last_name}} {{first_name}} %s\n'
-        'День рождения: {{birthday}}\n'
-        'Телефон: {{phone_number}}\n'
-        'Email: {{email}}\n'
-        'Почтовый индекс: {{region}}\n'
-        'Город: {{city}}\n'
-        '\nК панели администрирования: https://{{site}}/admin/accounts/user/\n' % (middle_name),
-        'Новый консультант присоединился к нашим рядам.',
-        isMessageKey=False,
-        recipients=["shiningfinger@list.ru", "uchuvadov60@inbox.ru"]
-    )()
+	notificateUserToMail()
+    
+	birthday = '%s' % user.birthday
+	middle_name = getattr(user, 'middle_name', '')
 
+	messageForCustomer = 'ФИО: {{last_name}} {{first_name}} %s\n'
+	'День рождения: %s\n'
+	'Телефон: {{phone_number}}\n'
+	'Email: {{email}}\n'
+	'Почтовый индекс: {{region}}\n'
+	'Город: {{city}}\n'
+	'\nК панели администрирования: https://{{site}}/admin/accounts/user/\n' % (middle_name, birthday,),
+	subjectOfTheMessage = 'Новый консультант присоединился к нашим рядам.'
 
-    send_sms_notification(page, user)
+	notificateCustomerToMail = MessageParser(
+		user,
+		messageForCustomer,
+		subjectOfTheMessage,
+		isMessageKey=False,
+		recipients=["shiningfinger@list.ru", "uchuvadov60@inbox.ru"]
+	)
+
+	notificateCustomerToMail()
 
 def send_sms_notification(page, consultant):
 
