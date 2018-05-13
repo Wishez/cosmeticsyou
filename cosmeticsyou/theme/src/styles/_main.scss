@@ -387,7 +387,8 @@ $slides: ("hike", auto, 0), ("team", 0, 0), ("business", 0, calc(50% - 222px)),
         max-width: none;
     }
     &__button {
-        margin-top: em(24);
+        margin-top: 2.618em;
+        transform: scale(1.25);
     }
     &__controller {
         &_num_home {

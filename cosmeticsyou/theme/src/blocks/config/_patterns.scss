@@ -368,10 +368,12 @@
     }
     &__checkboxLabel {
         color: $white;
-        padding: 0.5em 1em 0.8em;
+        padding: .5em .75em 1.25em 1.25em;
         max-width: span(10);
-        background-color: $red;
+        background-color: $purple;
         @include round(em(2));
+        margin-top: 1em;
+margin-left: auto;
     }
 }
 .restrictBlock {

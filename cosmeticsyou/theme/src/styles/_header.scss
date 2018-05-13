@@ -233,14 +233,14 @@ ul {
     &:focus,
     &:hover &__refer_active {
         @include breakpoint($sm-less) {
-            background-color: $purple;
+            background-color: $green;
             color: $white $i;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
         }
     }
     &__refer {
         padding-bottom: 0.7em;
-        background-image: linear-gradient(to right, $purple 0%, $purple 100%) $i;
+        background-image: linear-gradient(to right, $green 0%, $green 100%) $i;
         background-position: 0 2.2em $i;
         background-size: 2.5em $i;
         white-space: nowrap;
