@@ -14,10 +14,12 @@ ul {
 }
 .navigation {
     background-color: $gray;
+
     @include breakpoint($sm-less) {
         height: em(540, 21);
         background-color: transparent;
     }
+
     @include breakpoint($xxs) {
         height: auto;
     }
@@ -30,25 +32,39 @@ ul {
     font-size: em(42);
     font-weight: 800;
     min-width: 35%;
+
     @include breakpoint($sm-less) {
         order: 1;
         min-width: span(6);
         border-radius: 0;
     }
+
     @include breakpoint($xxs) {
         min-width: span(12);
     }
+
     &,
     &:hover {
         background-size: 0;
         color: $white $i;
     }
+
+    &__signification {
+        transform: translateY(-1em);
+        font-size: 16px;
+    }
+
     &__title {
         max-height: 211px;
+        transform:  translateY(-.2em);
         max-width: 7em;
         margin: auto;
         letter-spacing: 0 $i;
         line-height: 1;
+
+        @include breakpoint($sm-less) {
+            margin-top: 0;
+        }
     }
 }
 .topNavigation,

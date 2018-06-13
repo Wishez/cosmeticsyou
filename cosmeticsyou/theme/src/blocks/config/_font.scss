@@ -1,0 +1,29 @@
+.font {
+    &-size {
+
+        &_10 {
+            font-size: em(10);
+        }
+
+        // &_11 {
+        //   font-size: em(11);
+        // }
+
+        &_12 {
+            font-size: em(12);
+        }
+
+        
+    }
+
+    &-decorative {  
+        font-family: $decorativeFont;
+    }
+
+    &-style {
+        &_italic {
+            font-family: "Open-Sans-Italic";
+            font-style: italic;
+        }
+    }
+}

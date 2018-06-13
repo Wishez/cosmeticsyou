@@ -32,6 +32,14 @@
     }
 }
 
+.width {
+    &_fill {
+        min-width: 100%
+    }
+}
+
+    
+
 .materialShadow {
     box-shadow: 0 2px 6px $shadow;
 }
@@ -219,6 +227,26 @@
 .semi {
     font-weight: 600;
 }
+
+.display {
+    
+    &_none {
+
+        &-1367 {
+            @include breakpoint(max-width 1367px) {
+                display: none;
+            }
+        }
+    }
+}
+
+.spacing {
+
+    &_five {
+        letter-spacing: .05em;
+    }
+}
+
 .marginTop {
     &_1 {
         margin-top: 1em;

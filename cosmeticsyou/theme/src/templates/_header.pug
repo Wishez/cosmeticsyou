@@ -3,12 +3,13 @@ header#header.header.parent(
     itemtype="https://schema.org/Organization"
 )
 	nav.navigation.parent.child#navigation(role="navigation")
-		a#brand.brand.materialShadow(href="{% url 'index' %}")
-			h1.brand__title(
+		a#brand.brand.materialShadow.parent.v-centered(href="{% url 'index' %}")
+			h1.brand__title.parent.centered.width_fill(
 				itemprop="name"
 			) 
-				svg( viewBox="0 0 173 64" aria-hidden="true" role="img")
+				svg.width_fill( viewBox="0 0 173 64" aria-hidden="true" role="img")
 					use(xlink:href="#siteLogo")
+				span.brand__signification.spacing_five Сайт независимого консультанта
 		ul.topNavigation.child.parent.centered.column
 			li.topNavigationItem.topNavigationItem_shop(
 		   		role="presentation"
@@ -19,7 +20,8 @@ header#header.header.parent(
 				) 
 					.imageContainer.imageContainer_shopping-bag
 						figure.imageContainer__image.imageContainer__image_shopping-bag
-					span.visible-hidden-smLess Интернет магазин
+					span.visible-hidden-smLess Личный интернет магазин
+					
 			li.topNavigationItem.topNavigationItem_registration.registrationButton.materialShadow.registrationButton_red(
 			  	role="presentation"
 		 		class="{% if active_page == 'registration' %}registrationButton_active{% endif %}"
@@ -28,7 +30,17 @@ header#header.header.parent(
 					href="{% url 'registration' %}", 
 					class="{% if active_page == 'registration' %}topNavigationItem__refer_active{% endif %}"
 				) Регистрация
+				
 		ul.contacts.child.materialShadow.leftPadding
+			
+			li.font-size_16.spacing_five.font-decorative.contactsItem(
+				itemscope,
+		    	itemtype="https://schema.org/ContactPoint"
+			)
+				span.color_gray.display_none-1367 Консультант по красоте &mdash; 
+
+				span.color_white.inlineParent.v-centered(itemprop="contactPoint" itemscope itemtype="http://schema.org/Person") Наталья Учувадова
+				
 			li.contactsItem(
 				itemscope,
 		    	itemtype="https://schema.org/ContactPoint"

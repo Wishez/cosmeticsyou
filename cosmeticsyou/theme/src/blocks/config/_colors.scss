@@ -16,3 +16,17 @@ $cyan: #76c1e2;
 $viole: #a86fb9;
 $shadow: rgba(0, 0, 0, .4);
 $ghostBlack:  rgba(29, 22, 16, .8);
+
+.color {
+    &_white {
+        color: $white;
+    }
+
+    &_green {
+        color: $green;
+    }
+
+    &_gray {
+        color: #a5a5a5;
+    }
+}
