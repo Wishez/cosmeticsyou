@@ -39,9 +39,9 @@
 /**
  * filesize
  *
- * @copyright 2017 Jason Mulligan <jason.mulligan@avoidwork.com>
+ * @copyright 2018 Jason Mulligan <jason.mulligan@avoidwork.com>
  * @license BSD-3-Clause
- * @version 3.5.11
+ * @version 3.6.1
  */
 (function (global) {
 	var b = /^(b|B)$/,
@@ -84,6 +84,7 @@
 		    output = void 0,
 		    round = void 0,
 		    unix = void 0,
+		    separator = void 0,
 		    spacer = void 0,
 		    standard = void 0,
 		    symbols = void 0;
@@ -95,14 +96,15 @@
 		bits = descriptor.bits === true;
 		unix = descriptor.unix === true;
 		base = descriptor.base || 2;
-		round = descriptor.round !== undefined ? descriptor.round : unix ? 1 : 2;
-		spacer = descriptor.spacer !== undefined ? descriptor.spacer : unix ? "" : " ";
+		round = descriptor.round !== void 0 ? descriptor.round : unix ? 1 : 2;
+		separator = descriptor.separator !== void 0 ? descriptor.separator || "" : "";
+		spacer = descriptor.spacer !== void 0 ? descriptor.spacer : unix ? "" : " ";
 		symbols = descriptor.symbols || descriptor.suffixes || {};
 		standard = base === 2 ? descriptor.standard || "jedec" : "jedec";
 		output = descriptor.output || "string";
 		full = descriptor.fullform === true;
 		fullforms = descriptor.fullforms instanceof Array ? descriptor.fullforms : [];
-		e = descriptor.exponent !== undefined ? descriptor.exponent : -1;
+		e = descriptor.exponent !== void 0 ? descriptor.exponent : -1;
 		num = Number(arg);
 		neg = num < 0;
 		ceil = base > 2 ? 1000 : 1024;
@@ -178,6 +180,10 @@
 
 		if (full) {
 			result[1] = fullforms[e] ? fullforms[e] : fullform[standard][e] + (bits ? "bit" : "byte") + (result[0] === 1 ? "" : "s");
+		}
+
+		if (separator.length > 0) {
+			result[0] = result[0].toString().replace(".", separator);
 		}
 
 		return result.join(spacer);
@@ -2043,7 +2049,7 @@ onGroupTransform:[],onGroupTransformEnd:[],onKeyUp:[],selection:null,open:null,e
   <body>
     <div id="treemap" class="treemap"></div>
     <script>
-      window.chartData = [{"label":"main.js","weight":273721,"statSize":782318,"parsedSize":273721,"groups":[{"label":"node_modules","path":"./node_modules","weight":217144,"statSize":654465,"parsedSize":217144,"groups":[{"label":"jquery","path":"./node_modules/jquery","weight":87359,"statSize":268039,"parsedSize":87359,"groups":[{"label":"dist","path":"./node_modules/jquery/dist","weight":87359,"statSize":268039,"parsedSize":87359,"groups":[{"id":0,"label":"jquery.js","path":"./node_modules/jquery/dist/jquery.js","weight":87359,"statSize":268039,"parsedSize":87359}]}]},{"label":"animejs","path":"./node_modules/animejs","weight":13950,"statSize":14420,"parsedSize":13950,"groups":[{"id":1,"label":"anime.min.js","path":"./node_modules/animejs/anime.min.js","weight":13950,"statSize":14420,"parsedSize":13950}]},{"label":"gsap","path":"./node_modules/gsap","weight":114120,"statSize":368386,"parsedSize":114120,"groups":[{"id":12,"label":"TweenMax.js","path":"./node_modules/gsap/TweenMax.js","weight":114120,"statSize":368386,"parsedSize":114120}]},{"label":"lozad","path":"./node_modules/lozad","weight":1715,"statSize":3620,"parsedSize":1715,"groups":[{"label":"dist","path":"./node_modules/lozad/dist","weight":1715,"statSize":3620,"parsedSize":1715,"groups":[{"id":13,"label":"lozad.js","path":"./node_modules/lozad/dist/lozad.js","weight":1715,"statSize":3620,"parsedSize":1715}]}]}]},{"label":"buildin","path":"./buildin","weight":145,"statSize":509,"parsedSize":145,"groups":[{"id":2,"label":"global.js","path":"./buildin/global.js","weight":145,"statSize":509,"parsedSize":145}]},{"label":"src","path":"./src","weight":56432,"statSize":127344,"parsedSize":56432,"groups":[{"label":"blocks","path":"./src/blocks","weight":4028,"statSize":8574,"parsedSize":4028,"groups":[{"label":"custom","path":"./src/blocks/custom","weight":4028,"statSize":8574,"parsedSize":4028,"groups":[{"id":3,"label":"custom.js","path":"./src/blocks/custom/custom.js","weight":4028,"statSize":8574,"parsedSize":4028}]}]},{"label":"js","path":"./src/js","weight":52404,"statSize":118770,"parsedSize":52404,"groups":[{"label":"lib","path":"./src/js/lib","weight":25038,"statSize":47597,"parsedSize":25038,"groups":[{"id":4,"label":"slider.js","path":"./src/js/lib/slider.js","weight":3325,"statSize":8171,"parsedSize":3325},{"id":7,"label":"jquery.mask.js","path":"./src/js/lib/jquery.mask.js","weight":7172,"statSize":19545,"parsedSize":7172},{"id":8,"label":"pieces.js","path":"./src/js/lib/pieces.js","weight":14541,"statSize":19881,"parsedSize":14541}]},{"id":5,"label":"registration.js","path":"./src/js/registration.js","weight":839,"statSize":7955,"parsedSize":839},{"id":6,"label":"intlTelInput.js","path":"./src/js/intlTelInput.js","weight":26498,"statSize":63105,"parsedSize":26498},{"id":9,"label":"main.js","path":"./src/js/main.js","weight":29,"statSize":113,"parsedSize":29}]}]}]},{"label":"sw.js","weight":2256,"statSize":3597,"parsedSize":2256,"groups":[{"label":"src","path":"./src","weight":2256,"statSize":3597,"parsedSize":2256,"groups":[{"label":"js","path":"./src/js","weight":2256,"statSize":3597,"parsedSize":2256,"groups":[{"id":11,"label":"sw.js","path":"./src/js/sw.js","weight":2256,"statSize":3597,"parsedSize":2256}]}]}]},{"label":"media.js","weight":547,"statSize":786,"parsedSize":547,"groups":[{"label":"src","path":"./src","weight":547,"statSize":786,"parsedSize":547,"groups":[{"label":"js","path":"./src/js","weight":547,"statSize":786,"parsedSize":547,"groups":[{"id":10,"label":"media.js","path":"./src/js/media.js","weight":547,"statSize":786,"parsedSize":547}]}]}]}];
+      window.chartData = [{"label":"main.js","weight":2224319,"statSize":795629,"parsedSize":2224319,"groups":[{"label":"node_modules","path":"./node_modules","weight":1893255,"statSize":667137,"parsedSize":1893255,"groups":[{"label":"gsap","path":"./node_modules/gsap","weight":1060361,"statSize":377342,"parsedSize":1060361,"groups":[{"label":"esm","path":"./node_modules/gsap/esm","weight":1060361,"statSize":377342,"parsedSize":1060361,"groups":[{"id":0,"label":"TweenLite.js","path":"./node_modules/gsap/esm/TweenLite.js","weight":238154,"statSize":85935,"parsedSize":238154},{"id":2,"label":"TimelineLite.js","path":"./node_modules/gsap/esm/TimelineLite.js","weight":95959,"statSize":34178,"parsedSize":95959},{"id":4,"label":"AttrPlugin.js","path":"./node_modules/gsap/esm/AttrPlugin.js","weight":3982,"statSize":1102,"parsedSize":3982},{"id":5,"label":"BezierPlugin.js","path":"./node_modules/gsap/esm/BezierPlugin.js","weight":59381,"statSize":19602,"parsedSize":59381},{"id":6,"label":"CSSPlugin.js","path":"./node_modules/gsap/esm/CSSPlugin.js","weight":438348,"statSize":161297,"parsedSize":438348},{"id":7,"label":"DirectionalRotationPlugin.js","path":"./node_modules/gsap/esm/DirectionalRotationPlugin.js","weight":9015,"statSize":2813,"parsedSize":9015},{"id":8,"label":"EasePack.js","path":"./node_modules/gsap/esm/EasePack.js","weight":35206,"statSize":11177,"parsedSize":35206},{"id":9,"label":"RoundPropsPlugin.js","path":"./node_modules/gsap/esm/RoundPropsPlugin.js","weight":9554,"statSize":2885,"parsedSize":9554},{"id":10,"label":"TimelineMax.js","path":"./node_modules/gsap/esm/TimelineMax.js","weight":69451,"statSize":25028,"parsedSize":69451},{"id":21,"label":"TweenMax.js","path":"./node_modules/gsap/esm/TweenMax.js","weight":7606,"statSize":1797,"parsedSize":7606},{"id":22,"label":"TweenMaxBase.js","path":"./node_modules/gsap/esm/TweenMaxBase.js","weight":84563,"statSize":30211,"parsedSize":84563},{"id":23,"label":"index.js","path":"./node_modules/gsap/esm/index.js","weight":9142,"statSize":1317,"parsedSize":9142}]}]},{"label":"jquery","path":"./node_modules/jquery","weight":786993,"statSize":271751,"parsedSize":786993,"groups":[{"label":"dist","path":"./node_modules/jquery/dist","weight":786993,"statSize":271751,"parsedSize":786993,"groups":[{"id":1,"label":"jquery.js","path":"./node_modules/jquery/dist/jquery.js","weight":786993,"statSize":271751,"parsedSize":786993}]}]},{"label":"animejs","path":"./node_modules/animejs","weight":35699,"statSize":14420,"parsedSize":35699,"groups":[{"id":3,"label":"anime.min.js","path":"./node_modules/animejs/anime.min.js","weight":35699,"statSize":14420,"parsedSize":35699}]},{"label":"lozad","path":"./node_modules/lozad","weight":10202,"statSize":3624,"parsedSize":10202,"groups":[{"label":"dist","path":"./node_modules/lozad/dist","weight":10202,"statSize":3624,"parsedSize":10202,"groups":[{"id":24,"label":"lozad.js","path":"./node_modules/lozad/dist/lozad.js","weight":10202,"statSize":3624,"parsedSize":10202}]}]}]},{"label":"buildin","path":"./buildin","weight":4208,"statSize":1105,"parsedSize":4208,"groups":[{"id":11,"label":"global.js","path":"./buildin/global.js","weight":1923,"statSize":509,"parsedSize":1923},{"id":25,"label":"harmony-module.js","path":"./buildin/harmony-module.js","weight":2285,"statSize":596,"parsedSize":2285}]},{"label":"src","path":"./src","weight":326856,"statSize":127387,"parsedSize":326856,"groups":[{"label":"blocks","path":"./src/blocks","weight":24499,"statSize":8574,"parsedSize":24499,"groups":[{"label":"custom","path":"./src/blocks/custom","weight":24499,"statSize":8574,"parsedSize":24499,"groups":[{"id":12,"label":"custom.js","path":"./src/blocks/custom/custom.js","weight":24499,"statSize":8574,"parsedSize":24499}]}]},{"label":"js","path":"./src/js","weight":302357,"statSize":118813,"parsedSize":302357,"groups":[{"label":"lib","path":"./src/js/lib","weight":117043,"statSize":47628,"parsedSize":117043,"groups":[{"id":13,"label":"slider.js","path":"./src/js/lib/slider.js","weight":22166,"statSize":8171,"parsedSize":22166},{"id":16,"label":"jquery.mask.js","path":"./src/js/lib/jquery.mask.js","weight":52770,"statSize":19576,"parsedSize":52770},{"id":17,"label":"pieces.js","path":"./src/js/lib/pieces.js","weight":42107,"statSize":19881,"parsedSize":42107}]},{"id":14,"label":"registration.js","path":"./src/js/registration.js","weight":23558,"statSize":7955,"parsedSize":23558},{"id":15,"label":"intlTelInput.js","path":"./src/js/intlTelInput.js","weight":161063,"statSize":63117,"parsedSize":161063},{"id":18,"label":"main.js","path":"./src/js/main.js","weight":693,"statSize":113,"parsedSize":693}]}]}]},{"label":"sw.js","weight":9770,"statSize":3597,"parsedSize":9770,"groups":[{"label":"src","path":"./src","weight":9770,"statSize":3597,"parsedSize":9770,"groups":[{"label":"js","path":"./src/js","weight":9770,"statSize":3597,"parsedSize":9770,"groups":[{"id":20,"label":"sw.js","path":"./src/js/sw.js","weight":9770,"statSize":3597,"parsedSize":9770}]}]}]},{"label":"media.js","weight":2538,"statSize":786,"parsedSize":2538,"groups":[{"label":"src","path":"./src","weight":2538,"statSize":786,"parsedSize":2538,"groups":[{"label":"js","path":"./src/js","weight":2538,"statSize":786,"parsedSize":2538,"groups":[{"id":19,"label":"media.js","path":"./src/js/media.js","weight":2538,"statSize":786,"parsedSize":2538}]}]}]}];
     </script>
   </body>
 </html>
