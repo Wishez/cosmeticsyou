@@ -58,6 +58,7 @@ DJANGO_APPS= [
     'rest_framework',
     'imagekit',
     'django_nose',
+    'model_mommy',
 ]
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import uuid
 import zipfile
-import ceiling.settings
+import cosmeticsyou.settings
 from datetime import datetime
 from zipfile import ZipFile
 
@@ -42,12 +42,10 @@ class AlbumModelAdmin(admin.ModelAdmin):
                     filename = '{0}{1}.png'.format(album.slug, str(uuid.uuid4())[-13:])
                     img.image.save(filename, contentfile)
 
-                    filepath = '{0}/albums/{1}'.format(ceiling.settings.MEDIA_ROOT, filename)
+                    filepath = '{0}/albums/{1}'.format(cosmeticsyou.settings.MEDIA_ROOT, filename)
                     with Image.open(filepath) as i:
                         img.width, img.height = i.size
                     img.save()
-
-                    #img.thumb.save('thumb-{0}'.format(filename), contentfile)
 
                 zip.close()
             super(AlbumModelAdmin, self).save_model(request, obj, form, change)
