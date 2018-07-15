@@ -1,16 +1,23 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SlugRealtedField
 from ..models import *
 
-class SharesListSerializer(ModelSerializer):
+
+
+class NewsListSerializer(ModelSerializer):
+    preview = SlugRealtedField(
+        read_only=True,
+        slug_field="image"
+    )
     class Meta:
         model = News
         fields = (
             'uuid',
             'title',
-            'img',
+            'preview',
             'slug',
             'announce',
-            'published_date',
+            'created_at',
+            'page_title'
         )
 
 
@@ -20,11 +27,11 @@ class ShareSerializer(ModelSerializer):
         fields = (
             'uuid',
             'title',
-            'image',
-            'slug',
-            'text',
+            'preview',
             'created_at',
-            'page_title'
+            'content',
+            'page_title',
+            'album'
         )
 
 
