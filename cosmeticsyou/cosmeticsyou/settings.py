@@ -31,12 +31,19 @@ ALLOWED_HOSTS = ['127.0.0.1',
 
 # Application definition
 
-INSTALLED_APPS = [
+PROJECT_APPS  = [
     'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig',
     'shares.apps.SharesConfig',
     'marks.apps.MarksConfig',
     'myadmin',
+    'pages',
+    'album.apps.AlbumConfig',
+]
+
+THIRD_PARTY_APPS = []
+
+DJANGO_APPS= [
     'jet.dashboard',
     'jet',
     'django.contrib.admin',
@@ -47,9 +54,29 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'raven.contrib.django.raven_compat',
-
-    'pages',
+    'corsheaders',
+    'rest_framework',
+    'imagekit',
+    'django_nose',
 ]
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8000',
+    'localhost:1234',
+    'localhost:8080'
+)
+
+CORS_ORIGIN_REGEX_WHITELIST = (
+    r'^(https?://)?(\w+\.)?google\.com$',
+    r'^(https?://)?localhost:[0-9]{2, 4}$'
+)
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
+
 RAVEN_CONFIG = {
     'dsn': 'https://d8ada14164024e50869fd68ff729d366:a7fb598c3eed4c5ebba6fbef0865dc29@sentry.io/253653',
 }
@@ -98,13 +125,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-            # 'ENGINE': 'django.db.backends.postgresql',
-            # 'NAME': 'cm',
-            # 'USER': 'gm',
-            # 'PASSWORD': 'demonstration',
-            # 'HOST': 'localhost',
-            # 'PORT': '5432'
-        }
+     }
 }
 
 
