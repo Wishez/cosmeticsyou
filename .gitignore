@@ -13,3 +13,8 @@ jet.dashboard
 range_filter
 __pycache__
 newDesign
+django-redactor
+django_tinymce
+rest_framework
+tiny_mce
+media
