@@ -4,7 +4,7 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 from .serializers import *
 
 class UserView(RetrieveAPIView):
-    queryset = Share.objects.all()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
     lookup_field = 'uuid'

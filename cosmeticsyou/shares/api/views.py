@@ -3,14 +3,14 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from .serializers import *
 
-class SharesListView(ListAPIView):
-    queryset = Share.objects.all()
-    serializer_class = SharesListSerializer
+class NewsListView(ListAPIView):
+    queryset = News.objects.all()
+    serializer_class = NewsListSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
     lookup_field = 'uuid'
 
-class ShareView(RetrieveAPIView):
-    queryset = Share.objects.all()
-    serializer_class = ShareSerializer
+class NewsView(RetrieveAPIView):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
     lookup_field = 'slug'

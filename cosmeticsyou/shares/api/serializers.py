@@ -1,13 +1,21 @@
-from rest_framework.serializers import ModelSerializer, SlugRealtedField
+from rest_framework.serializers import ModelSerializer, SlugRelatedField
 from ..models import *
+from album.models import AlbumImage
 
 
+
+class ImageSerializer(ModelSerializer):
+    class Meta:
+        model = AlbumImage
+        fields = [
+            'id',
+            'image',
+            'alt'
+        ]
 
 class NewsListSerializer(ModelSerializer):
-    preview = SlugRealtedField(
-        read_only=True,
-        slug_field="image"
-    )
+    preview = ImageSerializer(read_only=True)
+
     class Meta:
         model = News
         fields = (
@@ -17,11 +25,14 @@ class NewsListSerializer(ModelSerializer):
             'slug',
             'announce',
             'created_at',
-            'page_title'
+            'page_title',
+            'is_shown'
         )
 
 
-class ShareSerializer(ModelSerializer):
+class NewsSerializer(ModelSerializer):
+    preview = ImageSerializer(read_only=True)
+
     class Meta:
         model = News
         fields = (
@@ -31,7 +42,8 @@ class ShareSerializer(ModelSerializer):
             'created_at',
             'content',
             'page_title',
-            'album'
+            'album',
+            'is_shown'
         )
 
 

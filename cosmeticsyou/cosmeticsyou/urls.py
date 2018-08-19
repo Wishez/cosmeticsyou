@@ -5,8 +5,10 @@ from myadmin.admin import admin_site
 # import notifications.urls
 
 urlpatterns = [
+    # url(r'^tinymce/', include('tinymce.urls')),
 	url(r'', include('pages.urls')),
     url(r'^api/', include('home.urls')),
+    url(r'^api/current/', include('api.urls')),
     url(r'^personal_room/', include('accounts.urls')),
     url(r'^registration/', include('accounts.urls')),
     url(r'^share/', include('shares.urls')),

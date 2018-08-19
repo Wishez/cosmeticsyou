@@ -6,6 +6,8 @@ from pages.validators import validate_slug_field
 from pages.models import BasePage, TimeStampedModel
 import uuid as uuid_lib
 
+
+
 class Item(TimeStampedModel):
     # imte_image =
     class Meta:

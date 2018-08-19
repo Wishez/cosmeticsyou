@@ -3,7 +3,7 @@ from django.test import TestCase
 from model_mommy import mommy
 from django.urls import reverse
 from shares.models import *
-from django.utils.timezone import now
+import json
 
 class TestSharesAPI(TestCase):
     def setUp(self):
@@ -25,7 +25,28 @@ class TestSharesAPI(TestCase):
         )
 
     def test_to_get_single_news(self):
-        pass
+        url = reverse('single_news', kwargs={
+            "slug": self.single_news.slug
+        })
+
+        response = self.client.get(url)
+        data = json.loads(response.content)
+        status_code = response.status_code
+
+        self.assertEquals(status_code, 200)
+        self.assertEquals(data.title, self.single_news.title)
+        self.assertEquals(data.page_title, self.single_news.page_title)
+        self.assertEquals(data.content, self.single_news.content)
+
 
     def test_to_get_list_news(self):
-        pass
+        url = reverse('news')
+
+        response = self.client.get(url)
+        data = json.loads(response.content)
+        status_code = response.status_code
+
+        self.assertEquals(status_code, 200)
+        self.assertEquals(len(data), 6)
+
+

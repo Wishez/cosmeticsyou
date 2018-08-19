@@ -43,7 +43,7 @@ class AlbumModelAdmin(admin.ModelAdmin):
                     img.image.save(filename, contentfile)
 
                     filepath = '{0}/albums/{1}'.format(cosmeticsyou.settings.MEDIA_ROOT, filename)
-                    with Image.open(filepath) as i:
+                    with Image.open(filepath, 'rb') as i:
                         img.width, img.height = i.size
                     img.save()
 

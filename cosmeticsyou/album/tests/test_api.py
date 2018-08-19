@@ -10,7 +10,7 @@ class TestSharesAPI(TestCase):
         self.quantity = 42
         self.images_list = mommy.make(
             'album.AlbumImage',
-            _optional_fill=True,
+            # _optional_fill=True,
             _quantity=self.quantity
         )
 

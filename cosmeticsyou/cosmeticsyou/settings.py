@@ -41,7 +41,9 @@ PROJECT_APPS  = [
     'album.apps.AlbumConfig',
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'redactor',
+]
 
 DJANGO_APPS= [
     'jet.dashboard',
@@ -68,12 +70,12 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     'localhost:8000',
     'localhost:1234',
-    'localhost:8080'
+    'localhost:3000',
+    'localhost:8080',
 )
 
 CORS_ORIGIN_REGEX_WHITELIST = (
-    r'^(https?://)?(\w+\.)?google\.com$',
-    r'^(https?://)?localhost:[0-9]{2, 4}$'
+    r'^(https?://)?localhost:[0-9]{2, 4}$',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -84,6 +86,7 @@ RAVEN_CONFIG = {
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
