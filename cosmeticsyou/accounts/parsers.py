@@ -42,7 +42,7 @@ class MessageParser():
             'phone_number',
             'email',
             'region',
-            'birthday',
+            # 'birthday',
             'city'
         ]
 
@@ -131,7 +131,7 @@ def create_user_and_notify_about(user, page):
 
 	notificateUserToMail()
     
-	birthday = '%s' % user.birthday
+	birthday = '%s' % user.birthday #.strftime("%Y-%m-%d %H:%M:%S")
 	middle_name = getattr(user, 'middle_name', '')
 
 	messageForCustomer = 'ФИО: {{last_name}} {{first_name}} %s\n'
@@ -148,7 +148,7 @@ def create_user_and_notify_about(user, page):
 		messageForCustomer,
 		subjectOfTheMessage,
 		isMessageKey=False,
-		recipients=["shiningfinger@list.ru", "uchuvadov60@inbox.ru"]
+		recipients=["shiningfinger@list.ru"]
 	)
 
 	notificateCustomerToMail()

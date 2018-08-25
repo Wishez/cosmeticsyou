@@ -10,6 +10,7 @@ from django.http import Http404
 from .parsers import *
 from threading import Thread
 from marks.models import Mark
+from .helpers import get_consultant
 
 # Create your views here.
 
@@ -54,7 +55,7 @@ class BaseRegistrationView(BaseView):
 
             if self.is_refferal_form or consultant_num:
 
-                led_consultant_data = set_led_consultant(
+                led_consultant_data = get_consultant(
                     consultant_num,
                     ["user_led", "user_led_1", "user_led_2"],
                     [RefferalConsultant, RelatedConsultant, User]
@@ -105,20 +106,6 @@ class BaseRegistrationView(BaseView):
 
         return super(BaseRegistrationView, self).get(request)
 
-
-    def set_led_consultant(consultant_num, consultant_categories, consultants_models):
-        index = 0
-
-        for Model in consultants_models:
-            consultant = Model.objects.is_consultant(consultant_num)
-            if consultant.exists():
-                return {
-                    "type": consultant_categories[index],
-                    "instance": consultant[0]
-                }
-            index = index + 1
-
-        return False
 
 class RegistrationView(BaseRegistrationView):
     def __init__(self):
