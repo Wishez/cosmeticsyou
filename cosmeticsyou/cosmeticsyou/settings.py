@@ -173,8 +173,8 @@ SITE_ID = 1
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'#'smtp.yandex.ru'
 EMAIL_PORT = 587#465
-EMAIL_HOST_USER = 'shiningCollector@gmail.com' #'support@cosmeticsyou.ru'
-EMAIL_HOST_PASSWORD = 'ruking1488' #'Exedfljd_-_'
+EMAIL_HOST_USER = 'shiningtests@gmail.com'
+EMAIL_HOST_PASSWORD = 'demonstration'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'support@cosmeticsyou.ru'
 
