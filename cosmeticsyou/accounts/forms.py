@@ -11,7 +11,8 @@ class BaseRegistrationForm(forms.ModelForm):
         fields = ('last_name', 'first_name', 'middle_name',
                   'birthday',
                   'phone_number', 'email',
-                  'city', 'region',)
+                  'city', 'street', 'region', 'num_home',
+                  'num_apartment',)
         widgets = {
             'last_name': forms.TextInput(attrs={
                 'placeholder': 'Иванов',
@@ -36,7 +37,7 @@ class BaseRegistrationForm(forms.ModelForm):
                 'placeholder': '01/01/1900',
                 'type': 'date',
                 'class': 'controller__input controller__input_purple child materialShadow',
-                #'autocomplete': "birthday"
+                'autocomplete': "birthday"
             }),
             # 'passport_data': forms.TextInput(attrs={
             #     'placeholder': '0000-000000',
@@ -47,42 +48,42 @@ class BaseRegistrationForm(forms.ModelForm):
                 'type': 'tel',
                 'class': 'controller__input controller__input_purple child materialShadow',
                 "maxlength": "30",
-                'autocomplete': "on"
+                'autocomplete': "phone"
             }),
             'email': forms.EmailInput(attrs={
                 'placeholder': 'your_email@mail.ru',
                 'class': 'controller__input controller__input_purple child materialShadow',
-                # #'autocomplete': "email"
+                #'autocomplete': "email"
             }),
             'city': forms.TextInput(attrs={
                 'placeholder': 'Москва; Стамбул; Лондон',
                 'pattern': '\D+',
                 'class': 'controller__input controller__input_purple child materialShadow',
-                #'autocomplete': "city",
+                'autocomplete': "city",
             }),
             'region': forms.TextInput(attrs={
                 'placeholder': '1239876',
                 'pattern': '[0-9\-]*',
                 'class': 'controller__input controller__input_purple child materialShadow',
-                #'autocomplete': "region",
+                'autocomplete': "region",
             }),
-            # 'street': forms.TextInput(attrs={
-            #     'placeholder': 'Тисовая; Бейкер-стрит',
-            #     'pattern': '\D+',
-            #     'class': 'controller__input controller__input_purple child materialShadow',
-            # }),
-            # 'num_home': forms.TextInput(attrs={
-            #     'placeholder': '10A; 11',
-            #     'class': 'controller__input controller__input_small controller__input_purple child materialShadow',
-            # }),
-            # 'num_apartment': forms.NumberInput(attrs={
-            #     'placeholder': '322',
-            #     'max': 999,
-            #     'min': 1,
-            #     'value': 1,
-            #     'step': 1,
-            #     'class': 'controller__input controller__input_small controller__input_purple child materialShadow',
-            # }),
+            'street': forms.TextInput(attrs={
+                'placeholder': 'Тисовая; Бейкер-стрит',
+                'pattern': '\D+',
+                'class': 'controller__input controller__input_purple child materialShadow',
+            }),
+            'num_home': forms.TextInput(attrs={
+                'placeholder': '10A; 11',
+                'class': 'controller__input controller__input_small controller__input_purple child materialShadow',
+            }),
+            'num_apartment': forms.NumberInput(attrs={
+                'placeholder': '322',
+                'max': 999,
+                'min': 1,
+                'value': 1,
+                'step': 1,
+                'class': 'controller__input controller__input_small controller__input_purple child materialShadow',
+            }),
 
         }
 

@@ -8,6 +8,7 @@ from django.contrib.sites.models import Site
 from home.models import EmailMessagesSetting
 from .parsers import MessageParser
 from model_utils import FieldTracker
+from album.models import AlbumImage
 
 class ConsultantManager(models.Manager):
     use_for_related_fields = True
@@ -22,6 +23,8 @@ class ConsultantBase(models.Model):
     middle_name = models.CharField(_('Отчество'), max_length=32, blank=True, null=True)
     empty_middle_name = models.BooleanField(_('Нет отчества.'), default=False)
     consultant_num = models.CharField(_('Номер консультанта'), max_length=40, blank=True, null=True)
+    avatar = models.ForeignKey(AlbumImage, verbose_name=_('Аватар'), blank=True, null=True )
+    username = models.CharField(_('Имя пользователя'), max_length=32, blank=True, null=True)
 
     url_to_personal_room = models.CharField(
         _('Ссылка в личный кабинет'),
@@ -88,12 +91,12 @@ class FullConsultant(ConsultantBase):
     passport_data = models.CharField(
         _('Серия и номер паспорта'),
         max_length=26,
-        blank = True, null = True,
+        blank=True, null=True,
         default=""
     )
     phone_number = models.CharField(_('Номер телефона'), max_length=26)
 
-    city = models.CharField(_('Город'), max_length=50)
+    city = models.CharField(_('Город, Область'), max_length=50)
     region = models.CharField(_('Почтовый Индекс'), max_length=50, default="", blank = True, null = True)
     email = models.EmailField(_('E-mail'))
 
@@ -269,22 +272,23 @@ def send_notification_about_updated_consultant_number_if_needed(instance):
         )()
 
 #
-# @receiver(pre_save, sender=User)
-# def pre_save_consultant(sender, instance, **kwargs):
-#     set_refferal_data(instance, **kwargs)
-#     send_notification_to_registered_consultant(instance)
-#     send_notification_about_set_consultant_number_if_needed(instance)
-#     send_notification_about_updated_consultant_number_if_needed(instance)
-# @receiver(pre_save, sender=RefferalConsultant)
-# def pre_save_referral_consultant(sender, instance, **kwargs):
-#     set_refferal_data(instance, **kwargs)
-#     send_notification_to_registered_consultant(instance)
-#     send_notification_about_set_consultant_number_if_needed(instance)
-#     send_notification_about_updated_consultant_number_if_needed(instance)
-#
-# @receiver(pre_save, sender=RelatedConsultant)
-# def pre_save_related_consultant(sender, instance, **kwargs):
-#     set_refferal_data(instance, **kwargs)
-#     #send_notification_to_registered_consultant(instance)
-#     send_notification_about_set_consultant_number_if_needed(instance)
-#     send_notification_about_updated_consultant_number_if_needed(instance)
+@receiver(pre_save, sender=User)
+def pre_save_consultant(sender, instance, **kwargs):
+    set_refferal_data(instance, **kwargs)
+    send_notification_to_registered_consultant(instance)
+    send_notification_about_set_consultant_number_if_needed(instance)
+    send_notification_about_updated_consultant_number_if_needed(instance)
+
+@receiver(pre_save, sender=RefferalConsultant)
+def pre_save_referral_consultant(sender, instance, **kwargs):
+    set_refferal_data(instance, **kwargs)
+    send_notification_to_registered_consultant(instance)
+    send_notification_about_set_consultant_number_if_needed(instance)
+    send_notification_about_updated_consultant_number_if_needed(instance)
+
+@receiver(pre_save, sender=RelatedConsultant)
+def pre_save_related_consultant(sender, instance, **kwargs):
+    set_refferal_data(instance, **kwargs)
+    # send_notification_to_registered_consultant(instance)
+    send_notification_about_set_consultant_number_if_needed(instance)
+    send_notification_about_updated_consultant_number_if_needed(instance)
