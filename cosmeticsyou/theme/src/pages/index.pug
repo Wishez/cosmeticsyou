@@ -117,26 +117,31 @@ style.
 				
 //- begin catalogs
 
-section.intro.margin_center.parent.row.wrap.display_grid.grid_gap.v-end
+section.intro.margin_center.parent.row.wrap.display_grid.v-end
 	
 	div.introPresent
-		h2.intro__title.margin-bottom_base.heading-offset_large.width_fill У нас для вас подарок
-		section.catalog__refer(href="/shares/").
-			<h3>Ты новичок? </h3>
-			<p>Размести единовременный ББ-заказ на 1000 руб. с доставкой в СПО в течение 72 часов с момента регистрации, тогда доставка этого заказа и регистрация для тебя будут бесплатными.</p>
+		h2.intro__title.margin-bottom_base.heading-offset_large.width_fill Туалетная вода &mdash; подарок для новичков!
+
+		a.catalog__refer(href="/share/live-in-drive").
+			<picture>	
+				<source srcset="https://media-cis-cdn.oriflame.com/-/media/Images/Catalog/Products/_global/2/23/238/23853.ashx?u=0101010000" media="screen" />
+				<img class="materialShadow image lazy" data-src="https://media-cis-cdn.oriflame.com/-/media/Images/Catalog/Products/_global/2/23/238/23853.ashx?u=0101010000" />
+			</picture>
 	
-			<p>Участвуй в <a href="#programm" class="slideTo">Стартовой программе</a> для новых консультантов и получай наборы продуктов-бестселлеров.</p>
-		
+	p А также, для тебя бесплатная регистрация и бесплатная доставка при единовременном заказе от 1000 руб. с доставкой в СПО в течение трех дней с момента регистрации, а также один из самых популярных ароматов в подарок при заказе от 50ББ и более в период 21 дня с момента регистрации. Приглашай друзей и ты сможешь получить еще больше.
+	
+
+	p Участвуй в <a href="#programm" class="slideTo">Стартовой программе</a> для новых консультантов и получай наборы продуктов-бестселлеров.
 					
 	div.introCatalog
-		h3.intro__title.margin-bottom_base.heading-offset_large.width_fill Текущий каталог
+		h2.intro__title.margin-bottom_base.heading-offset_large.width_fill Текущий каталог
 		a.catalog__refer.not-follow(href="http://ru.oriflame.com/ecatalogue/502181?per=201609")
 			picture
 				source(srcset="https://ru.oriflame.com/catalogue-image.png", media="screen")
 				img.materialShadow.image.lazy(data-src="https://ru.oriflame.com/catalogue-image.png")
 		
 		
-	.introCatalog__registration.registrationButton.main__registrationButton.registrationButton_purple.registrationButton_centered
+	.introCatalog__registration.registrationButton.registrationButton_purple.registrationButton_centered
 		a.registrationButton__refer(href="{% url 'registration' %}") Регистрация
 //- end catalogs
 section.programm.parent.centered.margin_center#programm

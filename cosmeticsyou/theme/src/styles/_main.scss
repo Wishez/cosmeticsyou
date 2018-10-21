@@ -303,7 +303,11 @@ $slides: ("hike", auto, 0), ("team", 0, 0), ("business", 0, calc(50% - 222px)),
 }
 .introCatalog__registration {
     @include breakpoint(629px) {
-        grid-area: 2 / 1 / 3 / 3;
+        grid-area: 3 / 1 / 3 / 3;
+    }
+
+    @include breakpoint(max-width 629px) {
+        margin-top: 1.618rem;
     }
 }
 .alignSection {
@@ -322,14 +326,22 @@ $slides: ("hike", auto, 0), ("team", 0, 0), ("business", 0, calc(50% - 222px)),
 .intro {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     max-width: 845px;
-    margin-bottom: em(160);
+    
+    @include breakpoint(629px) {
+        margin-bottom: em(160);
+        grid-gap: 3rem 1.618rem;
+    }
+
     @include breakpoint(max-width 629px) {
+        margin-bottom: em(74);
         padding: 0 1.5em 0 2em;
     }
+
     &__title {
         @include breakpoint($xs) {
-            margin-top: 2.5em;
+            margin-top: 2em;
         }
+        
         @include breakpoint(max-width 629px) {
             text-align: center;
         }
@@ -359,8 +371,7 @@ $slides: ("hike", auto, 0), ("team", 0, 0), ("business", 0, calc(50% - 222px)),
         padding-left: 2.5em;
     }
 }
-.registrationIntro__paragraph {
-}
+
 .main p a {
     color: $darkGray;
     background-image: linear-gradient(to right, $darkGray 0%, $darkGray 100%);
