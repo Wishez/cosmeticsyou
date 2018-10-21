@@ -17,9 +17,10 @@ class MessageParser():
         recipients=[]
     ):
         self.consultant = consultant
+        self.email_setting  = EmailMessagesSetting.objects.get(is_active='Активная группа')
+        
         # Проверка на обычноое ообщение
         if isMessageKey:
-            self.email_setting  = EmailMessagesSetting.objects.get(is_active='Активная группа')
             setting = self.email_setting
             self.message = getattr(setting, message, '')
             self.subject = getattr(setting, subject, '')
@@ -95,6 +96,11 @@ class MessageParser():
 
 
     def send_parsed_text_to_email(self):
+        is_allow_sending_messages = self.email_setting.is_allow_sending_messages
+        print('is_allow_sending_messages', is_allow_sending_messages)
+
+        if is_allow_sending_messages == False: return None
+
         recipients_length = len(self.recipients)
         recipients = []
         consultant_has_email = hasattr(self.consultant, 'email')
@@ -114,47 +120,41 @@ class MessageParser():
                 recipients
             ).send()
 
-
-
-
 def create_user_and_notify_about(user, page):
-	user.save()
+    user.save()
+    send_sms_notification(page, user)
 
-	send_sms_notification(page, user)
-
-	notificateUserToMail = MessageParser(
+    notificateUserToMail = MessageParser(
 		user,
 		'after_register_message',
-		'after_register_subject',
+        'after_register_subject',
 		isMessageKey=True
 	)
-
-	notificateUserToMail()
     
-	birthday = '%s' % user.birthday #.strftime("%Y-%m-%d %H:%M:%S")
-	middle_name = getattr(user, 'middle_name', '')
+    birthday = '%s' % user.birthday #.strftime("%Y-%m-%d %H:%M:%S")
+    middle_name = getattr(user, 'middle_name', '')
 
-	messageForCustomer = 'ФИО: {{last_name}} {{first_name}} %s\n'
-	'День рождения: %s\n'
-	'Телефон: {{phone_number}}\n'
-	'Email: {{email}}\n'
-	'Почтовый индекс: {{region}}\n'
-	'Город: {{city}}\n'
-	'\nК панели администрирования: https://{{site}}/admin/accounts/user/\n' % (middle_name, birthday,),
-	subjectOfTheMessage = 'Новый консультант присоединился к нашим рядам.'
+    messageForCustomer = 'ФИО: {{last_name}} {{first_name}} %s\n'
+    'День рождения: %s\n'
+    'Телефон: {{phone_number}}\n'
+    'Email: {{email}}\n'
+    'Почтовый индекс: {{region}}\n'
+    'Город: {{city}}\n'
+    '\nК панели администрирования: https://{{site}}/admin/accounts/user/\n' % (middle_name, birthday,),
+    subjectOfTheMessage = 'Новый консультант присоединился к нашим рядам.'
 
-	notificateCustomerToMail = MessageParser(
-		user,
-		messageForCustomer,
-		subjectOfTheMessage,
-		isMessageKey=False,
-		recipients=["shiningfinger@list.ru"]
-	)
+    notificateCustomerToMail = MessageParser(
+        user,
+        messageForCustomer,
+        subjectOfTheMessage,
+        isMessageKey=False,
+        recipients=["shiningfinger@list.ru"]
+    )
 
-	notificateCustomerToMail()
+    notificateUserToMail()
+    notificateCustomerToMail()
 
 def send_sms_notification(page, consultant):
-
     phone_from = page.phone_from
     phones_to = page.phones_to.replace(' ', '').split(',')
     account_sid = page.account_sid

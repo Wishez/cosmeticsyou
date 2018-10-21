@@ -43,6 +43,7 @@ class Callback(models.Model):
 
 
 class EmailMessagesSetting(models.Model):
+    is_allow_sending_messages = models.BooleanField(_('Использовать информирование на почту?'), default=True)
 
     change_registration_status_subject= models.CharField(
         _('Тема'),

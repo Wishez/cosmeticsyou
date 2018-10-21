@@ -14,11 +14,12 @@ class CallbackAdmin(admin.ModelAdmin):
 
 class EmailAdmin(admin.ModelAdmin):
     list_per_page = 10
-    list_display = ('is_active',)
+    list_display = ('is_active', 'is_allow_sending_messages',)
     fieldsets = (
         ('Активация', {
             'fields': (
                 ('is_active',),
+                ('is_allow_sending_messages',),
             ),
         }),
         ('Статус регисрации консультанта', {
