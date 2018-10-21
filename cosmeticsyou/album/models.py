@@ -15,8 +15,10 @@ class Album(TimeStampedModel):
 
     def __str__(self):
         return self.title
+
     def __unicode__(self):
         return self.title
+
     class Meta:
         verbose_name = _('Альбом')
         verbose_name_plural = _('Альбомы')
@@ -37,6 +39,7 @@ class AlbumImage(TimeStampedModel):
 
     def __str__(self):
         return self.alt
+
     class Meta:
         verbose_name = _('Изображение')
         verbose_name_plural = _('Изображения')

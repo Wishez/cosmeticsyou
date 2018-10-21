@@ -41,6 +41,9 @@ class AdminShare(admin.ModelAdmin):
             ),
         },),
     )
+    formfield_overrides = {
+        models.TextField: {'widget': AdminRedactorEditor},
+    }
 
 @admin.register(News, site=admin_site)
 class AdminNews(admin.ModelAdmin):
