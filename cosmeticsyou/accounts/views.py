@@ -57,8 +57,7 @@ class BaseRegistrationView(BaseView):
 
                 led_consultant_data = get_consultant(
                     consultant_num,
-                    ["user_led", "user_led_1", "user_led_2"],
-                    [RefferalConsultant, RelatedConsultant, User]
+                    consultant_categories=["user_led", "user_led_1", "user_led_2"],
                 )
 
                 if led_consultant_data and led_consultant_data["instance"]:
