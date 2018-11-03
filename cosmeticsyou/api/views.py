@@ -37,32 +37,28 @@ def isGetMethod(request):
 def login_user(request):
     response = {
         'meta': {
-            'status': 400,
-            'message': 'Bad Request',
+            'status': '',
+            'message': '',
         },
+        'data': {}
     }
-    print(request.method)
+
     if request.method == "POST":
-        print(request.body)
         user_credentials = json.loads(request.body)
-        username = user_credentials['username'] 
+        username = user_credentials['username']
         password = user_credentials['password']
         user = get_registered_user(username, password)
 
         if user:
-            response.meta = {
-                'status': 200,
-                'message': '',
-            }
-            response.data = {
-                'email': user.email,
-                'password': password,
-            }
+            response['meta']['status'] = 'OK'
+            for key in ['uuid', 'username', 'avatar', 'first_name', 'last_name', 'email', 'middle_name', 'email', 'password']:
+                response['data'][key] = getattr(user, key, '')
 
-            for key in ['uuid', 'username', 'avatar', 'first_name', 'last_name', 'email', 'middle_name']:
-                response.data[key] = user[key]
         else:
-            response.meta.message = 'Неправильный логин или пароль'
+            response['meta'].message = 'Неправильный логин или пароль'
+
+    else:
+        response['meta'].message = 'Bad Request'
 
     return JsonResponse(response)
 
