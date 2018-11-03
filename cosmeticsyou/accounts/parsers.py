@@ -97,7 +97,6 @@ class MessageParser():
 
     def send_parsed_text_to_email(self):
         is_allow_sending_messages = self.email_setting.is_allow_sending_messages
-        print('is_allow_sending_messages', is_allow_sending_messages)
 
         if is_allow_sending_messages == False: return None
 

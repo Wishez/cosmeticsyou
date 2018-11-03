@@ -16,19 +16,24 @@ def is_consultant_with(username):
     return False
 
 # Create your views here.
-def get_registered_user(email, password):
+def get_registered_user(username, password):
     # email = re.match(r'^.*@.*\..{2}$', email)
     for Model in [RefferalConsultant, RelatedConsultant, User]:
 
-        user = Model.objects.filter(email=email, password=password)
+        user = Model.objects.filter(email=username, password=password)
         if user.exists():
-            return user
+            return user[0]
+
+        user = Model.objects.filter(username=username, password=password)
+        if user.exists():
+            return user[0]
 
     return False
 
 def isGetMethod(request):
     return request.method == "GET"
 
+@csrf_exempt
 def login_user(request):
     response = {
         'meta': {
@@ -36,11 +41,13 @@ def login_user(request):
             'message': 'Bad Request',
         },
     }
-
-    if isGetMethod(request):
-        user_credentials = request.GET
-        email, password = user_credentials
-        user = get_registered_user(email, password)
+    print(request.method)
+    if request.method == "POST":
+        print(request.body)
+        user_credentials = json.loads(request.body)
+        username = user_credentials['username'] 
+        password = user_credentials['password']
+        user = get_registered_user(username, password)
 
         if user:
             response.meta = {
@@ -48,7 +55,7 @@ def login_user(request):
                 'message': '',
             }
             response.data = {
-                'email': email,
+                'email': user.email,
                 'password': password,
             }
 
