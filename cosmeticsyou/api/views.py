@@ -51,7 +51,19 @@ def login_user(request):
 
         if user:
             response['meta']['status'] = 'OK'
-            for key in ['uuid', 'username', 'avatar', 'first_name', 'last_name', 'email', 'middle_name', 'email', 'password']:
+            userClientInfoKeys = [
+                'uuid',
+                'username',
+                'avatar',
+                'first_name',
+                'last_name',
+                'email',
+                'middle_name',
+                'email',
+                'password',
+                'consultant_num'
+            ]
+            for key in userClientInfoKeys:
                 response['data'][key] = getattr(user, key, '')
 
         else:

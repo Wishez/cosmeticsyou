@@ -9,6 +9,7 @@ from home.models import EmailMessagesSetting
 from .parsers import MessageParser
 from model_utils import FieldTracker
 from album.models import AlbumImage
+import uuid
 
 class ConsultantManager(models.Manager):
     use_for_related_fields = True
@@ -18,6 +19,7 @@ class ConsultantManager(models.Manager):
 
 
 class ConsultantBase(models.Model):
+    uuid = models.UUIDField(_('Идентификатор пользователя'), db_index=True, default=uuid.uuid4, editable=False)
     last_name = models.CharField(_('Фамилия'), max_length=36)
     first_name = models.CharField(_('Имя'), max_length=32)
     middle_name = models.CharField(_('Отчество'), max_length=32, blank=True, null=True)
